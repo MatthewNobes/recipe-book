@@ -1,3 +1,10 @@
+import Header from "../../components/Header";
+
 export const HomePage = () => {
-  return <p>Home in development</p>;
+  return (
+    <div>
+      <Header headerText="Recipe Book" />
+      <p>Home in development</p>
+    </div>
+  );
 };
