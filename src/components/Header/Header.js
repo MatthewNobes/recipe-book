@@ -5,7 +5,7 @@ export const Header = (props) => {
   const headerText = props.headerText;
 
   return (
-    <Typography component="h2" variant="h1" className={css.Header}>
+    <Typography component="h1" variant="h2" className={css.Header}>
       {headerText}
     </Typography>
   );
