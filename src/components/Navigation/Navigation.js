@@ -1,5 +1,8 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import CountertopsIcon from "@mui/icons-material/Countertops";
+import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import css from "./Navigation.module.css";
 
@@ -14,19 +17,10 @@ export const Navigation = () => {
         setValue(newValue);
       }}
     >
-      <BottomNavigationAction
-        label="Browse Recipes"
-        icon={<AccountBalanceIcon />}
-      />
-      <BottomNavigationAction label="Favorites" icon={<AccountBalanceIcon />} />
-      <BottomNavigationAction
-        label="My Cupboards"
-        icon={<AccountBalanceIcon />}
-      />
-      <BottomNavigationAction
-        label="My Account"
-        icon={<AccountBalanceIcon />}
-      />
+      <BottomNavigationAction label="Browse Recipes" icon={<SearchIcon />} />
+      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="My Cupboards" icon={<CountertopsIcon />} />
+      <BottomNavigationAction label="My Account" icon={<AccountCircleIcon />} />
     </BottomNavigation>
   );
 };
