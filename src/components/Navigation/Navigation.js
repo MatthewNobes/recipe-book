@@ -28,7 +28,7 @@ export const Navigation = () => {
       <BottomNavigationAction
         component={Link}
         to="/BrowseRecipes"
-        label="Browse Recipes"
+        label="Browse"
         icon={<SearchIcon />}
       />
       <BottomNavigationAction
@@ -36,12 +36,6 @@ export const Navigation = () => {
         to="/Favorites"
         label="Favorites"
         icon={<FavoriteIcon />}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to="/MyCupboards"
-        label="My Cupboards"
-        icon={<CountertopsIcon />}
       />
       <BottomNavigationAction
         component={Link}
