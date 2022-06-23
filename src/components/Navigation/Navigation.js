@@ -1,7 +1,6 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import CountertopsIcon from "@mui/icons-material/Countertops";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import { useState } from "react";
