@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-server": "nodemon server/server.cjs --watch server/*",
+    "start-server": "nodemon server/server.mjs --watch server/*",
     "start-front": "react-scripts start",
     "start": "concurrently \"npm run start-server\" \"npm run start-front\" --kill-others --kill-others-on-fail"
   },
