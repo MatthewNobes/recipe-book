@@ -1,14 +1,14 @@
-//finished version of the app.js file
 "use strict";
 import express from "express";
+import recipes from "./routes/recipesRoute.mjs";
+import ingredients from "./routes/ingredientsRoute.mjs";
+
 const app = express();
 const port = 4444;
-//const things = require("./routes/recipe");
 
-//app.use(express.json());
-//app.use("/things", things);
-//use the things.js file to handle
-//endpoints that start with /things
+app.use(express.json());
+app.use("/api/recipes", recipes);
+app.use("/api/ingredients", ingredients);
 
 app.get("/", (request, result) => {
   result.send("recipe api system");
