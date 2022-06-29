@@ -9,9 +9,13 @@ export const RecipeListCard = (props) => {
   const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
     props;
 
+  const itemClickedOn = () => {
+    console.log("item has been clicked on");
+  };
+
   return (
     <div key={id}>
-      <ListItem alignItems="flex-start">
+      <ListItem alignItems="flex-start" onClick={() => itemClickedOn()}>
         <ListItemText
           primary={recipeName}
           secondary={
