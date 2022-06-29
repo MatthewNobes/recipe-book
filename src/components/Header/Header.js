@@ -5,7 +5,12 @@ export const Header = (props) => {
   const headerText = props.headerText;
 
   return (
-    <Typography component="h1" variant="h2" className={css.Header}>
+    <Typography
+      component="h1"
+      variant="h2"
+      className={css.Header}
+      sx={{ bgcolor: "#1976d2" }}
+    >
       {headerText}
     </Typography>
   );

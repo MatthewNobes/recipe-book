@@ -15,7 +15,6 @@ export const BrowseRecipes = () => {
   return (
     <div>
       <Header headerText="Recipes" />
-      <p>Browse recipes in development</p>
       {recipes.map((recipe) => {
         return (
           <List
