@@ -3,6 +3,7 @@ import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteButton from "./FavoriteButton";
+import TotalTime from "./TotalTime";
 
 export const RecipeListCard = (props) => {
   const { id, recipeName, recipeDescription, isFavorite, totalTime } = props;
@@ -21,10 +22,10 @@ export const RecipeListCard = (props) => {
               >
                 {recipeDescription}
               </Typography>
-              {totalTime}
             </>
           }
         />
+        <TotalTime totalTime={totalTime} />
         <FavoriteButton isFavorite={isFavorite} />
       </ListItem>
       <Divider variant="inset" component="li" />
