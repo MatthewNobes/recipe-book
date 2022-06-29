@@ -13,6 +13,76 @@ const testRecipes = [
     recipeDescription: "A chicken stuffed with garlic butter",
     recipeDifficultyRating: 2,
   },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
+  {
+    recipeName: "Curry",
+    recipeDescription: "A tasty curry",
+    recipeDifficultyRating: 3,
+  },
+  {
+    recipeName: "Chicken Kiev",
+    recipeDescription: "A chicken stuffed with garlic butter",
+    recipeDifficultyRating: 2,
+  },
 ];
 
 router.route("/").get((request, result) => {

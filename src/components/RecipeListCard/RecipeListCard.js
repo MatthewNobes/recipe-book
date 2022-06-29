@@ -13,13 +13,16 @@ export const RecipeListCard = (props) => {
         <ListItemText
           primary={recipeName}
           secondary={
-            <Typography
-              sx={{ display: "inline" }}
-              component="span"
-              variant="body2"
-            >
-              {recipeDescription}
-            </Typography>
+            <>
+              <Typography
+                sx={{ display: "inline" }}
+                component="span"
+                variant="body2"
+              >
+                {recipeDescription}
+              </Typography>
+              {totalTime}
+            </>
           }
         />
         <FavoriteButton isFavorite={isFavorite} />

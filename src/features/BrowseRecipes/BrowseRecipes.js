@@ -25,7 +25,7 @@ export const BrowseRecipes = () => {
               id={5}
               recipeName={recipe.recipeName}
               recipeDescription={recipe.recipeDescription}
-              isFavorite={true}
+              isFavorite={false}
               totalTime={"1:10"}
             />
           </List>
