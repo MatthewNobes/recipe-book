@@ -25,7 +25,8 @@ export const BrowseRecipes = () => {
               recipeName={recipe.recipeName}
               recipeDescription={recipe.recipeDescription}
               isFavorite={false}
-              totalTime={"1:10"}
+              cookTime={120}
+              prepTime={40}
             />
           </List>
         );

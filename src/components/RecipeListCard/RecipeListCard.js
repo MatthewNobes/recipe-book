@@ -6,7 +6,8 @@ import FavoriteButton from "./FavoriteButton";
 import TotalTime from "./TotalTime";
 
 export const RecipeListCard = (props) => {
-  const { id, recipeName, recipeDescription, isFavorite, totalTime } = props;
+  const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
+    props;
 
   return (
     <div key={id}>
@@ -25,7 +26,7 @@ export const RecipeListCard = (props) => {
             </>
           }
         />
-        <TotalTime totalTime={totalTime} />
+        <TotalTime cookTime={cookTime} prepTime={prepTime} />
         <FavoriteButton isFavorite={isFavorite} />
       </ListItem>
       <Divider variant="inset" component="li" />
