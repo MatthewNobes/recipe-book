@@ -1,25 +1,34 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
+import { List } from "@mui/material";
+import RecipeListCard from "../../components/RecipeListCard";
 
 export const BrowseRecipes = () => {
-  const holder = true;
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:4444/api/recipes")
       .then((response) => response.json())
       .then((data) => setRecipes(data));
-  }, [holder]);
+  }, []);
 
   return (
     <div>
       <Header headerText="Recipes" />
-      <p>Home in development</p>
+      <p>Browse recipes in development</p>
       {recipes.map((recipe) => {
         return (
-          <div>
-            <p>{recipe.recipeName}</p>
-          </div>
+          <List
+            sx={{ width: "100%", minWidth: 360, bgcolor: "background.paper" }}
+          >
+            <RecipeListCard
+              id={5}
+              recipeName={recipe.recipeName}
+              recipeDescription={recipe.recipeDescription}
+              isFavorite={true}
+              totalTime={"1:10"}
+            />
+          </List>
         );
       })}
     </div>
