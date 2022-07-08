@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { List } from "@mui/material";
 import RecipeListCard from "../../components/RecipeListCard";
+import RecipeSpeedDial from "../../components/RecipeSpeedDial";
 
 export const BrowseRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -31,6 +32,7 @@ export const BrowseRecipes = () => {
           </List>
         );
       })}
+      <RecipeSpeedDial />
     </div>
   );
 };
