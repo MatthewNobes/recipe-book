@@ -1,16 +1,16 @@
 "use strict";
 import express from "express";
 import cors from "cors";
-import recipes from "./routes/recipesRoute.mjs";
-import ingredients from "./routes/ingredientsRoute.mjs";
+import router from "./routes/index.mjs";
 
 const app = express();
 const port = 4444;
 
 app.use(express.json());
 app.use(cors());
-app.use("/api/recipes", recipes);
-app.use("/api/ingredients", ingredients);
+app.use("/api", router);
+//app.use("/api/recipes", recipes);
+//app.use("/api/ingredients", ingredients);
 
 app.get("/", (request, result) => {
   result.send("recipe api system");
