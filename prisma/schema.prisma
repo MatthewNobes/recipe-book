@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:recipe-book.db"
+}
+
+model favourites {
+  favID    Int    @id @default(autoincrement())
+  userID   Int
+  recipeID Int
+  recipe   recipe @relation(fields: [recipeID], references: [recipeID], onDelete: Cascade)
+  users    users  @relation(fields: [userID], references: [userID], onDelete: Cascade)
+}
+
+model ingredientMeasurement {
+  ingredientMeasurementID                                Int                 @id @default(autoincrement())
+  ingredientID                                           Int?
+  measurementSize                                        Decimal
+  measurementType                                        Int?
+  ingredients                                            ingredients?        @relation(fields: [ingredientID], references: [ingredientID], onDelete: Cascade)
+  measurementType_ingredientMeasurementTomeasurementType measurementType?    @relation(fields: [measurementType], references: [measurementTypeID], onDelete: Cascade)
+  recipeIngredients                                      recipeIngredients[]
+}
+
+model ingredients {
+  ingredientID          Int                     @id @default(autoincrement())
+  ingredientName        String?
+  ingredientDescription String?
+  ingredientInfoURL     String?
+  ingredientMeasurement ingredientMeasurement[]
+}
+
+model measurementType {
+  measurementTypeID     Int                     @id @default(autoincrement())
+  measurementType       String?
+  ingredientMeasurement ingredientMeasurement[]
+}
+
+model recipe {
+  recipeID               Int                 @id @default(autoincrement())
+  recipeName             String?
+  recipeDecsription      String?
+  recipeDifficultyRating Int?
+  recipePrepTime         Int?
+  recipeCookTime         Int?
+  servingNumber          Int?
+  recipeSource           String?
+  favourites             favourites[]
+  recipeIngredients      recipeIngredients[]
+  recipeSteps            recipeSteps[]
+}
+
+model recipeIngredients {
+  recipeIngredientID    Int                   @id @default(autoincrement())
+  recipeID              Int
+  ingredientID          Int
+  ingredientMeasurement ingredientMeasurement @relation(fields: [ingredientID], references: [ingredientMeasurementID], onDelete: Cascade)
+  recipe                recipe                @relation(fields: [recipeID], references: [recipeID], onDelete: Cascade)
+}
+
+model recipeSteps {
+  recipeStepID Int     @id @default(autoincrement())
+  stepNumber   Int
+  stepText     String
+  recipeID     Int?
+  recipe       recipe? @relation(fields: [recipeID], references: [recipeID], onDelete: Cascade)
+}
+
+model userPasswords {
+  passwordID   Int    @id @default(autoincrement())
+  userID       Int
+  passwordHash String
+  users        users  @relation(fields: [userID], references: [userID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  userID        Int             @id @unique(map: "sqlite_autoindex_users_1") @default(autoincrement())
+  username      String
+  firstName     String?
+  lastName      String?
+  email         String
+  favourites    favourites[]
+  userPasswords userPasswords[]
+}
