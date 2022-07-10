@@ -1,5 +1,8 @@
 "use strict";
 import express from "express";
+import { getAllRecipes } from "./getAllRecipes.mjs";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 let router = express.Router();
 
 const testRecipes = [
@@ -85,8 +88,10 @@ const testRecipes = [
   },
 ];
 
-router.route("/").get((request, result) => {
-  result.json(testRecipes);
+router.route("/").get(async (request, result) => {
+  //const recipes = getAllRecipes();
+  const allRecipes = await prisma.recipe.findMany();
+  result.json(allRecipes);
 });
 
 export default router;
