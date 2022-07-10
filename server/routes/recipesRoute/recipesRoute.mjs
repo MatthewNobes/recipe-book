@@ -1,6 +1,5 @@
 "use strict";
 import express from "express";
-import { getAllRecipes } from "./getAllRecipes.mjs";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 let router = express.Router();

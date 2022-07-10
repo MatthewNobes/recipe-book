@@ -18,7 +18,6 @@ export const BrowseRecipes = () => {
       <Header headerText="Recipes" />
       <div className="pageContents"></div>
       {recipes.map((recipe) => {
-        console.log(recipes);
         return (
           <List
             sx={{
@@ -29,12 +28,12 @@ export const BrowseRecipes = () => {
             }}
           >
             <RecipeListCard
-              id={5}
+              id={recipe.recipeID}
               recipeName={recipe.recipeName}
               recipeDescription={recipe.recipeDescription}
               isFavorite={false}
-              cookTime={120}
-              prepTime={40}
+              cookTime={recipe.recipeCookTime}
+              prepTime={recipe.recipePrepTime}
             />
           </List>
         );
