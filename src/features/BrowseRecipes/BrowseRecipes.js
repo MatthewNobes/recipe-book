@@ -16,10 +16,17 @@ export const BrowseRecipes = () => {
   return (
     <div>
       <Header headerText="Recipes" />
+      <div className="pageContents"></div>
       {recipes.map((recipe) => {
+        console.log(recipes);
         return (
           <List
-            sx={{ width: "100%", minWidth: 360, bgcolor: "background.paper" }}
+            sx={{
+              width: "100%",
+              minWidth: 360,
+              bgcolor: "background.paper",
+              top: "72px",
+            }}
           >
             <RecipeListCard
               id={5}
