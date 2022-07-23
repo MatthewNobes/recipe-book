@@ -8,7 +8,7 @@ export const BrowseRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4444/api/recipes")
+    fetch(process.env.REACT_APP_API_URL + "/recipes")
       .then((response) => response.json())
       .then((data) => setRecipes(data));
   }, []);
