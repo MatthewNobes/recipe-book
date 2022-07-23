@@ -1,14 +1,21 @@
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from "@mui/material";
-
+import { useNavigate } from "react-router-dom";
 import { Add, Edit } from "@mui/icons-material";
-
-const click = () => {
-  console.log("add new one");
-};
+import { useCallback } from "react";
 
 export const RecipeSpeedDial = () => {
+  const click = () => {
+    console.log("add new one");
+  };
+
+  const navigate = useNavigate();
+
+  const handleAddNewClick = useCallback(
+    () => navigate("/AddRecipe", { replace: true }),
+    [navigate]
+  );
   const actions = [
-    { icon: <Add />, name: "Add", onClickFn: () => click() },
+    { icon: <Add />, name: "Add", onClickFn: () => handleAddNewClick() },
     { icon: <Edit />, name: "Edit", onClickFn: () => click() },
   ];
 
