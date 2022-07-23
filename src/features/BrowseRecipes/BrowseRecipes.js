@@ -13,6 +13,7 @@ export const BrowseRecipes = () => {
       .then((data) => setRecipes(data));
   }, []);
 
+  console.log(recipes);
   return (
     <div>
       <Header headerText="Recipes" />
@@ -30,7 +31,7 @@ export const BrowseRecipes = () => {
             <RecipeListCard
               id={recipe.recipeID}
               recipeName={recipe.recipeName}
-              recipeDescription={recipe.recipeDescription}
+              recipeDescription={recipe.recipeDecsription}
               isFavorite={false}
               cookTime={recipe.recipeCookTime}
               prepTime={recipe.recipePrepTime}
