@@ -3,13 +3,11 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
+  recipeName: yup
+    .string("Enter a recipe name")
+    .required("Recipe name is required"),
+  recipeDescription: yup
+    .string("Enter a recipe description")
     .required("Password is required"),
 });
 
@@ -28,8 +26,8 @@ export const AppendRecipeForm = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      email: "foobar@example.com",
-      password: "foobar",
+      recipeName: "",
+      recipeDescription: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -51,31 +49,41 @@ export const AppendRecipeForm = (props) => {
     >
       <form onSubmit={formik.handleSubmit}>
         <TextField
-          id="name"
-          name="name"
-          label="Recipe Name"
-          value={formik.values.email}
+          id="recipeName"
+          name="recipeName"
+          label="Name"
+          value={formik.values.recipeName}
           onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
+          error={formik.touched.recipeName && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
           sx={{ marginTop: "15px", width: "95%" }}
         />
         <TextField
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          value={formik.values.password}
+          id="recipeDescription"
+          name="recipeDescription"
+          label="Description"
+          multiline
+          value={formik.values.recipeDescription}
           onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
+          error={
+            formik.touched.recipeDescription &&
+            Boolean(formik.errors.recipeDescription)
+          }
+          helperText={
+            formik.touched.recipeDescription && formik.errors.recipeDescription
+          }
           sx={{ marginTop: "15px", width: "95%" }}
         />
         <div>
           <Typography component="legend">Difficulty rating</Typography>
-          <Rating name="customized-10" defaultValue={2} max={10} />
+          <Rating name="customized-10" max={10} />
         </div>
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button
+          color="primary"
+          variant="contained"
+          type="submit"
+          sx={{ marginTop: "15px", width: "95%" }}
+        >
           Submit
         </Button>
       </form>
