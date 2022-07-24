@@ -1,14 +1,18 @@
 import { Typography, Rating, TextField, Button, Box } from "@mui/material";
+import { TimePicker } from "@mui/x-date-pickers";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object({
   recipeName: yup
     .string("Enter a recipe name")
-    .required("Recipe name is required"),
+    .required("A recipe name is required"),
   recipeDescription: yup
     .string("Enter a recipe description")
-    .required("Password is required"),
+    .required("A description is required"),
+  difficultyRating: yup
+    .string("Difficulty rating is required")
+    .required("Difficulty rating is required"),
 });
 
 export const AppendRecipeForm = (props) => {
@@ -28,9 +32,13 @@ export const AppendRecipeForm = (props) => {
     initialValues: {
       recipeName: "",
       recipeDescription: "",
+      difficultyRating: NaN,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+    onReset: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -54,8 +62,8 @@ export const AppendRecipeForm = (props) => {
           label="Name"
           value={formik.values.recipeName}
           onChange={formik.handleChange}
-          error={formik.touched.recipeName && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
+          error={formik.touched.recipeName && Boolean(formik.errors.recipeName)}
+          helperText={formik.touched.recipeName && formik.errors.recipeName}
           sx={{ marginTop: "15px", width: "95%" }}
         />
         <TextField
@@ -74,18 +82,48 @@ export const AppendRecipeForm = (props) => {
           }
           sx={{ marginTop: "15px", width: "95%" }}
         />
-        <div>
-          <Typography component="legend">Difficulty rating</Typography>
-          <Rating name="customized-10" max={10} />
-        </div>
-        <Button
-          color="primary"
-          variant="contained"
-          type="submit"
-          sx={{ marginTop: "15px", width: "95%" }}
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "15px",
+
+            justifyContent: "space-evenly",
+          }}
         >
-          Submit
-        </Button>
+          <Typography component="legend">Difficulty rating</Typography>
+          <Rating
+            id="difficultyRating"
+            name="difficultyRating"
+            value={parseInt(formik.values.difficultyRating)}
+            onChange={formik.handleChange}
+            max={10}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "15px",
+            width: "100%",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button
+            color="primary"
+            variant="contained"
+            type="submit"
+            sx={{ width: "45%" }}
+          >
+            Submit
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            type="reset"
+            sx={{ width: "45%" }}
+          >
+            Reset
+          </Button>
+        </Box>
       </form>
     </Box>
   );
