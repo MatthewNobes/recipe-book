@@ -17,29 +17,30 @@ export const BrowseRecipes = () => {
   return (
     <div>
       <Header headerText="Recipes" />
-      <div className="pageContents"></div>
-      {recipes.map((recipe) => {
-        return (
-          <List
-            sx={{
-              width: "100%",
-              minWidth: 360,
-              bgcolor: "background.paper",
-              top: "72px",
-            }}
-          >
-            <RecipeListCard
-              id={recipe.recipeID}
-              recipeName={recipe.recipeName}
-              recipeDescription={recipe.recipeDecsription}
-              isFavorite={false}
-              cookTime={recipe.recipeCookTime}
-              prepTime={recipe.recipePrepTime}
-            />
-          </List>
-        );
-      })}
-      <RecipeSpeedDial />
+      <div>
+        {recipes.map((recipe) => {
+          return (
+            <List
+              sx={{
+                width: "100%",
+                minWidth: 360,
+                bgcolor: "background.paper",
+                top: "72px",
+              }}
+            >
+              <RecipeListCard
+                id={recipe.recipeID}
+                recipeName={recipe.recipeName}
+                recipeDescription={recipe.recipeDecsription}
+                isFavorite={false}
+                cookTime={recipe.recipeCookTime}
+                prepTime={recipe.recipePrepTime}
+              />
+            </List>
+          );
+        })}
+        <RecipeSpeedDial />
+      </div>
     </div>
   );
 };
