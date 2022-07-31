@@ -13,6 +13,10 @@ const validationSchema = yup.object({
   difficultyRating: yup
     .string("Difficulty rating is required")
     .required("Difficulty rating is required"),
+  servingNumber: yup
+    .number()
+    .min(1, "Must be at least 1")
+    .required("This field is required"),
 });
 
 export const AppendRecipeForm = (props) => {
@@ -33,6 +37,7 @@ export const AppendRecipeForm = (props) => {
       recipeName: "",
       recipeDescription: "",
       difficultyRating: NaN,
+      servingNumber: 4,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -80,6 +85,23 @@ export const AppendRecipeForm = (props) => {
           helperText={
             formik.touched.recipeDescription && formik.errors.recipeDescription
           }
+          sx={{ marginTop: "15px", width: "95%" }}
+        />
+        <TextField
+          id="servingNumber"
+          label="Serving Number"
+          type="number"
+          value={formik.values.servingNumber}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.servingNumber && Boolean(formik.errors.servingNumber)
+          }
+          helperText={
+            formik.touched.servingNumber && formik.errors.servingNumber
+          }
+          InputLabelProps={{
+            shrink: true,
+          }}
           sx={{ marginTop: "15px", width: "95%" }}
         />
         <Box
