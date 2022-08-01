@@ -1,6 +1,7 @@
 import { Typography, Rating, TextField, Button, Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import IngredientsList from "./IngredientsList";
 
 const validationSchema = yup.object({
   recipeName: yup
@@ -49,6 +50,7 @@ export const AppendRecipeForm = (props) => {
       recipePrepTime: 20,
       recipeCookTime: 20,
       recipeSource: "",
+      ingredients: [],
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -159,6 +161,11 @@ export const AppendRecipeForm = (props) => {
             sx={{ width: "45%" }}
           />
         </Box>
+        <IngredientsList
+          ingredientsArray={[
+            { ingredient: "Diced beef", quantity: "500", measurement: "g" },
+          ]}
+        />
         <TextField
           id="recipeSource"
           name="recipeSource"
