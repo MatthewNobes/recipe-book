@@ -24,6 +24,7 @@ const validationSchema = yup.object({
     .number()
     .min(1, "Must be at least 1")
     .required("This field is required"),
+  recipeSource: yup.string("Recipe source is optional"),
 });
 
 export const AppendRecipeForm = (props) => {
@@ -47,6 +48,7 @@ export const AppendRecipeForm = (props) => {
       servingNumber: 4,
       recipePrepTime: 20,
       recipeCookTime: 20,
+      recipeSource: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -157,6 +159,19 @@ export const AppendRecipeForm = (props) => {
             sx={{ width: "45%" }}
           />
         </Box>
+        <TextField
+          id="recipeSource"
+          name="recipeSource"
+          label="Source (URL or Book)"
+          multiline
+          value={formik.values.recipeSource}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.recipeSource && Boolean(formik.errors.recipeSource)
+          }
+          helperText={formik.touched.recipeSource && formik.errors.recipeSource}
+          sx={{ marginTop: "15px", width: "95%" }}
+        />
         <Box
           sx={{
             display: "flex",
