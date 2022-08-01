@@ -1,5 +1,4 @@
 import { Typography, Rating, TextField, Button, Box } from "@mui/material";
-import { TimePicker } from "@mui/x-date-pickers";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -14,6 +13,14 @@ const validationSchema = yup.object({
     .string("Difficulty rating is required")
     .required("Difficulty rating is required"),
   servingNumber: yup
+    .number()
+    .min(1, "Must be at least 1")
+    .required("This field is required"),
+  recipePrepTime: yup
+    .number()
+    .min(1, "Must be at least 1")
+    .required("This field is required"),
+  recipeCookTime: yup
     .number()
     .min(1, "Must be at least 1")
     .required("This field is required"),
@@ -38,6 +45,8 @@ export const AppendRecipeForm = (props) => {
       recipeDescription: "",
       difficultyRating: NaN,
       servingNumber: 4,
+      recipePrepTime: 20,
+      recipeCookTime: 20,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -108,7 +117,51 @@ export const AppendRecipeForm = (props) => {
           sx={{
             display: "flex",
             marginTop: "15px",
-
+            justifyContent: "space-around",
+          }}
+        >
+          <TextField
+            id="recipePrepTime"
+            label="Preparation Time (minutes)"
+            type="number"
+            value={formik.values.recipePrepTime}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.recipePrepTime &&
+              Boolean(formik.errors.recipePrepTime)
+            }
+            helperText={
+              formik.touched.recipePrepTime && formik.errors.recipePrepTime
+            }
+            InputLabelProps={{
+              shrink: true,
+            }}
+            sx={{ width: "45%" }}
+          />
+          <TextField
+            id="recipeCookTime"
+            label="Cooking Time (minutes)"
+            type="number"
+            value={formik.values.recipeCookTime}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.recipeCookTime &&
+              Boolean(formik.errors.recipeCookTime)
+            }
+            helperText={
+              formik.touched.recipeCookTime && formik.errors.recipeCookTime
+            }
+            InputLabelProps={{
+              shrink: true,
+            }}
+            sx={{ width: "45%" }}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "15px",
+            width: "95%",
             justifyContent: "space-evenly",
           }}
         >
@@ -126,7 +179,7 @@ export const AppendRecipeForm = (props) => {
             display: "flex",
             marginTop: "15px",
             width: "100%",
-            justifyContent: "space-evenly",
+            justifyContent: "space-around",
           }}
         >
           <Button
