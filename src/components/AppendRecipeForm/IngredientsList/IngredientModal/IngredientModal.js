@@ -15,17 +15,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "90%",
+  width: "95%",
   maxWidth: 500,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  p: 2,
   textAlign: "center",
   alignItems: "center",
 };
 
-/** 
 const validationSchema = yup.object({
   ingredient: yup
     .string("Enter a ingredient")
@@ -35,9 +34,9 @@ const validationSchema = yup.object({
     .required("A measurement is required"),
   ingredientQuantity: yup
     .number()
-    .min(0.25, "Must be at least 0.25")
-    .required("This field is required"),
-});*/
+    .min(0.1, "Must be at least 0.1")
+    .required("A quantity is required"),
+});
 
 export const IngredientModal = (props) => {
   const handleClose = () => props.setModalOpenStatus(false);
@@ -52,7 +51,7 @@ export const IngredientModal = (props) => {
       measurement: "",
       ingredientQuantity: 0,
     },
-    //validationSchema: validationSchema,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -83,10 +82,18 @@ export const IngredientModal = (props) => {
             error={
               formik.touched.ingredient && Boolean(formik.errors.ingredient)
             }
-            helperText={formik.touched.ingredient && formik.errors.ingredient}
             sx={{ marginTop: "15px", width: "100%" }}
             renderInput={(params) => (
-              <TextField {...params} label="Ingredient" />
+              <TextField
+                {...params}
+                label="Ingredient"
+                error={
+                  formik.touched.ingredient && Boolean(formik.errors.ingredient)
+                }
+                helperText={
+                  formik.touched.ingredient && formik.errors.ingredient
+                }
+              />
             )}
           />
           <Box
@@ -123,9 +130,6 @@ export const IngredientModal = (props) => {
               error={
                 formik.touched.measurement && Boolean(formik.errors.measurement)
               }
-              helperText={
-                formik.touched.measurement && formik.errors.measurement
-              }
               onChange={(e, value) =>
                 formik.setFieldValue("measurement", value)
               }
@@ -136,6 +140,13 @@ export const IngredientModal = (props) => {
                   id="measurements"
                   name="measurements"
                   label="Measurements"
+                  error={
+                    formik.touched.measurement &&
+                    Boolean(formik.errors.measurement)
+                  }
+                  helperText={
+                    formik.touched.ingredient && formik.errors.ingredient
+                  }
                 />
               )}
             />
