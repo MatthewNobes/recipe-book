@@ -7,6 +7,8 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import * as yup from "yup";
+import { useFormik } from "formik";
 
 const style = {
   position: "absolute",
@@ -23,11 +25,41 @@ const style = {
   alignItems: "center",
 };
 
+/** 
+const validationSchema = yup.object({
+  ingredient: yup
+    .string("Enter a ingredient")
+    .required("An ingredient is required"),
+  measurement: yup
+    .string("Enter a measurement")
+    .required("A measurement is required"),
+  ingredientQuantity: yup
+    .number()
+    .min(0.25, "Must be at least 0.25")
+    .required("This field is required"),
+});*/
+
 export const IngredientModal = (props) => {
   const handleClose = () => props.setModalOpenStatus(false);
 
+  //These two will be replaced with calls to the database
   const existingIngredients = ["Lamb", "Chicken"];
   const existingMeasurements = ["g", "kg", "ml", "l"];
+
+  const formik = useFormik({
+    initialValues: {
+      ingredient: "",
+      measurement: "",
+      ingredientQuantity: 0,
+    },
+    //validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+    onReset: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <Modal
@@ -37,67 +69,103 @@ export const IngredientModal = (props) => {
       aria-describedby="ingredient add/edit model"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-title" variant="h6" component="h2">
           Add/edit Ingredient
         </Typography>
-        <Autocomplete
-          freeSolo
-          disablePortal
-          id="combo-box-demo"
-          options={existingIngredients}
-          sx={{ marginTop: "15px", width: "100%" }}
-          renderInput={(params) => <TextField {...params} label="Ingredient" />}
-        />
-        <Box
-          sx={{
-            display: "flex",
-            marginTop: "15px",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
-          <TextField
-            id="quantity"
-            label="Quantity"
-            variant="outlined"
-            sx={{ width: "60%" }}
-          />
+        <form onSubmit={formik.handleSubmit}>
           <Autocomplete
             freeSolo
-            disablePortal
-            id="combo-box-demo"
-            options={existingMeasurements}
-            sx={{ width: "35%" }}
+            id="ingredient"
+            name="ingredient"
+            options={existingIngredients}
+            value={formik.values.ingredient}
+            onChange={(e, value) => formik.setFieldValue("ingredient", value)}
+            error={
+              formik.touched.ingredient && Boolean(formik.errors.ingredient)
+            }
+            helperText={formik.touched.ingredient && formik.errors.ingredient}
+            sx={{ marginTop: "15px", width: "100%" }}
             renderInput={(params) => (
-              <TextField {...params} label="Measurements" />
+              <TextField {...params} label="Ingredient" />
             )}
           />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            marginTop: "15px",
-            width: "100%",
-            justifyContent: "space-around",
-          }}
-        >
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            sx={{ width: "45%" }}
+          <Box
+            sx={{
+              display: "flex",
+              marginTop: "15px",
+              width: "100%",
+              justifyContent: "space-between",
+            }}
           >
-            Submit
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            type="reset"
-            sx={{ width: "45%" }}
+            <TextField
+              id="ingredientQuantity"
+              label="Quantity"
+              type="number"
+              variant="outlined"
+              error={
+                formik.touched.ingredientQuantity &&
+                Boolean(formik.errors.ingredientQuantity)
+              }
+              helperText={
+                formik.touched.ingredientQuantity &&
+                formik.errors.ingredientQuantity
+              }
+              value={formik.values.ingredientQuantity}
+              onChange={formik.handleChange}
+              sx={{ width: "60%" }}
+            />
+            <Autocomplete
+              freeSolo
+              disablePortal
+              id="measurements"
+              options={existingMeasurements}
+              value={formik.values.measurement}
+              error={
+                formik.touched.measurement && Boolean(formik.errors.measurement)
+              }
+              helperText={
+                formik.touched.measurement && formik.errors.measurement
+              }
+              onChange={(e, value) =>
+                formik.setFieldValue("measurement", value)
+              }
+              sx={{ width: "35%" }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="measurements"
+                  name="measurements"
+                  label="Measurements"
+                />
+              )}
+            />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              marginTop: "15px",
+              width: "100%",
+              justifyContent: "space-around",
+            }}
           >
-            Reset
-          </Button>
-        </Box>
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+              sx={{ width: "45%" }}
+            >
+              Submit
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              type="reset"
+              sx={{ width: "45%" }}
+            >
+              Reset
+            </Button>
+          </Box>
+        </form>
       </Box>
     </Modal>
   );
