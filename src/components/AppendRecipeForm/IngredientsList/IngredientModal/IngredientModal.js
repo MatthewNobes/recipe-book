@@ -39,11 +39,22 @@ const validationSchema = yup.object({
 });
 
 export const IngredientModal = (props) => {
+  const ingredientsArray = props.ingredientsArray;
+  const setIngredientsArray = props.setIngredientsArray;
   const handleClose = () => props.setModalOpenStatus(false);
 
   //These two will be replaced with calls to the database
   const existingIngredients = ["Lamb", "Chicken"];
   const existingMeasurements = ["g", "kg", "ml", "l"];
+
+  const clearForm = () => {
+    formik.setFieldValue("ingredient", formik.initialValues.ingredient);
+    formik.setFieldValue("measurement", formik.initialValues.measurement);
+    formik.setFieldValue(
+      "ingredientQuantity",
+      formik.initialValues.ingredientQuantity
+    );
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -53,10 +64,15 @@ export const IngredientModal = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-    onReset: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      setIngredientsArray([
+        ...ingredientsArray,
+        {
+          ingredient: values.ingredient,
+          quantity: values.ingredientQuantity,
+          measurement: values.measurement,
+        },
+      ]);
+      handleClose();
     },
   });
 
@@ -171,6 +187,7 @@ export const IngredientModal = (props) => {
               color="primary"
               variant="contained"
               type="reset"
+              onClick={() => clearForm()}
               sx={{ width: "45%" }}
             >
               Reset

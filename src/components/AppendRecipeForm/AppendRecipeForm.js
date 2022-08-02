@@ -1,5 +1,6 @@
 import { Typography, Rating, TextField, Button, Box } from "@mui/material";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 import IngredientsList from "./IngredientsList";
 
@@ -41,6 +42,15 @@ export const AppendRecipeForm = (props) => {
    * recipe steps - same style as above
    */
 
+  const [ingredientsArray, setIngredientsArray] = useState([
+    { ingredient: "Diced beef", quantity: "500", measurement: "g" },
+  ]);
+
+  const addRecipe = () => {
+    //should be replaced with a database call to add or append the recipe.
+    console.log(formik.values);
+  };
+
   const formik = useFormik({
     initialValues: {
       recipeName: "",
@@ -53,8 +63,9 @@ export const AppendRecipeForm = (props) => {
       ingredients: [],
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async () => {
+      formik.setFieldValue("ingredients", ingredientsArray);
+      addRecipe();
     },
     onReset: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -162,9 +173,8 @@ export const AppendRecipeForm = (props) => {
           />
         </Box>
         <IngredientsList
-          ingredientsArray={[
-            { ingredient: "Diced beef", quantity: "500", measurement: "g" },
-          ]}
+          ingredientsArray={ingredientsArray}
+          setIngredientsArray={setIngredientsArray}
         />
         <TextField
           id="recipeSource"

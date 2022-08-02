@@ -14,6 +14,7 @@ import { useState } from "react";
 
 export const IngredientsList = (props) => {
   const ingredientsArray = props.ingredientsArray;
+  const setIngredientsArray = props.setIngredientsArray;
   const [modalOpenStatus, setModalOpenStatus] = useState(false);
 
   const addIngredient = () => {
@@ -32,6 +33,8 @@ export const IngredientsList = (props) => {
       <IngredientModal
         modalOpenStatus={modalOpenStatus}
         setModalOpenStatus={setModalOpenStatus}
+        ingredientsArray={ingredientsArray}
+        setIngredientsArray={setIngredientsArray}
       />
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {ingredientsArray.map((ingredient) => {
