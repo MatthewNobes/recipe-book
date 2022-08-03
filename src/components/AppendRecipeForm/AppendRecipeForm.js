@@ -43,7 +43,7 @@ export const AppendRecipeForm = (props) => {
    */
 
   const [ingredientsArray, setIngredientsArray] = useState([
-    { ingredient: "Diced beef", quantity: "500", measurement: "g" },
+    { id: 0, ingredient: "Diced beef", quantity: "500", measurement: "g" },
   ]);
 
   const addRecipe = () => {

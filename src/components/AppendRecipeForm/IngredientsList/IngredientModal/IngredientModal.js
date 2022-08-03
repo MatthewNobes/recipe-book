@@ -64,9 +64,12 @@ export const IngredientModal = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      const newID = ingredientsArray[ingredientsArray.length - 1].id + 1;
+
       setIngredientsArray([
         ...ingredientsArray,
         {
+          id: newID,
           ingredient: values.ingredient,
           quantity: values.ingredientQuantity,
           measurement: values.measurement,

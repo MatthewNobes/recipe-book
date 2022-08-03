@@ -21,8 +21,10 @@ export const IngredientsList = (props) => {
     setModalOpenStatus(true);
   };
 
-  const removeIngredient = (ingredient) => {
-    console.log(ingredient);
+  const removeIngredient = (ingredientID) => {
+    setIngredientsArray(
+      ingredientsArray.filter((ing) => ing.id !== ingredientID)
+    );
   };
 
   return (
@@ -40,12 +42,12 @@ export const IngredientsList = (props) => {
         {ingredientsArray.map((ingredient) => {
           return (
             <ListItem
-              key={ingredient.ingredient}
+              key={ingredient.id}
               secondaryAction={
                 <IconButton
                   edge="end"
                   aria-label="delete ingredient"
-                  onClick={() => removeIngredient(ingredient.ingredient)}
+                  onClick={() => removeIngredient(ingredient.id)}
                 >
                   <DeleteIcon />
                 </IconButton>
