@@ -75,6 +75,7 @@ export const IngredientModal = (props) => {
           measurement: values.measurement,
         },
       ]);
+      clearForm();
       handleClose();
     },
   });
