@@ -40,7 +40,6 @@ const validationSchema = yup.object({
 
 export const IngredientModal = (props) => {
   const ingredientsArray = props.ingredientsArray;
-  const setIngredientsArray = props.setIngredientsArray;
   const handleClose = () => props.setModalOpenStatus(false);
 
   //These two will be replaced with calls to the database
@@ -65,16 +64,13 @@ export const IngredientModal = (props) => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const newID = ingredientsArray[ingredientsArray.length - 1].id + 1;
+      props.addIngredient({
+        id: newID,
+        ingredient: values.ingredient,
+        quantity: values.ingredientQuantity,
+        measurement: values.measurement,
+      });
 
-      setIngredientsArray([
-        ...ingredientsArray,
-        {
-          id: newID,
-          ingredient: values.ingredient,
-          quantity: values.ingredientQuantity,
-          measurement: values.measurement,
-        },
-      ]);
       clearForm();
       handleClose();
     },

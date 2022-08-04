@@ -14,7 +14,7 @@ import { useState } from "react";
 
 export const IngredientsList = (props) => {
   const ingredientsArray = props.ingredientsArray;
-  const setIngredientsArray = props.setIngredientsArray;
+
   const [modalOpenStatus, setModalOpenStatus] = useState(false);
 
   const addIngredient = () => {
@@ -22,9 +22,7 @@ export const IngredientsList = (props) => {
   };
 
   const removeIngredient = (ingredientID) => {
-    setIngredientsArray(
-      ingredientsArray.filter((ing) => ing.id !== ingredientID)
-    );
+    props.removeIngredient(ingredientID);
   };
 
   return (
@@ -36,7 +34,7 @@ export const IngredientsList = (props) => {
         modalOpenStatus={modalOpenStatus}
         setModalOpenStatus={setModalOpenStatus}
         ingredientsArray={ingredientsArray}
-        setIngredientsArray={setIngredientsArray}
+        addIngredient={props.addIngredient}
       />
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {ingredientsArray.map((ingredient) => {

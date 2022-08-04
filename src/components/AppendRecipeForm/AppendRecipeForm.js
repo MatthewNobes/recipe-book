@@ -42,10 +42,6 @@ export const AppendRecipeForm = (props) => {
    * recipe steps - same style as above
    */
 
-  const [ingredientsArray, setIngredientsArray] = useState([
-    { id: 0, ingredient: "Diced beef", quantity: "500", measurement: "g" },
-  ]);
-
   const addRecipe = () => {
     //should be replaced with a database call to add or append the recipe.
     console.log(formik.values);
@@ -60,11 +56,12 @@ export const AppendRecipeForm = (props) => {
       recipePrepTime: 20,
       recipeCookTime: 20,
       recipeSource: "",
-      ingredients: [],
+      ingredients: [
+        { id: 0, ingredient: "Diced Pork", quantity: "200", measurement: "ml" },
+      ],
     },
     validationSchema: validationSchema,
-    onSubmit: async () => {
-      formik.setFieldValue("ingredients", ingredientsArray);
+    onSubmit: () => {
       addRecipe();
     },
     onReset: (values) => {
@@ -173,8 +170,19 @@ export const AppendRecipeForm = (props) => {
           />
         </Box>
         <IngredientsList
-          ingredientsArray={ingredientsArray}
-          setIngredientsArray={setIngredientsArray}
+          ingredientsArray={formik.values.ingredients}
+          addIngredient={(ingredientObject) =>
+            formik.setFieldValue("ingredients", [
+              ...formik.values.ingredients,
+              ingredientObject,
+            ])
+          }
+          removeIngredient={(ingredientID) =>
+            formik.setFieldValue(
+              "ingredients",
+              formik.values.ingredients.filter((ing) => ing.id !== ingredientID)
+            )
+          }
         />
         <TextField
           id="recipeSource"
