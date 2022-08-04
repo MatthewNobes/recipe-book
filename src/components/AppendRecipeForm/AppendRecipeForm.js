@@ -1,6 +1,5 @@
 import { Typography, Rating, TextField, Button, Box } from "@mui/material";
 import { useFormik } from "formik";
-import { useState } from "react";
 import * as yup from "yup";
 import IngredientsList from "./IngredientsList";
 
