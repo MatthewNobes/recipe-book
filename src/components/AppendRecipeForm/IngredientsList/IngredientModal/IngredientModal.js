@@ -29,9 +29,7 @@ const validationSchema = yup.object({
   ingredient: yup
     .string("Enter a ingredient")
     .required("An ingredient is required"),
-  measurement: yup
-    .string("Enter a measurement")
-    .required("A measurement is required"),
+  measurement: yup.string("Enter a measurement"),
   ingredientQuantity: yup
     .number()
     .min(0.1, "Must be at least 0.1")
