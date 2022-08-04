@@ -1,7 +1,15 @@
-import { Typography, Rating, TextField, Button, Box } from "@mui/material";
+import {
+  Typography,
+  Rating,
+  TextField,
+  Button,
+  Box,
+  Divider,
+} from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import IngredientsList from "./IngredientsList";
+import { MethodList } from "./MethodList/MethodList";
 
 const validationSchema = yup.object({
   recipeName: yup
@@ -57,6 +65,10 @@ export const AppendRecipeForm = (props) => {
       recipeSource: "",
       ingredients: [
         { id: 0, ingredient: "Diced Pork", quantity: "200", measurement: "ml" },
+      ],
+      instructions: [
+        { id: 0, instructionNumber: 1, instruction: "do this" },
+        { id: 1, instructionNumber: 2, instruction: "do that" },
       ],
     },
     validationSchema: validationSchema,
@@ -180,6 +192,24 @@ export const AppendRecipeForm = (props) => {
             formik.setFieldValue(
               "ingredients",
               formik.values.ingredients.filter((ing) => ing.id !== ingredientID)
+            )
+          }
+        />
+        <Divider />
+        <MethodList
+          instructionArray={formik.values.instructions}
+          addInstruction={(instructionObject) =>
+            formik.setFieldValue("instructions", [
+              ...formik.values.instructions,
+              instructionObject,
+            ])
+          }
+          removeInstruction={(instructionsID) =>
+            formik.setFieldValue(
+              "instructions",
+              formik.values.instructions.filter(
+                (inst) => inst.id !== instructionsID
+              )
             )
           }
         />
