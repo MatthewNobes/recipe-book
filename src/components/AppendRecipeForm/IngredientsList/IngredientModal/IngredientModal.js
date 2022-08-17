@@ -7,7 +7,6 @@ import {
   Box,
   TextField,
   Button,
-  IconButton,
   Tooltip,
 } from "@mui/material";
 import * as yup from "yup";
@@ -42,9 +41,10 @@ const validationSchema = yup.object({
 
 export const IngredientModal = (props) => {
   const ingredientsArray = props.ingredientsArray;
+  const operation = props.operation;
+
   const handleClose = () => props.setModalOpenStatus(false);
 
-  //These two will be replaced with calls to the database
   const [existingIngredients, setExistingIngredients] = useState([]);
 
   const [existingMeasurements, setExistingMeasurements] = useState([]);
@@ -98,7 +98,7 @@ export const IngredientModal = (props) => {
     >
       <Box sx={style}>
         <Typography id="modal-title" variant="h6" component="h2">
-          Add/edit Ingredient
+          {operation} Ingredient
           <Tooltip title="Preset options available for ingredients and measurements are existing entries and should be prioritised for selection over creating a new entry.">
             <InfoIcon color="info" sx={{ paddingLeft: 1 }} />
           </Tooltip>

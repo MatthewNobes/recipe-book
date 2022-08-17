@@ -4,22 +4,13 @@ import {
   ListItemButton,
   ListItemText,
   IconButton,
-  Fab,
   Typography,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import IngredientModal from "./IngredientModal";
-import { useState } from "react";
+import { AddIngredient } from "./AddIngredient";
 
 export const IngredientsList = (props) => {
   const ingredientsArray = props.ingredientsArray;
-
-  const [modalOpenStatus, setModalOpenStatus] = useState(false);
-
-  const addIngredient = () => {
-    setModalOpenStatus(true);
-  };
 
   const removeIngredient = (ingredientID) => {
     props.removeIngredient(ingredientID);
@@ -30,9 +21,7 @@ export const IngredientsList = (props) => {
       <Typography variant="h4" component="div">
         Ingredients
       </Typography>
-      <IngredientModal
-        modalOpenStatus={modalOpenStatus}
-        setModalOpenStatus={setModalOpenStatus}
+      <AddIngredient
         ingredientsArray={ingredientsArray}
         addIngredient={props.addIngredient}
       />
@@ -62,15 +51,6 @@ export const IngredientsList = (props) => {
             </ListItem>
           );
         })}
-        <Fab
-          color="primary"
-          size="small"
-          aria-label="add"
-          sx={{ float: "right", marginRight: "5px" }}
-          onClick={() => addIngredient()}
-        >
-          <AddIcon />
-        </Fab>
       </List>
     </>
   );
