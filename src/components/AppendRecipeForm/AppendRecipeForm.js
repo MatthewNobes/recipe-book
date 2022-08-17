@@ -229,6 +229,7 @@ export const AppendRecipeForm = (props) => {
             value={value}
             onChange={handleChangeTab}
             aria-label="basic tabs example"
+            sx={{ paddingX: "15px" }}
           >
             <Tab label="Ingredients" {...a11yProps(0)} />
             <Tab label="Methodology" {...a11yProps(1)} />
@@ -270,6 +271,12 @@ export const AppendRecipeForm = (props) => {
                 )
               )
             }
+            reassignNumbers={() => {
+              formik.values.instructions.forEach((instruction, index) => {});
+              formik.setFieldValue("instructions", [
+                ...formik.values.instructions,
+              ]);
+            }}
           />
         </TabPanel>
 
@@ -309,6 +316,7 @@ export const AppendRecipeForm = (props) => {
             marginTop: "15px",
             width: "100%",
             justifyContent: "space-around",
+            marginBottom: "100px",
           }}
         >
           <Button

@@ -22,10 +22,6 @@ const validationSchema = yup.object({
   instruction: yup
     .string("Enter a instruction")
     .required("An instruction is required"),
-  instructionNumber: yup
-    .number()
-    .min(1, "Must be at least 1")
-    .required("A quantity is required"),
 });
 
 export const MethodModal = (props) => {
@@ -34,20 +30,21 @@ export const MethodModal = (props) => {
 
   const clearForm = () => {
     formik.setFieldValue("instruction", formik.initialValues.ingredient);
-    formik.setFieldValue("instructionNumber", formik.initialValues.measurement);
   };
+
+
 
   const formik = useFormik({
     initialValues: {
-      instructionNumber: NaN,
       instruction: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const newID = instructionArray[instructionArray.length - 1].id + 1;
+      const newInstructionNumber = instructionArray.length + 1;
       props.addInstruction({
         id: newID,
-        instructionNumber: values.instructionNumber,
+        instructionNumber: newInstructionNumber,
         instruction: values.instruction,
       });
 
@@ -77,25 +74,8 @@ export const MethodModal = (props) => {
             }}
           >
             <TextField
-              id="instructionNumber"
-              label="instructionNumber"
-              type="number"
-              variant="outlined"
-              error={
-                formik.touched.instructionNumber &&
-                Boolean(formik.errors.instructionNumber)
-              }
-              helperText={
-                formik.touched.instructionNumber &&
-                formik.errors.instructionNumber
-              }
-              value={formik.values.instructionNumber}
-              onChange={formik.handleChange}
-              sx={{ width: "25%" }}
-            />
-            <TextField
               id="instruction"
-              label="instruction"
+              label="Instruction"
               multiline
               variant="outlined"
               error={

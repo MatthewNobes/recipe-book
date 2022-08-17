@@ -55,11 +55,8 @@ export const MethodList = (props) => {
               <ListItemButton role={undefined} dense>
                 <ListItemText
                   id={instruction.id}
-                  primary={
-                    instruction.instructionNumber +
-                    ". " +
-                    instruction.instruction
-                  }
+                  primary={"Step " + instruction.instructionNumber}
+                  secondary={instruction.instruction}
                 />
               </ListItemButton>
             </ListItem>
