@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import {
   Autocomplete,
   Modal,
@@ -41,7 +42,27 @@ export const IngredientModal = (props) => {
   const handleClose = () => props.setModalOpenStatus(false);
 
   //These two will be replaced with calls to the database
-  const existingIngredients = ["Lamb", "Chicken"];
+  const [existingIngredients, setExistingIngredients] = useState([
+    {
+      ingredientID: 1,
+      ingredientName: "Cumin",
+      ingredientDescription: "A yellow spice",
+      ingredientInfoURL: "https://en.wikipedia.org/wiki/Cumin",
+    },
+    {
+      ingredientID: 2,
+      ingredientName: "Lamb",
+      ingredientDescription: "The meat of a lamb",
+      ingredientInfoURL: "https://en.wikipedia.org/wiki/Lamb_and_mutton",
+    },
+  ]);
+
+  useEffect(() => {
+    fetch(process.env.REACT_APP_API_URL + "/ingredients")
+      .then((response) => response.json())
+      .then((data) => setExistingIngredients(data));
+  }, []);
+
   const existingMeasurements = ["g", "kg", "ml", "l"];
 
   const clearForm = () => {
@@ -90,7 +111,9 @@ export const IngredientModal = (props) => {
             freeSolo
             id="ingredient"
             name="ingredient"
-            options={existingIngredients}
+            options={existingIngredients.map((ingredient) => {
+              return ingredient.ingredientName;
+            })}
             value={formik.values.ingredient}
             onChange={(e, value) => formik.setFieldValue("ingredient", value)}
             error={
