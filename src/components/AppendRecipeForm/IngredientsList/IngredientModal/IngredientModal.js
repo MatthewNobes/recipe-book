@@ -42,28 +42,19 @@ export const IngredientModal = (props) => {
   const handleClose = () => props.setModalOpenStatus(false);
 
   //These two will be replaced with calls to the database
-  const [existingIngredients, setExistingIngredients] = useState([
-    {
-      ingredientID: 1,
-      ingredientName: "Cumin",
-      ingredientDescription: "A yellow spice",
-      ingredientInfoURL: "https://en.wikipedia.org/wiki/Cumin",
-    },
-    {
-      ingredientID: 2,
-      ingredientName: "Lamb",
-      ingredientDescription: "The meat of a lamb",
-      ingredientInfoURL: "https://en.wikipedia.org/wiki/Lamb_and_mutton",
-    },
-  ]);
+  const [existingIngredients, setExistingIngredients] = useState([]);
+
+  const [existingMeasurements, setExistingMeasurements] = useState([]);
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + "/ingredients")
       .then((response) => response.json())
       .then((data) => setExistingIngredients(data));
-  }, []);
 
-  const existingMeasurements = ["g", "kg", "ml", "l"];
+    fetch(process.env.REACT_APP_API_URL + "/measurements")
+      .then((response) => response.json())
+      .then((data) => setExistingMeasurements(data));
+  }, []);
 
   const clearForm = () => {
     formik.setFieldValue("ingredient", formik.initialValues.ingredient);
@@ -162,7 +153,9 @@ export const IngredientModal = (props) => {
               freeSolo
               disablePortal
               id="measurements"
-              options={existingMeasurements}
+              options={existingMeasurements.map((measurement) => {
+                return measurement.measurementType;
+              })}
               value={formik.values.measurement}
               error={
                 formik.touched.measurement && Boolean(formik.errors.measurement)
