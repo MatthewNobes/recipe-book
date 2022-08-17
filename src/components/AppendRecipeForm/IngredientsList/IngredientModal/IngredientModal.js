@@ -7,9 +7,12 @@ import {
   Box,
   TextField,
   Button,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import InfoIcon from "@mui/icons-material/Info";
 
 const style = {
   position: "absolute",
@@ -96,7 +99,11 @@ export const IngredientModal = (props) => {
       <Box sx={style}>
         <Typography id="modal-title" variant="h6" component="h2">
           Add/edit Ingredient
+          <Tooltip title="Preset options available for ingredients and measurements are existing entries and should be prioritised for selection over creating a new entry.">
+            <InfoIcon color="info" sx={{ paddingLeft: 1 }} />
+          </Tooltip>
         </Typography>
+
         <form onSubmit={formik.handleSubmit}>
           <Autocomplete
             freeSolo
