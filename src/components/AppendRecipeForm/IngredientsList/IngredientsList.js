@@ -56,7 +56,7 @@ export const IngredientsList = (props) => {
                 <ListItemText
                   id={ingredient.ingredient}
                   primary={ingredient.ingredient}
-                  secondary={ingredient.quantity + ingredient.measurement}
+                  secondary={ingredient.quantity + " " + ingredient.measurement}
                 />
               </ListItemButton>
             </ListItem>
