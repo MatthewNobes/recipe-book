@@ -93,7 +93,33 @@ export const AppendRecipeForm = (props) => {
 
   const addRecipe = () => {
     //should be replaced with a database call to add or append the recipe.
-    console.log(formik.values);
+    const recipeName = formik.values.recipeName;
+    const recipeDescription = formik.values.recipeDescription;
+    const recipeDifficultyRating = formik.values.difficultyRating;
+    const recipePrepTime = formik.values.recipePrepTime;
+    const recipeCookTime = formik.values.recipeCookTime;
+    const servingNumber = formik.values.servingNumber;
+    const recipeSource = formik.values.recipeSource;
+
+    fetch(
+      process.env.REACT_APP_API_URL +
+        "/recipes/add-recipe/" +
+        recipeName +
+        "-" +
+        recipeDescription +
+        "-" +
+        recipeDifficultyRating +
+        "-" +
+        recipePrepTime +
+        "-" +
+        recipeCookTime +
+        "-" +
+        servingNumber +
+        "-" +
+        recipeSource
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
 
   const formik = useFormik({
