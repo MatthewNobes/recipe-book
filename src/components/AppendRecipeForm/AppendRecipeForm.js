@@ -65,7 +65,7 @@ export const AppendRecipeForm = (props) => {
     initialValues: {
       recipeName: "",
       recipeDescription: "",
-      difficultyRating: NaN,
+      difficultyRating: 0,
       servingNumber: 4,
       recipePrepTime: 20,
       recipeCookTime: 20,
