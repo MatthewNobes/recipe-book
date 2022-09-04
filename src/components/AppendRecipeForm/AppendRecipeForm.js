@@ -1,18 +1,7 @@
-import {
-  Typography,
-  Rating,
-  TextField,
-  Button,
-  Box,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Typography, Rating, TextField, Button, Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import IngredientsList from "./IngredientsList";
-import { MethodList } from "./MethodList/MethodList";
-import { useState } from "react";
-import PropTypes from "prop-types";
+import TabPane from "./TabPane";
 
 const validationSchema = yup.object({
   recipeName: yup
@@ -39,58 +28,8 @@ const validationSchema = yup.object({
   recipeSource: yup.string("Recipe source is optional"),
 });
 
-const TabPanel = (props) => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ paddingTop: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-};
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-const a11yProps = (index) => {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-};
-
 export const AppendRecipeForm = (props) => {
-  /** Required form elements
-   * recipe name
-   * recipe description
-   * recipeDifficultyRating
-   * recipePrepTime
-   * recipeCookTime
-   * servingNumber
-   * recipeSource
-   * recipe ingredients - multiple
-   * recipe steps - same style as above
-   */
-
-  const [value, setValue] = useState(0);
-
-  const handleChangeTab = (event, newValue) => {
-    setValue(newValue);
-  };
-
+  console.log("re-rendered");
   const addRecipe = () => {
     //should be replaced with a database call to add or append the recipe.
     const recipeName = formik.values.recipeName;
@@ -248,64 +187,7 @@ export const AppendRecipeForm = (props) => {
             sx={{ width: "45%" }}
           />
         </Box>
-        <Box
-          sx={{ borderBottom: 1, borderColor: "divider", paddingTop: "10px" }}
-        >
-          <Tabs
-            value={value}
-            onChange={handleChangeTab}
-            aria-label="basic tabs example"
-            sx={{ paddingX: "15px" }}
-          >
-            <Tab label="Ingredients" {...a11yProps(0)} />
-            <Tab label="Methodology" {...a11yProps(1)} />
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          <IngredientsList
-            ingredientsArray={formik.values.ingredients}
-            addIngredient={(ingredientObject) =>
-              formik.setFieldValue("ingredients", [
-                ...formik.values.ingredients,
-                ingredientObject,
-              ])
-            }
-            removeIngredient={(ingredientID) =>
-              formik.setFieldValue(
-                "ingredients",
-                formik.values.ingredients.filter(
-                  (ing) => ing.id !== ingredientID
-                )
-              )
-            }
-          />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <MethodList
-            instructionArray={formik.values.instructions}
-            addInstruction={(instructionObject) =>
-              formik.setFieldValue("instructions", [
-                ...formik.values.instructions,
-                instructionObject,
-              ])
-            }
-            removeInstruction={(instructionsID) =>
-              formik.setFieldValue(
-                "instructions",
-                formik.values.instructions.filter(
-                  (inst) => inst.id !== instructionsID
-                )
-              )
-            }
-            reassignNumbers={() => {
-              formik.values.instructions.forEach((instruction, index) => {});
-              formik.setFieldValue("instructions", [
-                ...formik.values.instructions,
-              ]);
-            }}
-          />
-        </TabPanel>
-
+        <TabPane formik={formik} />
         <TextField
           id="recipeSource"
           name="recipeSource"

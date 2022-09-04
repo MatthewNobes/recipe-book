@@ -23,7 +23,7 @@ export const AddIngredient = (props) => {
         color="primary"
         size="small"
         aria-label="add"
-        sx={{ float: "right", marginRight: "5px" }}
+        sx={{ marginLeft: "auto" }}
         onClick={() => addIngredient()}
       >
         <AddIcon />

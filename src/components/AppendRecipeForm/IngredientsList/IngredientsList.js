@@ -4,7 +4,6 @@ import {
   ListItemButton,
   ListItemText,
   IconButton,
-  Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AddIngredient } from "./AddIngredient";
@@ -18,13 +17,6 @@ export const IngredientsList = (props) => {
 
   return (
     <>
-      <Typography variant="h4" component="div">
-        Ingredients
-      </Typography>
-      <AddIngredient
-        ingredientsArray={ingredientsArray}
-        addIngredient={props.addIngredient}
-      />
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {ingredientsArray.map((ingredient) => {
           return (
@@ -51,6 +43,12 @@ export const IngredientsList = (props) => {
             </ListItem>
           );
         })}
+        <ListItem>
+          <AddIngredient
+            ingredientsArray={ingredientsArray}
+            addIngredient={props.addIngredient}
+          />
+        </ListItem>
       </List>
     </>
   );

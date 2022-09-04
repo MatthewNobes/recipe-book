@@ -5,7 +5,6 @@ import {
   ListItemText,
   IconButton,
   Fab,
-  Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -27,9 +26,6 @@ export const MethodList = (props) => {
 
   return (
     <>
-      <Typography variant="h4" component="div">
-        Methodology
-      </Typography>
       <MethodModal
         modalOpenStatus={modalOpenStatus}
         setModalOpenStatus={setModalOpenStatus}
@@ -62,15 +58,17 @@ export const MethodList = (props) => {
             </ListItem>
           );
         })}
-        <Fab
-          color="primary"
-          size="small"
-          aria-label="add"
-          sx={{ float: "right", marginRight: "5px" }}
-          onClick={() => openModal()}
-        >
-          <AddIcon />
-        </Fab>
+        <ListItem>
+          <Fab
+            color="primary"
+            size="small"
+            aria-label="add"
+            sx={{ marginLeft: "auto" }}
+            onClick={() => openModal()}
+          >
+            <AddIcon />
+          </Fab>
+        </ListItem>
       </List>
     </>
   );
