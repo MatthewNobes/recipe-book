@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Tabs, Tab, Typography } from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
 import IngredientsList from "./IngredientsList";
 import { MethodList } from "./MethodList/MethodList";
 import PropTypes from "prop-types";

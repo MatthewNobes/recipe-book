@@ -1,15 +1,8 @@
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  IconButton,
-  Fab,
-} from "@mui/material";
+import { List, ListItem, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
 import MethodModal from "./MethodModal";
 import { useState } from "react";
+import Instruction from "./Instruction";
 
 export const MethodList = (props) => {
   const instructionArray = props.instructionArray;
@@ -35,27 +28,10 @@ export const MethodList = (props) => {
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {instructionArray.map((instruction) => {
           return (
-            <ListItem
-              key={instruction.id}
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  aria-label="delete ingredient"
-                  onClick={() => removeInstruction(instruction.id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              }
-              disablePadding
-            >
-              <ListItemButton role={undefined} dense>
-                <ListItemText
-                  id={instruction.id}
-                  primary={"Step " + instruction.instructionNumber}
-                  secondary={instruction.instruction}
-                />
-              </ListItemButton>
-            </ListItem>
+            <Instruction
+              instruction={instruction}
+              removeInstruction={() => removeInstruction(instruction.id)}
+            />
           );
         })}
         <ListItem>
