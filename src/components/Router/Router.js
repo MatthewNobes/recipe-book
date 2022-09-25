@@ -4,10 +4,12 @@ import BrowseRecipes from "../../features/BrowseRecipes";
 import MyAccount from "../../features/MyAccount";
 import Favorites from "../../features/Favorites";
 import AddRecipe from "../../features/AddRecipe";
+import ViewRecipe from "../ViewRecipe";
 
 export const Router = () => (
   <Routes>
     <Route path="/AddRecipe" element={<AddRecipe />} />
+    <Route path="/ViewRecipe" element={<ViewRecipe />} />
     <Route path="/MyAccount" element={<MyAccount />} />
     <Route path="/Favorites" element={<Favorites />} />
     <Route path="/BrowseRecipes" element={<BrowseRecipes />} />

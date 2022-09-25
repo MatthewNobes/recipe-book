@@ -4,14 +4,18 @@ import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteButton from "./FavoriteButton";
 import TotalTime from "./TotalTime";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 export const RecipeListCard = (props) => {
   const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
     props;
+  const navigate = useNavigate();
 
-  const itemClickedOn = () => {
-    console.log("item has been clicked on");
-  };
+  const itemClickedOn = useCallback(
+    () => navigate("/ViewRecipe", { replace: true }),
+    [navigate]
+  );
 
   return (
     <div key={id}>
