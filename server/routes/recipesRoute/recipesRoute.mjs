@@ -2,14 +2,23 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-let router = express.Router();
+let recipeRouter = express.Router();
 
-router.route("/").get(async (request, result) => {
+recipeRouter.route("/").get(async (request, result) => {
   const allRecipes = await prisma.recipe.findMany();
   result.json(allRecipes);
 });
 
-router
+recipeRouter.route("/recipe/:recipeID").get(async (request, result) => {
+  const requestedRecipeID = parseInt(request.params.recipeID);
+
+  const allRecipes = await prisma.recipe.findFirst({
+    where: { recipeID: requestedRecipeID },
+  });
+  result.json(allRecipes);
+});
+
+recipeRouter
   .route(
     "/add-recipe/:recipeName-:recipeDescription-:recipeDifficultyRating-:recipePrepTime-:recipeCookTime-:servingNumber-:recipeSource"
   )
@@ -56,4 +65,4 @@ router
     }
   });
 
-export default router;
+export default recipeRouter;
