@@ -17,7 +17,7 @@ const TabPanel = (props) => {
     >
       {value === index && (
         <Box sx={{ paddingTop: 3 }}>
-          <Typography>{children}</Typography>
+          <>{children}</>
         </Box>
       )}
     </div>
@@ -31,7 +31,7 @@ const a11yProps = (index) => {
   };
 };
 
-export const TabPane = (props) => {
+export const RecipeDetailsTabPanel = (props) => {
   const formik = props.formik;
 
   const [value, setValue] = useState(0);

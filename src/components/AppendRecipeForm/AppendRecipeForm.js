@@ -1,7 +1,7 @@
 import { Typography, Rating, TextField, Button, Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import TabPane from "./TabPane";
+import RecipeDetailsTabPanel from "./RecipeDetailsTabPanel";
 
 const validationSchema = yup.object({
   recipeName: yup
@@ -70,9 +70,7 @@ export const AppendRecipeForm = (props) => {
       recipePrepTime: 20,
       recipeCookTime: 20,
       recipeSource: "",
-      ingredients: [
-        { id: 0, ingredient: "Diced Pork", quantity: "200", measurement: "ml" },
-      ],
+      ingredients: [],
       instructions: [
         { id: 0, instructionNumber: 1, instruction: "do this" },
         { id: 1, instructionNumber: 2, instruction: "do that" },
@@ -187,7 +185,7 @@ export const AppendRecipeForm = (props) => {
             sx={{ width: "45%" }}
           />
         </Box>
-        <TabPane formik={formik} />
+        <RecipeDetailsTabPanel formik={formik} />
         <TextField
           id="recipeSource"
           name="recipeSource"
