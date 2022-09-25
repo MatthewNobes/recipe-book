@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
+import { useLocation } from "react-router-dom";
 
-export const ViewRecipe = (props) => {
-  const recipeID = props.recipeID;
+export const ViewRecipe = () => {
+  const location = useLocation();
+  const recipeID = location.state.recipeID;
+
+  console.log(recipeID);
 
   // temps
   const recipeName = "Ravioli";

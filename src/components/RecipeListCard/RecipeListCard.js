@@ -13,7 +13,7 @@ export const RecipeListCard = (props) => {
   const navigate = useNavigate();
 
   const itemClickedOn = useCallback(
-    () => navigate("/ViewRecipe", { replace: true }),
+    () => navigate("/ViewRecipe", { state: { recipeID: "1" } }),
     [navigate]
   );
 
