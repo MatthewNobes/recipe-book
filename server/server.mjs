@@ -1,25 +1,11 @@
 "use strict";
-import express from "express";
-import cors from "cors";
-import router from "./routes/index.mjs";
+import app from "./app.mjs";
 
-const app = express();
-const port = 4444;
-
-app.use(express.json());
-app.use(cors());
-app.use("/api", router);
-//app.use("/api/recipes", recipes);
-//app.use("/api/ingredients", ingredients);
-
-app.get("/", (request, result) => {
-  result.send("recipe api system");
-  //eventually present api docs on this page
-});
+const port = process.env.PORT || 4442;
 
 app.listen(port, (error) => {
   if (error) {
     return console.log("ERROR", error);
   }
-  console.log(`Back-end is listening on port ${port}`);
+  console.log(`Recipe API is listening on port ${port}`);
 });

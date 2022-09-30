@@ -9,13 +9,23 @@ recipeRouter.route("/").get(async (request, result) => {
   result.json(allRecipes);
 });
 
+recipeRouter.route("/allRecipes").get(async (request, result) => {
+  const allRecipes = await prisma.recipe.findMany();
+  result.json(allRecipes);
+});
+
 recipeRouter.route("/recipe/:recipeID").get(async (request, result) => {
   const requestedRecipeID = parseInt(request.params.recipeID);
 
-  const allRecipes = await prisma.recipe.findFirst({
-    where: { recipeID: requestedRecipeID },
-  });
-  result.json(allRecipes);
+  try {
+    const recipe = await prisma.recipe.findFirst({
+      where: { recipeID: requestedRecipeID },
+    });
+    result.json(recipe);
+  } catch (error) {
+    console.log(error);
+    result.sendStatus(400);
+  }
 });
 
 recipeRouter
