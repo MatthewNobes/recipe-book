@@ -93,8 +93,8 @@ model users {
 }
 
 model catagories {
-  catagoryID Int                          @id @unique(map: "sqlite_autoindex_catagories_1") @default(autoincrement())
-  catagory   Unsupported("text (0, 255)")
+  catagoryID Int      @id @unique(map: "sqlite_autoindex_catagories_1") @default(autoincrement())
+  catagory   String
   recipe     recipe[]
 }
 
