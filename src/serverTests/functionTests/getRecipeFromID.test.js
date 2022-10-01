@@ -4,6 +4,7 @@ describe("getRecipeFromID", () => {
   it("successful circumstance", async () => {
     const recipe = await getRecipeFromID(1);
 
+    console.log(recipe);
     expect(typeof recipe).toBe("object");
     expect(recipe.recipeID).toBeDefined();
     expect(recipe.recipeName).toBeDefined();
@@ -13,5 +14,6 @@ describe("getRecipeFromID", () => {
     expect(recipe.recipeCookTime).toBeDefined();
     expect(recipe.servingNumber).toBeDefined();
     // expect(recipe.recipeSource).toBeDefined();
+    expect(Array.isArray(recipe.ingredients)).toBe(true);
   });
 });
