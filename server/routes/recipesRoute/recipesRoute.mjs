@@ -1,9 +1,12 @@
 "use strict";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
+import { getRecipeFromID } from "./getRecipeFromID/getRecipeFromID";
+
 const prisma = new PrismaClient();
 let recipeRouter = express.Router();
 
+// to be replaced with below call (/allRecipes)
 recipeRouter.route("/").get(async (request, result) => {
   const allRecipes = await prisma.recipe.findMany();
   result.json(allRecipes);
@@ -18,9 +21,8 @@ recipeRouter.route("/recipe/:recipeID").get(async (request, result) => {
   const requestedRecipeID = parseInt(request.params.recipeID);
 
   try {
-    const recipe = await prisma.recipe.findFirst({
-      where: { recipeID: requestedRecipeID },
-    });
+    const recipe = await getRecipeFromID(requestedRecipeID);
+    console.log(recipe);
     result.json(recipe);
   } catch (error) {
     console.log(error);
