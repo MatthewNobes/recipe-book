@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { getRecipeIngredientsFromID } from "./getRecipeIngredientsFromID/getRecipeIngredientsFromID";
+import { getRecipeIngredientsFromID } from "./getRecipeIngredientsFromID/getRecipeIngredientsFromID.mjs";
 
 const prisma = new PrismaClient();
 

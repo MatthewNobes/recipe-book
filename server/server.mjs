@@ -1,7 +1,7 @@
 "use strict";
 import app from "./app.mjs";
 
-const port = process.env.PORT || 4442;
+const port = process.env.PORT || 4444;
 
 app.listen(port, (error) => {
   if (error) {

@@ -1,4 +1,4 @@
-import { getRecipeFromID } from "../../../server/routes/recipesRoute/getRecipeFromID/getRecipeFromID";
+import { getRecipeFromID } from "../../../server/routes/recipesRoute/getRecipeFromID/getRecipeFromID.mjs";
 
 describe("getRecipeFromID", () => {
   it("successful circumstance", async () => {

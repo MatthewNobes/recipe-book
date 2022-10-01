@@ -1,16 +1,10 @@
 "use strict";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
-import { getRecipeFromID } from "./getRecipeFromID/getRecipeFromID";
+import { getRecipeFromID } from "./getRecipeFromID/getRecipeFromID.mjs";
 
 const prisma = new PrismaClient();
 let recipeRouter = express.Router();
-
-// to be replaced with below call (/allRecipes)
-recipeRouter.route("/").get(async (request, result) => {
-  const allRecipes = await prisma.recipe.findMany();
-  result.json(allRecipes);
-});
 
 recipeRouter.route("/allRecipes").get(async (request, result) => {
   const allRecipes = await prisma.recipe.findMany();
