@@ -60,11 +60,11 @@ model recipe {
 }
 
 model recipeIngredients {
-  recipeIngredientID    Int                   @id @default(autoincrement())
-  recipeID              Int
-  ingredientID          Int
-  ingredientMeasurement ingredientMeasurement @relation(fields: [ingredientID], references: [ingredientMeasurementID], onDelete: Cascade)
-  recipe                recipe                @relation(fields: [recipeID], references: [recipeID], onDelete: Cascade)
+  recipeIngredientID      Int                   @id @default(autoincrement())
+  recipeID                Int
+  ingredientMeasurementID Int
+  ingredientMeasurement   ingredientMeasurement @relation(fields: [ingredientMeasurementID], references: [ingredientMeasurementID], onDelete: Cascade)
+  recipe                  recipe                @relation(fields: [recipeID], references: [recipeID], onDelete: Cascade)
 }
 
 model recipeSteps {
