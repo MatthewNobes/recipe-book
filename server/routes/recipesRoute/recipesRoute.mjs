@@ -22,7 +22,6 @@ recipeRouter.route("/recipe/:recipeID").get(async (request, result) => {
 
   try {
     const recipe = await getRecipeFromID(requestedRecipeID);
-    console.log(recipe);
     result.json(recipe);
   } catch (error) {
     console.log(error);
