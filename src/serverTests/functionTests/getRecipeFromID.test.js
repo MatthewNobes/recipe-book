@@ -4,7 +4,6 @@ describe("getRecipeFromID", () => {
   it("successful circumstance", async () => {
     const recipe = await getRecipeFromID(1);
 
-    console.log(recipe);
     expect(typeof recipe).toBe("object");
     expect(recipe.recipeID).toBeDefined();
     expect(recipe.recipeName).toBeDefined();
