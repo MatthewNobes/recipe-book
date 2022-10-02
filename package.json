@@ -8,12 +8,9 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.3",
     "@mui/x-date-pickers": "^5.0.0-beta.2",
-    "@prisma/client": "^4.1.0",
     "concurrently": "^7.3.0",
-    "cors": "^2.8.5",
     "express": "^4.18.1",
     "formik": "^2.2.9",
-    "nodemon": "^2.0.19",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,9 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-server": "nodemon server/server.mjs --watch server/*",
-    "start-front": "react-scripts start",
-    "start": "concurrently \"npm run start-server\" \"npm run start-front\" --kill-others --kill-others-on-fail"
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -49,8 +44,6 @@
     ]
   },
   "devDependencies": {
-    "supertest": "^6.2.4",
-    "prisma": "^4.0.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.1"
