@@ -9,7 +9,7 @@ export const Header = (props) => {
       component="h1"
       variant="h2"
       className={css.Header}
-      sx={{ bgcolor: "#1976d2" }}
+      sx={{ bgcolor: "#3d3d3d", color: "white" }}
     >
       {headerText}
     </Typography>
