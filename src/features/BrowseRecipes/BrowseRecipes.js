@@ -7,6 +7,15 @@ import RecipeSpeedDial from "../../components/RecipeSpeedDial";
 export const BrowseRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
+  const menuOptions = [
+    {
+      label: "Edit recipe",
+      onClickFunction: () => {
+        console.log("hello world");
+      },
+    },
+  ];
+
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + "/recipes/recipes")
       .then((response) => response.json())
@@ -16,7 +25,7 @@ export const BrowseRecipes = () => {
   console.log(recipes);
   return (
     <div>
-      <Header headerText="Recipes" />
+      <Header headerText="Browse Recipes" menuOptions={menuOptions} />
       <div>
         {recipes.map((recipe) => {
           return (
@@ -25,7 +34,6 @@ export const BrowseRecipes = () => {
                 width: "100%",
                 minWidth: 360,
                 bgcolor: "background.paper",
-                top: "72px",
               }}
             >
               <RecipeListCard
