@@ -1,17 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { List } from "@mui/material";
 import RecipeListCard from "../../components/RecipeListCard";
-import RecipeSpeedDial from "../../components/RecipeSpeedDial";
 
 export const BrowseRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
+  const navigate = useNavigate();
+
+  const navigateToNewRecipe = useCallback(
+    () => navigate("/AddRecipe", { replace: true }),
+    [navigate]
+  );
+
   const menuOptions = [
+    {
+      label: "New recipe",
+      onClickFunction: () => {
+        navigateToNewRecipe();
+      },
+    },
     {
       label: "Edit recipe",
       onClickFunction: () => {
-        console.log("hello world");
+        console.log("This option will come later");
       },
     },
   ];
@@ -26,6 +39,7 @@ export const BrowseRecipes = () => {
   return (
     <div>
       <Header headerText="Browse Recipes" menuOptions={menuOptions} />
+
       <div>
         {recipes.map((recipe) => {
           return (
@@ -47,7 +61,6 @@ export const BrowseRecipes = () => {
             </List>
           );
         })}
-        <RecipeSpeedDial />
       </div>
     </div>
   );
