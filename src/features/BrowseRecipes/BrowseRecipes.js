@@ -8,9 +8,9 @@ export const BrowseRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/recipes/allRecipes")
+    fetch(process.env.REACT_APP_API_URL + "/recipes/recipes")
       .then((response) => response.json())
-      .then((data) => setRecipes(data));
+      .then((data) => setRecipes(data.data));
   }, []);
 
   console.log(recipes);
@@ -29,12 +29,12 @@ export const BrowseRecipes = () => {
               }}
             >
               <RecipeListCard
-                id={recipe.recipeID}
-                recipeName={recipe.recipeName}
-                recipeDescription={recipe.recipeDecsription}
+                id={recipe.RecipeID}
+                recipeName={recipe.RecipeName}
+                recipeDescription={recipe.RecipeDecsription}
                 isFavorite={false}
-                cookTime={recipe.recipeCookTime}
-                prepTime={recipe.recipePrepTime}
+                cookTime={recipe.RecipeCookTime}
+                prepTime={recipe.RecipePrepTime}
               />
             </List>
           );
