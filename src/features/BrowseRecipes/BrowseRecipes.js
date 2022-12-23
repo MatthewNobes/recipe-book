@@ -10,7 +10,7 @@ export const BrowseRecipes = () => {
   const navigate = useNavigate();
 
   const navigateToNewRecipe = useCallback(
-    () => navigate("/AddRecipe", { replace: true }),
+    () => navigate("/addRecipe", { replace: true }),
     [navigate]
   );
 

@@ -8,7 +8,7 @@ import ViewRecipe from "../ViewRecipe";
 
 export const Router = () => (
   <Routes>
-    <Route path="/AddRecipe" element={<AddRecipe />} />
+    <Route path="/addRecipe" element={<AddRecipe />} />
     <Route path="/ViewRecipe" element={<ViewRecipe />} />
     <Route path="/MyAccount" element={<MyAccount />} />
     <Route path="/Favorites" element={<Favorites />} />
