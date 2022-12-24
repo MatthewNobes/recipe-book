@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useLocation } from "react-router-dom";
-import { Box, Typography, Rating } from "@mui/material";
+import { Box, Typography, Tooltip, Chip, IconButton } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ViewMethod } from "./ViewMethod/ViewMethod";
 import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
+import { RecipeChip } from "./RecipeChip/RecipeChip";
+import HardwareIcon from "@mui/icons-material/Hardware";
+import FavoriteButton from "../RecipeListCard/FavoriteButton";
 
 const method = [
   {
@@ -101,14 +104,40 @@ export const ViewRecipe = () => {
       <RecipeImage imageSource={imageSource} recipeName={recipeName} />
       <Box sx={{ paddingX: 1 }}>
         <Box sx={{ paddingBottom: 3 }}>
-          <Typography variant="h2">{recipeName}</Typography>
-          <Rating name="difficulty rating" value={difficultyRating} max={10} />
-          <Typography variant="body1">{recipeDescription}</Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
+            <Typography variant="h2">{recipeName}</Typography>
+            <FavoriteButton />
+          </Box>
+          <Box sx={{ display: "flex", gap: "10px", mt: 1 }}>
+            <RecipeChip label="Prep: " value={recipe.RecipePrepTime} />
+            <RecipeChip label="Cook: " value={recipe.RecipeCookTime} />
+            <Tooltip
+              title={
+                "Please view the info page for more details on difficult ratings"
+              }
+            >
+              <Chip
+                icon={<HardwareIcon />}
+                label={"Difficulty: " + difficultyRating}
+                color={
+                  difficultyRating <= 4
+                    ? "success"
+                    : difficultyRating <= 7
+                    ? "warning"
+                    : "error"
+                }
+                variant="outlined"
+              />
+            </Tooltip>
+          </Box>
+          <Typography variant="body1" sx={{ textAlign: "left" }}>
+            {recipeDescription}
+          </Typography>
         </Box>
         <Divider />
         <Box sx={{ paddingBottom: 3 }}>
-          <ViewMethod method={method} />
           <ViewIngredients ingredients={ingredients} />
+          <ViewMethod method={method} />
         </Box>
       </Box>
     </>
