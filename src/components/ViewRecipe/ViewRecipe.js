@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Box, Typography, Rating } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ViewMethod } from "./ViewMethod/ViewMethod";
+import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
 
 const method = [
   {
@@ -41,6 +42,41 @@ const method = [
   },
 ];
 
+const ingredients = [
+  {
+    recipeIngredientID: 1,
+    ingredient: "Egg",
+    ingredientDescription: "A chickens egg",
+    ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
+    quantity: 2,
+    measurement: "Whole",
+  },
+  {
+    recipeIngredientID: 45,
+    ingredient: "Milk",
+    ingredientDescription: "A chickens egg",
+    ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
+    quantity: 1,
+    measurement: "Liter",
+  },
+  {
+    recipeIngredientID: 17,
+    ingredient: "Sugar",
+    ingredientDescription: "A chickens egg",
+    ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
+    quantity: 200,
+    measurement: "Grams",
+  },
+  {
+    recipeIngredientID: 18,
+    ingredient: "Baking soda",
+    ingredientDescription: "A chickens egg",
+    ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
+    quantity: 2,
+    measurement: "Teaspoons",
+  },
+];
+
 export const ViewRecipe = () => {
   const location = useLocation();
   const recipeID = location.state.recipeID;
@@ -72,6 +108,7 @@ export const ViewRecipe = () => {
         <Divider />
         <Box sx={{ paddingBottom: 3 }}>
           <ViewMethod method={method} />
+          <ViewIngredients ingredients={ingredients} />
         </Box>
       </Box>
     </>
