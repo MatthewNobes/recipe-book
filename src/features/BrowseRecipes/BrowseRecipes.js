@@ -1,22 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { List } from "@mui/material";
 import RecipeListCard from "../../components/RecipeListCard";
-import RecipeSpeedDial from "../../components/RecipeSpeedDial";
 
 export const BrowseRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
+  const navigate = useNavigate();
+
+  const navigateToNewRecipe = useCallback(
+    () => navigate("/addRecipe", { replace: true }),
+    [navigate]
+  );
+
+  const menuOptions = [
+    {
+      label: "New recipe",
+      onClickFunction: () => {
+        navigateToNewRecipe();
+      },
+    },
+    {
+      label: "Edit recipe",
+      onClickFunction: () => {
+        console.log("This option will come later");
+      },
+    },
+  ];
+
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/recipes/allRecipes")
+    fetch(process.env.REACT_APP_API_URL + "/recipes/recipes")
       .then((response) => response.json())
-      .then((data) => setRecipes(data));
+      .then((data) => setRecipes(data.data));
   }, []);
 
   console.log(recipes);
   return (
     <div>
-      <Header headerText="Recipes" />
+      <Header headerText="Browse Recipes" menuOptions={menuOptions} />
+
       <div>
         {recipes.map((recipe) => {
           return (
@@ -25,21 +48,19 @@ export const BrowseRecipes = () => {
                 width: "100%",
                 minWidth: 360,
                 bgcolor: "background.paper",
-                top: "72px",
               }}
             >
               <RecipeListCard
-                id={recipe.recipeID}
-                recipeName={recipe.recipeName}
-                recipeDescription={recipe.recipeDecsription}
+                id={recipe.RecipeID}
+                recipeName={recipe.RecipeName}
+                recipeDescription={recipe.RecipeDecsription}
                 isFavorite={false}
-                cookTime={recipe.recipeCookTime}
-                prepTime={recipe.recipePrepTime}
+                cookTime={recipe.RecipeCookTime}
+                prepTime={recipe.RecipePrepTime}
               />
             </List>
           );
         })}
-        <RecipeSpeedDial />
       </div>
     </div>
   );

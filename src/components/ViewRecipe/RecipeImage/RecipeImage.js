@@ -5,7 +5,7 @@ export const RecipeImage = (props) => {
   const imageSource = props.imageSource;
   const recipeName = props.recipeName;
   return (
-    <Box sx={{ backgroundColor: "#3d3d3d" }}>
+    <Box sx={{ backgroundColor: "#3d3d3d", maxWidth: "100%" }}>
       <img className={css.RecipeImage} alt={recipeName} src={imageSource} />
     </Box>
   );

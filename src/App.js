@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <Router />
       <Navigation />
     </div>

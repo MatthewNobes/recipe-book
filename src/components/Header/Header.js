@@ -1,17 +1,71 @@
-import { Typography } from "@mui/material";
-import css from "./Header.module.css";
+import {
+  Typography,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useState } from "react";
 
-export const Header = (props) => {
-  const headerText = props.headerText;
+export const Header = ({ headerText = "", menuOptions = [] }) => {
+  const hasMenu = menuOptions.length === 0 ? false : true;
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <Typography
-      component="h1"
-      variant="h2"
-      className={css.Header}
-      sx={{ bgcolor: "#3d3d3d", color: "white" }}
-    >
-      {headerText}
-    </Typography>
+    <AppBar position="sticky">
+      <Toolbar>
+        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+          {headerText}
+        </Typography>
+        {hasMenu && (
+          <div>
+            <IconButton
+              size="large"
+              aria-label="options menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {menuOptions.map((option) => {
+                return (
+                  <MenuItem onClick={option.onClickFunction}>
+                    {option.label}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+          </div>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };
