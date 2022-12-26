@@ -28,7 +28,7 @@ export const RecipeListCard = (props) => {
                 component="span"
                 variant="body2"
               >
-                {recipeDescription}
+                {recipeDescription.slice(0, 50)}
               </Typography>
             </>
           }
