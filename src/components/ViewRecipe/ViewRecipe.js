@@ -8,6 +8,7 @@ import { RecipeChip } from "./RecipeChip/RecipeChip";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import FavoriteButton from "../RecipeListCard/FavoriteButton";
 import { useParams } from "react-router-dom";
+import { getDifficultyColour } from "../../utils";
 
 const method = [
 	{
@@ -99,6 +100,8 @@ export const ViewRecipe = () => {
 	const imageSource =
 		"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg/1200px-Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg";
 
+	const difficultyColour = getDifficultyColour(difficultyRating);
+
 	return (
 		<>
 			<RecipeImage imageSource={imageSource} recipeName={recipeName} />
@@ -119,13 +122,7 @@ export const ViewRecipe = () => {
 							<Chip
 								icon={<HardwareIcon />}
 								label={"Difficulty: " + difficultyRating}
-								color={
-									difficultyRating <= 4
-										? "success"
-										: difficultyRating <= 7
-										? "warning"
-										: "error"
-								}
+								color={difficultyColour}
 								variant="outlined"
 							/>
 						</Tooltip>

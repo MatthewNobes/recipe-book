@@ -98,7 +98,7 @@ export const RecipeDetailsTabPanel = (props) => {
 						)
 					}
 					reassignNumbers={() => {
-						formik.values.instructions.forEach((instruction, index) => {});
+						formik.values.instructions.forEach(() => {});
 						formik.setFieldValue("instructions", [
 							...formik.values.instructions,
 						]);

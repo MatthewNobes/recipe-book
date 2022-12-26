@@ -39,7 +39,6 @@ export const BrowseRecipes = () => {
 	return (
 		<div>
 			<Header headerText="Browse Recipes" menuOptions={menuOptions} />
-
 			<div>
 				<List
 					sx={{
@@ -51,6 +50,7 @@ export const BrowseRecipes = () => {
 					{recipes.map((recipe) => {
 						return (
 							<RecipeListCard
+								key={recipe.RecipeID}
 								id={recipe.RecipeID}
 								recipeName={recipe.RecipeName}
 								recipeDescription={recipe.RecipeDecsription}

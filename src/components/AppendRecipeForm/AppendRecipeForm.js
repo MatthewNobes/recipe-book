@@ -28,7 +28,7 @@ const validationSchema = yup.object({
 	recipeSource: yup.string("Recipe source is optional"),
 });
 
-export const AppendRecipeForm = (props) => {
+export const AppendRecipeForm = () => {
 	console.log("re-rendered");
 	const addRecipe = () => {
 		//should be replaced with a database call to add or append the recipe.
