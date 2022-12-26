@@ -1,6 +1,5 @@
-import { Typography } from "@mui/material";
+import { Typography, Box, Divider } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteButton from "./FavoriteButton";
 import TotalTime from "./TotalTime";
@@ -18,7 +17,7 @@ export const RecipeListCard = (props) => {
   );
 
   return (
-    <div key={id}>
+    <Box key={id}>
       <ListItem alignItems="flex-start">
         <ListItemText
           primary={recipeName}
@@ -38,7 +37,7 @@ export const RecipeListCard = (props) => {
         <TotalTime cookTime={cookTime} prepTime={prepTime} />
         <FavoriteButton isFavorite={isFavorite} />
       </ListItem>
-      <Divider variant="inset" component="li" />
-    </div>
+      <Divider component="li" sx={{ marginX: 1 }} />
+    </Box>
   );
 };

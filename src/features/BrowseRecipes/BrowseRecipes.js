@@ -41,15 +41,15 @@ export const BrowseRecipes = () => {
       <Header headerText="Browse Recipes" menuOptions={menuOptions} />
 
       <div>
-        {recipes.map((recipe) => {
-          return (
-            <List
-              sx={{
-                width: "100%",
-                minWidth: 360,
-                bgcolor: "background.paper",
-              }}
-            >
+        <List
+          sx={{
+            width: "100%",
+            minWidth: 360,
+            bgcolor: "background.paper",
+          }}
+        >
+          {recipes.map((recipe) => {
+            return (
               <RecipeListCard
                 id={recipe.RecipeID}
                 recipeName={recipe.RecipeName}
@@ -58,9 +58,9 @@ export const BrowseRecipes = () => {
                 cookTime={recipe.RecipeCookTime}
                 prepTime={recipe.RecipePrepTime}
               />
-            </List>
-          );
-        })}
+            );
+          })}
+        </List>
       </div>
     </div>
   );
