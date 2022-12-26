@@ -9,7 +9,7 @@ import ViewRecipe from "../ViewRecipe";
 export const Router = () => (
   <Routes>
     <Route path="/addRecipe" element={<AddRecipe />} />
-    <Route path="/ViewRecipe" element={<ViewRecipe />} />
+    <Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
     <Route path="/MyAccount" element={<MyAccount />} />
     <Route path="/Favorites" element={<Favorites />} />
     <Route path="/BrowseRecipes" element={<BrowseRecipes />} />

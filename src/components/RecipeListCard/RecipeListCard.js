@@ -13,13 +13,13 @@ export const RecipeListCard = (props) => {
   const navigate = useNavigate();
 
   const itemClickedOn = useCallback(
-    () => navigate("/ViewRecipe", { state: { recipeID: id } }),
-    [navigate]
+    () => navigate("/ViewRecipe/" + id),
+    [navigate, id]
   );
 
   return (
     <div key={id}>
-      <ListItem alignItems="flex-start" onClick={() => itemClickedOn()}>
+      <ListItem alignItems="flex-start">
         <ListItemText
           primary={recipeName}
           secondary={
@@ -33,6 +33,7 @@ export const RecipeListCard = (props) => {
               </Typography>
             </>
           }
+          onClick={() => itemClickedOn()}
         />
         <TotalTime cookTime={cookTime} prepTime={prepTime} />
         <FavoriteButton isFavorite={isFavorite} />

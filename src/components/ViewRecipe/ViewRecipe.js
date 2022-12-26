@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
-import { useLocation } from "react-router-dom";
-import { Box, Typography, Tooltip, Chip, IconButton } from "@mui/material";
+import { Box, Typography, Tooltip, Chip } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ViewMethod } from "./ViewMethod/ViewMethod";
 import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
 import { RecipeChip } from "./RecipeChip/RecipeChip";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import FavoriteButton from "../RecipeListCard/FavoriteButton";
+import { useParams } from "react-router-dom";
 
 const method = [
   {
@@ -81,15 +81,15 @@ const ingredients = [
 ];
 
 export const ViewRecipe = () => {
-  const location = useLocation();
-  const recipeID = location.state.recipeID;
+  const { recipeID } = useParams();
+
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + "/recipes/recipe/" + recipeID)
       .then((response) => response.json())
       .then((data) => setRecipe(data.data));
-  }, []);
+  }, [recipeID]);
 
   console.log(recipe);
 
