@@ -12,8 +12,8 @@ export const ViewMethod = ({ method = [] }) => {
         <List>
           {method.map((step) => {
             return (
-              <ListItem disablePadding>
-                <Typography variant="body2" gutterBottom>
+              <ListItem disablePadding key={step.stepID}>
+                <Typography variant="body2" gutterBottom component="div">
                   <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Step {step.stepNumber}:
                   </Typography>
