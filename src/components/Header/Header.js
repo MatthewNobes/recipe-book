@@ -55,9 +55,9 @@ export const Header = ({ headerText = "", menuOptions = [] }) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {menuOptions.map((option) => {
+              {menuOptions.map((option, index) => {
                 return (
-                  <MenuItem onClick={option.onClickFunction}>
+                  <MenuItem onClick={option.onClickFunction} key={index}>
                     {option.label}
                   </MenuItem>
                 );
