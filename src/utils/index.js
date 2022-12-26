@@ -1,3 +1,3 @@
 import { minutesToHours } from "./minutesToHours/minutesToHours";
-
-export { minutesToHours };
+import { makeSecondaryText } from "./makeSecondaryText/makeSecondaryText";
+export { minutesToHours, makeSecondaryText };
