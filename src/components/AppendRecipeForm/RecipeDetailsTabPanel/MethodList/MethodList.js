@@ -5,47 +5,47 @@ import { useState } from "react";
 import Instruction from "./Instruction";
 
 export const MethodList = (props) => {
-  const instructionArray = props.instructionArray;
+	const instructionArray = props.instructionArray;
 
-  const [modalOpenStatus, setModalOpenStatus] = useState(false);
+	const [modalOpenStatus, setModalOpenStatus] = useState(false);
 
-  const openModal = () => {
-    setModalOpenStatus(true);
-  };
+	const openModal = () => {
+		setModalOpenStatus(true);
+	};
 
-  const removeInstruction = (instructionID) => {
-    props.removeInstruction(instructionID);
-  };
+	const removeInstruction = (instructionID) => {
+		props.removeInstruction(instructionID);
+	};
 
-  return (
-    <>
-      <MethodModal
-        modalOpenStatus={modalOpenStatus}
-        setModalOpenStatus={setModalOpenStatus}
-        instructionArray={instructionArray}
-        addInstruction={props.addInstruction}
-      />
-      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        {instructionArray.map((instruction) => {
-          return (
-            <Instruction
-              instruction={instruction}
-              removeInstruction={() => removeInstruction(instruction.id)}
-            />
-          );
-        })}
-        <ListItem>
-          <Fab
-            color="primary"
-            size="small"
-            aria-label="add"
-            sx={{ marginLeft: "auto" }}
-            onClick={() => openModal()}
-          >
-            <AddIcon />
-          </Fab>
-        </ListItem>
-      </List>
-    </>
-  );
+	return (
+		<>
+			<MethodModal
+				modalOpenStatus={modalOpenStatus}
+				setModalOpenStatus={setModalOpenStatus}
+				instructionArray={instructionArray}
+				addInstruction={props.addInstruction}
+			/>
+			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
+				{instructionArray.map((instruction) => {
+					return (
+						<Instruction
+							instruction={instruction}
+							removeInstruction={() => removeInstruction(instruction.id)}
+						/>
+					);
+				})}
+				<ListItem>
+					<Fab
+						color="primary"
+						size="small"
+						aria-label="add"
+						sx={{ marginLeft: "auto" }}
+						onClick={() => openModal()}
+					>
+						<AddIcon />
+					</Fab>
+				</ListItem>
+			</List>
+		</>
+	);
 };

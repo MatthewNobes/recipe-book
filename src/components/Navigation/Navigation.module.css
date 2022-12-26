@@ -1,10 +1,10 @@
 .NavigationContainer {
-  align-items: center;
-  text-align: center;
+	align-items: center;
+	text-align: center;
 }
 
 .Navigation {
-  width: 100%;
-  position: sticky;
-  bottom: 0;
+	width: 100%;
+	position: sticky;
+	bottom: 0;
 }

@@ -7,12 +7,12 @@ import AddRecipe from "../../features/AddRecipe";
 import ViewRecipe from "../ViewRecipe";
 
 export const Router = () => (
-  <Routes>
-    <Route path="/addRecipe" element={<AddRecipe />} />
-    <Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
-    <Route path="/MyAccount" element={<MyAccount />} />
-    <Route path="/Favorites" element={<Favorites />} />
-    <Route path="/BrowseRecipes" element={<BrowseRecipes />} />
-    <Route path="/" element={<HomePage />} />
-  </Routes>
+	<Routes>
+		<Route path="/addRecipe" element={<AddRecipe />} />
+		<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
+		<Route path="/MyAccount" element={<MyAccount />} />
+		<Route path="/Favorites" element={<Favorites />} />
+		<Route path="/BrowseRecipes" element={<BrowseRecipes />} />
+		<Route path="/" element={<HomePage />} />
+	</Routes>
 );

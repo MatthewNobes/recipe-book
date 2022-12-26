@@ -5,15 +5,15 @@ import { setAsFavorite } from "./setAsFavorite";
 import { useState } from "react";
 
 export const FavoriteButton = (props) => {
-  const [isFavorite, setIsFavorite] = useState(props.isFavorite);
-  const onClickFn = () => {
-    setIsFavorite(!isFavorite);
-    setAsFavorite(3);
-  };
+	const [isFavorite, setIsFavorite] = useState(props.isFavorite);
+	const onClickFn = () => {
+		setIsFavorite(!isFavorite);
+		setAsFavorite(3);
+	};
 
-  return (
-    <IconButton aria-label="favorite" onClick={() => onClickFn()}>
-      {isFavorite ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-    </IconButton>
-  );
+	return (
+		<IconButton aria-label="favorite" onClick={() => onClickFn()}>
+			{isFavorite ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
+		</IconButton>
+	);
 };
