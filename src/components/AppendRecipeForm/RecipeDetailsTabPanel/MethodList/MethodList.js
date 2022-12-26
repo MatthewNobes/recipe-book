@@ -29,6 +29,7 @@ export const MethodList = (props) => {
 				{instructionArray.map((instruction) => {
 					return (
 						<Instruction
+							key={instruction.instructionID}
 							instruction={instruction}
 							removeInstruction={() => removeInstruction(instruction.id)}
 						/>
