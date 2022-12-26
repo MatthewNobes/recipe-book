@@ -75,5 +75,6 @@ module.exports = {
 		],
 		"generator-star-spacing": ["error", "after"],
 		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
 	},
 };
