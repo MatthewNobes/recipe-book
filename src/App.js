@@ -1,10 +1,9 @@
-import "./App.css";
 import Router from "./components/Router";
 import Navigation from "./components/Navigation";
 
 const App = () => {
   return (
-    <div className="App">
+    <div>
       <Router />
       <Navigation />
     </div>

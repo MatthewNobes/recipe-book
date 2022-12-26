@@ -1,11 +1,11 @@
-import { Typography } from "@mui/material";
+import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteButton from "./FavoriteButton";
 import TotalTime from "./TotalTime";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import { makeSecondaryText } from "../../utils";
 
 export const RecipeListCard = (props) => {
   const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
@@ -13,31 +13,36 @@ export const RecipeListCard = (props) => {
   const navigate = useNavigate();
 
   const itemClickedOn = useCallback(
-    () => navigate("/ViewRecipe", { state: { recipeID: "1" } }),
-    [navigate]
+    () => navigate("/ViewRecipe/" + id),
+    [navigate, id]
   );
 
+  const cutDownDescription = makeSecondaryText(recipeDescription);
+
   return (
-    <div key={id}>
-      <ListItem alignItems="flex-start" onClick={() => itemClickedOn()}>
-        <ListItemText
-          primary={recipeName}
-          secondary={
-            <>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-              >
-                {recipeDescription}
-              </Typography>
-            </>
-          }
-        />
+    <Box key={id}>
+      <ListItem alignItems="flex-start">
+        <Tooltip title={recipeName + " - " + recipeDescription}>
+          <ListItemText
+            primary={recipeName}
+            secondary={
+              <>
+                <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                >
+                  {cutDownDescription}
+                </Typography>
+              </>
+            }
+            onClick={() => itemClickedOn()}
+          />
+        </Tooltip>
         <TotalTime cookTime={cookTime} prepTime={prepTime} />
         <FavoriteButton isFavorite={isFavorite} />
       </ListItem>
-      <Divider variant="inset" component="li" />
-    </div>
+      <Divider component="li" sx={{ marginX: 1 }} />
+    </Box>
   );
 };
