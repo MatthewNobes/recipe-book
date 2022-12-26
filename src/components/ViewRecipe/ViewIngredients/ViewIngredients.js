@@ -19,7 +19,7 @@ export const ViewIngredients = ({ ingredients = [] }) => {
         <List>
           {ingredients.map((ingredient) => {
             return (
-              <Box>
+              <Box key={ingredient.recipeIngredientID}>
                 <ListItem disablePadding>
                   <ListItemText variant="body1">
                     {ingredient.quantity} {ingredient.measurement}{" "}
