@@ -1,7 +1,7 @@
 import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from "../FavoriteButton";
 import TotalTime from "./TotalTime";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
@@ -40,7 +40,7 @@ export const RecipeListCard = (props) => {
 					/>
 				</Tooltip>
 				<TotalTime cookTime={cookTime} prepTime={prepTime} />
-				<FavoriteButton isFavorite={isFavorite} />
+				<FavoriteButton isFav={isFavorite} recipeID={id} />
 			</ListItem>
 			<Divider component="li" sx={{ marginX: 1 }} />
 		</Box>

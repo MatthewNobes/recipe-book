@@ -5,7 +5,7 @@ import { ViewMethod } from "./ViewMethod/ViewMethod";
 import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
 import { RecipeChip } from "./RecipeChip/RecipeChip";
 import { Hardware } from "@mui/icons-material";
-import FavoriteButton from "../RecipeListCard/FavoriteButton";
+import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
 import { getDifficultyColour } from "../../utils";
 
@@ -102,6 +102,7 @@ export const ViewRecipe = () => {
 		"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg/1200px-Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg";
 
 	const difficultyColour = getDifficultyColour(difficultyRating);
+	const isFavorite = false; // to be populated later
 
 	return (
 		<>
@@ -110,7 +111,7 @@ export const ViewRecipe = () => {
 				<Box sx={{ paddingBottom: 3 }}>
 					<Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
 						<Typography variant="h2">{recipeName}</Typography>
-						<FavoriteButton />
+						<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
 					</Box>
 					<Box sx={{ display: "flex", gap: "10px", mt: 1 }}>
 						<RecipeChip label="Prep: " value={recipe.RecipePrepTime} />
