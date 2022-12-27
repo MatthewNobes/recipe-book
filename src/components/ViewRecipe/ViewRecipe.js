@@ -9,6 +9,7 @@ import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
 import { getDifficultyColour } from "../../utils";
 import { ServesChip } from "./ServesChip/ServesChip";
+import { RecipeFooter } from "./RecipeFooter/RecipeFooter";
 
 import RecipeHeader from "./RecipeHeader";
 
@@ -105,6 +106,7 @@ export const ViewRecipe = () => {
 
 	const difficultyColour = getDifficultyColour(difficultyRating);
 	const isFavorite = false; // to be populated later
+	const recipeSource = recipe.RecipeSource;
 
 	return (
 		<>
@@ -150,6 +152,8 @@ export const ViewRecipe = () => {
 					<ViewIngredients ingredients={ingredients} />
 					<ViewMethod method={method} />
 				</Box>
+				<Divider />
+				<RecipeFooter recipeSource={recipeSource} />
 			</Box>
 		</>
 	);
