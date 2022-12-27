@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { Box, Typography, Tooltip, Chip } from "@mui/material";
 import { Divider } from "@mui/material";
 import { ViewMethod } from "./ViewMethod/ViewMethod";
 import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
 import { RecipeChip } from "./RecipeChip/RecipeChip";
-import HardwareIcon from "@mui/icons-material/Hardware";
+import { Hardware } from "@mui/icons-material";
 import FavoriteButton from "../RecipeListCard/FavoriteButton";
 import { useParams } from "react-router-dom";
 import { getDifficultyColour } from "../../utils";
+
+import RecipeHeader from "./RecipeHeader";
 
 const method = [
 	{
@@ -104,7 +105,7 @@ export const ViewRecipe = () => {
 
 	return (
 		<>
-			<RecipeImage imageSource={imageSource} recipeName={recipeName} />
+			<RecipeHeader imageSource={imageSource} recipeName={recipeName} />
 			<Box sx={{ paddingX: 1 }}>
 				<Box sx={{ paddingBottom: 3 }}>
 					<Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
@@ -120,7 +121,7 @@ export const ViewRecipe = () => {
 							}
 						>
 							<Chip
-								icon={<HardwareIcon />}
+								icon={<Hardware />}
 								label={"Difficulty: " + difficultyRating}
 								color={difficultyColour}
 								variant="outlined"
