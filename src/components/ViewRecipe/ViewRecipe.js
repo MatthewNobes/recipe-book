@@ -8,6 +8,7 @@ import { Hardware } from "@mui/icons-material";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
 import { getDifficultyColour } from "../../utils";
+import { ServesChip } from "./ServesChip/ServesChip";
 
 import RecipeHeader from "./RecipeHeader";
 
@@ -98,6 +99,7 @@ export const ViewRecipe = () => {
 	const recipeName = recipe.RecipeName;
 	const recipeDescription = recipe.RecipeDecsription;
 	const difficultyRating = recipe.RecipeDifficultyRating;
+	const servesNumber = recipe.ServingNumber;
 	const imageSource =
 		"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg/1200px-Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg";
 
@@ -113,9 +115,16 @@ export const ViewRecipe = () => {
 						<Typography variant="h2">{recipeName}</Typography>
 						<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
 					</Box>
-					<Box sx={{ display: "flex", gap: "10px", mt: 1 }}>
-						<RecipeChip label="Prep: " value={recipe.RecipePrepTime} />
-						<RecipeChip label="Cook: " value={recipe.RecipeCookTime} />
+					<Box
+						sx={{
+							display: "flex",
+							gap: "10px",
+							mt: 1,
+							mb: 1,
+							flexWrap: "wrap",
+						}}
+					>
+						<ServesChip servesNumber={servesNumber} />
 						<Tooltip
 							title={
 								"Please view the info page for more details on difficult ratings"
@@ -128,6 +137,9 @@ export const ViewRecipe = () => {
 								variant="outlined"
 							/>
 						</Tooltip>
+
+						<RecipeChip label="Prep: " value={recipe.RecipePrepTime} />
+						<RecipeChip label="Cook: " value={recipe.RecipeCookTime} />
 					</Box>
 					<Typography variant="body1" sx={{ textAlign: "left" }}>
 						{recipeDescription}
