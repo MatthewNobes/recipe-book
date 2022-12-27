@@ -7,7 +7,7 @@ import { RecipeChip } from "./RecipeChip/RecipeChip";
 import { Hardware } from "@mui/icons-material";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
-import { getDifficultyColour } from "../../utils";
+import { getDifficultyColour, utf8Decode } from "../../utils";
 import { ServesChip } from "./ServesChip/ServesChip";
 import { RecipeFooter } from "./RecipeFooter/RecipeFooter";
 
@@ -106,7 +106,7 @@ export const ViewRecipe = () => {
 
 	const difficultyColour = getDifficultyColour(difficultyRating);
 	const isFavorite = false; // to be populated later
-	const recipeSource = recipe.RecipeSource;
+	const recipeSource = utf8Decode(recipe.RecipeSource);
 
 	return (
 		<>
