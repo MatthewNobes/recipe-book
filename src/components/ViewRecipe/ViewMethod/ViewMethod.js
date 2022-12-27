@@ -1,4 +1,5 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
+import { utf8Decode } from "../../../utils";
 
 const Header = () => <Typography variant="h4">Method</Typography>;
 
@@ -12,13 +13,13 @@ export const ViewMethod = ({ method = [] }) => {
 				<List>
 					{method.map((step) => {
 						return (
-							<ListItem disablePadding key={step.stepID}>
+							<ListItem disablePadding key={step.recipeStepID}>
 								<Typography variant="body2" gutterBottom component="div">
 									<Typography variant="body1" sx={{ fontWeight: "bold" }}>
 										Step {step.stepNumber}:
 									</Typography>
 
-									{step.stepText}
+									{utf8Decode(step.stepText)}
 								</Typography>
 							</ListItem>
 						);
