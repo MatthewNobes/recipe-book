@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { Divider } from "@mui/material";
-import { ViewMethod } from "./ViewMethod/ViewMethod";
-import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
+import { ViewDetails } from "./ViewDetails/ViewDetails";
 import { RecipeChip } from "./RecipeChip/RecipeChip";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
 import { utf8Decode } from "../../utils";
 import { ServesChip } from "./ServesChip/ServesChip";
-import { RecipeFooter } from "./RecipeFooter/RecipeFooter";
 import { DifficultyChip } from "./DifficultyChip/DifficultyChip";
 import RecipeHeader from "./RecipeHeader";
 
@@ -48,7 +46,7 @@ export const ViewRecipe = () => {
 	const difficultyRating = recipe.RecipeDifficultyRating;
 	const servesNumber = recipe.ServingNumber;
 	const imageSource =
-		"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg/1200px-Flickr_-_cyclonebill_-_Ravioli_med_skinke_og_asparges_i_mascarponecreme.jpg";
+		"https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chicken-madras-f69ab47.jpg";
 
 	const isFavorite = false; // to be populated later
 	const recipeSource = utf8Decode(recipe.RecipeSource);
@@ -56,8 +54,8 @@ export const ViewRecipe = () => {
 	return (
 		<>
 			<RecipeHeader imageSource={imageSource} recipeName={recipeName} />
-			<Box sx={{ paddingX: 1 }}>
-				<Box sx={{ paddingBottom: 3 }}>
+			<Box sx={{ marginBottom: 10 }}>
+				<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
 					<Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
 						<Typography variant="h2">{recipeName}</Typography>
 						<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
@@ -81,12 +79,12 @@ export const ViewRecipe = () => {
 					</Typography>
 				</Box>
 				<Divider />
-				<Box sx={{ paddingBottom: 3 }}>
-					<ViewIngredients ingredients={ingredients} />
-					<ViewMethod method={method} />
-				</Box>
+				<ViewDetails
+					ingredients={ingredients}
+					method={method}
+					recipeSource={recipeSource}
+				/>
 				<Divider />
-				<RecipeFooter recipeSource={recipeSource} />
 			</Box>
 		</>
 	);
