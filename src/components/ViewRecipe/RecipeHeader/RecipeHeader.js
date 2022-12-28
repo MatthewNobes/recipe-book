@@ -48,7 +48,7 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 					size="large"
 					onClick={() => goBack()}
 				>
-					<ArrowBack />
+					<ArrowBack htmlColor="#fff" /**TEMP measure till theme is sorted */ />
 				</IconButton>
 				<Box>
 					<IconButton
@@ -57,7 +57,9 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 						size="large"
 						onClick={handleMenu}
 					>
-						<MoreVert />
+						<MoreVert
+							htmlColor="#fff" /**TEMP measure till theme is sorted */
+						/>
 					</IconButton>
 					<Menu
 						id="menu-appbar"
