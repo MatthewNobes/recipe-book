@@ -5,6 +5,7 @@ import {
 	Typography,
 	Divider,
 	ListItemText,
+	Tooltip,
 } from "@mui/material";
 
 const Header = () => <Typography variant="h4">Ingredients</Typography>;
@@ -18,14 +19,24 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 				<Header />
 				<List>
 					{ingredients.map((ingredient) => {
+						const recipeIngredientID = ingredient.recipeIngredientID;
+						const ingredientName =
+							ingredient.ingredientMeasurements.Ingredients.ingredientName;
+						const ingredientDescription =
+							ingredient.ingredientMeasurements.Ingredients
+								.ingredientDescription;
+						const quantity = ingredient.ingredientMeasurements.measurementSize;
+						const measurementUnit =
+							ingredient.ingredientMeasurements.measurementType.measurementType;
 						return (
-							<Box key={ingredient.recipeIngredientID}>
-								<ListItem disablePadding>
-									<ListItemText variant="body1">
-										{ingredient.quantity} {ingredient.measurement}{" "}
-										{ingredient.ingredient}
-									</ListItemText>
-								</ListItem>
+							<Box key={recipeIngredientID}>
+								<Tooltip title={ingredientDescription}>
+									<ListItem disablePadding>
+										<ListItemText variant="body1">
+											{quantity} {measurementUnit} {ingredientName}
+										</ListItemText>
+									</ListItem>
+								</Tooltip>
 								<Divider />
 							</Box>
 						);

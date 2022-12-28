@@ -12,46 +12,12 @@ import { RecipeFooter } from "./RecipeFooter/RecipeFooter";
 import { DifficultyChip } from "./DifficultyChip/DifficultyChip";
 import RecipeHeader from "./RecipeHeader";
 
-const ingredients = [
-	{
-		recipeIngredientID: 1,
-		ingredient: "Egg",
-		ingredientDescription: "A chickens egg",
-		ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-		quantity: 2,
-		measurement: "Whole",
-	},
-	{
-		recipeIngredientID: 45,
-		ingredient: "Milk",
-		ingredientDescription: "A chickens egg",
-		ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-		quantity: 1,
-		measurement: "Liter",
-	},
-	{
-		recipeIngredientID: 17,
-		ingredient: "Sugar",
-		ingredientDescription: "A chickens egg",
-		ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-		quantity: 200,
-		measurement: "Grams",
-	},
-	{
-		recipeIngredientID: 18,
-		ingredient: "Baking soda",
-		ingredientDescription: "A chickens egg",
-		ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-		quantity: 2,
-		measurement: "Teaspoons",
-	},
-];
-
 export const ViewRecipe = () => {
 	const { recipeID } = useParams();
 
 	const [recipe, setRecipe] = useState({});
 	const [method, setMethod] = useState([]);
+	const [ingredients, setIngredients] = useState([]);
 
 	useEffect(() => {
 		fetch(process.env.REACT_APP_API_URL + "/recipes/recipe/" + recipeID)
@@ -59,11 +25,23 @@ export const ViewRecipe = () => {
 			.then((data) => setRecipe(data.data));
 		fetch(process.env.REACT_APP_API_URL + "/method/method/" + recipeID)
 			.then((response) => response.json())
-			.then((data) => setMethod(data.data));
+			.then((data) => {
+				if (data.data === "no method found") {
+					setMethod([]);
+				} else {
+					setMethod(data.data);
+				}
+			});
+		fetch(process.env.REACT_APP_API_URL + "/ingredients/recipe/" + recipeID)
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.data === "no ingredients found") {
+					setIngredients([]);
+				} else {
+					setIngredients(data.data);
+				}
+			});
 	}, [recipeID]);
-
-	console.log(recipe);
-	console.log(method);
 
 	const recipeName = recipe.RecipeName;
 	const recipeDescription = recipe.RecipeDecsription;

@@ -4,36 +4,34 @@ import { render, screen } from "@testing-library/react";
 describe("ViewIngredients", () => {
 	const ingredients = [
 		{
-			recipeIngredientID: 1,
-			ingredient: "Egg",
-			ingredientDescription: "A chickens egg",
-			ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-			quantity: 2,
-			measurement: "Whole",
+			recipeIngredientsID: 1,
+			recipeID: 1,
+			ingredientMeasurements: {
+				ingredientMeasurementID: 1,
+				measurementSize: 500,
+				measurementType: { measurementTypeID: 3, measurementType: "Grams" },
+				Ingredients: {
+					ingredientID: 1,
+					ingredientName: "Diced Beef",
+					ingredientDescription: "Beef cut into 2cm chunks",
+					ingredientInfoURL: null,
+				},
+			},
 		},
 		{
-			recipeIngredientID: 45,
-			ingredient: "Milk",
-			ingredientDescription: "A chickens egg",
-			ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-			quantity: 1,
-			measurement: "Liter",
-		},
-		{
-			recipeIngredientID: 17,
-			ingredient: "Sugar",
-			ingredientDescription: "A chickens egg",
-			ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-			quantity: 200,
-			measurement: "Grams",
-		},
-		{
-			recipeIngredientID: 18,
-			ingredient: "Baking soda",
-			ingredientDescription: "A chickens egg",
-			ingredientInfoURL: "https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEgg",
-			quantity: 2,
-			measurement: "Teaspoons",
+			recipeIngredientsID: 2,
+			recipeID: 1,
+			ingredientMeasurements: {
+				ingredientMeasurementID: 1,
+				measurementSize: 250,
+				measurementType: { measurementTypeID: 3, measurementType: "Grams" },
+				Ingredients: {
+					ingredientID: 2,
+					ingredientName: "Tomatoes",
+					ingredientDescription: "",
+					ingredientInfoURL: null,
+				},
+			},
 		},
 	];
 
@@ -48,11 +46,11 @@ describe("ViewIngredients", () => {
 
 		ingredients.forEach((ingredient) => {
 			const ingredientText = screen.getByText(
-				ingredient.quantity +
+				ingredient.ingredientMeasurements.measurementSize +
 					" " +
-					ingredient.measurement +
+					ingredient.ingredientMeasurements.measurementType.measurementType +
 					" " +
-					ingredient.ingredient,
+					ingredient.ingredientMeasurements.Ingredients.ingredientName,
 			);
 			expect(ingredientText).toBeInTheDocument();
 		});
