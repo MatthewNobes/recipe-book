@@ -5,6 +5,6 @@
 
 .Navigation {
 	width: 100%;
-	position: sticky;
+	position: fixed;
 	bottom: 0;
 }
