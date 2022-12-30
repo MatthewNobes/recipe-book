@@ -1,6 +1,6 @@
 import { Tooltip, Chip } from "@mui/material";
 import { Hardware } from "@mui/icons-material";
-import { getDifficultyColour } from "../../../utils";
+import { getDifficultyColour } from "../../../../utils";
 
 export const DifficultyChip = ({ difficultyRating = 0 }) => {
 	if (difficultyRating !== 0) {

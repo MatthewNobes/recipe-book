@@ -1,6 +1,6 @@
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import { ArrowBack, MoreVert } from "@mui/icons-material";
-import { RecipeImage } from "../RecipeImage/RecipeImage";
+import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 

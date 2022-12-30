@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
-import { Divider } from "@mui/material";
-import { ViewDetails } from "./ViewDetails/ViewDetails";
-import { RecipeChip } from "./RecipeChip/RecipeChip";
+import { Box, Typography, Divider } from "@mui/material";
+import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
 import { utf8Decode } from "../../utils";
-import { ServesChip } from "./ServesChip/ServesChip";
-import { DifficultyChip } from "./DifficultyChip/DifficultyChip";
-import RecipeHeader from "./RecipeHeader";
 
 export const ViewRecipe = () => {
 	const { recipeID } = useParams();
@@ -50,6 +45,8 @@ export const ViewRecipe = () => {
 
 	const isFavorite = false; // to be populated later
 	const recipeSource = utf8Decode(recipe.RecipeSource);
+	const cookTime = recipe.RecipeCookTime;
+	const prepTime = recipe.RecipePrepTime;
 
 	return (
 		<>
@@ -60,20 +57,12 @@ export const ViewRecipe = () => {
 						<Typography variant="h2">{recipeName}</Typography>
 						<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
 					</Box>
-					<Box
-						sx={{
-							display: "flex",
-							gap: "10px",
-							mt: 1,
-							mb: 1,
-							flexWrap: "wrap",
-						}}
-					>
-						<ServesChip servesNumber={servesNumber} />
-						<DifficultyChip difficultyRating={difficultyRating} />
-						<RecipeChip label="Prep: " value={recipe.RecipePrepTime} />
-						<RecipeChip label="Cook: " value={recipe.RecipeCookTime} />
-					</Box>
+					<ChipBar
+						servesNumber={servesNumber}
+						difficultyRating={difficultyRating}
+						cookTime={cookTime}
+						prepTime={prepTime}
+					/>
 					<Typography variant="body1" sx={{ textAlign: "left" }}>
 						{recipeDescription}
 					</Typography>
