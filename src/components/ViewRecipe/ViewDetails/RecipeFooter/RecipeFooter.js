@@ -9,6 +9,7 @@ import {
 import { ExpandMore } from "@mui/icons-material";
 import { isURL } from "../../../../utils";
 import { useState } from "react";
+import { utf8Decode } from "../../../../utils";
 
 const Header = () => (
 	<AccordionSummary
@@ -38,7 +39,9 @@ export const RecipeFooter = ({ recipeSource = "" }) => {
 						}}
 					>
 						<Button
-							onClick={() => window.open(recipeSource, "_blank", "noreferrer")}
+							onClick={() =>
+								window.open(utf8Decode(recipeSource), "_blank", "noreferrer")
+							}
 						>
 							View Recipe Source
 						</Button>
