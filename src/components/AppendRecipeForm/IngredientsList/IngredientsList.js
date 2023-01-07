@@ -11,6 +11,7 @@ import { AddIngredient } from "./AddIngredient";
 
 const IngredientsListItems = (props) => {
 	const ingredientsArray = props.ingredientsArray;
+	console.log(ingredientsArray);
 	const removeIngredient = (ingredientID) => {
 		props.removeIngredient(ingredientID);
 	};

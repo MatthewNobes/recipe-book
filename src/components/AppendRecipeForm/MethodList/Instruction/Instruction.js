@@ -9,6 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 export const Instruction = (props) => {
 	const instruction = props.instruction;
 	const removeInstruction = props.removeInstruction;
+
 	return (
 		<ListItem
 			key={instruction.id}

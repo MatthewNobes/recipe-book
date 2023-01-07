@@ -1,248 +1,351 @@
-import { Typography, Rating, TextField, Button, Box } from "@mui/material";
-import { useFormik } from "formik";
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-spaces-and-tabs */
+import {
+	Typography,
+	Button,
+	Box,
+	Stepper,
+	Step,
+	StepLabel,
+	Paper,
+	StepContent,
+} from "@mui/material";
+import { Formik, Form } from "formik";
 import * as yup from "yup";
-import RecipeDetailsTabPanel from "./RecipeDetailsTabPanel";
+import { useState } from "react";
+import { utf8Encode } from "../../utils";
+import {
+	AutoCompleteWrapper,
+	TextfieldWrapper,
+	SubmitButtonWrapper,
+} from "../FormUI";
+import { IngredientsList } from "./IngredientsList/IngredientsList";
+import { MethodList } from "./MethodList/MethodList";
 
-const validationSchema = yup.object({
-	recipeName: yup
-		.string("Enter a recipe name")
-		.required("A recipe name is required"),
-	recipeDescription: yup
-		.string("Enter a recipe description")
-		.required("A description is required"),
-	difficultyRating: yup
-		.string("Difficulty rating is required")
-		.required("Difficulty rating is required"),
-	servingNumber: yup
-		.number()
-		.min(1, "Must be at least 1")
-		.required("This field is required"),
-	recipePrepTime: yup
-		.number()
-		.min(1, "Must be at least 1")
-		.required("This field is required"),
-	recipeCookTime: yup
-		.number()
-		.min(1, "Must be at least 1")
-		.required("This field is required"),
-	recipeSource: yup.string("Recipe source is optional"),
-});
+const BasicDetailsForm = (props) => {
+	console.log("rerendered");
+	const validationSchema = yup.object().shape({
+		recipeName: yup.string().required("Name is required"),
+		recipeDescription: yup.string().required("Description is required"),
+		difficultyRating: yup.number(),
+		recipePrepTime: yup.number().required("Prep time is required"),
+		recipeCookTime: yup.number().required("Cook time is required"),
+		recipeSource: yup.string(),
+		servingNumber: yup.number().required("Serving number is required"),
+		region: yup.number(),
+		country: yup.number(),
+		category: yup.number(),
+	});
 
-export const AppendRecipeForm = () => {
-	console.log("re-rendered");
-	const addRecipe = () => {
-		//should be replaced with a database call to add or append the recipe.
-		const recipeName = formik.values.recipeName;
-		const recipeDescription = formik.values.recipeDescription;
-		const recipeDifficultyRating = formik.values.difficultyRating;
-		const recipePrepTime = formik.values.recipePrepTime;
-		const recipeCookTime = formik.values.recipeCookTime;
-		const servingNumber = formik.values.servingNumber;
-		const recipeSource = formik.values.recipeSource;
-
-		fetch(
-			process.env.REACT_APP_API_URL +
-				"/recipes/add-recipe/" +
-				recipeName +
-				"-" +
-				recipeDescription +
-				"-" +
-				recipeDifficultyRating +
-				"-" +
-				recipePrepTime +
-				"-" +
-				recipeCookTime +
-				"-" +
-				servingNumber +
-				"-" +
-				recipeSource,
-		)
-			.then((response) => response.json())
-			.then((data) => console.log(data));
+	const initialValues = {
+		recipeName: "",
+		recipeDescription: "",
+		difficultyRating: 0,
+		recipePrepTime: 20,
+		recipeCookTime: 20,
+		recipeSource: "",
+		servingNumber: 4,
+		region: 1,
+		country: 1,
+		category: 1,
 	};
 
-	const formik = useFormik({
-		initialValues: {
-			recipeName: "",
-			recipeDescription: "",
-			difficultyRating: 0,
-			servingNumber: 4,
-			recipePrepTime: 20,
-			recipeCookTime: 20,
-			recipeSource: "",
-			ingredients: [],
-			instructions: [
-				{ id: 0, instructionNumber: 1, instruction: "do this" },
-				{ id: 1, instructionNumber: 2, instruction: "do that" },
-			],
-		},
-		validationSchema: validationSchema,
-		onSubmit: () => {
-			addRecipe();
-		},
-		onReset: (values) => {
-			alert(JSON.stringify(values, null, 2));
-		},
-	});
+	// needs to be populated from the db
+	const categories = [
+		{ id: 1, label: "Appetisers" },
+		{ id: 2, label: "Entrees" },
+		{ id: 3, label: "Deserts" },
+		{ id: 4, label: "Lunch" },
+		{ id: 5, label: "Snacks" },
+		{ id: 6, label: "Sauces" },
+	];
+
+	const countries = [
+		{ id: 1, label: "British" },
+		{ id: 2, label: "French" },
+		{ id: 3, label: "Italian" },
+		{ id: 4, label: "Russian" },
+	];
+
+	const regions = [
+		{ id: 1, label: "Mediterranean" },
+		{ id: 2, label: "North American" },
+		{ id: 3, label: "Asian" },
+		{ id: 4, label: "Lunch" },
+		{ id: 5, label: "Snacks" },
+		{ id: 6, label: "Sauces" },
+	];
+
+	const submitHandle = (values) => {
+		props.setRecipeFn({
+			recipeName: utf8Encode(values.recipeName),
+			recipeDescription: utf8Encode(values.recipeDescription),
+			difficultyRating: values.difficultyRating,
+			recipePrepTime: values.recipePrepTime,
+			recipeCookTime: values.recipeCookTime,
+			recipeSource: utf8Encode(values.recipeSource),
+			servingNumber: values.servingNumber,
+			regionID: values.region,
+			countryID: values.country,
+			categoryID: values.category,
+		});
+		props.handleNext();
+	};
+
+	return (
+		<Formik
+			initialValues={initialValues}
+			onSubmit={(values) => {
+				submitHandle(values);
+			}}
+			validationSchema={validationSchema}
+		>
+			<Form>
+				<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
+					<TextfieldWrapper
+						name="recipeName"
+						label="Name"
+						required={true}
+					></TextfieldWrapper>
+					<TextfieldWrapper
+						name="recipeDescription"
+						label="Description"
+						multiline={true}
+						rows={4}
+						required={true}
+					></TextfieldWrapper>
+					<TextfieldWrapper
+						name="difficultyRating"
+						label="Difficulty Rating"
+						type="number"
+					></TextfieldWrapper>
+					<TextfieldWrapper
+						name="recipePrepTime"
+						label="Preparation time"
+						type="number"
+						required={true}
+					></TextfieldWrapper>
+					<TextfieldWrapper
+						name="recipeCookTime"
+						label="Cooking time"
+						type="number"
+						required={true}
+					></TextfieldWrapper>
+					<TextfieldWrapper
+						name="recipeSource"
+						label="Source URL"
+					></TextfieldWrapper>
+					<TextfieldWrapper
+						name="servingNumber"
+						label="Serving number"
+						type="number"
+						required={true}
+					></TextfieldWrapper>
+					<AutoCompleteWrapper
+						name="region"
+						label="Region"
+						options={regions}
+					></AutoCompleteWrapper>
+					<AutoCompleteWrapper
+						name="country"
+						label="Country"
+						options={countries}
+					></AutoCompleteWrapper>
+					<AutoCompleteWrapper
+						name="category"
+						label="Category"
+						options={categories}
+					></AutoCompleteWrapper>
+				</Box>
+				<Box sx={{ marginY: 2, float: "right" }}>
+					<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>Next</SubmitButtonWrapper>
+				</Box>
+			</Form>
+		</Formik>
+	);
+};
+
+const IngredientsForm = ({ setIngredients, handleNext, ingredientsArray }) => {
+	const removeIngredient = (idToRemove) => {
+		console.log(idToRemove);
+
+		const updatedIngredientsArray = ingredientsArray.filter(
+			(ing) => ing.id !== idToRemove,
+		);
+		setIngredients([...updatedIngredientsArray]);
+	};
+
+	const addIngredient = (ingredientObject) => {
+		setIngredients([...ingredientsArray, ingredientObject]);
+	};
+
+	return (
+		<Box>
+			<IngredientsList
+				ingredientsArray={ingredientsArray}
+				removeIngredient={removeIngredient}
+				addIngredient={addIngredient}
+			/>
+			<Box sx={{ marginY: 2, float: "right" }}>
+				<Button sx={{ mt: 1, mr: 1 }} onClick={() => handleNext()}>
+					Next
+				</Button>
+			</Box>
+		</Box>
+	);
+};
+
+const MethodForm = ({ setInstructions, instructionsArray, handleNext }) => {
+	/**
+	 * should include the method section
+	 * ideally support drag and drop
+	 */
+
+	const addInstruction = (instructionToAdd) => {
+		setInstructions([...instructionsArray, instructionToAdd]);
+	};
+
+	const removeInstruction = (idToRemove) => {
+		const updatedIngredientsArray = instructionsArray.filter(
+			(instruction) => instruction.id !== idToRemove,
+		);
+		setInstructions([...updatedIngredientsArray]);
+	};
+
+	const reassignNumbers = () => {
+		setInstructions([...instructionsArray]);
+	};
+
+	return (
+		<Box>
+			<MethodList
+				instructionArray={instructionsArray}
+				addInstruction={addInstruction}
+				removeInstruction={removeInstruction}
+				reassignNumbers={reassignNumbers}
+			/>
+			<Box sx={{ marginY: 2, float: "right" }}>
+				<Button sx={{ mt: 1, mr: 1 }} onClick={() => handleNext()}>
+					Next
+				</Button>
+			</Box>
+		</Box>
+	);
+};
+
+export const AppendRecipeForm = () => {
+	const [activeStep, setActiveStep] = useState(0);
+	const [recipeToAdd, setRecipeToAdd] = useState({});
+	const [ingredients, setIngredients] = useState([]);
+	const [instructions, setInstructions] = useState([]);
+
+	const handleNext = () => {
+		setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	};
+
+	const handleBack = () => {
+		setActiveStep((prevActiveStep) => prevActiveStep - 1);
+	};
+
+	const handleReset = () => {
+		setActiveStep(0);
+	};
+
+	const handleSubmit = () => {
+		console.log("submit the stuff");
+		console.log(recipeToAdd);
+		console.log(ingredients);
+		// Will add the recipe, then navigate to /ViewRecipe/ID, id will be the id of the recipe just added
+		// snackbar will be used to show it has been added
+		// if it fails then will stay on the same form and produce an error snackbar alert
+	};
 
 	return (
 		<Box
 			sx={{
-				width: "100%",
-				minWidth: 360,
-				bgcolor: "background.paper",
-				top: "72px",
-				position: "absolute",
-				textAlign: "center",
+				paddingX: 1,
+				paddingTop: 1,
+				marginBottom: 10,
+				maxWidth: "600px",
+				marginX: "auto",
 			}}
-			className="pageContents"
 		>
-			<form onSubmit={formik.handleSubmit}>
-				<TextField
-					id="recipeName"
-					name="recipeName"
-					label="Name"
-					value={formik.values.recipeName}
-					onChange={formik.handleChange}
-					error={formik.touched.recipeName && Boolean(formik.errors.recipeName)}
-					helperText={formik.touched.recipeName && formik.errors.recipeName}
-					sx={{ marginTop: "15px", width: "95%" }}
-				/>
-				<TextField
-					id="recipeDescription"
-					name="recipeDescription"
-					label="Description"
-					multiline
-					value={formik.values.recipeDescription}
-					onChange={formik.handleChange}
-					error={
-						formik.touched.recipeDescription &&
-						Boolean(formik.errors.recipeDescription)
-					}
-					helperText={
-						formik.touched.recipeDescription && formik.errors.recipeDescription
-					}
-					sx={{ marginTop: "15px", width: "95%" }}
-				/>
-				<TextField
-					id="servingNumber"
-					label="Serving Number"
-					type="number"
-					value={formik.values.servingNumber}
-					onChange={formik.handleChange}
-					error={
-						formik.touched.servingNumber && Boolean(formik.errors.servingNumber)
-					}
-					helperText={
-						formik.touched.servingNumber && formik.errors.servingNumber
-					}
-					InputLabelProps={{
-						shrink: true,
-					}}
-					sx={{ marginTop: "15px", width: "95%" }}
-				/>
-				<Box
-					sx={{
-						display: "flex",
-						marginTop: "15px",
-						justifyContent: "space-around",
-					}}
-				>
-					<TextField
-						id="recipePrepTime"
-						label="Preparation Time (minutes)"
-						type="number"
-						value={formik.values.recipePrepTime}
-						onChange={formik.handleChange}
-						error={
-							formik.touched.recipePrepTime &&
-							Boolean(formik.errors.recipePrepTime)
-						}
-						helperText={
-							formik.touched.recipePrepTime && formik.errors.recipePrepTime
-						}
-						InputLabelProps={{
-							shrink: true,
-						}}
-						sx={{ width: "45%" }}
-					/>
-					<TextField
-						id="recipeCookTime"
-						label="Cooking Time (minutes)"
-						type="number"
-						value={formik.values.recipeCookTime}
-						onChange={formik.handleChange}
-						error={
-							formik.touched.recipeCookTime &&
-							Boolean(formik.errors.recipeCookTime)
-						}
-						helperText={
-							formik.touched.recipeCookTime && formik.errors.recipeCookTime
-						}
-						InputLabelProps={{
-							shrink: true,
-						}}
-						sx={{ width: "45%" }}
-					/>
-				</Box>
-				<RecipeDetailsTabPanel formik={formik} />
-				<TextField
-					id="recipeSource"
-					name="recipeSource"
-					label="Source (URL or Book)"
-					multiline
-					value={formik.values.recipeSource}
-					onChange={formik.handleChange}
-					error={
-						formik.touched.recipeSource && Boolean(formik.errors.recipeSource)
-					}
-					helperText={formik.touched.recipeSource && formik.errors.recipeSource}
-					sx={{ marginTop: "15px", width: "95%" }}
-				/>
-				<Box
-					sx={{
-						display: "flex",
-						marginTop: "15px",
-						width: "95%",
-						justifyContent: "space-evenly",
-					}}
-				>
-					<Typography component="legend">Difficulty rating</Typography>
-					<Rating
-						id="difficultyRating"
-						name="difficultyRating"
-						value={parseInt(formik.values.difficultyRating)}
-						onChange={formik.handleChange}
-						max={10}
-					/>
-				</Box>
-				<Box
-					sx={{
-						display: "flex",
-						marginTop: "15px",
-						width: "100%",
-						justifyContent: "space-around",
-						marginBottom: "100px",
-					}}
-				>
+			<Stepper activeStep={activeStep} orientation="vertical">
+				<Step>
+					<StepLabel>Basic information</StepLabel>
+					<StepContent>
+						<BasicDetailsForm
+							setRecipeFn={setRecipeToAdd}
+							handleNext={handleNext}
+						/>
+					</StepContent>
+				</Step>
+				<Step>
+					<StepLabel>Add ingredients</StepLabel>
+					<StepContent>
+						<IngredientsForm
+							setIngredients={setIngredients}
+							handleNext={handleNext}
+							ingredientsArray={ingredients}
+						/>
+						<Box sx={{ mb: 2, float: "right" }}>
+							<Button
+								variant="contained"
+								onClick={handleNext}
+								sx={{ mt: 1, mr: 1 }}
+							>
+								Next
+							</Button>
+							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+								Back
+							</Button>
+						</Box>
+					</StepContent>
+				</Step>
+				<Step>
+					<StepLabel
+						optional={<Typography variant="caption">Last step</Typography>}
+					>
+						Add method
+					</StepLabel>
+					<StepContent>
+						<MethodForm
+							setInstructions={setInstructions}
+							instructionsArray={instructions}
+							handleNext={handleNext}
+						/>
+						<Box sx={{ mb: 2, float: "right" }}>
+							<Button
+								variant="contained"
+								onClick={handleNext}
+								sx={{ mt: 1, mr: 1 }}
+							>
+								Finish
+							</Button>
+							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+								Back
+							</Button>
+						</Box>
+					</StepContent>
+				</Step>
+			</Stepper>
+			{activeStep === 3 && (
+				<Paper square elevation={0} sx={{ p: 3 }}>
+					<Typography>
+						All steps completed - you&apos;re ready to submit the recipe
+					</Typography>
 					<Button
-						color="primary"
+						onClick={handleSubmit}
+						sx={{ mt: 1, mr: 1 }}
 						variant="contained"
-						type="submit"
-						sx={{ width: "45%" }}
 					>
 						Submit
 					</Button>
-					<Button
-						color="primary"
-						variant="contained"
-						type="reset"
-						sx={{ width: "45%" }}
-					>
+					<Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
 						Reset
 					</Button>
-				</Box>
-			</form>
+				</Paper>
+			)}
 		</Box>
 	);
 };
