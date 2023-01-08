@@ -1,7 +1,7 @@
 import { Modal, Typography, Box } from "@mui/material";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
-import { TextfieldWrapper, SubmitButtonWrapper } from "../../../FormUI";
+import { TextfieldWrapper, SubmitButtonWrapper } from "../../../../../FormUI";
 
 const style = {
 	position: "absolute",

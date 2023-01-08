@@ -7,7 +7,7 @@ import {
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 	AutoCompleteWrapper,
-} from "../../../FormUI";
+} from "../../../../../FormUI";
 
 const style = {
 	position: "absolute",
