@@ -76,12 +76,7 @@ export const IngredientModal = (props) => {
 		handleClose();
 	};
 
-	const units = [
-		{ id: 1, label: "kg" },
-		{ id: 2, label: "g" },
-		{ id: 3, label: "teaspoons" },
-		{ id: 4, label: "tablespoons" },
-	];
+	const units = props.units;
 
 	return (
 		<Modal

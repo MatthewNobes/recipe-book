@@ -11,6 +11,7 @@ import { AddIngredient } from "./AddIngredient";
 
 const IngredientsListItems = (props) => {
 	const ingredientsArray = props.ingredientsArray;
+	const units = props.units;
 
 	const removeIngredient = (ingredientID) => {
 		props.removeIngredient(ingredientID);
@@ -37,7 +38,11 @@ const IngredientsListItems = (props) => {
 							<ListItemText
 								id={ingredient.ingredient}
 								primary={ingredient.ingredient}
-								secondary={ingredient.quantity + " " + ingredient.measurement}
+								secondary={
+									ingredient.quantity +
+									" " +
+									units[ingredient.measurement].label
+								}
 							/>
 						</ListItemButton>
 					</ListItem>
@@ -51,6 +56,13 @@ export const IngredientsList = (props) => {
 	const ingredientsArray = props.ingredientsArray;
 	const removeIngredient = props.removeIngredient;
 
+	const units = [
+		{ id: 1, label: "kg" },
+		{ id: 2, label: "g" },
+		{ id: 3, label: "teaspoons" },
+		{ id: 4, label: "tablespoons" },
+	];
+
 	return (
 		<>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
@@ -60,10 +72,11 @@ export const IngredientsList = (props) => {
 					<IngredientsListItems
 						removeIngredient={removeIngredient}
 						ingredientsArray={ingredientsArray}
+						units={units}
 					/>
 				)}
 				<ListItem>
-					<AddIngredient addIngredient={props.addIngredient} />
+					<AddIngredient addIngredient={props.addIngredient} units={units} />
 				</ListItem>
 			</List>
 		</>

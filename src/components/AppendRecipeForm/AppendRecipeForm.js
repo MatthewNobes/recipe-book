@@ -152,9 +152,8 @@ const BasicDetailsForm = (props) => {
 
 const IngredientsForm = ({ setIngredients, ingredientsArray }) => {
 	const removeIngredient = (idToRemove) => {
-		const updatedIngredientsArray = ingredientsArray.filter(
-			(ing) => ing.id !== idToRemove,
-		);
+		const updatedIngredientsArray = ingredientsArray;
+		updatedIngredientsArray.splice(idToRemove, 1);
 		setIngredients([...updatedIngredientsArray]);
 	};
 

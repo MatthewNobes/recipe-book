@@ -17,6 +17,7 @@ export const AddIngredient = (props) => {
 				setModalOpenStatus={setModalOpenStatus}
 				addIngredient={props.addIngredient}
 				operation={"Add"}
+				units={props.units}
 			/>
 			<Fab
 				color="primary"
