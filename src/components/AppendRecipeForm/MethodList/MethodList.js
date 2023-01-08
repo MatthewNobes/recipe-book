@@ -16,6 +16,7 @@ export const MethodList = (props) => {
 	const removeInstruction = (instructionID) => {
 		props.removeInstruction(instructionID);
 	};
+	console.log(instructionArray);
 
 	return (
 		<>
@@ -26,12 +27,13 @@ export const MethodList = (props) => {
 				addInstruction={props.addInstruction}
 			/>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
-				{instructionArray.map((instruction) => {
+				{instructionArray.map((instruction, index) => {
 					return (
 						<Instruction
-							key={instruction.instructionID}
+							key={index}
 							instruction={instruction}
-							removeInstruction={() => removeInstruction(instruction.id)}
+							index={index}
+							removeInstruction={removeInstruction}
 						/>
 					);
 				})}

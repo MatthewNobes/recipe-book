@@ -186,30 +186,19 @@ const IngredientsForm = ({ setIngredients, handleNext, ingredientsArray }) => {
 				removeIngredient={removeIngredient}
 				addIngredient={addIngredient}
 			/>
-			<Box sx={{ marginY: 2, float: "right" }}>
-				<Button sx={{ mt: 1, mr: 1 }} onClick={() => handleNext()}>
-					Next
-				</Button>
-			</Box>
 		</Box>
 	);
 };
 
-const MethodForm = ({ setInstructions, instructionsArray, handleNext }) => {
-	/**
-	 * should include the method section
-	 * ideally support drag and drop
-	 */
-
+const MethodForm = ({ setInstructions, instructionsArray }) => {
 	const addInstruction = (instructionToAdd) => {
 		setInstructions([...instructionsArray, instructionToAdd]);
 	};
 
 	const removeInstruction = (idToRemove) => {
-		const updatedIngredientsArray = instructionsArray.filter(
-			(instruction) => instruction.id !== idToRemove,
-		);
-		setInstructions([...updatedIngredientsArray]);
+		const updatedInstructionsArray = instructionsArray;
+		updatedInstructionsArray.splice(idToRemove, 1);
+		setInstructions([...updatedInstructionsArray]);
 	};
 
 	const reassignNumbers = () => {
@@ -224,11 +213,6 @@ const MethodForm = ({ setInstructions, instructionsArray, handleNext }) => {
 				removeInstruction={removeInstruction}
 				reassignNumbers={reassignNumbers}
 			/>
-			<Box sx={{ marginY: 2, float: "right" }}>
-				<Button sx={{ mt: 1, mr: 1 }} onClick={() => handleNext()}>
-					Next
-				</Button>
-			</Box>
 		</Box>
 	);
 };
@@ -255,6 +239,7 @@ export const AppendRecipeForm = () => {
 		console.log("submit the stuff");
 		console.log(recipeToAdd);
 		console.log(ingredients);
+		console.log(instructions);
 		// Will add the recipe, then navigate to /ViewRecipe/ID, id will be the id of the recipe just added
 		// snackbar will be used to show it has been added
 		// if it fails then will stay on the same form and produce an error snackbar alert
@@ -285,7 +270,6 @@ export const AppendRecipeForm = () => {
 					<StepContent>
 						<IngredientsForm
 							setIngredients={setIngredients}
-							handleNext={handleNext}
 							ingredientsArray={ingredients}
 						/>
 						<Box sx={{ mb: 2, float: "right" }}>
@@ -312,7 +296,6 @@ export const AppendRecipeForm = () => {
 						<MethodForm
 							setInstructions={setInstructions}
 							instructionsArray={instructions}
-							handleNext={handleNext}
 						/>
 						<Box sx={{ mb: 2, float: "right" }}>
 							<Button

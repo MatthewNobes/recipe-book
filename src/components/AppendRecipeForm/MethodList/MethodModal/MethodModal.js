@@ -27,7 +27,6 @@ const initialValues = {
 };
 
 export const MethodModal = (props) => {
-	const instructionArray = props.instructionArray;
 	const handleClose = () => props.setModalOpenStatus(false);
 
 	const clearForm = (values) => {
@@ -35,14 +34,8 @@ export const MethodModal = (props) => {
 	};
 
 	const submitHandle = (values) => {
-		const newID =
-			instructionArray.length > 0
-				? instructionArray[instructionArray.length - 1].id + 1
-				: 1;
 		props.addInstruction({
-			id: newID,
 			instruction: values.instruction,
-			instructionNumber: newID,
 		});
 
 		clearForm(values);

@@ -8,16 +8,17 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export const Instruction = (props) => {
 	const instruction = props.instruction;
+	const index = props.index;
 	const removeInstruction = props.removeInstruction;
 
 	return (
 		<ListItem
-			key={instruction.id}
+			key={index}
 			secondaryAction={
 				<IconButton
 					edge="end"
 					aria-label="delete ingredient"
-					onClick={() => removeInstruction(instruction.id)}
+					onClick={() => removeInstruction(index)}
 				>
 					<DeleteIcon />
 				</IconButton>
@@ -26,8 +27,8 @@ export const Instruction = (props) => {
 		>
 			<ListItemButton role={undefined} dense>
 				<ListItemText
-					id={instruction.id}
-					primary={"Step " + instruction.instructionNumber}
+					id={index}
+					primary={"Step " + (index + 1)}
 					secondary={instruction.instruction}
 				/>
 			</ListItemButton>
