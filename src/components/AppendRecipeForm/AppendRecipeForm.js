@@ -194,20 +194,22 @@ const MethodForm = ({ setInstructions, instructionsArray }) => {
 	);
 };
 
+const initialRecipeValues = {
+	recipeName: "",
+	recipeDescription: "",
+	difficultyRating: 0,
+	recipePrepTime: 20,
+	recipeCookTime: 20,
+	recipeSource: "",
+	servingNumber: 4,
+	region: 1,
+	country: 1,
+	category: 1,
+};
+
 export const AppendRecipeForm = () => {
 	const [activeStep, setActiveStep] = useState(0);
-	const [recipe, setRecipe] = useState({
-		recipeName: "",
-		recipeDescription: "",
-		difficultyRating: 0,
-		recipePrepTime: 20,
-		recipeCookTime: 20,
-		recipeSource: "",
-		servingNumber: 4,
-		region: 1,
-		country: 1,
-		category: 1,
-	});
+	const [recipe, setRecipe] = useState(initialRecipeValues);
 	const [ingredients, setIngredients] = useState([]);
 	const [instructions, setInstructions] = useState([]);
 
@@ -220,18 +222,7 @@ export const AppendRecipeForm = () => {
 	};
 
 	const handleReset = () => {
-		setRecipe({
-			recipeName: "",
-			recipeDescription: "",
-			difficultyRating: 0,
-			recipePrepTime: 20,
-			recipeCookTime: 20,
-			recipeSource: "",
-			servingNumber: 4,
-			region: 1,
-			country: 1,
-			category: 1,
-		});
+		setRecipe(initialRecipeValues);
 		setIngredients([]);
 		setInstructions([]);
 		setActiveStep(0);
