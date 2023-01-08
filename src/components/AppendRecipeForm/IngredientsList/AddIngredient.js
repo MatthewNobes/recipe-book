@@ -15,7 +15,6 @@ export const AddIngredient = (props) => {
 			<IngredientModal
 				modalOpenStatus={modalOpenStatus}
 				setModalOpenStatus={setModalOpenStatus}
-				ingredientsArray={props.ingredientsArray}
 				addIngredient={props.addIngredient}
 				operation={"Add"}
 			/>

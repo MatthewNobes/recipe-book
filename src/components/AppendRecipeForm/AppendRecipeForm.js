@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-mixed-spaces-and-tabs */
 import {
 	Typography,
 	Button,
@@ -13,7 +11,7 @@ import {
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
-import { utf8Encode } from "../../utils";
+// import { utf8Encode } from "../../utils";
 import {
 	AutoCompleteWrapper,
 	TextfieldWrapper,
@@ -36,19 +34,6 @@ const BasicDetailsForm = (props) => {
 		country: yup.number(),
 		category: yup.number(),
 	});
-
-	const initialValues = {
-		recipeName: "",
-		recipeDescription: "",
-		difficultyRating: 0,
-		recipePrepTime: 20,
-		recipeCookTime: 20,
-		recipeSource: "",
-		servingNumber: 4,
-		region: 1,
-		country: 1,
-		category: 1,
-	};
 
 	// needs to be populated from the db
 	const categories = [
@@ -78,12 +63,12 @@ const BasicDetailsForm = (props) => {
 
 	const submitHandle = (values) => {
 		props.setRecipeFn({
-			recipeName: utf8Encode(values.recipeName),
-			recipeDescription: utf8Encode(values.recipeDescription),
+			recipeName: values.recipeName,
+			recipeDescription: values.recipeDescription,
 			difficultyRating: values.difficultyRating,
 			recipePrepTime: values.recipePrepTime,
 			recipeCookTime: values.recipeCookTime,
-			recipeSource: utf8Encode(values.recipeSource),
+			recipeSource: values.recipeSource,
 			servingNumber: values.servingNumber,
 			regionID: values.region,
 			countryID: values.country,
@@ -94,7 +79,7 @@ const BasicDetailsForm = (props) => {
 
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={props.recipeValues}
 			onSubmit={(values) => {
 				submitHandle(values);
 			}}
@@ -165,10 +150,8 @@ const BasicDetailsForm = (props) => {
 	);
 };
 
-const IngredientsForm = ({ setIngredients, handleNext, ingredientsArray }) => {
+const IngredientsForm = ({ setIngredients, ingredientsArray }) => {
 	const removeIngredient = (idToRemove) => {
-		console.log(idToRemove);
-
 		const updatedIngredientsArray = ingredientsArray.filter(
 			(ing) => ing.id !== idToRemove,
 		);
@@ -201,17 +184,12 @@ const MethodForm = ({ setInstructions, instructionsArray }) => {
 		setInstructions([...updatedInstructionsArray]);
 	};
 
-	const reassignNumbers = () => {
-		setInstructions([...instructionsArray]);
-	};
-
 	return (
 		<Box>
 			<MethodList
 				instructionArray={instructionsArray}
 				addInstruction={addInstruction}
 				removeInstruction={removeInstruction}
-				reassignNumbers={reassignNumbers}
 			/>
 		</Box>
 	);
@@ -219,7 +197,18 @@ const MethodForm = ({ setInstructions, instructionsArray }) => {
 
 export const AppendRecipeForm = () => {
 	const [activeStep, setActiveStep] = useState(0);
-	const [recipeToAdd, setRecipeToAdd] = useState({});
+	const [recipe, setRecipe] = useState({
+		recipeName: "",
+		recipeDescription: "",
+		difficultyRating: 0,
+		recipePrepTime: 20,
+		recipeCookTime: 20,
+		recipeSource: "",
+		servingNumber: 4,
+		region: 1,
+		country: 1,
+		category: 1,
+	});
 	const [ingredients, setIngredients] = useState([]);
 	const [instructions, setInstructions] = useState([]);
 
@@ -232,14 +221,29 @@ export const AppendRecipeForm = () => {
 	};
 
 	const handleReset = () => {
+		setRecipe({
+			recipeName: "",
+			recipeDescription: "",
+			difficultyRating: 0,
+			recipePrepTime: 20,
+			recipeCookTime: 20,
+			recipeSource: "",
+			servingNumber: 4,
+			region: 1,
+			country: 1,
+			category: 1,
+		});
+		setIngredients([]);
+		setInstructions([]);
 		setActiveStep(0);
 	};
 
 	const handleSubmit = () => {
 		console.log("submit the stuff");
-		console.log(recipeToAdd);
+		console.log(recipe);
 		console.log(ingredients);
 		console.log(instructions);
+		// all props need to be encoded
 		// Will add the recipe, then navigate to /ViewRecipe/ID, id will be the id of the recipe just added
 		// snackbar will be used to show it has been added
 		// if it fails then will stay on the same form and produce an error snackbar alert
@@ -260,8 +264,9 @@ export const AppendRecipeForm = () => {
 					<StepLabel>Basic information</StepLabel>
 					<StepContent>
 						<BasicDetailsForm
-							setRecipeFn={setRecipeToAdd}
+							setRecipeFn={setRecipe}
 							handleNext={handleNext}
+							recipeValues={recipe}
 						/>
 					</StepContent>
 				</Step>

@@ -40,7 +40,6 @@ const initialValues = {
 };
 
 export const IngredientModal = (props) => {
-	const ingredientsArray = props.ingredientsArray;
 	const operation = props.operation;
 
 	const handleClose = () => props.setModalOpenStatus(false);
@@ -67,12 +66,7 @@ export const IngredientModal = (props) => {
 		console.log(existingIngredients + existingMeasurements);
 		console.log(values);
 
-		const newID =
-			ingredientsArray === true
-				? ingredientsArray[ingredientsArray.length - 1].id + 1
-				: 1;
 		props.addIngredient({
-			id: newID,
 			ingredient: values.ingredient,
 			quantity: values.ingredientQuantity,
 			measurement: values.measurement,

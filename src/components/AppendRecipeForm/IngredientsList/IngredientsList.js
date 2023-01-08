@@ -11,22 +11,22 @@ import { AddIngredient } from "./AddIngredient";
 
 const IngredientsListItems = (props) => {
 	const ingredientsArray = props.ingredientsArray;
-	console.log(ingredientsArray);
+
 	const removeIngredient = (ingredientID) => {
 		props.removeIngredient(ingredientID);
 	};
 
 	return (
 		<>
-			{ingredientsArray.map((ingredient) => {
+			{ingredientsArray.map((ingredient, index) => {
 				return (
 					<ListItem
-						key={ingredient.id}
+						key={index}
 						secondaryAction={
 							<IconButton
 								edge="end"
 								aria-label="delete ingredient"
-								onClick={() => removeIngredient(ingredient.id)}
+								onClick={() => removeIngredient(index)}
 							>
 								<DeleteIcon />
 							</IconButton>
@@ -63,10 +63,7 @@ export const IngredientsList = (props) => {
 					/>
 				)}
 				<ListItem>
-					<AddIngredient
-						ingredientsArray={ingredientsArray}
-						addIngredient={props.addIngredient}
-					/>
+					<AddIngredient addIngredient={props.addIngredient} />
 				</ListItem>
 			</List>
 		</>
