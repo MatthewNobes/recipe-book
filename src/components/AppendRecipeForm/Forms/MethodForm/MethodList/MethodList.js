@@ -1,4 +1,4 @@
-import { List, ListItem, Fab } from "@mui/material";
+import { List, ListItem, Fab, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MethodModal from "./MethodModal";
 import { useState } from "react";
@@ -27,16 +27,20 @@ export const MethodList = (props) => {
 				addInstruction={props.addInstruction}
 			/>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
-				{instructionArray.map((instruction, index) => {
-					return (
-						<Instruction
-							key={index}
-							instruction={instruction}
-							index={index}
-							removeInstruction={removeInstruction}
-						/>
-					);
-				})}
+				{instructionArray.length === 0 ? (
+					<Typography>No instructions</Typography>
+				) : (
+					instructionArray.map((instruction, index) => {
+						return (
+							<Instruction
+								key={index}
+								instruction={instruction}
+								index={index}
+								removeInstruction={removeInstruction}
+							/>
+						);
+					})
+				)}
 				<ListItem>
 					<Fab
 						color="primary"
