@@ -25,11 +25,15 @@ const style = {
 };
 
 const validationSchema = yup.object().shape({
-	ingredient: yup.string().required("An ingredient is required"),
-	measurement: yup.number().required("An unit is required"),
+	ingredient: yup
+		.string()
+		.required("Required")
+		.max(85, "Must not be greater than 85 characters"),
+	measurement: yup.number().required("Required"),
 	ingredientQuantity: yup
 		.number()
 		.min(0.1, "Must be at least 0.1")
+		.max(2147483647, "Too large")
 		.required("A quantity is required"),
 });
 

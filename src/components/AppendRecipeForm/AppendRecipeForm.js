@@ -10,22 +10,41 @@ import {
 } from "@mui/material";
 import { BasicDetailsForm, IngredientsForm, MethodForm } from "./Forms";
 import { useState } from "react";
-// import { utf8Encode } from "../../utils";
 
-const initialRecipeValues = {
-	recipeName: "",
-	recipeDescription: "",
-	difficultyRating: 0,
-	recipePrepTime: 20,
-	recipeCookTime: 20,
-	recipeSource: "",
-	servingNumber: 4,
-	region: 1,
-	country: 1,
-	category: 1,
-};
+/**
+ * The form experience to add or edit a recipe. Pass valuesToEdit if this is form is being used to edit a recipe, if nothing is passed, it will assume the forms purpose is to add a recipe
+ * @param {valuesToEdit} props valuesToEdit contains the recipeValues that will be edited
+ * @returns
+ */
+export const AppendRecipeForm = (props) => {
+	let initialRecipeValues = {
+		recipeName: "",
+		recipeDescription: "",
+		difficultyRating: 0,
+		recipePrepTime: 0,
+		recipeCookTime: 0,
+		recipeSource: "",
+		servingNumber: 4,
+		region: 1,
+		country: 1,
+		category: 1,
+	};
 
-export const AppendRecipeForm = () => {
+	if (props.valuesToEdit) {
+		initialRecipeValues = {
+			recipeName: props.valuesToEdit.recipeName,
+			recipeDescription: props.valuesToEdit.recipeDescription,
+			difficultyRating: props.valuesToEdit.difficultyRating,
+			recipePrepTime: props.valuesToEdit.recipePrepTime,
+			recipeCookTime: props.valuesToEdit.recipeCookTime,
+			recipeSource: props.valuesToEdit.recipeSource,
+			servingNumber: props.valuesToEdit.servingNumber,
+			region: props.valuesToEdit.region,
+			country: props.valuesToEdit.country,
+			category: props.valuesToEdit.category,
+		};
+	}
+
 	const [activeStep, setActiveStep] = useState(0);
 	const [recipe, setRecipe] = useState(initialRecipeValues);
 	const [ingredients, setIngredients] = useState([]);

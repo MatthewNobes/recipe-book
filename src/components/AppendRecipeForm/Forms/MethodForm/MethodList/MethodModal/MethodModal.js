@@ -19,7 +19,10 @@ const style = {
 };
 
 const validationSchema = yup.object().shape({
-	instruction: yup.string().required("An instruction is required"),
+	instruction: yup
+		.string()
+		.required("Required")
+		.max(682, "Must not be greater than 682 characters"),
 });
 
 const initialValues = {

@@ -1,7 +1,6 @@
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { Box } from "@mui/material";
-// import { utf8Encode } from "../../utils";
 import {
 	AutoCompleteWrapper,
 	TextfieldWrapper,
@@ -11,13 +10,31 @@ import {
 export const BasicDetailsForm = (props) => {
 	console.log("rerendered");
 	const validationSchema = yup.object().shape({
-		recipeName: yup.string().required("Name is required"),
-		recipeDescription: yup.string().required("Description is required"),
-		difficultyRating: yup.number(),
-		recipePrepTime: yup.number().required("Prep time is required"),
-		recipeCookTime: yup.number().required("Cook time is required"),
-		recipeSource: yup.string(),
-		servingNumber: yup.number().required("Serving number is required"),
+		recipeName: yup
+			.string()
+			.required("Required")
+			.max(85, "Must not be greater than 85 characters"),
+		recipeDescription: yup
+			.string()
+			.required("Required")
+			.max(85, "Must not be greater than 85 characters"),
+		difficultyRating: yup
+			.number()
+			.positive()
+			.integer()
+			.min(1, "Must be at least 1")
+			.max(10, "Must be under 10"),
+		recipePrepTime: yup.number().required("Required").positive().integer(),
+		recipeCookTime: yup.number().required("Required").positive().integer(),
+		recipeSource: yup
+			.string()
+			.max(85, "Must not be greater than 85 characters"),
+		servingNumber: yup
+			.number()
+			.required("Required")
+			.positive()
+			.integer()
+			.min(1, "Must be at least 1"),
 		region: yup.number(),
 		country: yup.number(),
 		category: yup.number(),
@@ -94,13 +111,13 @@ export const BasicDetailsForm = (props) => {
 					></TextfieldWrapper>
 					<TextfieldWrapper
 						name="recipePrepTime"
-						label="Preparation time"
+						label="Preparation time (in minutes)"
 						type="number"
 						required={true}
 					></TextfieldWrapper>
 					<TextfieldWrapper
 						name="recipeCookTime"
-						label="Cooking time"
+						label="Cooking time (in minutes)"
 						type="number"
 						required={true}
 					></TextfieldWrapper>
