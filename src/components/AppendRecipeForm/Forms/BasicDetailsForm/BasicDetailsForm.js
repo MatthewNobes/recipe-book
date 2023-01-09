@@ -9,7 +9,6 @@ import {
 import { useState, useEffect } from "react";
 
 export const BasicDetailsForm = (props) => {
-	// eslint-disable-next-line no-unused-vars
 	const [categories, setCategories] = useState([
 		{ countryID: 1, label: "Appetisers" },
 		{ countryID: 2, label: "Entrees" },
@@ -67,7 +66,7 @@ export const BasicDetailsForm = (props) => {
 					}),
 				);
 			});
-	});
+	}, []);
 
 	const validationSchema = yup.object().shape({
 		recipeName: yup

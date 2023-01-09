@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AddIngredient } from "./AddIngredient";
+import { useState, useEffect } from "react";
 
 const IngredientsListItems = (props) => {
 	const ingredientsArray = props.ingredientsArray;
@@ -56,12 +57,22 @@ export const IngredientsList = (props) => {
 	const ingredientsArray = props.ingredientsArray;
 	const removeIngredient = props.removeIngredient;
 
-	const units = [
-		{ id: 1, label: "kg" },
-		{ id: 2, label: "g" },
-		{ id: 3, label: "teaspoons" },
-		{ id: 4, label: "tablespoons" },
-	];
+	const [units, setUnits] = useState([]);
+
+	useEffect(() => {
+		fetch(process.env.REACT_APP_API_URL + "/measurementTypes/measurementTypes")
+			.then((response) => response.json())
+			.then((data) => {
+				setUnits(
+					data.data.map((measurementType) => {
+						return {
+							id: measurementType.measurementTypeID,
+							label: measurementType.measurementType,
+						};
+					}),
+				);
+			});
+	}, []);
 
 	return (
 		<>
