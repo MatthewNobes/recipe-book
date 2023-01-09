@@ -79,20 +79,28 @@ export const BasicDetailsForm = (props) => {
 			.max(85, "Must not be greater than 85 characters"),
 		difficultyRating: yup
 			.number()
-			.positive()
-			.integer()
+			.positive("Must be positive")
+			.integer("Must be a whole number")
 			.min(1, "Must be at least 1")
 			.max(10, "Must be under 10"),
-		recipePrepTime: yup.number().required("Required").positive().integer(),
-		recipeCookTime: yup.number().required("Required").positive().integer(),
+		recipePrepTime: yup
+			.number()
+			.required("Required")
+			.positive("Must be positive")
+			.integer("Must be a whole number"),
+		recipeCookTime: yup
+			.number()
+			.required("Required")
+			.positive("Must be positive")
+			.integer("Must be a whole number"),
 		recipeSource: yup
 			.string()
 			.max(85, "Must not be greater than 85 characters"),
 		servingNumber: yup
 			.number()
 			.required("Required")
-			.positive()
-			.integer()
+			.positive("Must be positive")
+			.integer("Must be a whole number")
 			.min(1, "Must be at least 1"),
 		region: yup.number(),
 		country: yup.number(),
