@@ -6,9 +6,69 @@ import {
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 } from "../../../FormUI";
+import { useState, useEffect } from "react";
 
 export const BasicDetailsForm = (props) => {
-	console.log("rerendered");
+	// eslint-disable-next-line no-unused-vars
+	const [categories, setCategories] = useState([
+		{ countryID: 1, label: "Appetisers" },
+		{ countryID: 2, label: "Entrees" },
+		{ countryID: 3, label: "Deserts" },
+		{ countryID: 4, label: "Lunch" },
+		{ countryID: 5, label: "Snacks" },
+		{ countryID: 6, label: "Sauces" },
+	]);
+
+	const [countries, setCountries] = useState([
+		{ id: 1, label: "British" },
+		{ id: 2, label: "French" },
+		{ id: 3, label: "Italian" },
+		{ id: 4, label: "Russian" },
+	]);
+
+	const [regions, setRegions] = useState([
+		{ id: 1, label: "Mediterranean" },
+		{ id: 2, label: "North American" },
+		{ id: 3, label: "Asian" },
+		{ id: 4, label: "Lunch" },
+		{ id: 5, label: "Snacks" },
+		{ id: 6, label: "Sauces" },
+	]);
+
+	useEffect(() => {
+		fetch(process.env.REACT_APP_API_URL + "/countries/countries")
+			.then((response) => response.json())
+			.then((data) => {
+				setCountries(
+					data.data.map((country) => {
+						return { id: country.countryID, label: country.country };
+					}),
+				);
+			});
+
+		// BLOCKER: awaiting correct route
+		fetch(process.env.REACT_APP_API_URL + "/countries/countries")
+			.then((response) => response.json())
+			.then((data) => {
+				setCategories(
+					data.data.map((country) => {
+						return { id: country.countryID, label: country.country };
+					}),
+				);
+			});
+
+		// BLOCKER: awaiting correct route
+		fetch(process.env.REACT_APP_API_URL + "/countries/countries")
+			.then((response) => response.json())
+			.then((data) => {
+				setRegions(
+					data.data.map((country) => {
+						return { id: country.countryID, label: country.country };
+					}),
+				);
+			});
+	});
+
 	const validationSchema = yup.object().shape({
 		recipeName: yup
 			.string()
@@ -39,32 +99,6 @@ export const BasicDetailsForm = (props) => {
 		country: yup.number(),
 		category: yup.number(),
 	});
-
-	// needs to be populated from the db
-	const categories = [
-		{ id: 1, label: "Appetisers" },
-		{ id: 2, label: "Entrees" },
-		{ id: 3, label: "Deserts" },
-		{ id: 4, label: "Lunch" },
-		{ id: 5, label: "Snacks" },
-		{ id: 6, label: "Sauces" },
-	];
-
-	const countries = [
-		{ id: 1, label: "British" },
-		{ id: 2, label: "French" },
-		{ id: 3, label: "Italian" },
-		{ id: 4, label: "Russian" },
-	];
-
-	const regions = [
-		{ id: 1, label: "Mediterranean" },
-		{ id: 2, label: "North American" },
-		{ id: 3, label: "Asian" },
-		{ id: 4, label: "Lunch" },
-		{ id: 5, label: "Snacks" },
-		{ id: 6, label: "Sauces" },
-	];
 
 	const submitHandle = (values) => {
 		props.setRecipeFn({
