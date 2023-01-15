@@ -55,11 +55,17 @@ export const IngredientModal = (props) => {
 	useEffect(() => {
 		fetch(process.env.REACT_APP_API_URL + "/ingredients/ingredients")
 			.then((response) => response.json())
-			.then((data) => setExistingIngredients(data));
+			.then((data) => setExistingIngredients(data))
+			.catch(() => {
+				setExistingIngredients([]);
+			});
 
 		fetch(process.env.REACT_APP_API_URL + "/measurementTypes/measurementTypes")
 			.then((response) => response.json())
-			.then((data) => setExistingMeasurements(data));
+			.then((data) => setExistingMeasurements(data))
+			.catch(() => {
+				setExistingMeasurements([]);
+			});
 	}, []);
 
 	const clearForm = (values) => {

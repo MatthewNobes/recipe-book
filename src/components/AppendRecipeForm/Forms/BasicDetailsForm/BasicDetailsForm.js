@@ -43,6 +43,9 @@ export const BasicDetailsForm = (props) => {
 						return { id: country.countryID, label: country.country };
 					}),
 				);
+			})
+			.catch(() => {
+				setCountries([]);
 			});
 
 		fetch(process.env.REACT_APP_API_URL + "/categories")
@@ -53,6 +56,9 @@ export const BasicDetailsForm = (props) => {
 						return { id: category.catagoryID, label: category.catagory };
 					}),
 				);
+			})
+			.catch(() => {
+				setCategories([]);
 			});
 
 		fetch(process.env.REACT_APP_API_URL + "/regions")
@@ -63,6 +69,9 @@ export const BasicDetailsForm = (props) => {
 						return { id: region.regionID, label: region.region };
 					}),
 				);
+			})
+			.catch(() => {
+				setRegions([]);
 			});
 	}, []);
 
