@@ -45,24 +45,22 @@ export const BasicDetailsForm = (props) => {
 				);
 			});
 
-		// BLOCKER: awaiting correct route
-		fetch(process.env.REACT_APP_API_URL + "/countries/countries")
+		fetch(process.env.REACT_APP_API_URL + "/categories")
 			.then((response) => response.json())
 			.then((data) => {
 				setCategories(
-					data.data.map((country) => {
-						return { id: country.countryID, label: country.country };
+					data.data.map((category) => {
+						return { id: category.catagoryID, label: category.catagory };
 					}),
 				);
 			});
 
-		// BLOCKER: awaiting correct route
-		fetch(process.env.REACT_APP_API_URL + "/countries/countries")
+		fetch(process.env.REACT_APP_API_URL + "/regions")
 			.then((response) => response.json())
 			.then((data) => {
 				setRegions(
-					data.data.map((country) => {
-						return { id: country.countryID, label: country.country };
+					data.data.map((region) => {
+						return { id: region.regionID, label: region.region };
 					}),
 				);
 			});
