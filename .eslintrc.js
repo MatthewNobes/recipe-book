@@ -6,17 +6,11 @@ module.exports = {
 		jest: true,
 		"jest/globals": true,
 	},
-	extends: [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"plugin:react/jsx-runtime",
-	],
+	extends: ["eslint:recommended", "plugin:react/recommended"],
 	overrides: [],
+	parser: "@babel/eslint-parser",
 	parserOptions: {
 		ecmaVersion: "latest",
-		ecmaFeatures: {
-			impliedStrict: true,
-		},
 		sourceType: "module",
 	},
 	plugins: ["react", "jest"],
@@ -34,7 +28,7 @@ module.exports = {
 			},
 		],
 		"comma-dangle": ["error", "always-multiline"],
-		"quote-props": ["error", "as-needed"],
+		"quote-props": ["error", "consistent-as-needed"],
 		"space-before-function-paren": [
 			"error",
 			{
@@ -75,6 +69,10 @@ module.exports = {
 		],
 		"generator-star-spacing": ["error", "after"],
 		"react/react-in-jsx-scope": "off",
-		"react/prop-types": "off",
+	},
+	settings: {
+		react: {
+			version: "detect",
+		},
 	},
 };
