@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -17,6 +18,7 @@ export const RecipeListCard = (props) => {
 		[navigate, id],
 	);
 
+	console.log(recipeDescription);
 	const cutDownDescription = makeSecondaryText(recipeDescription);
 
 	return (
