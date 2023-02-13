@@ -47,7 +47,7 @@ export const addRecipe = async (recipe, ingredients, method) => {
 				? "null"
 				: utf8Encode(recipe.regionID));
 
-		const addedRecipe = await fetch(url, { method: "POST" })
+		const addedRecipeID = await fetch(url, { method: "POST" })
 			.then((response) => response.json())
 			.then((data) => {
 				return data.data.recipeID;
@@ -55,6 +55,10 @@ export const addRecipe = async (recipe, ingredients, method) => {
 			.catch(() => {
 				throw "Recipe could not be added";
 			});
+
+		if (Number.isInteger(addedRecipeID) === false) {
+			throw "Recipe could not be added";
+		}
 
 		try {
 			ingredients.forEach(async (ingredient) => {
@@ -67,7 +71,7 @@ export const addRecipe = async (recipe, ingredients, method) => {
 					// if the measurement does not exist then it needs to be created, if it exists then it needs to be linked
 					const ingredientResponse = await addIngredient(
 						basicDetails,
-						1,
+						addedRecipeID,
 						ingredient.measurementTypeID,
 						parseInt(ingredient.measurementSize),
 					);
@@ -85,7 +89,7 @@ export const addRecipe = async (recipe, ingredients, method) => {
 		try {
 			method.forEach(async (step) => {
 				try {
-					const stepResponse = await addStep(step, 1);
+					const stepResponse = await addStep(step, addedRecipeID);
 					if (stepResponse.status !== 201) {
 						throw "Unable to add step";
 					}
@@ -97,7 +101,7 @@ export const addRecipe = async (recipe, ingredients, method) => {
 			return error;
 		}
 
-		return addedRecipe;
+		return addedRecipeID;
 	} catch (error) {
 		return error;
 	}

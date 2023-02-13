@@ -18,7 +18,6 @@ export const RecipeListCard = (props) => {
 		[navigate, id],
 	);
 
-	console.log(recipeDescription);
 	const cutDownDescription = makeSecondaryText(recipeDescription);
 
 	return (

@@ -12,6 +12,7 @@ import {
 import { BasicDetailsForm, IngredientsForm, MethodForm } from "./Forms";
 import { useState } from "react";
 import { addRecipe } from "./addRecipe/addRecipe";
+import { useNavigate } from "react-router-dom";
 
 /**
  * The form experience to add or edit a recipe. Pass valuesToEdit if this is form is being used to edit a recipe, if nothing is passed, it will assume the forms purpose is to add a recipe
@@ -19,6 +20,8 @@ import { addRecipe } from "./addRecipe/addRecipe";
  * @returns
  */
 export const AppendRecipeForm = (props) => {
+	const navigate = useNavigate();
+
 	let initialRecipeValues = {
 		recipeName: "",
 		recipeDescription: "",
@@ -67,9 +70,8 @@ export const AppendRecipeForm = (props) => {
 		setActiveStep(0);
 	};
 
-	const handleSubmit = async () => {
-		console.log("submit the stuff");
-		console.log(recipe);
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
 		const ingredientsArrayToSubmit = ingredients.map((ingredient) => {
 			return {
@@ -88,20 +90,17 @@ export const AppendRecipeForm = (props) => {
 			};
 		});
 
-		console.log(ingredientsArrayToSubmit);
-		console.log(instructionsArrayToSubmit);
-
-		const newRecipeID = await addRecipe(
+		const id = await addRecipe(
 			recipe,
 			ingredientsArrayToSubmit,
 			instructionsArrayToSubmit,
 		);
-		console.log(newRecipeID);
 
-		// all props need to be encoded
-		// Will add the recipe, then navigate to /ViewRecipe/ID, id will be the id of the recipe just added
-		// snackbar will be used to show it has been added
-		// if it fails then will stay on the same form and produce an error snackbar alert
+		if (Number.isInteger(id)) {
+			navigate("/ViewRecipe/" + id);
+		} else {
+			console.log("Could not add recipe");
+		}
 	};
 
 	return (
