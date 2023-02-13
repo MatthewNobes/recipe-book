@@ -24,13 +24,10 @@ export const addIngredient = async (
 		typeof measurementSize === "number"
 	) {
 		let apiURL;
-		if (
-			process.env.NODE_ENV === "development" ||
-			process.env.NODE_ENV === "test"
-		) {
+		if (process.env.NODE_ENV === "test") {
 			apiURL = "/api/ingredients/add/";
 		} else {
-			apiURL = process.env.REACT_APP_API_URL + "/method/ingredients/add/";
+			apiURL = process.env.REACT_APP_API_URL + "/ingredients/add/";
 		}
 
 		const fullURL =

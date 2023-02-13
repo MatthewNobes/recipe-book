@@ -1,61 +1,104 @@
-export const addRecipe = (recipe, ingredients, method) => {
-	fetch(
-		process.env.REACT_APP_API_URL +
+import { addStep } from "./addStep/addStep";
+import { addIngredient } from "./addIngredient/addIngredient";
+import { utf8Encode } from "../../../utils";
+
+export const addRecipe = async (recipe, ingredients, method) => {
+	let apiURL;
+
+	if (process.env.NODE_ENV === "test") {
+		apiURL = "/api";
+	} else {
+		apiURL = process.env.REACT_APP_API_URL;
+	}
+
+	try {
+		const url =
+			apiURL +
 			"/recipes/add/" +
-			recipe.recipeName +
+			(utf8Encode(recipe.recipeName) === ""
+				? "null"
+				: utf8Encode(recipe.recipeName)) +
 			"/" +
-			recipe.recipeDescription +
+			utf8Encode(recipe.recipeDescription) +
 			"/" +
-			recipe.recipeDifficultyRating +
+			(utf8Encode(recipe.difficultyRating) === ""
+				? "0"
+				: utf8Encode(recipe.difficultyRating)) +
 			"/" +
-			recipe.recipePrepTime +
+			utf8Encode(recipe.recipePrepTime) +
 			"/" +
-			recipe.recipeCookTime +
+			utf8Encode(recipe.recipeCookTime) +
 			"/" +
 			recipe.servingNumber +
 			"/" +
-			recipe.recipeSource +
+			(utf8Encode(recipe.recipeSource) === ""
+				? "null"
+				: utf8Encode(recipe.recipeSource)) +
 			"/" +
-			recipe.catagoryID +
+			(utf8Encode(recipe.categoryID) === ""
+				? "null"
+				: utf8Encode(recipe.categoryID)) +
 			"/" +
-			recipe.countryID +
+			(utf8Encode(recipe.countryID) === ""
+				? "null"
+				: utf8Encode(recipe.countryID)) +
 			"/" +
-			recipe.regionID,
-	)
-		.then((response) => response.json())
-		.then((data) => console.log(data));
+			(utf8Encode(recipe.regionID) === ""
+				? "null"
+				: utf8Encode(recipe.regionID));
 
-	ingredients.forEach((ingredient) => {
-		console.log(
-			ingredient.stepNumber,
-			ingredient.quantity,
-			ingredient.measurementType,
-		);
-		// if the measurement does not exist then it needs to be created, if it exists then it needs to be linked
-		fetch(
-			process.env.REACT_APP_API_URL +
-				"/ingredients/add/" +
-				ingredient.ingredientName +
-				"/" +
-				ingredient.ingredientDescription +
-				"/" +
-				recipe.ingredientInfoURL,
-		)
+		const addedRecipe = await fetch(url, { method: "POST" })
 			.then((response) => response.json())
-			.then((data) => console.log(data));
-	});
+			.then((data) => {
+				return data.data.recipeID;
+			})
+			.catch(() => {
+				throw "Recipe could not be added";
+			});
 
-	method.forEach((step) => {
-		fetch(
-			process.env.REACT_APP_API_URL +
-				"/method/step/add/" +
-				recipe.recipeID +
-				"/" +
-				step.stepNumber +
-				"/" +
-				step.stepText,
-		)
-			.then((response) => response.json())
-			.then((data) => console.log(data));
-	});
+		try {
+			ingredients.forEach(async (ingredient) => {
+				try {
+					const basicDetails = {
+						ingredientName: ingredient.ingredientName,
+						ingredientDescription: ingredient.ingredientDescription,
+						ingredientInfoURL: ingredient.ingredientInfoURL,
+					};
+					// if the measurement does not exist then it needs to be created, if it exists then it needs to be linked
+					const ingredientResponse = await addIngredient(
+						basicDetails,
+						1,
+						ingredient.measurementTypeID,
+						parseInt(ingredient.measurementSize),
+					);
+					if (ingredientResponse.status !== 201) {
+						throw "Unable to add ingredient";
+					}
+				} catch (error) {
+					return error;
+				}
+			});
+		} catch (error) {
+			return error;
+		}
+
+		try {
+			method.forEach(async (step) => {
+				try {
+					const stepResponse = await addStep(step, 1);
+					if (stepResponse.status !== 201) {
+						throw "Unable to add step";
+					}
+				} catch (error) {
+					return error;
+				}
+			});
+		} catch (error) {
+			return error;
+		}
+
+		return addedRecipe;
+	} catch (error) {
+		return error;
+	}
 };

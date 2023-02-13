@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { Box } from "@mui/material";
@@ -53,7 +54,7 @@ export const BasicDetailsForm = (props) => {
 			.then((data) => {
 				setCategories(
 					data.data.map((category) => {
-						return { id: category.catagoryID, label: category.catagory };
+						return { id: category.categoryID, label: category.category };
 					}),
 				);
 			})

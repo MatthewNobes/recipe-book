@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
 	Typography,
 	Button,
@@ -10,6 +11,7 @@ import {
 } from "@mui/material";
 import { BasicDetailsForm, IngredientsForm, MethodForm } from "./Forms";
 import { useState } from "react";
+import { addRecipe } from "./addRecipe/addRecipe";
 
 /**
  * The form experience to add or edit a recipe. Pass valuesToEdit if this is form is being used to edit a recipe, if nothing is passed, it will assume the forms purpose is to add a recipe
@@ -65,11 +67,37 @@ export const AppendRecipeForm = (props) => {
 		setActiveStep(0);
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		console.log("submit the stuff");
 		console.log(recipe);
-		console.log(ingredients);
-		console.log(instructions);
+
+		const ingredientsArrayToSubmit = ingredients.map((ingredient) => {
+			return {
+				ingredientName: ingredient.ingredient,
+				ingredientDescription: "null",
+				ingredientInfoURL: "null",
+				measurementTypeID: ingredient.measurement,
+				measurementSize: ingredient.quantity,
+			};
+		});
+
+		const instructionsArrayToSubmit = instructions.map((instruction, index) => {
+			return {
+				stepText: instruction.instruction,
+				stepNumber: index + 1,
+			};
+		});
+
+		console.log(ingredientsArrayToSubmit);
+		console.log(instructionsArrayToSubmit);
+
+		const newRecipeID = await addRecipe(
+			recipe,
+			ingredientsArrayToSubmit,
+			instructionsArrayToSubmit,
+		);
+		console.log(newRecipeID);
+
 		// all props need to be encoded
 		// Will add the recipe, then navigate to /ViewRecipe/ID, id will be the id of the recipe just added
 		// snackbar will be used to show it has been added
