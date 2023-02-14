@@ -9,6 +9,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AddIngredient } from "./AddIngredient";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const IngredientsListItems = (props) => {
 	const ingredientsArray = props.ingredientsArray;
@@ -51,6 +52,18 @@ const IngredientsListItems = (props) => {
 			})}
 		</>
 	);
+};
+
+IngredientsListItems.propTypes = {
+	ingredientsArray: PropTypes.array,
+	units: PropTypes.array,
+	removeIngredient: PropTypes.func,
+};
+
+IngredientsList.propTypes = {
+	ingredientsArray: PropTypes.array,
+	addIngredient: PropTypes.func,
+	removeIngredient: PropTypes.func,
 };
 
 export const IngredientsList = (props) => {

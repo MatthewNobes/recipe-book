@@ -2,6 +2,7 @@ import { Modal, Typography, Box } from "@mui/material";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
 import { TextfieldWrapper, SubmitButtonWrapper } from "../../../../../FormUI";
+import PropTypes from "prop-types";
 
 const style = {
 	position: "absolute",
@@ -79,4 +80,10 @@ export const MethodModal = (props) => {
 			</Box>
 		</Modal>
 	);
+};
+
+MethodModal.propTypes = {
+	setModalOpenStatus: PropTypes.func,
+	addInstruction: PropTypes.func,
+	modalOpenStatus: PropTypes.bool,
 };

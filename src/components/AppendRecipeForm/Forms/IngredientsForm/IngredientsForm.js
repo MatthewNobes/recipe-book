@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { IngredientsList } from "./IngredientsList/IngredientsList";
+import PropTypes from "prop-types";
 
 export const IngredientsForm = ({ setIngredients, ingredientsArray }) => {
 	const removeIngredient = (idToRemove) => {
@@ -21,4 +22,9 @@ export const IngredientsForm = ({ setIngredients, ingredientsArray }) => {
 			/>
 		</Box>
 	);
+};
+
+IngredientsForm.propTypes = {
+	setIngredients: PropTypes.func,
+	ingredientsArray: PropTypes.array,
 };

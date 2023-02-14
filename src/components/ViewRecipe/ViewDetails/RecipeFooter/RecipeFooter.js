@@ -10,6 +10,7 @@ import { ExpandMore } from "@mui/icons-material";
 import { isURL } from "../../../../utils";
 import { useState } from "react";
 import { utf8Decode } from "../../../../utils";
+import PropTypes from "prop-types";
 
 const Header = () => (
 	<AccordionSummary
@@ -52,4 +53,8 @@ export const RecipeFooter = ({ recipeSource = "" }) => {
 	} else {
 		return <div data-testid="empty-footer"></div>;
 	}
+};
+
+RecipeFooter.propTypes = {
+	recipeSource: PropTypes.string,
 };

@@ -8,6 +8,7 @@ import {
 	SubmitButtonWrapper,
 	AutoCompleteWrapper,
 } from "../../../../../FormUI";
+import PropTypes from "prop-types";
 
 const style = {
 	position: "absolute",
@@ -139,4 +140,12 @@ export const IngredientModal = (props) => {
 			</Box>
 		</Modal>
 	);
+};
+
+IngredientModal.propTypes = {
+	operation: PropTypes.string,
+	setModalOpenStatus: PropTypes.func,
+	addIngredient: PropTypes.func,
+	units: PropTypes.array,
+	modalOpenStatus: PropTypes.bool,
 };

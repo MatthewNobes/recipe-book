@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { useField } from "formik";
+import PropTypes from "prop-types";
 
 export const TextfieldWrapper = ({ name, ...otherProps }) => {
 	const [field, mata] = useField(name);
@@ -17,4 +18,8 @@ export const TextfieldWrapper = ({ name, ...otherProps }) => {
 	}
 
 	return <TextField {...configTextfield} />;
+};
+
+TextfieldWrapper.propTypes = {
+	name: PropTypes.string,
 };

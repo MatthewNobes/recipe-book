@@ -1,6 +1,7 @@
 import { Tooltip, Chip } from "@mui/material";
 import { Hardware } from "@mui/icons-material";
 import { getDifficultyColour } from "../../../../utils";
+import PropTypes from "prop-types";
 
 export const DifficultyChip = ({ difficultyRating = 0 }) => {
 	if (difficultyRating !== 0) {
@@ -22,4 +23,8 @@ export const DifficultyChip = ({ difficultyRating = 0 }) => {
 	} else {
 		return <div data-testid="empty-rating"></div>;
 	}
+};
+
+DifficultyChip.propTypes = {
+	difficultyRating: PropTypes.number,
 };

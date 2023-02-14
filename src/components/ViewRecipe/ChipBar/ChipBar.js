@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { ServesChip } from "./ServesChip/ServesChip";
 import { DifficultyChip } from "./DifficultyChip/DifficultyChip";
 import { RecipeChip } from "./RecipeChip/RecipeChip";
+import PropTypes from "prop-types";
 
 export const ChipBar = ({
 	servesNumber,
@@ -25,4 +26,11 @@ export const ChipBar = ({
 			<RecipeChip label="Cook: " value={cookTime} />
 		</Box>
 	);
+};
+
+ChipBar.propTypes = {
+	difficultyRating: PropTypes.number,
+	servesNumber: PropTypes.string,
+	cookTime: PropTypes.string,
+	prepTime: PropTypes.string,
 };

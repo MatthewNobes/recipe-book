@@ -10,6 +10,7 @@ import {
 import { utf8Decode } from "../../../../utils";
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const Header = () => (
 	<AccordionSummary
@@ -62,4 +63,8 @@ export const ViewMethod = ({ method = [] }) => {
 			</Box>
 		);
 	}
+};
+
+ViewMethod.propTypes = {
+	method: PropTypes.array,
 };

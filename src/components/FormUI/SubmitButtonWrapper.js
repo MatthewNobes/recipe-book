@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { useFormikContext } from "formik";
+import PropTypes from "prop-types";
 
 export const SubmitButtonWrapper = ({ children }) => {
 	const { submitForm } = useFormikContext();
@@ -16,4 +17,8 @@ export const SubmitButtonWrapper = ({ children }) => {
 	};
 
 	return <Button {...configButton}>{children}</Button>;
+};
+
+SubmitButtonWrapper.propTypes = {
+	children: PropTypes.string,
 };

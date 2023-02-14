@@ -1,5 +1,6 @@
 import { TextField, MenuItem } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import PropTypes from "prop-types";
 
 export const AutoCompleteWrapper = ({ name, options, ...otherProps }) => {
 	const { setFieldValue } = useFormikContext();
@@ -35,4 +36,9 @@ export const AutoCompleteWrapper = ({ name, options, ...otherProps }) => {
 			})}
 		</TextField>
 	);
+};
+
+AutoCompleteWrapper.propTypes = {
+	name: PropTypes.string,
+	options: PropTypes.array,
 };

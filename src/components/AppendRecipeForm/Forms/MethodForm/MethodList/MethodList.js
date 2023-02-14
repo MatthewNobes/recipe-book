@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import MethodModal from "./MethodModal";
 import { useState } from "react";
 import Instruction from "./Instruction";
+import PropTypes from "prop-types";
 
 export const MethodList = (props) => {
 	const instructionArray = props.instructionArray;
@@ -55,4 +56,10 @@ export const MethodList = (props) => {
 			</List>
 		</>
 	);
+};
+
+MethodList.propTypes = {
+	instructionArray: PropTypes.array,
+	removeInstruction: PropTypes.func,
+	addInstruction: PropTypes.func,
 };

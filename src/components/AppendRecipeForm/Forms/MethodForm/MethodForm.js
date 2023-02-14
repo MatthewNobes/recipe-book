@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { MethodList } from "./MethodList/MethodList";
+import { PropTypes } from "prop-types";
 
 export const MethodForm = ({ setInstructions, instructionsArray }) => {
 	const addInstruction = (instructionToAdd) => {
@@ -21,4 +22,9 @@ export const MethodForm = ({ setInstructions, instructionsArray }) => {
 			/>
 		</Box>
 	);
+};
+
+MethodForm.propTypes = {
+	setInstructions: PropTypes.function,
+	instructionsArray: PropTypes.array,
 };

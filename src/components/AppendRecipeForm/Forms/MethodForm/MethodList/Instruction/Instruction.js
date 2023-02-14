@@ -5,6 +5,7 @@ import {
 	ListItemText,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PropTypes from "prop-types";
 
 export const Instruction = (props) => {
 	const instruction = props.instruction;
@@ -34,4 +35,10 @@ export const Instruction = (props) => {
 			</ListItemButton>
 		</ListItem>
 	);
+};
+
+Instruction.propTypes = {
+	instruction: PropTypes.object,
+	index: PropTypes.number,
+	removeInstruction: PropTypes.func,
 };

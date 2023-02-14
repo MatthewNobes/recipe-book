@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export const Header = ({ headerText = "", menuOptions = [] }) => {
 	const hasMenu = menuOptions.length === 0 ? false : true;
@@ -68,4 +69,9 @@ export const Header = ({ headerText = "", menuOptions = [] }) => {
 			</Toolbar>
 		</AppBar>
 	);
+};
+
+Header.propTypes = {
+	headerText: PropTypes.string,
+	menuOptions: PropTypes.array,
 };

@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const Header = () => (
 	<AccordionSummary
@@ -76,4 +77,8 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 			</Box>
 		);
 	}
+};
+
+ViewIngredients.propTypes = {
+	ingredients: PropTypes.array,
 };

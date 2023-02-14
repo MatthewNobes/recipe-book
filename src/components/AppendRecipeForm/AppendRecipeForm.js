@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
 	Typography,
 	Button,
@@ -13,6 +12,7 @@ import { BasicDetailsForm, IngredientsForm, MethodForm } from "./Forms";
 import { useState } from "react";
 import { addRecipe } from "./addRecipe/addRecipe";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 /**
  * The form experience to add or edit a recipe. Pass valuesToEdit if this is form is being used to edit a recipe, if nothing is passed, it will assume the forms purpose is to add a recipe
@@ -190,4 +190,8 @@ export const AppendRecipeForm = (props) => {
 			)}
 		</Box>
 	);
+};
+
+AppendRecipeForm.propTypes = {
+	valuesToEdit: PropTypes.object,
 };

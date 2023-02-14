@@ -1,5 +1,6 @@
 import { Chip, Tooltip } from "@mui/material";
 import { Restaurant } from "@mui/icons-material";
+import PropTypes from "prop-types";
 
 export const ServesChip = ({ servesNumber = "?" }) => {
 	return (
@@ -12,4 +13,8 @@ export const ServesChip = ({ servesNumber = "?" }) => {
 			/>
 		</Tooltip>
 	);
+};
+
+ServesChip.propTypes = {
+	servesNumber: PropTypes.string,
 };

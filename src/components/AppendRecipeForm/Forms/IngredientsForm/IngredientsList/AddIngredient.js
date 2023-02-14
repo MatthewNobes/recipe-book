@@ -2,6 +2,7 @@ import IngredientModal from "./IngredientModal";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export const AddIngredient = (props) => {
 	const [modalOpenStatus, setModalOpenStatus] = useState(false);
@@ -30,4 +31,9 @@ export const AddIngredient = (props) => {
 			</Fab>
 		</>
 	);
+};
+
+AddIngredient.propTypes = {
+	addIngredient: PropTypes.func,
+	units: PropTypes.array,
 };
