@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { Box } from "@mui/material";
@@ -8,6 +7,7 @@ import {
 	SubmitButtonWrapper,
 } from "../../../FormUI";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export const BasicDetailsForm = (props) => {
 	const [categories, setCategories] = useState([
@@ -202,4 +202,10 @@ export const BasicDetailsForm = (props) => {
 			</Form>
 		</Formik>
 	);
+};
+
+BasicDetailsForm.propTypes = {
+	setRecipeFn: PropTypes.func,
+	handleNext: PropTypes.func,
+	recipeValues: PropTypes.object,
 };

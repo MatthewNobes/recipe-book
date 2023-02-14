@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -7,6 +6,16 @@ import TotalTime from "./TotalTime";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import { makeSecondaryText } from "../../utils";
+import PropTypes from "prop-types";
+
+RecipeListCard.propTypes = {
+	id: PropTypes.number,
+	recipeName: PropTypes.string,
+	recipeDescription: PropTypes.string,
+	isFavorite: PropTypes.bool,
+	cookTime: PropTypes.string,
+	prepTime: PropTypes.string,
+};
 
 export const RecipeListCard = (props) => {
 	const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
