@@ -1,0 +1,14 @@
+version: '3'
+services:
+  recipe-book-api:
+    build: ./code/recipe-book-api
+    volumes:
+      - .:/code
+    ports:
+      - "4444:4444"
+  recipe-book-app:
+    build: ./code/recipe-book-app
+    volumes:
+      - .:/code
+    ports:
+      - "3000:3000"
