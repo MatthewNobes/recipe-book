@@ -2,6 +2,8 @@
 build
 coverage
 
+readme.md
+
 # Ignore all HTML files:
 *.html
 
