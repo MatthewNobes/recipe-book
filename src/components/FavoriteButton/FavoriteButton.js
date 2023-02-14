@@ -2,6 +2,7 @@ import { IconButton, Snackbar, Alert } from "@mui/material";
 import { FavoriteOutlined, FavoriteBorderOutlined } from "@mui/icons-material";
 import { setAsFavorite } from "../../utils";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export const FavoriteButton = ({ isFav, recipeID }) => {
 	const [isFavorite, setIsFavorite] = useState(isFav);
@@ -43,4 +44,9 @@ export const FavoriteButton = ({ isFav, recipeID }) => {
 			</Snackbar>
 		</>
 	);
+};
+
+FavoriteButton.propTypes = {
+	isFav: PropTypes.bool,
+	recipeID: PropTypes.number,
 };

@@ -1,8 +1,9 @@
-import { List, ListItem, Fab } from "@mui/material";
+import { List, ListItem, Fab, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MethodModal from "./MethodModal";
 import { useState } from "react";
 import Instruction from "./Instruction";
+import PropTypes from "prop-types";
 
 export const MethodList = (props) => {
 	const instructionArray = props.instructionArray;
@@ -16,6 +17,7 @@ export const MethodList = (props) => {
 	const removeInstruction = (instructionID) => {
 		props.removeInstruction(instructionID);
 	};
+	console.log(instructionArray);
 
 	return (
 		<>
@@ -26,15 +28,20 @@ export const MethodList = (props) => {
 				addInstruction={props.addInstruction}
 			/>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
-				{instructionArray.map((instruction) => {
-					return (
-						<Instruction
-							key={instruction.instructionID}
-							instruction={instruction}
-							removeInstruction={() => removeInstruction(instruction.id)}
-						/>
-					);
-				})}
+				{instructionArray.length === 0 ? (
+					<Typography>No instructions</Typography>
+				) : (
+					instructionArray.map((instruction, index) => {
+						return (
+							<Instruction
+								key={index}
+								instruction={instruction}
+								index={index}
+								removeInstruction={removeInstruction}
+							/>
+						);
+					})
+				)}
 				<ListItem>
 					<Fab
 						color="primary"
@@ -49,4 +56,10 @@ export const MethodList = (props) => {
 			</List>
 		</>
 	);
+};
+
+MethodList.propTypes = {
+	instructionArray: PropTypes.array,
+	removeInstruction: PropTypes.func,
+	addInstruction: PropTypes.func,
 };

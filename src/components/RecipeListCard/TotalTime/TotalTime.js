@@ -1,6 +1,7 @@
 import { Chip, Tooltip } from "@mui/material";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import { minutesToHours } from "../../../utils";
+import PropTypes from "prop-types";
 
 export const TotalTime = (props) => {
 	const cookTime = parseInt(props.cookTime);
@@ -23,4 +24,9 @@ export const TotalTime = (props) => {
 			/>
 		</Tooltip>
 	);
+};
+
+TotalTime.propTypes = {
+	cookTime: PropTypes.string,
+	prepTime: PropTypes.string,
 };

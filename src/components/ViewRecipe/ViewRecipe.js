@@ -36,17 +36,17 @@ export const ViewRecipe = () => {
 			});
 	}, [recipeID]);
 
-	const recipeName = recipe.RecipeName;
-	const recipeDescription = recipe.RecipeDecsription;
-	const difficultyRating = recipe.RecipeDifficultyRating;
-	const servesNumber = recipe.ServingNumber;
+	const recipeName = recipe.recipeName;
+	const recipeDescription = recipe.recipeDescription;
+	const difficultyRating = recipe.recipeDifficultyRating;
+	const servesNumber = recipe.servingNumber;
 	const imageSource =
 		"https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chicken-madras-f69ab47.jpg";
 
 	const isFavorite = false; // to be populated later
-	const recipeSource = utf8Decode(recipe.RecipeSource);
-	const cookTime = recipe.RecipeCookTime;
-	const prepTime = recipe.RecipePrepTime;
+	const recipeSource = utf8Decode(recipe.recipeSource);
+	const cookTime = recipe.recipeCookTime;
+	const prepTime = recipe.recipePrepTime;
 
 	return (
 		<>

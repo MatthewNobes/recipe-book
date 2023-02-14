@@ -3,6 +3,7 @@ import { ArrowBack, MoreVert } from "@mui/icons-material";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export const RecipeHeader = ({ imageSource, recipeName }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -89,4 +90,9 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 			<RecipeImage imageSource={imageSource} recipeName={recipeName} />
 		</Box>
 	);
+};
+
+RecipeHeader.propTypes = {
+	imageSource: PropTypes.array,
+	recipeName: PropTypes.array,
 };

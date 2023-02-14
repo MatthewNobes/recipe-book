@@ -50,13 +50,13 @@ export const BrowseRecipes = () => {
 					{recipes.map((recipe) => {
 						return (
 							<RecipeListCard
-								key={recipe.RecipeID}
-								id={recipe.RecipeID}
-								recipeName={recipe.RecipeName}
-								recipeDescription={recipe.RecipeDecsription}
+								key={recipe.recipeID}
+								id={recipe.recipeID}
+								recipeName={recipe.recipeName}
+								recipeDescription={recipe.recipeDescription}
 								isFavorite={false}
-								cookTime={recipe.RecipeCookTime}
-								prepTime={recipe.RecipePrepTime}
+								cookTime={recipe.recipeCookTime}
+								prepTime={recipe.recipePrepTime}
 							/>
 						);
 					})}
