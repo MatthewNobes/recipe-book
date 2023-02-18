@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./code/recipe-book-api
+        working-directory: code/recipe-book-api
     env:
       CI: true
     strategy:
