@@ -9,14 +9,14 @@ on:
   pull_request:
     branches: ["master"]
 
-defaults:
-  run:
-    working-directory: ./code/recipe-book-api
 
 jobs:
   build:
     name: API Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./code/recipe-book-api
     env:
       CI: true
     strategy:
@@ -31,7 +31,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - name: Install dependencies
-        working-directory: ./code/recipe-book-api
         run: npm ci
       - name: Run build
         run: npm run build --if-present
