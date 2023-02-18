@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: ["master"]
 
+defaults:
+ run:
+  working-directory: ./code/recipe-book-api
+
 jobs:
   build:
     name: API Build
