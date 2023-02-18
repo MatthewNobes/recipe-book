@@ -4,9 +4,6 @@ coverage
 
 readme.md
 
-# Ignore all HTML files:
-*.html
-
 # npm defaults
 package-lock.json
 
