@@ -40,9 +40,21 @@ type FullIngredientMeasurement = {
 	ingredientMeasurements: FullMeasurements[];
 };
 
+interface FullRecipeIngredient {
+	recipeID: number | null;
+	recipeIngredientID: number;
+	ingredientMeasurements: {
+		ingredientMeasurementID: number;
+		measurementSize: number | null;
+		measurementType: measurementType | null;
+		Ingredients: ingredients | null;
+	} | null;
+}
+
 export {
 	Count,
 	IngredientDetails,
 	FullIngredientMeasurement,
 	FullMeasurements,
+	FullRecipeIngredient,
 };

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import {
 	recipeIngredients,
 	ingredientMeasurements,
@@ -6,10 +5,11 @@ import {
 	measurementType,
 } from "@prisma/client";
 import prisma from "../../../client";
+import { FullRecipeIngredient } from "../../../interfaces";
 
 export const getIngredientsByRecipeID = async (
 	recipeID: number,
-): Promise<Object[] | undefined> => {
+): Promise<FullRecipeIngredient[] | undefined> => {
 	const recipeIngredients = await prisma.recipeIngredients.findMany({
 		where: { recipeID: recipeID },
 		select: {
