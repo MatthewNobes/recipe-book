@@ -8,15 +8,6 @@ import { useCallback } from "react";
 import { makeSecondaryText } from "../../utils";
 import PropTypes from "prop-types";
 
-RecipeListCard.propTypes = {
-	id: PropTypes.number,
-	recipeName: PropTypes.string,
-	recipeDescription: PropTypes.string,
-	isFavorite: PropTypes.bool,
-	cookTime: PropTypes.string,
-	prepTime: PropTypes.string,
-};
-
 export const RecipeListCard = (props) => {
 	const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
 		props;
@@ -55,4 +46,13 @@ export const RecipeListCard = (props) => {
 			<Divider component="li" sx={{ marginX: 1 }} />
 		</Box>
 	);
+};
+
+RecipeListCard.propTypes = {
+	id: PropTypes.number,
+	recipeName: PropTypes.string,
+	recipeDescription: PropTypes.string,
+	isFavorite: PropTypes.bool,
+	cookTime: PropTypes.string,
+	prepTime: PropTypes.string,
 };

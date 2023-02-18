@@ -60,12 +60,6 @@ IngredientsListItems.propTypes = {
 	removeIngredient: PropTypes.func,
 };
 
-IngredientsList.propTypes = {
-	ingredientsArray: PropTypes.array,
-	addIngredient: PropTypes.func,
-	removeIngredient: PropTypes.func,
-};
-
 export const IngredientsList = (props) => {
 	const ingredientsArray = props.ingredientsArray;
 	const removeIngredient = props.removeIngredient;
@@ -105,4 +99,10 @@ export const IngredientsList = (props) => {
 			</List>
 		</>
 	);
+};
+
+IngredientsList.propTypes = {
+	ingredientsArray: PropTypes.array,
+	addIngredient: PropTypes.func,
+	removeIngredient: PropTypes.func,
 };
