@@ -36,4 +36,4 @@ jobs:
       - name: Run build
         run: npm run build --if-present
       - name: Test build
-        run: npm ci-test
+        run: npm run ci-test
