@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: code/recipe-book-api
+        working-directory: ./code/recipe-book-api
     env:
       CI: true
     strategy:
@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+          cache-dependency-path: ./code/recipe-book-api
       - name: Install dependencies
         run: npm ci
       - name: Run build
