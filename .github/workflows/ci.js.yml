@@ -9,16 +9,20 @@ on:
   pull_request:
     branches: ["master"]
 
+
 jobs:
-  build:
+  build-api:
+    name: API Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./code/recipe-book-api
     env:
       CI: true
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -26,6 +30,36 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+          cache-dependency-path: code/recipe-book-api/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Run build
+        run: npm run build --if-present
+      - name: Test build
+        run: npm run ci-test
+  build-app:
+    name: App Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./code/recipe-book-app
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: code/recipe-book-app/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Run build
+        run: npm run build --if-present
+      - name: Test build
+        run: npm run test
