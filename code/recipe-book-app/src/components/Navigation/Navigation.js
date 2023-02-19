@@ -1,8 +1,5 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
-import HomeIcon from "@mui/icons-material/Home";
+import { Settings, Favorite, Search, Home } from "@mui/icons-material";
 import { useState } from "react";
 import css from "./Navigation.module.css";
 import { Link } from "react-router-dom";
@@ -22,25 +19,25 @@ export const Navigation = () => {
 				component={Link}
 				to="/"
 				label="Home"
-				icon={<HomeIcon />}
+				icon={<Home />}
 			/>
 			<BottomNavigationAction
 				component={Link}
 				to="/BrowseRecipes"
 				label="Browse"
-				icon={<SearchIcon />}
+				icon={<Search />}
 			/>
 			<BottomNavigationAction
 				component={Link}
 				to="/Favorites"
 				label="Favorites"
-				icon={<FavoriteIcon />}
+				icon={<Favorite />}
 			/>
 			<BottomNavigationAction
 				component={Link}
-				to="/MyAccount"
-				label="My Account"
-				icon={<AccountCircleIcon />}
+				to="/Settings"
+				label="Settings"
+				icon={<Settings />}
 			/>
 		</BottomNavigation>
 	);
