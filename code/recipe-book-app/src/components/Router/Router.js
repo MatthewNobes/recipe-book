@@ -4,12 +4,14 @@ import BrowseRecipes from "../../features/BrowseRecipes";
 import MyAccount from "../../features/MyAccount";
 import Favorites from "../../features/Favorites";
 import AddRecipe from "../../features/AddRecipe";
+import Settings from "../../features/Settings";
 import ViewRecipe from "../ViewRecipe";
 
 export const Router = () => (
 	<Routes>
 		<Route path="/addRecipe" element={<AddRecipe />} />
 		<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
+		<Route path="/Settings" element={<Settings />} />
 		<Route path="/MyAccount" element={<MyAccount />} />
 		<Route path="/Favorites" element={<Favorites />} />
 		<Route path="/BrowseRecipes" element={<BrowseRecipes />} />
