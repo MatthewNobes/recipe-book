@@ -8,6 +8,11 @@ import {
 	ResetButtonWrapper,
 } from "../../components/FormUI";
 import { Box } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import {
+	setFontSize,
+	setIsDarkMode,
+} from "../../store/slices/appearanceSlice/appearanceSlice";
 
 export const Appearance = () => {
 	const validationSchema = yup.object().shape({
@@ -15,13 +20,16 @@ export const Appearance = () => {
 		isDarkMode: yup.bool().required("Required"),
 	});
 
-	const initialValues = {
-		fontSize: 14,
-		isDarkMode: true,
-	};
+	const dispatch = useDispatch();
+	const initialValues = useSelector((state) => state.appearance.appearance);
 
 	const submitHandle = (values) => {
-		console.log(values);
+		if (values.fontSize !== initialValues.fontSize) {
+			dispatch(setFontSize(values.fontSize));
+		}
+		if (values.isDarkMode !== initialValues.isDarkMode) {
+			dispatch(setIsDarkMode(values.isDarkMode));
+		}
 	};
 
 	return (
