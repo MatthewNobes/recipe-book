@@ -1,9 +1,9 @@
 import { createTheme } from "@mui/material";
 
-export const generateTheme = (isDarkMode) => {
+export const generateTheme = (appearance) => {
 	const themeObject = {
 		palette: {
-			mode: isDarkMode === true ? "dark" : "light",
+			mode: appearance.isDarkMode === true ? "dark" : "light",
 			primary: {
 				main: "#00BEFA",
 				dark: "#015FEA",
@@ -11,6 +11,9 @@ export const generateTheme = (isDarkMode) => {
 			secondary: {
 				main: "#f50057",
 			},
+		},
+		typography: {
+			fontSize: appearance.fontSize,
 		},
 	};
 

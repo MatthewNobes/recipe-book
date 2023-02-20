@@ -1,9 +1,10 @@
 import Router from "./components/Router";
 import Navigation from "./components/Navigation";
-import { CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import createCache from "@emotion/cache";
 import { generateTheme } from "./theme";
 import { CacheProvider } from "@emotion/react";
+import { useSelector } from "react-redux";
 
 const muiCache = createCache({
 	key: "mui",
@@ -11,8 +12,9 @@ const muiCache = createCache({
 });
 
 const App = () => {
-	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-	const theme = generateTheme(prefersDarkMode);
+	const userPreference = useSelector((state) => state.appearance.appearance);
+	const theme = generateTheme(userPreference);
+
 	return (
 		<CacheProvider value={muiCache}>
 			<ThemeProvider theme={theme}>
