@@ -1,5 +1,7 @@
 # recipe-book
 
+[![CI](https://github.com/MatthewNobes/recipe-book/actions/workflows/ci.js.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/ci.js.yml) [![ESLint](https://github.com/MatthewNobes/recipe-book/actions/workflows/eslint.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/eslint.yml) [![CodeQL](https://github.com/MatthewNobes/recipe-book/actions/workflows/codeql.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/codeql.yml) [![Docker Image CI](https://github.com/MatthewNobes/recipe-book/actions/workflows/docker-image.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/docker-image.yml)
+
 A JS/TS recipe app with a SQL Server database. Its been designed for personal deployment, running out of two docker containers alongside a database instance. It allows users to create and view their own recipes. 
 
 This project is available with an Apache 2.0 license, for more information, click [here](https://www.apache.org/licenses/LICENSE-2.0).
