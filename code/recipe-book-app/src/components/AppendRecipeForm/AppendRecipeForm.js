@@ -8,7 +8,12 @@ import {
 	Paper,
 	StepContent,
 } from "@mui/material";
-import { BasicDetailsForm, IngredientsForm, MethodForm } from "./Forms";
+import {
+	BasicDetailsForm,
+	IngredientsForm,
+	MethodForm,
+	ImageForm,
+} from "./Forms";
 import { useState } from "react";
 import { addRecipe } from "./addRecipe/addRecipe";
 import { useNavigate } from "react-router-dom";
@@ -54,6 +59,7 @@ export const AppendRecipeForm = (props) => {
 	const [recipe, setRecipe] = useState(initialRecipeValues);
 	const [ingredients, setIngredients] = useState([]);
 	const [instructions, setInstructions] = useState([]);
+	const [images, setImages] = useState([]);
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -146,16 +152,34 @@ export const AppendRecipeForm = (props) => {
 					</StepContent>
 				</Step>
 				<Step>
-					<StepLabel
-						optional={<Typography variant="caption">Last step</Typography>}
-					>
-						Add method
-					</StepLabel>
+					<StepLabel>Add method</StepLabel>
 					<StepContent>
 						<MethodForm
 							setInstructions={setInstructions}
 							instructionsArray={instructions}
 						/>
+						<Box sx={{ mb: 2, float: "right" }}>
+							<Button
+								variant="contained"
+								onClick={handleNext}
+								sx={{ mt: 1, mr: 1 }}
+							>
+								Next
+							</Button>
+							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+								Back
+							</Button>
+						</Box>
+					</StepContent>
+				</Step>
+				<Step>
+					<StepLabel
+						optional={<Typography variant="caption">Last step</Typography>}
+					>
+						Add images
+					</StepLabel>
+					<StepContent>
+						<ImageForm imageArray={images} setImages={setImages} />
 						<Box sx={{ mb: 2, float: "right" }}>
 							<Button
 								variant="contained"
@@ -171,7 +195,7 @@ export const AppendRecipeForm = (props) => {
 					</StepContent>
 				</Step>
 			</Stepper>
-			{activeStep === 3 && (
+			{activeStep === 4 && (
 				<Paper square elevation={0} sx={{ p: 3 }}>
 					<Typography>
 						All steps completed - you&apos;re ready to submit the recipe
