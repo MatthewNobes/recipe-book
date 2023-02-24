@@ -66,7 +66,6 @@ router
 			request.params.isLandscape === "true" ? true : false;
 		const recipeID: number = parseInt(request.params.recipeID);
 
-		console.log(imageSource);
 		try {
 			const newImage = await addImage(imageSource, isLandscape, recipeID);
 			if (newImage === undefined) {
