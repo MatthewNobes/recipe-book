@@ -1,5 +1,5 @@
-import Header from "../../components/Header";
-import { ImageGallery } from "../../components/ImageGallery/ImageGallery";
+import { Header, ImageGallery } from "../../components";
+import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export const HomePage = () => {
@@ -11,9 +11,9 @@ export const HomePage = () => {
 			.then((data) => setRecipes(data.data));
 	}, []);
 	return (
-		<div>
+		<Box sx={{ paddingBottom: 10 }}>
 			<Header headerText="Recipe Book" />
 			<ImageGallery recipes={recipes} howManyToDisplay={8} />
-		</div>
+		</Box>
 	);
 };
