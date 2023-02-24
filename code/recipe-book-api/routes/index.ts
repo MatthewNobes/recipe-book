@@ -5,6 +5,7 @@ import methodRouter from "./methodRoute/methodRoute";
 import countriesRouter from "./countriesRoute/countriesRoute";
 import categoriesRouter from "./categoriesRoute/categoriesRoute";
 import regionsRoute from "./regionsRoute/regionsRoute";
+import imagesRoute from "./imagesRoute/imagesRoute";
 import express from "express";
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.use("/method", methodRouter);
 router.use("/countries", countriesRouter);
 router.use("/categories", categoriesRouter);
 router.use("/regions", regionsRoute);
+router.use("/images", imagesRoute);
 
 export default router;

@@ -1,4 +1,5 @@
 import { BasicDetailsForm } from "./BasicDetailsForm/BasicDetailsForm";
 import { IngredientsForm } from "./IngredientsForm/IngredientsForm";
 import { MethodForm } from "./MethodForm/MethodForm";
-export { BasicDetailsForm, IngredientsForm, MethodForm };
+import { ImageForm } from "./ImageForm/ImageForm";
+export { BasicDetailsForm, IngredientsForm, MethodForm, ImageForm };

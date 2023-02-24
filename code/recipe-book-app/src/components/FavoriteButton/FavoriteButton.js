@@ -33,6 +33,7 @@ export const FavoriteButton = ({ isFav, recipeID }) => {
 			<IconButton
 				aria-label="favorite"
 				aria-describedby="Add or remove from favorites"
+				color="primary"
 				onClick={() => onClickFn()}
 			>
 				{isFavorite ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}

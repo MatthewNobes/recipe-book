@@ -63,6 +63,7 @@ model recipes {
   recipeDifficultyRating Int?
   recipeCookTime         String?             @db.VarChar(30)
   recipePrepTime         String?             @db.VarChar(30)
+  images                 images[]
   recipeIngredients      recipeIngredients[]
   categories             categories?         @relation(fields: [categoryID], references: [categoryID], onDelete: NoAction, onUpdate: NoAction, map: "FK__recipes__categor__3D5E1FD2")
   countries              countries?          @relation(fields: [countryID], references: [countryID], onDelete: NoAction, onUpdate: NoAction, map: "FK__recipes__country__3E52440B")
@@ -82,4 +83,12 @@ model regions {
   regionID Int       @id(map: "PK__regions__15EA9088D480DE43") @default(autoincrement())
   region   String    @db.VarChar(300)
   recipes  recipes[]
+}
+
+model images {
+  imageID     Int      @id(map: "PK__images__336E9B753F4B7249") @default(autoincrement())
+  imageSource String   @db.VarChar(2048)
+  isLandscape Boolean
+  recipeID    Int?
+  recipes     recipes? @relation(fields: [recipeID], references: [recipeID], onDelete: NoAction, onUpdate: NoAction, map: "FK__images__recipeID__5070F446")
 }
