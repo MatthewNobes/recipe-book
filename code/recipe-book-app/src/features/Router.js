@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../../features/Home";
-import BrowseRecipes from "../../features/BrowseRecipes";
-import MyAccount from "../../features/MyAccount";
-import Favorites from "../../features/Favorites";
-import AddRecipe from "../../features/AddRecipe";
-import Settings from "../../features/Settings";
-import Admin from "../../features/Admin";
-import Appearance from "../../features/Appearance";
-import About from "../../features/About";
-import ViewRecipe from "../ViewRecipe";
+import HomePage from "./Home";
+import BrowseRecipes from "./BrowseRecipes";
+import MyAccount from "./MyAccount";
+import Favorites from "./Favorites";
+import AddRecipe from "./AddRecipe";
+import Settings from "./Settings";
+import Admin from "./Admin";
+import Appearance from "./Appearance";
+import About from "./About";
+import ViewRecipe from "../components/ViewRecipe";
 
 export const Router = () => (
 	<Routes>

@@ -1,4 +1,4 @@
-import Router from "./components/Router";
+import { Router } from "./features/Router";
 import Navigation from "./components/Navigation";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import createCache from "@emotion/cache";
