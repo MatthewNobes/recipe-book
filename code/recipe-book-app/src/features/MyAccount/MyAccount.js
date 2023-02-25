@@ -1,9 +1,9 @@
-import Header from "../../components/Header";
+import { SubPageHeader } from "../../components";
 
 export const MyAccount = () => {
 	return (
 		<div>
-			<Header headerText="My Account" />
+			<SubPageHeader headerText="My Account" />
 			<p>My Account in development</p>
 		</div>
 	);

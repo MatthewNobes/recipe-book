@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import { SubPageHeader } from "../../components";
 import {
 	List,
 	ListItem,
@@ -31,7 +31,7 @@ export const About = () => {
 	];
 	return (
 		<Box>
-			<Header headerText="About" />
+			<SubPageHeader headerText="About" />
 			<Box sx={{ paddingX: 2, paddingY: 2 }}>
 				<Typography variant="body1" gutterBottom>
 					A long term project to build a recipe book web app that allows users

@@ -4,6 +4,7 @@ import Header from "./Header";
 import ImageGallery from "./ImageGallery";
 import Navigation from "./Navigation";
 import RecipeListCard from "./RecipeListCard";
+import SubPageHeader from "./SubPageHeader";
 import ViewRecipe from "./ViewRecipe";
 export {
 	AppendRecipeForm,
@@ -12,5 +13,6 @@ export {
 	ImageGallery,
 	Navigation,
 	RecipeListCard,
+	SubPageHeader,
 	ViewRecipe,
 };
