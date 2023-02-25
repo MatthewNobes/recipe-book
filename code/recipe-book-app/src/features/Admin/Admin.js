@@ -1,9 +1,9 @@
-import Header from "../../components/Header";
+import { SubPageHeader } from "../../components";
 
 export const Admin = () => {
 	return (
 		<div>
-			<Header headerText="Admin" />
+			<SubPageHeader headerText="Admin" />
 			<p>Admin in development</p>
 		</div>
 	);

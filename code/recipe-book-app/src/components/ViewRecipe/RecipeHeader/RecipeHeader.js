@@ -1,4 +1,4 @@
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem, Avatar } from "@mui/material";
 import { ArrowBack, MoreVert } from "@mui/icons-material";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useNavigate } from "react-router-dom";
@@ -49,7 +49,9 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 					size="large"
 					onClick={() => goBack()}
 				>
-					<ArrowBack htmlColor="#fff" /**TEMP measure till theme is sorted */ />
+					<Avatar sx={{ opacity: 0.6, backgroundColor: "black" }}>
+						<ArrowBack htmlColor="#fff" />
+					</Avatar>
 				</IconButton>
 				<Box>
 					<IconButton
@@ -58,9 +60,9 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 						size="large"
 						onClick={handleMenu}
 					>
-						<MoreVert
-							htmlColor="#fff" /**TEMP measure till theme is sorted */
-						/>
+						<Avatar sx={{ opacity: 0.6, backgroundColor: "black" }}>
+							<MoreVert htmlColor="#fff" />
+						</Avatar>
 					</IconButton>
 					<Menu
 						id="menu-appbar"

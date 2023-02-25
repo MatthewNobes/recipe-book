@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik";
-import Header from "../../components/Header";
+import { SubPageHeader } from "../../components";
 import * as yup from "yup";
 import {
 	TextfieldWrapper,
@@ -34,7 +34,7 @@ export const Appearance = () => {
 
 	return (
 		<div>
-			<Header headerText="Appearance" />
+			<SubPageHeader headerText="Appearance" />
 			<Box sx={{ paddingY: 2, paddingX: 2 }}>
 				<Formik
 					initialValues={initialValues}

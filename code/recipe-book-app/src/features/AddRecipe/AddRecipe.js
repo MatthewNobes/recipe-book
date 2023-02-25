@@ -1,10 +1,10 @@
 import AppendRecipeForm from "../../components/AppendRecipeForm";
-import Header from "../../components/Header";
+import { SubPageHeader } from "../../components";
 
 export const AddRecipe = () => {
 	return (
 		<div>
-			<Header headerText="Add Recipe" />
+			<SubPageHeader headerText="Add Recipe" />
 			<AppendRecipeForm />
 		</div>
 	);

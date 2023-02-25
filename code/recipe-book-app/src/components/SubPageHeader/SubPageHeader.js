@@ -6,11 +6,13 @@ import {
 	Menu,
 	MenuItem,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { ArrowBack, MoreVert } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-export const Header = ({ headerText = "", menuOptions = [] }) => {
+export const SubPageHeader = ({ headerText = "", menuOptions = [] }) => {
+	const navigate = useNavigate();
 	const hasMenu = menuOptions.length === 0 ? false : true;
 
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -26,7 +28,16 @@ export const Header = ({ headerText = "", menuOptions = [] }) => {
 	return (
 		<AppBar position="sticky">
 			<Toolbar>
-				<Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+				<IconButton
+					edge="start"
+					color="inherit"
+					aria-label="menu"
+					sx={{ mr: 2 }}
+					onClick={() => navigate(-1)}
+				>
+					<ArrowBack />
+				</IconButton>
+				<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 					{headerText}
 				</Typography>
 				{hasMenu && (
@@ -39,7 +50,7 @@ export const Header = ({ headerText = "", menuOptions = [] }) => {
 							onClick={handleMenu}
 							color="inherit"
 						>
-							<MoreVertIcon />
+							<MoreVert />
 						</IconButton>
 						<Menu
 							id="menu-appbar"
@@ -71,7 +82,7 @@ export const Header = ({ headerText = "", menuOptions = [] }) => {
 	);
 };
 
-Header.propTypes = {
+SubPageHeader.propTypes = {
 	headerText: PropTypes.string,
 	menuOptions: PropTypes.array,
 };
