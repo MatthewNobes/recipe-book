@@ -37,7 +37,6 @@ export const BrowseRecipes = () => {
 		},
 	];
 
-	console.log(recipes);
 	return (
 		<div>
 			<Header headerText="Browse Recipes" menuOptions={menuOptions} />

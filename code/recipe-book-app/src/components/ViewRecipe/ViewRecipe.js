@@ -18,7 +18,6 @@ export const ViewRecipe = () => {
 	}, [recipeID]);
 
 	if (recipe) {
-		console.log(recipe);
 		const recipeName = recipe.name;
 		const recipeDescription = recipe.description;
 		const difficultyRating = recipe.difficulty_rating;
