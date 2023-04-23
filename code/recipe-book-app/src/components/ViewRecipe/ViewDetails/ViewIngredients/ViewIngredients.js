@@ -38,24 +38,14 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 				<Header />
 				<AccordionDetails>
 					<List>
-						{ingredients.map((ingredient) => {
-							const recipeIngredientID = ingredient.recipeIngredientID;
-							const ingredientName =
-								ingredient.ingredientMeasurements.Ingredients.ingredientName;
-							const ingredientDescription =
-								ingredient.ingredientMeasurements.Ingredients
-									.ingredientDescription;
-							const quantity =
-								ingredient.ingredientMeasurements.measurementSize;
-							const measurementUnit =
-								ingredient.ingredientMeasurements.measurementType
-									.measurementType;
+						{ingredients.map((ingredient, index) => {
+							const ing = JSON.parse(ingredient);
 							return (
-								<Box key={recipeIngredientID}>
-									<Tooltip title={ingredientDescription}>
+								<Box key={index}>
+									<Tooltip title={ing.description}>
 										<ListItem disablePadding>
 											<ListItemText variant="body1">
-												{quantity} {measurementUnit} {ingredientName}
+												{ing.quantity} {ing.measurement} {ing.name}
 											</ListItemText>
 										</ListItem>
 									</Tooltip>

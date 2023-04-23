@@ -1,15 +1,16 @@
-//import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
+import { ViewIngredients } from "./ViewIngredients/ViewIngredients";
 //import { ViewMethod } from "./ViewMethod/ViewMethod";
 import { RecipeFooter } from "./RecipeFooter/RecipeFooter";
 import PropTypes from "prop-types";
 
 export const ViewDetails = ({
-	//ingredients = [],
+	ingredients = [],
 	//method = [],
 	recipeSource,
 }) => {
 	return (
 		<>
+			<ViewIngredients ingredients={ingredients} />
 			<RecipeFooter recipeSource={recipeSource} />
 		</>
 	);

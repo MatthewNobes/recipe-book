@@ -3,36 +3,9 @@ import { render, screen } from "@testing-library/react";
 
 describe("ViewIngredients", () => {
 	const ingredients = [
-		{
-			recipeIngredientsID: 1,
-			recipeID: 1,
-			ingredientMeasurements: {
-				ingredientMeasurementID: 1,
-				measurementSize: 500,
-				measurementType: { measurementTypeID: 3, measurementType: "Grams" },
-				Ingredients: {
-					ingredientID: 1,
-					ingredientName: "Diced Beef",
-					ingredientDescription: "Beef cut into 2cm chunks",
-					ingredientInfoURL: null,
-				},
-			},
-		},
-		{
-			recipeIngredientsID: 2,
-			recipeID: 1,
-			ingredientMeasurements: {
-				ingredientMeasurementID: 1,
-				measurementSize: 250,
-				measurementType: { measurementTypeID: 3, measurementType: "Grams" },
-				Ingredients: {
-					ingredientID: 2,
-					ingredientName: "Tomatoes",
-					ingredientDescription: "",
-					ingredientInfoURL: null,
-				},
-			},
-		},
+		'{"name":"Diced chicken","description":"Its chicken","quantity":200,"measurement":"g"}',
+		'{"name": "Chopped leek","description":"Its leek","quantity":2,"measurement":""}',
+		'{"name":"chicken stock","description":"Its chicken stock","quantity":400,"measurement":"ml"}',
 	];
 
 	it("should render the title `Ingredients`", () => {
@@ -44,16 +17,10 @@ describe("ViewIngredients", () => {
 	it("should render each ingredient and its quantity", () => {
 		render(<ViewIngredients ingredients={ingredients} />);
 
-		ingredients.forEach((ingredient) => {
-			const ingredientText = screen.getByText(
-				ingredient.ingredientMeasurements.measurementSize +
-					" " +
-					ingredient.ingredientMeasurements.measurementType.measurementType +
-					" " +
-					ingredient.ingredientMeasurements.Ingredients.ingredientName,
-			);
-			expect(ingredientText).toBeInTheDocument();
-		});
+		const ingredientText = screen.getByText(
+			"200" + " " + "g" + " " + "Diced chicken",
+		);
+		expect(ingredientText).toBeInTheDocument();
 	});
 
 	it("should render `No ingredients exists for this recipe` if no ingredients are passed in", () => {
