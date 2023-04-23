@@ -3,9 +3,10 @@ import { ArrowBack, MoreVert } from "@mui/icons-material";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import deleteRecipe from "../../../data/deleteRecipe/deleteRecipe";
 import PropTypes from "prop-types";
 
-export const RecipeHeader = ({ imageSource, recipeName }) => {
+export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const navigate = useNavigate();
 
@@ -20,7 +21,14 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 		},
 		{
 			label: "Delete recipe",
-			onClickFunction: () => console.log("Delete recipe - to do later"),
+			onClickFunction: async () => {
+				const response = await deleteRecipe(id);
+				if (response === "success") {
+					await goBack();
+				} else {
+					console.log("delete failed");
+				}
+			},
 		},
 	];
 
@@ -97,4 +105,5 @@ export const RecipeHeader = ({ imageSource, recipeName }) => {
 RecipeHeader.propTypes = {
 	imageSource: PropTypes.array,
 	recipeName: PropTypes.array,
+	id: PropTypes.number,
 };

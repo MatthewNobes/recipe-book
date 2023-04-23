@@ -32,7 +32,11 @@ export const ViewRecipe = () => {
 
 		return (
 			<>
-				<RecipeHeader imageSource={imageSource} recipeName={recipeName} />
+				<RecipeHeader
+					imageSource={imageSource}
+					recipeName={recipeName}
+					id={recipe.id}
+				/>
 				<Box sx={{ marginBottom: 10 }}>
 					<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
 						<Box
