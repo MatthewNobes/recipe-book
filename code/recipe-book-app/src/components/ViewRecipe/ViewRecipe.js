@@ -3,7 +3,6 @@ import { Box, Typography, Divider, CircularProgress } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
-import { utf8Decode } from "../../utils";
 import getRecipeByID from "../../data/getRecipeByID/getRecipeByID";
 
 export const ViewRecipe = () => {
@@ -19,6 +18,7 @@ export const ViewRecipe = () => {
 	}, [recipeID]);
 
 	if (recipe) {
+		console.log(recipe);
 		const recipeName = recipe.name;
 		const recipeDescription = recipe.description;
 		const difficultyRating = recipe.difficulty_rating;
@@ -26,7 +26,7 @@ export const ViewRecipe = () => {
 		const imageSource = recipe.images[0];
 
 		const isFavorite = false; // to be populated later
-		const recipeSource = utf8Decode("recipe.recipeSource");
+		const recipeSource = recipe.source;
 		const cookTime = recipe.cook_time;
 		const prepTime = recipe.prep_time;
 

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Modal, Typography, Box, Tooltip } from "@mui/material";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
@@ -7,6 +6,7 @@ import {
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 	AutoCompleteWrapper,
+	ResetButtonWrapper,
 } from "../../../../../FormUI";
 import PropTypes from "prop-types";
 
@@ -26,12 +26,12 @@ const style = {
 };
 
 const validationSchema = yup.object().shape({
-	ingredient: yup
+	name: yup
 		.string()
 		.required("Required")
 		.max(85, "Must not be greater than 85 characters"),
-	measurement: yup.number().required("Required"),
-	ingredientQuantity: yup
+	measurement: yup.string(),
+	quantity: yup
 		.number()
 		.min(0.1, "Must be at least 0.1")
 		.max(2147483647, "Too large")
@@ -39,9 +39,9 @@ const validationSchema = yup.object().shape({
 });
 
 const initialValues = {
-	ingredient: "",
-	measurement: 1,
-	ingredientQuantity: 0,
+	name: "",
+	measurement: "",
+	quantity: 0,
 };
 
 export const IngredientModal = (props) => {
@@ -49,57 +49,31 @@ export const IngredientModal = (props) => {
 
 	const handleClose = () => props.setModalOpenStatus(false);
 
-	const [existingIngredients, setExistingIngredients] = useState([]);
-
-	const [existingMeasurements, setExistingMeasurements] = useState([]);
-
-	useEffect(() => {
-		fetch(process.env.REACT_APP_API_URL + "/ingredients/ingredients")
-			.then((response) => response.json())
-			.then((data) => setExistingIngredients(data))
-			.catch(() => {
-				setExistingIngredients([]);
-			});
-
-		fetch(process.env.REACT_APP_API_URL + "/measurementTypes/measurementTypes")
-			.then((response) => response.json())
-			.then((data) => setExistingMeasurements(data))
-			.catch(() => {
-				setExistingMeasurements([]);
-			});
-	}, []);
-
-	const clearForm = (values) => {
-		console.log(values);
-	};
+	const units = [{ id: 1, label: "g" }];
 
 	const submitHandle = (values) => {
-		console.log(existingIngredients + existingMeasurements);
-		console.log(values);
-
 		props.addIngredient({
-			ingredient: values.ingredient,
-			quantity: values.ingredientQuantity,
+			name: values.name,
+			quantity: values.quantity,
 			measurement: values.measurement,
 		});
 
-		clearForm(values);
 		handleClose();
 	};
-
-	const units = props.units;
 
 	return (
 		<Modal
 			open={props.modalOpenStatus}
 			onClose={handleClose}
-			aria-labelledby="ingredient add/edit model"
-			aria-describedby="ingredient add/edit model"
+			aria-labelledby={`ingredient ${operation} model`}
+			aria-describedby={`ingredient ${operation} model`}
 		>
 			<Box sx={style}>
 				<Typography id="modal-title" variant="h6" component="h2">
 					{operation} Ingredient
-					<Tooltip title="Preset options available for ingredients and measurements are existing entries and should be prioritised for selection over creating a new entry.">
+					<Tooltip
+						title={`Use this form to ${operation} an ingredient for this recipe`}
+					>
 						<InfoIcon color="info" sx={{ paddingLeft: 1 }} />
 					</Tooltip>
 				</Typography>
@@ -113,13 +87,13 @@ export const IngredientModal = (props) => {
 					<Form>
 						<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
 							<TextfieldWrapper
-								name="ingredient"
+								name="name"
 								label="Ingredient"
 								required={true}
 							></TextfieldWrapper>
 							<Box sx={{ display: "flex", gap: 1, flexDirection: "row" }}>
 								<TextfieldWrapper
-									name="ingredientQuantity"
+									name="quantity"
 									label="Quantity"
 									required={true}
 								></TextfieldWrapper>
@@ -130,10 +104,14 @@ export const IngredientModal = (props) => {
 									options={units}
 								></AutoCompleteWrapper>
 							</Box>
-
-							<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
-								Add
-							</SubmitButtonWrapper>
+							<Box sx={{ display: "flex", gap: 1 }}>
+								<ResetButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Clear
+								</ResetButtonWrapper>
+								<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Add
+								</SubmitButtonWrapper>
+							</Box>
 						</Box>
 					</Form>
 				</Formik>

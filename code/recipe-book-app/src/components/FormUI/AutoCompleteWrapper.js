@@ -29,7 +29,7 @@ export const AutoCompleteWrapper = ({ name, options, ...otherProps }) => {
 		<TextField {...configSelect}>
 			{options.map((item) => {
 				return (
-					<MenuItem key={item.id} value={item.id}>
+					<MenuItem key={item.id} value={item.label}>
 						{item.label}
 					</MenuItem>
 				);

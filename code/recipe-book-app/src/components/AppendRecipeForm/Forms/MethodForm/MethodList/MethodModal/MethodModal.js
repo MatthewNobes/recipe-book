@@ -1,7 +1,11 @@
 import { Modal, Typography, Box } from "@mui/material";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
-import { TextfieldWrapper, SubmitButtonWrapper } from "../../../../../FormUI";
+import {
+	TextfieldWrapper,
+	SubmitButtonWrapper,
+	ResetButtonWrapper,
+} from "../../../../../FormUI";
 import PropTypes from "prop-types";
 
 const style = {
@@ -31,18 +35,14 @@ const initialValues = {
 };
 
 export const MethodModal = (props) => {
+	const operation = props.operation;
 	const handleClose = () => props.setModalOpenStatus(false);
-
-	const clearForm = (values) => {
-		console.log(values);
-	};
 
 	const submitHandle = (values) => {
 		props.addInstruction({
 			instruction: values.instruction,
 		});
 
-		clearForm(values);
 		handleClose();
 	};
 
@@ -50,12 +50,12 @@ export const MethodModal = (props) => {
 		<Modal
 			open={props.modalOpenStatus}
 			onClose={handleClose}
-			aria-labelledby="instruction add/edit model"
-			aria-describedby="instruction add/edit model"
+			aria-labelledby={`instruction ${operation} model`}
+			aria-describedby={`instruction ${operation} model`}
 		>
 			<Box sx={style}>
 				<Typography id="modal-title" variant="h6" component="h2">
-					Add/edit an instruction
+					{operation} an instruction
 				</Typography>
 				<Formik
 					initialValues={initialValues}
@@ -68,12 +68,19 @@ export const MethodModal = (props) => {
 						<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
 							<TextfieldWrapper
 								name="instruction"
-								label="instruction"
+								label="Step"
+								multiline={true}
+								rows={2}
 								required={true}
 							></TextfieldWrapper>
-							<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
-								Add
-							</SubmitButtonWrapper>
+							<Box sx={{ display: "flex", gap: 1 }}>
+								<ResetButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Clear
+								</ResetButtonWrapper>
+								<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Add
+								</SubmitButtonWrapper>
+							</Box>
 						</Box>
 					</Form>
 				</Formik>
@@ -86,4 +93,5 @@ MethodModal.propTypes = {
 	setModalOpenStatus: PropTypes.func,
 	addInstruction: PropTypes.func,
 	modalOpenStatus: PropTypes.bool,
+	operation: PropTypes.string,
 };

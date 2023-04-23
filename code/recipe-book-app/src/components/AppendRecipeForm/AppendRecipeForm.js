@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
 	Typography,
 	Button,
@@ -15,7 +16,7 @@ import {
 	ImageForm,
 } from "./Forms";
 import { useState } from "react";
-import { addRecipe } from "./addRecipe/addRecipe";
+import addRecipe from "../../data/addRecipe";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -28,30 +29,34 @@ export const AppendRecipeForm = (props) => {
 	const navigate = useNavigate();
 
 	let initialRecipeValues = {
-		recipeName: "",
-		recipeDescription: "",
-		difficultyRating: 0,
-		recipePrepTime: 0,
-		recipeCookTime: 0,
-		recipeSource: "",
-		servingNumber: 4,
-		region: 1,
-		country: 1,
-		category: 1,
+		name: "",
+		description: "",
+		difficulty_rating: 0,
+		prep_time: 0,
+		cook_time: 0,
+		source: "",
+		serving_number: 4,
+		country: "",
+		keywords: [],
+		steps: [],
+		ingredients: [],
+		images: [],
 	};
 
 	if (props.valuesToEdit) {
 		initialRecipeValues = {
-			recipeName: props.valuesToEdit.recipeName,
-			recipeDescription: props.valuesToEdit.recipeDescription,
-			difficultyRating: props.valuesToEdit.difficultyRating,
-			recipePrepTime: props.valuesToEdit.recipePrepTime,
-			recipeCookTime: props.valuesToEdit.recipeCookTime,
-			recipeSource: props.valuesToEdit.recipeSource,
-			servingNumber: props.valuesToEdit.servingNumber,
-			region: props.valuesToEdit.region,
+			name: props.valuesToEdit.name,
+			description: props.valuesToEdit.description,
+			difficulty_rating: props.valuesToEdit.difficulty_rating,
+			prep_time: props.valuesToEdit.prep_time,
+			cook_time: props.valuesToEdit.cook_time,
+			source: props.valuesToEdit.source,
+			serving_number: props.valuesToEdit.serving_number,
 			country: props.valuesToEdit.country,
-			category: props.valuesToEdit.category,
+			keywords: props.valuesToEdit.keywords,
+			steps: props.valuesToEdit.steps,
+			ingredients: props.valuesToEdit.ingredients,
+			images: props.valuesToEdit.images,
 		};
 	}
 
@@ -79,31 +84,30 @@ export const AppendRecipeForm = (props) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const ingredientsArrayToSubmit = ingredients.map((ingredient) => {
-			return {
-				ingredientName: ingredient.ingredient,
-				ingredientDescription: "null",
-				ingredientInfoURL: "null",
-				measurementTypeID: ingredient.measurement,
-				measurementSize: ingredient.quantity,
-			};
+		const ingredientsToSubmit = ingredients.map((ingredient) => {
+			return JSON.stringify(ingredient);
 		});
 
-		const instructionsArrayToSubmit = instructions.map((instruction, index) => {
-			return {
-				stepText: instruction.instruction,
-				stepNumber: index + 1,
-			};
+		const imagesToSubmit = images.map((image) => {
+			return image.imageSource;
 		});
 
-		const id = await addRecipe(
-			recipe,
-			ingredientsArrayToSubmit,
-			instructionsArrayToSubmit,
-		);
+		const instructionsToSubmit = instructions.map((instruction) => {
+			return instruction.instruction;
+		});
 
-		if (Number.isInteger(id)) {
-			navigate("/ViewRecipe/" + id);
+		const valuesToSubmit = {
+			...recipe,
+			ingredients: ingredientsToSubmit,
+			steps: instructionsToSubmit,
+			images: imagesToSubmit,
+			keywords: [],
+		};
+
+		const newRecipeID = await addRecipe(valuesToSubmit);
+
+		if (Number.isInteger(newRecipeID)) {
+			navigate("/ViewRecipe/" + newRecipeID);
 		} else {
 			console.log("Could not add recipe");
 		}

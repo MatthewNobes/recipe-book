@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { Box } from "@mui/material";
@@ -6,19 +7,11 @@ import {
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 } from "../../../FormUI";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 export const BasicDetailsForm = (props) => {
-	const [categories, setCategories] = useState([
-		{ countryID: 1, label: "Appetisers" },
-		{ countryID: 2, label: "Entrees" },
-		{ countryID: 3, label: "Deserts" },
-		{ countryID: 4, label: "Lunch" },
-		{ countryID: 5, label: "Snacks" },
-		{ countryID: 6, label: "Sauces" },
-	]);
-
+	// eslint-disable-next-line no-unused-vars
 	const [countries, setCountries] = useState([
 		{ id: 1, label: "British" },
 		{ id: 2, label: "French" },
@@ -26,107 +19,52 @@ export const BasicDetailsForm = (props) => {
 		{ id: 4, label: "Russian" },
 	]);
 
-	const [regions, setRegions] = useState([
-		{ id: 1, label: "Mediterranean" },
-		{ id: 2, label: "North American" },
-		{ id: 3, label: "Asian" },
-		{ id: 4, label: "Lunch" },
-		{ id: 5, label: "Snacks" },
-		{ id: 6, label: "Sauces" },
-	]);
-
-	useEffect(() => {
-		fetch(process.env.REACT_APP_API_URL + "/countries/countries")
-			.then((response) => response.json())
-			.then((data) => {
-				setCountries(
-					data.data.map((country) => {
-						return { id: country.countryID, label: country.country };
-					}),
-				);
-			})
-			.catch(() => {
-				setCountries([]);
-			});
-
-		fetch(process.env.REACT_APP_API_URL + "/categories")
-			.then((response) => response.json())
-			.then((data) => {
-				setCategories(
-					data.data.map((category) => {
-						return { id: category.categoryID, label: category.category };
-					}),
-				);
-			})
-			.catch(() => {
-				setCategories([]);
-			});
-
-		fetch(process.env.REACT_APP_API_URL + "/regions")
-			.then((response) => response.json())
-			.then((data) => {
-				setRegions(
-					data.data.map((region) => {
-						return { id: region.regionID, label: region.region };
-					}),
-				);
-			})
-			.catch(() => {
-				setRegions([]);
-			});
-	}, []);
-
 	const validationSchema = yup.object().shape({
-		recipeName: yup
+		name: yup
 			.string()
 			.required("Required")
 			.max(85, "Must not be greater than 85 characters"),
-		recipeDescription: yup
+		description: yup
 			.string()
 			.required("Required")
 			.max(85, "Must not be greater than 85 characters"),
-		difficultyRating: yup
+		difficulty_rating: yup
 			.number()
 			.positive("Must be positive")
 			.integer("Must be a whole number")
 			.min(1, "Must be at least 1")
 			.max(10, "Must be under 10"),
-		recipePrepTime: yup
+		prep_time: yup
 			.number()
 			.required("Required")
 			.positive("Must be positive")
 			.integer("Must be a whole number"),
-		recipeCookTime: yup
+		cook_time: yup
 			.number()
 			.required("Required")
 			.positive("Must be positive")
 			.integer("Must be a whole number"),
-		recipeSource: yup
-			.string()
-			.max(85, "Must not be greater than 85 characters"),
-		servingNumber: yup
+		source: yup.string().max(85, "Must not be greater than 85 characters"),
+		serving_number: yup
 			.number()
 			.required("Required")
 			.positive("Must be positive")
 			.integer("Must be a whole number")
 			.min(1, "Must be at least 1"),
-		region: yup.number(),
-		country: yup.number(),
-		category: yup.number(),
+
+		country: yup.string().max(85, "Must not be greater than 85 characters"),
 	});
 
 	const submitHandle = (values) => {
 		props.setRecipeFn({
-			recipeName: values.recipeName,
-			recipeDescription: values.recipeDescription,
-			difficultyRating: values.difficultyRating,
-			recipePrepTime: values.recipePrepTime,
-			recipeCookTime: values.recipeCookTime,
-			recipeSource: values.recipeSource,
-			servingNumber: values.servingNumber,
-			regionID: values.region,
-			countryID: values.country,
-			categoryID: values.category,
+			name: values.name,
+			description: values.description,
+			difficulty_rating: values.difficulty_rating,
+			prep_time: values.prep_time,
+			cook_time: values.cook_time,
+			source: values.source,
+			serving_number: values.serving_number,
+			country: values.country,
 		});
 		props.handleNext();
 	};
@@ -142,58 +80,46 @@ export const BasicDetailsForm = (props) => {
 			<Form>
 				<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
 					<TextfieldWrapper
-						name="recipeName"
+						name="name"
 						label="Name"
 						required={true}
 					></TextfieldWrapper>
 					<TextfieldWrapper
-						name="recipeDescription"
+						name="description"
 						label="Description"
 						multiline={true}
 						rows={4}
 						required={true}
 					></TextfieldWrapper>
 					<TextfieldWrapper
-						name="difficultyRating"
+						name="difficulty_rating"
 						label="Difficulty Rating"
 						type="number"
 					></TextfieldWrapper>
 					<TextfieldWrapper
-						name="recipePrepTime"
+						name="prep_time"
 						label="Preparation time (in minutes)"
 						type="number"
 						required={true}
 					></TextfieldWrapper>
 					<TextfieldWrapper
-						name="recipeCookTime"
+						name="cook_time"
 						label="Cooking time (in minutes)"
 						type="number"
 						required={true}
 					></TextfieldWrapper>
+					<TextfieldWrapper name="source" label="Source URL"></TextfieldWrapper>
 					<TextfieldWrapper
-						name="recipeSource"
-						label="Source URL"
-					></TextfieldWrapper>
-					<TextfieldWrapper
-						name="servingNumber"
+						name="serving_number"
 						label="Serving number"
 						type="number"
 						required={true}
 					></TextfieldWrapper>
-					<AutoCompleteWrapper
-						name="region"
-						label="Region"
-						options={regions}
-					></AutoCompleteWrapper>
+
 					<AutoCompleteWrapper
 						name="country"
 						label="Country"
 						options={countries}
-					></AutoCompleteWrapper>
-					<AutoCompleteWrapper
-						name="category"
-						label="Category"
-						options={categories}
 					></AutoCompleteWrapper>
 				</Box>
 				<Box sx={{ marginY: 2, float: "right" }}>

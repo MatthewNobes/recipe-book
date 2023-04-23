@@ -8,12 +8,10 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AddIngredient } from "./AddIngredient";
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const IngredientsListItems = (props) => {
 	const ingredientsArray = props.ingredientsArray;
-	const units = props.units;
 
 	const removeIngredient = (ingredientID) => {
 		props.removeIngredient(ingredientID);
@@ -38,13 +36,9 @@ const IngredientsListItems = (props) => {
 					>
 						<ListItemButton role={undefined} dense>
 							<ListItemText
-								id={ingredient.ingredient}
-								primary={ingredient.ingredient}
-								secondary={
-									ingredient.quantity +
-									" " +
-									units[ingredient.measurement].label
-								}
+								id={ingredient.name}
+								primary={ingredient.name}
+								secondary={ingredient.quantity + ingredient.measurement}
 							/>
 						</ListItemButton>
 					</ListItem>
@@ -64,23 +58,6 @@ export const IngredientsList = (props) => {
 	const ingredientsArray = props.ingredientsArray;
 	const removeIngredient = props.removeIngredient;
 
-	const [units, setUnits] = useState([]);
-
-	useEffect(() => {
-		fetch(process.env.REACT_APP_API_URL + "/measurementTypes/measurementTypes")
-			.then((response) => response.json())
-			.then((data) => {
-				setUnits(
-					data.data.map((measurementType) => {
-						return {
-							id: measurementType.measurementTypeID,
-							label: measurementType.measurementType,
-						};
-					}),
-				);
-			});
-	}, []);
-
 	return (
 		<>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
@@ -90,11 +67,10 @@ export const IngredientsList = (props) => {
 					<IngredientsListItems
 						removeIngredient={removeIngredient}
 						ingredientsArray={ingredientsArray}
-						units={units}
 					/>
 				)}
 				<ListItem>
-					<AddIngredient addIngredient={props.addIngredient} units={units} />
+					<AddIngredient addIngredient={props.addIngredient} />
 				</ListItem>
 			</List>
 		</>
