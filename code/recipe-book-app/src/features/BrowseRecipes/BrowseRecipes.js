@@ -3,9 +3,17 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { List } from "@mui/material";
 import RecipeListCard from "../../components/RecipeListCard";
+import getAllRecipes from "../../data/getAllRecipes/getAllRecipes";
 
 export const BrowseRecipes = () => {
 	const [recipes, setRecipes] = useState([]);
+
+	useEffect(() => {
+		const fetchRecipes = async () => {
+			setRecipes(await getAllRecipes());
+		};
+		fetchRecipes();
+	}, []);
 
 	const navigate = useNavigate();
 
@@ -29,12 +37,6 @@ export const BrowseRecipes = () => {
 		},
 	];
 
-	useEffect(() => {
-		fetch(process.env.REACT_APP_API_URL + "/recipes/recipes")
-			.then((response) => response.json())
-			.then((data) => setRecipes(data.data));
-	}, []);
-
 	console.log(recipes);
 	return (
 		<div>
@@ -50,13 +52,13 @@ export const BrowseRecipes = () => {
 					{recipes.map((recipe) => {
 						return (
 							<RecipeListCard
-								key={recipe.recipeID}
-								id={recipe.recipeID}
-								recipeName={recipe.recipeName}
-								recipeDescription={recipe.recipeDescription}
+								key={recipe.id}
+								id={recipe.id}
+								recipeName={recipe.name}
+								recipeDescription={recipe.description}
 								isFavorite={false}
-								cookTime={recipe.recipeCookTime}
-								prepTime={recipe.recipePrepTime}
+								cookTime={recipe.cook_time}
+								prepTime={recipe.prep_time}
 							/>
 						);
 					})}

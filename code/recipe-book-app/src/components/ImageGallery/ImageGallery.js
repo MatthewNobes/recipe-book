@@ -39,18 +39,12 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 				}
 
 				return (
-					<ImageListItem key={details.recipeID} cols={cols} rows={rows}>
+					<ImageListItem key={details.id} cols={cols} rows={rows}>
 						<img
-							{...srcset(
-								utf8Decode(details.images[0].imageSource),
-								250,
-								200,
-								rows,
-								cols,
-							)}
-							alt={utf8Decode(details.recipeDescription)}
+							{...srcset(utf8Decode(details.images[0]), 250, 200, rows, cols)}
+							alt={utf8Decode(details.description)}
 							loading="lazy"
-							onClick={() => navigate("/ViewRecipe/" + details.recipeID)}
+							onClick={() => navigate("/ViewRecipe/" + details.id)}
 						/>
 						<ImageListItemBar
 							sx={{
@@ -58,10 +52,10 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 									"linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
 									"rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
 							}}
-							title={utf8Decode(details.recipeName)}
+							title={utf8Decode(details.name)}
 							position="top"
 							actionIcon={
-								<FavoriteButton isFav={false} recipeID={details.recipeID} />
+								<FavoriteButton isFav={false} recipeID={details.id} />
 							}
 							actionPosition="right"
 						/>
