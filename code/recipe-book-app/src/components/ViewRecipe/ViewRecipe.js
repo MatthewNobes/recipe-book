@@ -54,7 +54,7 @@ export const ViewRecipe = () => {
 					<Divider />
 					<ViewDetails
 						ingredients={recipe.ingredients}
-						method={recipe.method}
+						method={recipe.steps}
 						recipeSource={recipeSource}
 					/>
 					<Divider />

@@ -36,15 +36,15 @@ export const ViewMethod = ({ method = [] }) => {
 				<Header />
 				<AccordionDetails>
 					<List>
-						{method.map((step) => {
+						{method.map((step, index) => {
 							return (
-								<ListItem disablePadding key={step.recipeStepID}>
+								<ListItem disablePadding key={index}>
 									<Typography variant="body2" gutterBottom component="div">
 										<Typography variant="body1" sx={{ fontWeight: "bold" }}>
-											Step {step.stepNumber}:
+											Step {index + 1}:
 										</Typography>
 
-										{utf8Decode(step.stepText)}
+										{utf8Decode(step)}
 									</Typography>
 								</ListItem>
 							);
