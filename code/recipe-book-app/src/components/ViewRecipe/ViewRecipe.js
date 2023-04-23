@@ -1,80 +1,71 @@
 import { useState, useEffect } from "react";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography, Divider, CircularProgress } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
 import { utf8Decode } from "../../utils";
+import getRecipeByID from "../../data/getRecipeByID/getRecipeByID";
 
 export const ViewRecipe = () => {
 	const { recipeID } = useParams();
 
-	const [recipe, setRecipe] = useState({});
-	const [method, setMethod] = useState([]);
-	const [ingredients, setIngredients] = useState([]);
+	const [recipe, setRecipe] = useState();
 
 	useEffect(() => {
-		fetch(process.env.REACT_APP_API_URL + "/recipes/recipe/" + recipeID)
-			.then((response) => response.json())
-			.then((data) => setRecipe(data.data));
-		fetch(process.env.REACT_APP_API_URL + "/method/method/" + recipeID)
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.data === "no method found") {
-					setMethod([]);
-				} else {
-					setMethod(data.data);
-				}
-			});
-		fetch(process.env.REACT_APP_API_URL + "/ingredients/recipe/" + recipeID)
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.data === "no ingredients found") {
-					setIngredients([]);
-				} else {
-					setIngredients(data.data);
-				}
-			});
+		const fetchRecipe = async () => {
+			setRecipe(await getRecipeByID(recipeID));
+		};
+		fetchRecipe();
 	}, [recipeID]);
 
-	const recipeName = recipe.recipeName;
-	const recipeDescription = recipe.recipeDescription;
-	const difficultyRating = recipe.recipeDifficultyRating;
-	const servesNumber = recipe.servingNumber;
-	const imageSource =
-		"https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chicken-madras-f69ab47.jpg";
+	if (recipe) {
+		const recipeName = recipe.name;
+		const recipeDescription = recipe.description;
+		const difficultyRating = recipe.difficulty_rating;
+		const servesNumber = recipe.serving_number;
+		const imageSource = recipe.images[0];
 
-	const isFavorite = false; // to be populated later
-	const recipeSource = utf8Decode(recipe.recipeSource);
-	const cookTime = recipe.recipeCookTime;
-	const prepTime = recipe.recipePrepTime;
+		const isFavorite = false; // to be populated later
+		const recipeSource = utf8Decode("recipe.recipeSource");
+		const cookTime = recipe.cook_time;
+		const prepTime = recipe.prep_time;
 
-	return (
-		<>
-			<RecipeHeader imageSource={imageSource} recipeName={recipeName} />
-			<Box sx={{ marginBottom: 10 }}>
-				<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
-					<Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
-						<Typography variant="h2">{recipeName}</Typography>
-						<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
+		return (
+			<>
+				<RecipeHeader imageSource={imageSource} recipeName={recipeName} />
+				<Box sx={{ marginBottom: 10 }}>
+					<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
+						<Box
+							sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}
+						>
+							<Typography variant="h2">{recipeName}</Typography>
+							<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
+						</Box>
+						<ChipBar
+							servesNumber={servesNumber}
+							difficultyRating={difficultyRating}
+							cookTime={cookTime}
+							prepTime={prepTime}
+						/>
+						<Typography variant="body1" sx={{ textAlign: "left" }}>
+							{recipeDescription}
+						</Typography>
 					</Box>
-					<ChipBar
-						servesNumber={servesNumber}
-						difficultyRating={difficultyRating}
-						cookTime={cookTime}
-						prepTime={prepTime}
+					<Divider />
+					<ViewDetails
+						ingredients={recipe.ingredients}
+						method={recipe.method}
+						recipeSource={recipeSource}
 					/>
-					<Typography variant="body1" sx={{ textAlign: "left" }}>
-						{recipeDescription}
-					</Typography>
+					<Divider />
 				</Box>
-				<Divider />
-				<ViewDetails
-					ingredients={ingredients}
-					method={method}
-					recipeSource={recipeSource}
-				/>
-				<Divider />
+			</>
+		);
+	} else {
+		return (
+			<Box sx={{ display: "flex", justifyContent: "center" }}>
+				<CircularProgress />
 			</Box>
-		</>
-	);
+		);
+	}
 };
