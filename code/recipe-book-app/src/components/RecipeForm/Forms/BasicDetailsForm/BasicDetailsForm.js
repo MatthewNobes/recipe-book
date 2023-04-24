@@ -7,8 +7,9 @@ import {
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 } from "../../../FormUI";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { getAllCountries } from "../../../../data";
 
 export const BasicDetailsForm = (props) => {
 	// eslint-disable-next-line no-unused-vars
@@ -18,6 +19,17 @@ export const BasicDetailsForm = (props) => {
 		{ id: 3, label: "Italian" },
 		{ id: 4, label: "Russian" },
 	]);
+
+	useEffect(() => {
+		const fetchRecipes = async () => {
+			const countriesArray = await getAllCountries();
+			const countriesResultArray = countriesArray.map((country, index) => {
+				return { id: index, label: country.name };
+			});
+			setCountries(countriesResultArray);
+		};
+		fetchRecipes();
+	}, []);
 
 	const validationSchema = yup.object().shape({
 		name: yup
