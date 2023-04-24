@@ -25,6 +25,6 @@ export const MethodForm = ({ setInstructions, instructionsArray }) => {
 };
 
 MethodForm.propTypes = {
-	setInstructions: PropTypes.function,
+	setInstructions: PropTypes.func,
 	instructionsArray: PropTypes.array,
 };

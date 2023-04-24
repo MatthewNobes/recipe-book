@@ -25,6 +25,6 @@ export const ImageForm = ({ setImages, imageArray }) => {
 };
 
 ImageForm.propTypes = {
-	setImages: PropTypes.function,
+	setImages: PropTypes.func,
 	imageArray: PropTypes.array,
 };
