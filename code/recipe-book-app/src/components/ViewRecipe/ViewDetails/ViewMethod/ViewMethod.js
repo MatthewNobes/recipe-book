@@ -57,7 +57,7 @@ export const ViewMethod = ({ method = [] }) => {
 		return (
 			<Box>
 				<Header />
-				<Typography variant="body1">
+				<Typography variant="body1" sx={{ px: 1, py: 1 }}>
 					No method exists for this recipe
 				</Typography>
 			</Box>

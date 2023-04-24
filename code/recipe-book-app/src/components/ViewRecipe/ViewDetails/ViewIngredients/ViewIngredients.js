@@ -45,7 +45,7 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 									<Tooltip title={ing.description}>
 										<ListItem disablePadding>
 											<ListItemText variant="body1">
-												{ing.quantity} {ing.measurement} {ing.name}
+												{ing.quantity + ing.measurement + " " + ing.name}
 											</ListItemText>
 										</ListItem>
 									</Tooltip>
@@ -61,7 +61,7 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 		return (
 			<Box>
 				<Header />
-				<Typography variant="body1">
+				<Typography variant="body1" sx={{ px: 1, py: 1 }}>
 					No ingredients exists for this recipe
 				</Typography>
 			</Box>
