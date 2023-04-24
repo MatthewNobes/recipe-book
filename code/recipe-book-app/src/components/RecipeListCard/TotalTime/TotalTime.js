@@ -4,8 +4,8 @@ import { minutesToHours } from "../../../utils";
 import PropTypes from "prop-types";
 
 export const TotalTime = (props) => {
-	const cookTime = parseInt(props.cookTime);
-	const prepTime = parseInt(props.prepTime);
+	const cookTime = props.cookTime;
+	const prepTime = props.prepTime;
 	const totalTime = cookTime + prepTime;
 	const formattedTime = minutesToHours(totalTime);
 
@@ -27,6 +27,6 @@ export const TotalTime = (props) => {
 };
 
 TotalTime.propTypes = {
-	cookTime: PropTypes.string,
-	prepTime: PropTypes.string,
+	cookTime: PropTypes.number,
+	prepTime: PropTypes.number,
 };

@@ -18,6 +18,6 @@ export const RecipeChip = ({ value = "", label = "" }) => {
 };
 
 RecipeChip.propTypes = {
-	value: PropTypes.string,
+	value: PropTypes.number,
 	label: PropTypes.string,
 };

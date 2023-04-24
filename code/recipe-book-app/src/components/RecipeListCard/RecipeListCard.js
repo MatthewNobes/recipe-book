@@ -41,7 +41,7 @@ export const RecipeListCard = (props) => {
 					/>
 				</Tooltip>
 				<TotalTime cookTime={cookTime} prepTime={prepTime} />
-				<FavoriteButton isFav={isFavorite} recipeID={id} />
+				<FavoriteButton isFav={isFavorite} recipeID={parseInt(id)} />
 			</ListItem>
 			<Divider component="li" sx={{ marginX: 1 }} />
 		</Box>
@@ -53,6 +53,6 @@ RecipeListCard.propTypes = {
 	recipeName: PropTypes.string,
 	recipeDescription: PropTypes.string,
 	isFavorite: PropTypes.bool,
-	cookTime: PropTypes.string,
-	prepTime: PropTypes.string,
+	cookTime: PropTypes.number,
+	prepTime: PropTypes.number,
 };

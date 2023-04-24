@@ -30,7 +30,7 @@ export const ChipBar = ({
 
 ChipBar.propTypes = {
 	difficultyRating: PropTypes.number,
-	servesNumber: PropTypes.string,
-	cookTime: PropTypes.string,
-	prepTime: PropTypes.string,
+	servesNumber: PropTypes.number,
+	cookTime: PropTypes.number,
+	prepTime: PropTypes.number,
 };

@@ -16,5 +16,5 @@ export const ServesChip = ({ servesNumber = "?" }) => {
 };
 
 ServesChip.propTypes = {
-	servesNumber: PropTypes.string,
+	servesNumber: PropTypes.number,
 };

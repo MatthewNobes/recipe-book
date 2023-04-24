@@ -55,7 +55,7 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 							title={utf8Decode(details.name)}
 							position="top"
 							actionIcon={
-								<FavoriteButton isFav={false} recipeID={details.id} />
+								<FavoriteButton isFav={false} recipeID={parseInt(details.id)} />
 							}
 							actionPosition="right"
 						/>
@@ -67,6 +67,6 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 };
 
 ImageGallery.propTypes = {
-	recipes: PropTypes.object,
+	recipes: PropTypes.array,
 	howManyToDisplay: PropTypes.number,
 };

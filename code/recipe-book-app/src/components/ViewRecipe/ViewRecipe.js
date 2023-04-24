@@ -42,7 +42,10 @@ export const ViewRecipe = () => {
 							sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}
 						>
 							<Typography variant="h2">{recipeName}</Typography>
-							<FavoriteButton isFav={isFavorite} recipeID={recipeID} />
+							<FavoriteButton
+								isFav={isFavorite}
+								recipeID={parseInt(recipeID)}
+							/>
 						</Box>
 						<ChipBar
 							servesNumber={servesNumber}

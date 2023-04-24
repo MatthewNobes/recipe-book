@@ -103,7 +103,7 @@ export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 };
 
 RecipeHeader.propTypes = {
-	imageSource: PropTypes.array,
-	recipeName: PropTypes.array,
+	imageSource: PropTypes.string,
+	recipeName: PropTypes.string,
 	id: PropTypes.number,
 };
