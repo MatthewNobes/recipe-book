@@ -1,7 +1,7 @@
 import { Header, ImageGallery } from "../../components";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import getAllRecipes from "../../data/getAllRecipes/getAllRecipes";
+import { getAllRecipes } from "../../data";
 
 export const HomePage = () => {
 	const [recipes, setRecipes] = useState([]);

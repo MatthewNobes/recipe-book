@@ -1,5 +1,5 @@
-import supabase from "./supabase";
-import { auth } from "./auth/auth";
+import supabase from "../supabase";
+import { auth } from "../index";
 
 const addRecipe = async (values) => {
 	await auth();

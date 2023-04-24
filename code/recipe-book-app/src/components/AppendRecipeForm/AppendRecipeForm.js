@@ -16,7 +16,7 @@ import {
 	ImageForm,
 } from "./Forms";
 import { useState } from "react";
-import addRecipe from "../../data/addRecipe";
+import { addRecipe } from "../../data";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 

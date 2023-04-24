@@ -3,7 +3,7 @@ import { Box, Typography, Divider, CircularProgress } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import FavoriteButton from "../FavoriteButton";
 import { useParams } from "react-router-dom";
-import getRecipeByID from "../../data/getRecipeByID/getRecipeByID";
+import { getRecipeByID } from "../../data";
 
 export const ViewRecipe = () => {
 	const { recipeID } = useParams();

@@ -1,9 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
+import { Header, RecipeListCard } from "../../components";
 import { List } from "@mui/material";
-import RecipeListCard from "../../components/RecipeListCard";
-import getAllRecipes from "../../data/getAllRecipes/getAllRecipes";
+import { getAllRecipes } from "../../data";
 
 export const BrowseRecipes = () => {
 	const [recipes, setRecipes] = useState([]);
