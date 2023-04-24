@@ -1,4 +1,4 @@
-import AppendRecipeForm from "./AppendRecipeForm";
+import RecipeForm from "./RecipeForm";
 import FavoriteButton from "./FavoriteButton";
 import Header from "./Header";
 import ImageGallery from "./ImageGallery";
@@ -7,7 +7,7 @@ import RecipeListCard from "./RecipeListCard";
 import SubPageHeader from "./SubPageHeader";
 import ViewRecipe from "./ViewRecipe";
 export {
-	AppendRecipeForm,
+	RecipeForm,
 	FavoriteButton,
 	Header,
 	ImageGallery,

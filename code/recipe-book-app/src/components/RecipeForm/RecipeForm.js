@@ -25,7 +25,7 @@ import PropTypes from "prop-types";
  * @param {valuesToEdit} props valuesToEdit contains the recipeValues that will be edited
  * @returns
  */
-export const AppendRecipeForm = (props) => {
+export const RecipeForm = (props) => {
 	const navigate = useNavigate();
 
 	let initialRecipeValues = {
@@ -220,6 +220,6 @@ export const AppendRecipeForm = (props) => {
 	);
 };
 
-AppendRecipeForm.propTypes = {
+RecipeForm.propTypes = {
 	valuesToEdit: PropTypes.object,
 };
