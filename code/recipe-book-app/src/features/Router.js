@@ -8,7 +8,7 @@ import Settings from "./Settings";
 import Admin from "./Admin";
 import Appearance from "./Appearance";
 import About from "./About";
-import ViewRecipe from "../components/ViewRecipe";
+import ViewRecipe from "./ViewRecipe";
 
 export const Router = () => (
 	<Routes>

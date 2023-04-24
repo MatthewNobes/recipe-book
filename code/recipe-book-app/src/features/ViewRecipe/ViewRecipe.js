@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, Typography, Divider, CircularProgress } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
-import FavoriteButton from "../FavoriteButton";
+import { FavoriteButton } from "../../components";
 import { useParams } from "react-router-dom";
 import { getRecipeByID } from "../../data";
 
