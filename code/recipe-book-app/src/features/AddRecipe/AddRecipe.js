@@ -1,5 +1,4 @@
-import { RecipeForm } from "../../components";
-import { SubPageHeader } from "../../components";
+import { RecipeForm, SubPageHeader } from "../../components";
 
 export const AddRecipe = () => {
 	return (
