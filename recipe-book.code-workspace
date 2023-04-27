@@ -10,6 +10,6 @@
 		"recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
 	},
 	"settings": {
-		"jest.disabledWorkspaceFolders": ["Project Root"]
+		"cSpell.words": ["supabase"]
 	}
 }
