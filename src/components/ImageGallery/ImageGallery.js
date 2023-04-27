@@ -1,5 +1,5 @@
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
-import { FavoriteButton } from "../";
+import FavoriteButton from "../FavoriteButton";
 import { useNavigate } from "react-router-dom";
 import { utf8Decode } from "../../utils";
 import PropTypes from "prop-types";
