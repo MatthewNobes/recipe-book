@@ -1,25 +1,15 @@
 {
-  "folders": [
-    {
-      // web app source code
-      "name": "Recipe App",
-      "path": "./code/recipe-book-app"
-    },
-    {
-      // api source code
-      "name": "Recipe API",
-      "path": "./code/recipe-book-api"
-    },
-    {
-      // project root
-      "name": "Project Root",
-      "path": "./"
-    }
-  ],
-  "extensions": {
-    "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
-  },
-  "settings": {
-    "jest.disabledWorkspaceFolders": ["Project Root"]
-  }
+	"folders": [
+		{
+			// Recipe App
+			"name": "Recipe App",
+			"path": "./"
+		}
+	],
+	"extensions": {
+		"recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+	},
+	"settings": {
+		"jest.disabledWorkspaceFolders": ["Project Root"]
+	}
 }
