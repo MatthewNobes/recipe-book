@@ -39,7 +39,7 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 				}
 
 				return (
-					<ImageListItem key={details.id} cols={cols} rows={rows}>
+					<ImageListItem key={index} cols={cols} rows={rows}>
 						<img
 							{...srcset(utf8Decode(details.images[0]), 250, 200, rows, cols)}
 							alt={utf8Decode(details.description)}

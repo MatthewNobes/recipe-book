@@ -3,7 +3,7 @@ import { RecipeChip } from "./RecipeChip";
 
 describe("RecipeChip", () => {
 	it("should render the chip for cook time", () => {
-		const time = "120";
+		const time = 120;
 		const label = "Cook: ";
 		render(<RecipeChip value={time} label={label} />);
 
@@ -12,7 +12,7 @@ describe("RecipeChip", () => {
 	});
 
 	it("should render the chip for prep time", () => {
-		const time = "120";
+		const time = 120;
 		const label = "Prep: ";
 		render(<RecipeChip value={time} label={label} />);
 
@@ -21,7 +21,7 @@ describe("RecipeChip", () => {
 	});
 
 	it("should render `label 0:00` if the value passed is empty", () => {
-		const time = "";
+		const time = 0;
 		const label = "Prep: ";
 		render(<RecipeChip value={time} label={label} />);
 

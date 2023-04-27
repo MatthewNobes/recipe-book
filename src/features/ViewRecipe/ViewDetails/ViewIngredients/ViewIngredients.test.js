@@ -18,7 +18,7 @@ describe("ViewIngredients", () => {
 		render(<ViewIngredients ingredients={ingredients} />);
 
 		const ingredientText = screen.getByText(
-			"200" + " " + "g" + " " + "Diced chicken",
+			"200" + "g" + " " + "Diced chicken",
 		);
 		expect(ingredientText).toBeInTheDocument();
 	});
