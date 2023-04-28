@@ -7,6 +7,11 @@ const auth = async () => {
 		email: process.env.REACT_APP_SUPABASE_EMAIL,
 		password: process.env.REACT_APP_SUPABASE_WD,
 	});
+	if (error) {
+		console.log(error);
+	} else {
+		console.log(data);
+	}
 };
 
 export default auth;
