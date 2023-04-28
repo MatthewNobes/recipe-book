@@ -1,41 +1,69 @@
-# recipe-book
+# Recipe App
 
-[![CI](https://github.com/MatthewNobes/recipe-book/actions/workflows/ci.js.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/ci.js.yml) [![ESLint](https://github.com/MatthewNobes/recipe-book/actions/workflows/eslint.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/eslint.yml) [![CodeQL](https://github.com/MatthewNobes/recipe-book/actions/workflows/codeql.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/codeql.yml) [![Docker Image CI](https://github.com/MatthewNobes/recipe-book/actions/workflows/docker-image.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/docker-image.yml)
+This is the frontend web app for the recipe book system. It consists of a JS React web app that uses a [supabase](https://supabase.com/) database underneath to manage the backend, including storage and authentication. 
 
-A JS/TS recipe app with a SQL Server database. Its been designed for personal deployment, running out of two docker containers alongside a database instance. It allows users to create and view their own recipes. 
+It was originally built from a create-react-app template that has grown and changed significantly. 
 
-This project is available with an Apache 2.0 license, for more information, click [here](https://www.apache.org/licenses/LICENSE-2.0).
+# Development
 
-## Development
-
-To get setup with this repository, clone it and load the `recipe-book.code-workspace` file in the root directory of the project.
-
-The solution consists of three core components, the database, API and the web app.
-
-### recipe-book-app
-
-The App is the user interface for the recipe-book system. The App has been created with [React](https://reactjs.org/) and JavaScript. 
-
-For setup and development information for this component see the `README.md` in the component directory.
-
-### recipe-book-api
-
-The API provides data from the database for the recipe app. It is built using [Typescript](https://www.typescriptlang.org/), [Express](https://expressjs.com/) and [Prisma](https://www.prisma.io/).
-
-For setup and development information for this component see the `README.md` in the component directory.
-
-The API routes can be found on the swagger page, see the Documentation section in the `README.md`.
-
-### database
-
-The database for this project is a SQL Server database. Currently it exists only in the dev server I have made but I will release a schema for this in the future.
-
-## Deployment
-
-This up can be deployed using Docker. Each component has its own docker file, they can be built and deployed independently. Instructions on building these can be found in the `README.md` files, located in the component directories.
-
-There is also a Docker Compose file setup to build and deploy both components together in the root directory - `docker-compose.yml`. To use this file to build and deploy a production version, use the command below:
+To get started with this component. Open a new terminal for `Recipe App`. The type the following command to install the necessary dependencies
 
 ```bash
-docker-compose up --build
+npm install
+or
+yarn install
 ```
+
+The next step is to configure the environment variables. Make a new file in the root of the component called `.env`. This is where the connection parameters for supabase will be kept. See the example `.env` file below:
+
+```js
+REACT_APP_SUPABASE_URL = "<url goes here>"
+REACT_APP_SUPABASE_KEY="<key goes here>"
+```
+
+Currently, no login system has been created, so you will also need to set the following environment variables about a test user in the users table in supabase. 
+
+```js
+REACT_APP_SUPABASE_EMAIL="<username goes here>"
+REACT_APP_SUPABASE_WD="<password goes here>"
+```
+
+Once this is configured, start up the app using the command:
+
+```bash
+npm start
+```
+
+## Testing
+
+Jest is being used for unit testing on this component. You can run these tests using the following command:
+
+```bash
+npm test
+```
+
+## Linting 
+
+ESLint has been setup with this project, you can view the ESLint configuration in the `.eslintrc.js` file. If you wish to check the linting for this component use the following command: 
+
+```bash
+npm run lint
+```
+
+# Deployment
+
+This component is setup with a Dockerfile. An image of this app can be created
+using the docker build command as seen below. (insert-name marks where you can
+set the Docker image name, the -t flag allows this name tag to be allocated)
+
+```
+docker build . -t insert-name
+```
+
+To load this Docker image into a container, the docker run command is used as follows with the name selected for the image in the previous step in place for `insert-name`.
+
+```
+docker run -p 3000:3000 -d insert-name
+```
+
+NOTE: The Dockerfile has been configured to run on port 3000. The app can be run on another port by replacing the first `3000` in the command above with your own choice of port.

@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CI Docker Image
 
 on:
   push:
@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build the API Docker image
-        working-directory: ./code/recipe-book-api
-        run: docker build . --file Dockerfile --tag recipe-book:$(date +%s)
       - name: Build the App Docker image
-        working-directory: ./code/recipe-book-app
+        working-directory: ./
         run: docker build . --file Dockerfile --tag recipe-book:$(date +%s)
