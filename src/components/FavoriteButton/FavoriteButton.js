@@ -1,48 +1,52 @@
-import { IconButton, Snackbar, Alert } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { FavoriteOutlined, FavoriteBorderOutlined } from "@mui/icons-material";
-import { setAsFavorite } from "../../utils";
+import { toggleFavorite } from "../../utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import PropTypes from "prop-types";
 
 export const FavoriteButton = ({ isFav, recipeID }) => {
-	const [isFavorite, setIsFavorite] = useState(isFav);
-	const [open, setOpen] = useState(false);
-	const [alertMessage, setAlertMessage] = useState("");
+	const dispatch = useDispatch();
 
-	const handleClose = (event, reason) => {
-		if (reason === "clickaway") {
-			return;
-		}
-		setOpen(false);
-	};
+	const [isFavorite, setIsFavorite] = useState(isFav);
 
 	const onClickFn = () => {
+		let notification = {
+			message: "Added to favorites",
+			alertType: "success",
+			isOpen: true,
+		};
 		if (isFavorite) {
-			setAlertMessage("Removed from favorites");
-			setOpen(true);
-		} else {
-			setAlertMessage("Added to favorites");
-			setOpen(true);
+			notification = {
+				message: "Removed from favorites",
+				alertType: "success",
+				isOpen: true,
+			};
 		}
-		setIsFavorite(!isFavorite);
-		setAsFavorite(recipeID); //id will go here later
+
+		const result = toggleFavorite(recipeID);
+		if (result === "success") {
+			setIsFavorite(!isFavorite);
+		} else {
+			notification = {
+				message: "Unable to add/remove favorite",
+				alertType: "error",
+				isOpen: true,
+			};
+		}
+
+		dispatch(setToast(notification));
 	};
 
 	return (
-		<>
-			<IconButton
-				aria-label="favorite"
-				aria-describedby="Add or remove from favorites"
-				onClick={() => onClickFn()}
-			>
-				{isFavorite ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
-			</IconButton>
-			<Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
-				<Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-					{alertMessage}
-				</Alert>
-			</Snackbar>
-		</>
+		<IconButton
+			aria-label="favorite"
+			aria-describedby="Add or remove from favorites"
+			onClick={() => onClickFn()}
+		>
+			{isFavorite ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
+		</IconButton>
 	);
 };
 
