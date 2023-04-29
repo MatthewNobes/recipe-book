@@ -1,4 +1,4 @@
 export const toggleFavorite = (id) => {
 	console.log("id to set as fav is ", id);
-	return "success1";
+	return "success";
 };
