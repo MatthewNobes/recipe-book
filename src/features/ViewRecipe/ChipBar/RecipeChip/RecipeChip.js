@@ -10,7 +10,7 @@ export const RecipeChip = ({ value = 0, label = "" }) => {
 			<Chip
 				icon={<AccessTimeIcon />}
 				label={label + valueToDisplay}
-				color="primary"
+				color="warning"
 				variant="outlined"
 			/>
 		</Tooltip>

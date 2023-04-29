@@ -23,7 +23,7 @@ export const ViewRecipe = () => {
 		const difficultyRating = recipe.difficulty_rating;
 		const servesNumber = recipe.serving_number;
 		const imageSource = recipe.images[0];
-
+		const country = recipe.country;
 		const isFavorite = false; // to be populated later
 		const recipeSource = recipe.source;
 		const cookTime = recipe.cook_time;
@@ -52,6 +52,7 @@ export const ViewRecipe = () => {
 							difficultyRating={difficultyRating}
 							cookTime={cookTime}
 							prepTime={prepTime}
+							country={country}
 						/>
 						<Typography variant="body1" sx={{ textAlign: "left" }}>
 							{recipeDescription}
