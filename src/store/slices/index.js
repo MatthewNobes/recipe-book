@@ -1,2 +1,3 @@
 import appearanceReducer from "./appearanceSlice/appearanceSlice";
-export { appearanceReducer };
+import toastReducer from "./toastSlice/toastSlice";
+export { appearanceReducer, toastReducer };

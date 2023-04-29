@@ -12,6 +12,7 @@ import ImageGallery from "./ImageGallery";
 import Navigation from "./Navigation";
 import RecipeListCard from "./RecipeListCard";
 import SubPageHeader from "./SubPageHeader";
+import ToastNotification from "./ToastNotification";
 export {
 	RecipeForm,
 	FavoriteButton,
@@ -25,4 +26,5 @@ export {
 	Navigation,
 	RecipeListCard,
 	SubPageHeader,
+	ToastNotification,
 };

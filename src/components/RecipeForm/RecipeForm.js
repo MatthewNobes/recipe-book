@@ -18,6 +18,8 @@ import {
 import { useState } from "react";
 import { addRecipe } from "../../data";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import PropTypes from "prop-types";
 
 /**
@@ -27,6 +29,7 @@ import PropTypes from "prop-types";
  */
 export const RecipeForm = (props) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	let initialRecipeValues = {
 		name: "",
@@ -107,9 +110,22 @@ export const RecipeForm = (props) => {
 		const newRecipeID = await addRecipe(valuesToSubmit);
 
 		if (Number.isInteger(newRecipeID)) {
+			dispatch(
+				setToast({
+					message: "Recipe created",
+					alertType: "success",
+					isOpen: true,
+				}),
+			);
 			navigate("/ViewRecipe/" + newRecipeID);
 		} else {
-			console.log("Could not add recipe");
+			dispatch(
+				setToast({
+					message: "Could not create recipe",
+					alertType: "error",
+					isOpen: true,
+				}),
+			);
 		}
 	};
 

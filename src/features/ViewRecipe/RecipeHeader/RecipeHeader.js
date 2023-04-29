@@ -3,12 +3,15 @@ import { ArrowBack, MoreVert } from "@mui/icons-material";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import deleteRecipe from "../../../data/deleteRecipe/deleteRecipe";
+import { deleteRecipe } from "../../../data";
+import { useDispatch } from "react-redux";
+import { setToast } from "../../../store/slices/toastSlice/toastSlice";
 import PropTypes from "prop-types";
 
 export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const goBack = () => {
 		navigate(-1);
@@ -17,16 +20,36 @@ export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 	const menuOptions = [
 		{
 			label: "Edit recipe",
-			onClickFunction: () => console.log("Edit recipe - to do later"),
+			onClickFunction: () =>
+				dispatch(
+					setToast({
+						message: "This feature will be added later",
+						alertType: "info",
+						isOpen: true,
+					}),
+				),
 		},
 		{
 			label: "Delete recipe",
 			onClickFunction: async () => {
 				const response = await deleteRecipe(id);
 				if (response === "success") {
+					dispatch(
+						setToast({
+							message: "Delete successful",
+							alertType: "success",
+							isOpen: true,
+						}),
+					);
 					await goBack();
 				} else {
-					console.log("delete failed");
+					dispatch(
+						setToast({
+							message: "Unable to delete",
+							alertType: "error",
+							isOpen: true,
+						}),
+					);
 				}
 			},
 		},
