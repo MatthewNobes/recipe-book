@@ -2,6 +2,8 @@ import { ImageGallery } from "./ImageGallery";
 import { render, screen } from "@testing-library/react";
 import { utf8Decode } from "../../utils";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../../store/store";
 
 describe("Image gallery", () => {
 	const recipes = [
@@ -15,9 +17,11 @@ describe("Image gallery", () => {
 	];
 	it("should load the gallery with the supplied images", () => {
 		render(
-			<BrowserRouter>
-				<ImageGallery recipes={recipes} howManyToDisplay={8} />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<ImageGallery recipes={recipes} howManyToDisplay={8} />
+				</BrowserRouter>
+			</Provider>,
 		);
 
 		recipes.forEach((recipe) => {
@@ -28,9 +32,11 @@ describe("Image gallery", () => {
 
 	it("should only load the first two images from the recipe array", () => {
 		render(
-			<BrowserRouter>
-				<ImageGallery recipes={recipes} howManyToDisplay={2} />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<ImageGallery recipes={recipes} howManyToDisplay={2} />
+				</BrowserRouter>
+			</Provider>,
 		);
 
 		const imageOne = screen.getByAltText(utf8Decode(recipes[0].description));
