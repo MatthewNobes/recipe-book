@@ -10,7 +10,7 @@ export const ToastNotification = () => {
 	const dispatch = useDispatch();
 
 	const handleClose = () => {
-		dispatch(setToast({ message: "", alertType: "", isOpen: false }));
+		dispatch(setToast({ message: "", alertType: "success", isOpen: false }));
 	};
 
 	return (
