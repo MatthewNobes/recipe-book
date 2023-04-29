@@ -9,9 +9,11 @@ import Admin from "./Admin";
 import Appearance from "./Appearance";
 import About from "./About";
 import ViewRecipe from "./ViewRecipe";
+import { Login } from "./Login/Login";
 
 export const Router = () => (
 	<Routes>
+		<Route path="/Login" element={<Login />} />
 		<Route path="/addRecipe" element={<AddRecipe />} />
 		<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
 		<Route path="/Settings/Admin" element={<Admin />} />
