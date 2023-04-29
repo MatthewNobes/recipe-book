@@ -1,5 +1,7 @@
 # Recipe App
 
+[![CI Build](https://github.com/MatthewNobes/recipe-book/actions/workflows/ci.js.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/ci.js.yml) [![CI CodeQL](https://github.com/MatthewNobes/recipe-book/actions/workflows/codeql.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/codeql.yml) [![CI Docker Image](https://github.com/MatthewNobes/recipe-book/actions/workflows/docker-image.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/docker-image.yml) [![CI ESLint](https://github.com/MatthewNobes/recipe-book/actions/workflows/eslint.yml/badge.svg)](https://github.com/MatthewNobes/recipe-book/actions/workflows/eslint.yml)
+
 This is the frontend web app for the recipe book system. It consists of a JS React web app that uses a [supabase](https://supabase.com/) database underneath to manage the backend, including storage and authentication. 
 
 It was originally built from a create-react-app template that has grown and changed significantly. 
@@ -56,13 +58,13 @@ This component is setup with a Dockerfile. An image of this app can be created
 using the docker build command as seen below. (insert-name marks where you can
 set the Docker image name, the -t flag allows this name tag to be allocated)
 
-```
+```bash
 docker build . -t insert-name
 ```
 
 To load this Docker image into a container, the docker run command is used as follows with the name selected for the image in the previous step in place for `insert-name`.
 
-```
+```bash
 docker run -p 3000:3000 -d insert-name
 ```
 
