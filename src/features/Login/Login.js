@@ -6,6 +6,7 @@ import { Header } from "../../components";
 import { auth } from "../../data";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
+import { Lock } from "@mui/icons-material";
 
 export const Login = () => {
 	const dispatch = useDispatch();
@@ -28,24 +29,22 @@ export const Login = () => {
 	});
 
 	const submitHandle = async (values) => {
-		console.log(values);
 		const result = await auth(values.email, values.password);
 
-		console.log(result);
-		if (result === "success") {
+		if (result === "error") {
 			// direct to the next page
 			dispatch(
 				setToast({
-					message: "Login successful",
-					alertType: "success",
+					message: "Login error",
+					alertType: "error",
 					isOpen: true,
 				}),
 			);
 		} else {
 			dispatch(
 				setToast({
-					message: "Login error",
-					alertType: "error",
+					message: "Login successful",
+					alertType: "success",
 					isOpen: true,
 				}),
 			);
@@ -55,39 +54,51 @@ export const Login = () => {
 	return (
 		<Box>
 			<Header headerText="Recipe Book" />
-			<Formik
-				initialValues={loginValues}
-				onSubmit={(values) => {
-					submitHandle(values);
+			<Box
+				sx={{
+					backgroundColor: "background.paper",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					height: "80vh",
 				}}
-				validationSchema={validationSchema}
 			>
-				<Form>
-					<Box
-						sx={{
-							display: "flex",
-							gap: 2,
-							flexDirection: "column",
-							mt: "40%",
-							mx: 1,
+				<Box sx={{ mx: 1, boxShadow: 1, maxWidth: "400px", width: "100%" }}>
+					<Formik
+						initialValues={loginValues}
+						onSubmit={(values) => {
+							submitHandle(values);
 						}}
+						validationSchema={validationSchema}
 					>
-						<Typography variant="h3">Login</Typography>
-						<TextfieldWrapper name="email" label="Email" required={true} />
-						<TextfieldWrapper
-							name="password"
-							label="Password"
-							type="password"
-							required={true}
-						/>
-						<Box sx={{ marginY: 2, float: "right" }}>
-							<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
-								Login
-							</SubmitButtonWrapper>
-						</Box>
-					</Box>
-				</Form>
-			</Formik>
+						<Form>
+							<Box
+								sx={{
+									display: "flex",
+									gap: 2,
+									flexDirection: "column",
+									mx: 2,
+									my: 2,
+									alignItems: "center",
+								}}
+							>
+								<Lock color="primary" fontSize="large" />
+								<Typography variant="h3">Sign In</Typography>
+								<TextfieldWrapper name="email" label="Email" required={true} />
+								<TextfieldWrapper
+									name="password"
+									label="Password"
+									type="password"
+									required={true}
+								/>
+								<SubmitButtonWrapper sx={{ width: "100%" }}>
+									Sign In
+								</SubmitButtonWrapper>
+							</Box>
+						</Form>
+					</Formik>
+				</Box>
+			</Box>
 		</Box>
 	);
 };
