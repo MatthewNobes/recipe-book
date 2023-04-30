@@ -51,7 +51,11 @@ export const Login = () => {
 				}),
 			);
 			dispatch(setIsLoggedIn(true));
-			navigate(-1);
+			if (process.env.NODE_ENV === "development") {
+				navigate(-2);
+			} else {
+				navigate(-1);
+			}
 		}
 	};
 
