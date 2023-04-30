@@ -1,3 +1,4 @@
 import appearanceReducer from "./appearanceSlice/appearanceSlice";
 import toastReducer from "./toastSlice/toastSlice";
-export { appearanceReducer, toastReducer };
+import isLoggedInReducer from "./isLoggedInSlice/isLoggedInSlice";
+export { appearanceReducer, toastReducer, isLoggedInReducer };

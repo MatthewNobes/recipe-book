@@ -7,9 +7,12 @@ import { auth } from "../../data";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import { Lock } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { setIsLoggedIn } from "../../store/slices/isLoggedInSlice/isLoggedInSlice";
 
 export const Login = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const loginValues = {
 		email: "",
@@ -32,7 +35,6 @@ export const Login = () => {
 		const result = await auth(values.email, values.password);
 
 		if (result === "error") {
-			// direct to the next page
 			dispatch(
 				setToast({
 					message: "Login error",
@@ -48,6 +50,8 @@ export const Login = () => {
 					isOpen: true,
 				}),
 			);
+			dispatch(setIsLoggedIn(true));
+			navigate(-1);
 		}
 	};
 
