@@ -6,10 +6,7 @@ import supabase from "../supabase";
  * @param {string} password the password to login with
  * @returns Either "error" or the session token, depending on the result of the login
  */
-const auth = async (
-	email = process.env.REACT_APP_SUPABASE_EMAIL,
-	password = process.env.REACT_APP_SUPABASE_WD,
-) => {
+const auth = async (email, password) => {
 	const { data, error } = await supabase.auth.signInWithPassword({
 		email: email,
 		password: password,
