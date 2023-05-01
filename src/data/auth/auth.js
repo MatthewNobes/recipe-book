@@ -1,16 +1,20 @@
-/* eslint-disable no-unused-vars */
 import supabase from "../supabase";
 
-// will need a proper login system soon
-const auth = async () => {
+/**
+ * Used to authenticate a user with their username and password
+ * @param {string} email the email to login with
+ * @param {string} password the password to login with
+ * @returns Either "error" or the session token, depending on the result of the login
+ */
+const auth = async (email, password) => {
 	const { data, error } = await supabase.auth.signInWithPassword({
-		email: process.env.REACT_APP_SUPABASE_EMAIL,
-		password: process.env.REACT_APP_SUPABASE_WD,
+		email: email,
+		password: password,
 	});
 	if (error) {
-		console.log(error);
+		return "error";
 	} else {
-		console.log(data);
+		return data.session.access_token;
 	}
 };
 

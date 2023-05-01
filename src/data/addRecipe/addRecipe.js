@@ -1,8 +1,6 @@
 import supabase from "../supabase";
-import { auth } from "../index";
 
 const addRecipe = async (values) => {
-	await auth();
 	const { data, error } = await supabase
 		.from("recipes")
 		.insert([values])

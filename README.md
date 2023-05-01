@@ -23,13 +23,6 @@ REACT_APP_SUPABASE_URL = "<url goes here>"
 REACT_APP_SUPABASE_KEY="<key goes here>"
 ```
 
-Currently, no login system has been created, so you will also need to set the following environment variables about a test user in the users table in supabase. 
-
-```js
-REACT_APP_SUPABASE_EMAIL="<username goes here>"
-REACT_APP_SUPABASE_WD="<password goes here>"
-```
-
 Once this is configured, start up the app using the command:
 
 ```bash
