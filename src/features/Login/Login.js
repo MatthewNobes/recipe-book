@@ -1,66 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import { Formik, Form } from "formik";
-import * as yup from "yup";
-import { TextfieldWrapper, SubmitButtonWrapper } from "../../components/FormUI";
+import { Box } from "@mui/material";
 import { Header } from "../../components";
-import { auth } from "../../data";
-import { useDispatch } from "react-redux";
-import { setToast } from "../../store/slices/toastSlice/toastSlice";
-import { Lock } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import { setIsLoggedIn } from "../../store/slices/isLoggedInSlice/isLoggedInSlice";
-import supabase from "../../data/supabase";
+import { LoginForm } from "./LoginForm/LoginForm";
 
 export const Login = () => {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	const loginValues = {
-		email: "",
-		password: "",
-	};
-
-	const validationSchema = yup.object().shape({
-		email: yup
-			.string()
-			.required("Required")
-			.email("Must be a valid email")
-			.max(85, "Must not be greater than 85 characters"),
-		password: yup
-			.string()
-			.required("Required")
-			.max(64, "Must not be greater than 64 characters"),
-	});
-
-	const submitHandle = async (values) => {
-		const result = await auth(values.email, values.password);
-
-		if (result === "error") {
-			dispatch(
-				setToast({
-					message: "Login error",
-					alertType: "error",
-					isOpen: true,
-				}),
-			);
-		} else {
-			dispatch(
-				setToast({
-					message: "Login successful",
-					alertType: "success",
-					isOpen: true,
-				}),
-			);
-			console.log(supabase.changedAccessToken);
-			dispatch(setIsLoggedIn(true));
-			if (process.env.NODE_ENV === "development") {
-				navigate(-2);
-			} else {
-				navigate(-1);
-			}
-		}
-	};
-
 	return (
 		<Box>
 			<Header headerText="Recipe Book" />
@@ -74,39 +16,7 @@ export const Login = () => {
 				}}
 			>
 				<Box sx={{ mx: 1, boxShadow: 1, maxWidth: "400px", width: "100%" }}>
-					<Formik
-						initialValues={loginValues}
-						onSubmit={(values) => {
-							submitHandle(values);
-						}}
-						validationSchema={validationSchema}
-					>
-						<Form>
-							<Box
-								sx={{
-									display: "flex",
-									gap: 2,
-									flexDirection: "column",
-									mx: 2,
-									my: 2,
-									alignItems: "center",
-								}}
-							>
-								<Lock color="primary" fontSize="large" />
-								<Typography variant="h3">Sign In</Typography>
-								<TextfieldWrapper name="email" label="Email" required={true} />
-								<TextfieldWrapper
-									name="password"
-									label="Password"
-									type="password"
-									required={true}
-								/>
-								<SubmitButtonWrapper sx={{ width: "100%" }}>
-									Sign In
-								</SubmitButtonWrapper>
-							</Box>
-						</Form>
-					</Formik>
+					<LoginForm />
 				</Box>
 			</Box>
 		</Box>
