@@ -9,6 +9,7 @@ import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import { Lock } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { setIsLoggedIn } from "../../store/slices/isLoggedInSlice/isLoggedInSlice";
+import supabase from "../../data/supabase";
 
 export const Login = () => {
 	const dispatch = useDispatch();
@@ -50,6 +51,7 @@ export const Login = () => {
 					isOpen: true,
 				}),
 			);
+			console.log(supabase.changedAccessToken);
 			dispatch(setIsLoggedIn(true));
 			if (process.env.NODE_ENV === "development") {
 				navigate(-2);

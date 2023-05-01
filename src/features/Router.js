@@ -21,7 +21,7 @@ export const Router = () => {
 	const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
 
 	useEffect(() => {
-		const loggedInStatus = supabase.realtime.accessToken ? true : false;
+		const loggedInStatus = supabase.changedAccessToken ? true : false;
 		dispatch(setIsLoggedIn(loggedInStatus));
 	});
 	return (
@@ -32,7 +32,10 @@ export const Router = () => {
 				element={isLoggedIn ? <AddRecipe /> : <Navigate to="/Login" />}
 			></Route>
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
-			<Route path="/Settings/Admin" element={<Admin />} />
+			<Route
+				path="/Settings/Admin"
+				element={isLoggedIn ? <Admin /> : <Navigate to="/Login" />}
+			/>
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/Settings/Appearance" element={<Appearance />} />
 			<Route path="/Settings" element={<Settings />} />

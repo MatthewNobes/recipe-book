@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import supabase from "../../../data/supabase";
 
 const getInitialState = () => {
-	const isLoggedIn = supabase.realtime.accessToken ? true : false;
+	const isLoggedIn = supabase.changedAccessToken ? true : false;
 	return { isLoggedIn: isLoggedIn };
 };
 
