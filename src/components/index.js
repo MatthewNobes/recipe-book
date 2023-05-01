@@ -9,6 +9,7 @@ import {
 } from "./FormUI";
 import Header from "./Header";
 import ImageGallery from "./ImageGallery";
+import LoginButton from "./LoginButton";
 import Navigation from "./Navigation";
 import RecipeListCard from "./RecipeListCard";
 import SignOutButton from "./SignOutButton";
@@ -24,6 +25,7 @@ export {
 	ResetButtonWrapper,
 	Header,
 	ImageGallery,
+	LoginButton,
 	Navigation,
 	RecipeListCard,
 	SignOutButton,
