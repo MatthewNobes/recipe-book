@@ -9,7 +9,7 @@ import {
 } from "../../../FormUI";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { getAllCountries } from "../../../../data";
+import { getAllCountries, getAllRegions } from "../../../../data";
 
 export const BasicDetailsForm = (props) => {
 	// eslint-disable-next-line no-unused-vars
@@ -20,15 +20,23 @@ export const BasicDetailsForm = (props) => {
 		{ id: 4, label: "Russian" },
 	]);
 
+	const [regions, setRegions] = useState([]);
+
 	useEffect(() => {
-		const fetchRecipes = async () => {
+		const fetchComboBoxData = async () => {
 			const countriesArray = await getAllCountries();
 			const countriesResultArray = countriesArray.map((country, index) => {
 				return { id: index, label: country.name };
 			});
 			setCountries(countriesResultArray);
+
+			const regionsArray = await getAllRegions();
+			const regionsResultArray = regionsArray.map((region, index) => {
+				return { id: index, label: region.region };
+			});
+			setRegions(regionsResultArray);
 		};
-		fetchRecipes();
+		fetchComboBoxData();
 	}, []);
 
 	const validationSchema = yup.object().shape({
@@ -65,6 +73,7 @@ export const BasicDetailsForm = (props) => {
 			.min(1, "Must be at least 1"),
 
 		country: yup.string().max(85, "Must not be greater than 85 characters"),
+		region: yup.string().max(85, "Must not be greater than 85 characters"),
 	});
 
 	const submitHandle = (values) => {
@@ -77,6 +86,7 @@ export const BasicDetailsForm = (props) => {
 			source: values.source,
 			serving_number: values.serving_number,
 			country: values.country,
+			region: values.region,
 		});
 		props.handleNext();
 	};
@@ -132,6 +142,11 @@ export const BasicDetailsForm = (props) => {
 						name="country"
 						label="Country"
 						options={countries}
+					></AutoCompleteWrapper>
+					<AutoCompleteWrapper
+						name="region"
+						label="Region"
+						options={regions}
 					></AutoCompleteWrapper>
 				</Box>
 				<Box sx={{ marginY: 2, float: "right" }}>
