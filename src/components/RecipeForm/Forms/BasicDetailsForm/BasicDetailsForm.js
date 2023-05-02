@@ -9,7 +9,11 @@ import {
 } from "../../../FormUI";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { getAllCountries, getAllRegions } from "../../../../data";
+import {
+	getAllCountries,
+	getAllRegions,
+	getAllCategories,
+} from "../../../../data";
 
 export const BasicDetailsForm = (props) => {
 	// eslint-disable-next-line no-unused-vars
@@ -21,6 +25,7 @@ export const BasicDetailsForm = (props) => {
 	]);
 
 	const [regions, setRegions] = useState([]);
+	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
 		const fetchComboBoxData = async () => {
@@ -35,6 +40,12 @@ export const BasicDetailsForm = (props) => {
 				return { id: index, label: region.region };
 			});
 			setRegions(regionsResultArray);
+
+			const categoriesArray = await getAllCategories();
+			const categoriesResultArray = categoriesArray.map((category, index) => {
+				return { id: index, label: category.categories };
+			});
+			setCategories(categoriesResultArray);
 		};
 		fetchComboBoxData();
 	}, []);
@@ -74,6 +85,7 @@ export const BasicDetailsForm = (props) => {
 
 		country: yup.string().max(85, "Must not be greater than 85 characters"),
 		region: yup.string().max(85, "Must not be greater than 85 characters"),
+		category: yup.string().max(85, "Must not be greater than 85 characters"),
 	});
 
 	const submitHandle = (values) => {
@@ -87,6 +99,7 @@ export const BasicDetailsForm = (props) => {
 			serving_number: values.serving_number,
 			country: values.country,
 			region: values.region,
+			category: values.category,
 		});
 		props.handleNext();
 	};
@@ -113,6 +126,11 @@ export const BasicDetailsForm = (props) => {
 						rows={4}
 						required={true}
 					></TextfieldWrapper>
+					<AutoCompleteWrapper
+						name="category"
+						label="Category"
+						options={categories}
+					></AutoCompleteWrapper>
 					<TextfieldWrapper
 						name="difficulty_rating"
 						label="Difficulty Rating"
