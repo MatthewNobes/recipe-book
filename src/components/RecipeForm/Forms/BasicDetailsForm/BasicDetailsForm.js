@@ -16,14 +16,7 @@ import {
 } from "../../../../data";
 
 export const BasicDetailsForm = (props) => {
-	// eslint-disable-next-line no-unused-vars
-	const [countries, setCountries] = useState([
-		{ id: 1, label: "British" },
-		{ id: 2, label: "French" },
-		{ id: 3, label: "Italian" },
-		{ id: 4, label: "Russian" },
-	]);
-
+	const [countries, setCountries] = useState([]);
 	const [regions, setRegions] = useState([]);
 	const [categories, setCategories] = useState([]);
 
