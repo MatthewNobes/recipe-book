@@ -8,7 +8,6 @@ const getAllRegions = async () => {
 		return [];
 	}
 	if (data) {
-		console.log(data);
 		return data;
 	}
 };

@@ -2,7 +2,7 @@ import { List, ListItem, Fab, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ImageModel from "./ImageModel";
 import { useState } from "react";
-import { Image } from "./Image/Image";
+import { Image } from "./Image";
 import PropTypes from "prop-types";
 
 export const ImageList = (props) => {
