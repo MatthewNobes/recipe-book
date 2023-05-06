@@ -23,7 +23,8 @@ const validationSchema = yup.object().shape({
 	url: yup
 		.string()
 		.required("Required")
-		.max(1024, "Must not be greater than 1024 characters"),
+		.max(1024, "Must not be greater than 1024 characters")
+		.url("Must be a URL"),
 });
 
 const initialValues = {

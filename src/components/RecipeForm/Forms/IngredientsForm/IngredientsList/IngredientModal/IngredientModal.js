@@ -9,6 +9,8 @@ import {
 	ResetButtonWrapper,
 } from "../../../../../FormUI";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import { getAllUnits } from "../../../../../../data";
 
 const style = {
 	position: "absolute",
@@ -28,7 +30,7 @@ const style = {
 const validationSchema = yup.object().shape({
 	name: yup
 		.string()
-		.required("Required")
+		.required("An ingredient is required")
 		.max(85, "Must not be greater than 85 characters"),
 	measurement: yup.string(),
 	quantity: yup
@@ -46,10 +48,9 @@ const initialValues = {
 
 export const IngredientModal = (props) => {
 	const operation = props.operation;
+	const [units, setUnits] = useState([{ id: 1, label: "g" }]);
 
 	const handleClose = () => props.setModalOpenStatus(false);
-
-	const units = [{ id: 1, label: "g" }];
 
 	const submitHandle = (values) => {
 		props.addIngredient({
@@ -60,6 +61,17 @@ export const IngredientModal = (props) => {
 
 		handleClose();
 	};
+
+	useEffect(() => {
+		const populateUnits = async () => {
+			const incomingUnits = await getAllUnits();
+			const toAddUnits = incomingUnits.map((unit) => {
+				return { id: unit.id, label: unit.unit };
+			});
+			setUnits(toAddUnits);
+		};
+		populateUnits();
+	});
 
 	return (
 		<Modal

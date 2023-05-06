@@ -51,13 +51,13 @@ export const BasicDetailsForm = (props) => {
 		description: yup
 			.string()
 			.required("Required")
-			.max(85, "Must not be greater than 85 characters"),
+			.max(512, "Must not be greater than 512 characters"),
 		difficulty_rating: yup
 			.number()
 			.positive("Must be positive")
 			.integer("Must be a whole number")
-			.min(1, "Must be at least 1")
-			.max(10, "Must be under 10"),
+			.min(1, "Must be between 1 and 10")
+			.max(10, "Must be between 1 and 10"),
 		prep_time: yup
 			.number()
 			.required("Required")
@@ -68,7 +68,11 @@ export const BasicDetailsForm = (props) => {
 			.required("Required")
 			.positive("Must be positive")
 			.integer("Must be a whole number"),
-		source: yup.string().max(85, "Must not be greater than 85 characters"),
+		source: yup
+			.string()
+			.max(512, "Must not be greater than 512 characters")
+			.url("Must be a URL")
+			.nullable(),
 		serving_number: yup
 			.number()
 			.required("Required")
