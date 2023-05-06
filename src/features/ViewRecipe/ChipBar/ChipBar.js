@@ -17,6 +17,7 @@ export const ChipBar = ({
 			sx={{
 				display: "flex",
 				flexDirection: "row",
+				justifyContent: "space-between",
 				flexWrap: "wrap",
 			}}
 		>
@@ -25,7 +26,7 @@ export const ChipBar = ({
 					display: "flex",
 					gap: "10px",
 					mt: 1,
-					mb: 1,
+					mr: 1,
 					flexWrap: "wrap",
 				}}
 			>
