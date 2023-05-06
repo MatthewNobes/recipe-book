@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Box, Typography, Divider, CircularProgress } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
-import { FavoriteButton } from "../../components";
+import { FavoriteButton, Loading } from "../../components";
 import { useParams } from "react-router-dom";
 import { getRecipeByID } from "../../data";
 
@@ -69,10 +69,6 @@ export const ViewRecipe = () => {
 			</>
 		);
 	} else {
-		return (
-			<Box sx={{ display: "flex", justifyContent: "center" }}>
-				<CircularProgress />
-			</Box>
-		);
+		return <Loading />;
 	}
 };

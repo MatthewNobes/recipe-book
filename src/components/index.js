@@ -10,6 +10,7 @@ import {
 import Header from "./Header";
 import ImageGallery from "./ImageGallery";
 import LoginButton from "./LoginButton";
+import Loading from "./Loading";
 import Navigation from "./Navigation";
 import RecipeListCard from "./RecipeListCard";
 import SignOutButton from "./SignOutButton";
@@ -25,6 +26,7 @@ export {
 	ResetButtonWrapper,
 	Header,
 	ImageGallery,
+	Loading,
 	LoginButton,
 	Navigation,
 	RecipeListCard,
