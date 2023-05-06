@@ -9,6 +9,7 @@ import Admin from "./Admin";
 import Appearance from "./Appearance";
 import About from "./About";
 import ViewRecipe from "./ViewRecipe";
+import EditRecipe from "./EditRecipe";
 import { Login } from "./Login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -28,9 +29,13 @@ export const Router = () => {
 		<Routes>
 			<Route path="/Login" element={<Login />} />
 			<Route
-				path="/addRecipe"
+				path="/add"
 				element={isLoggedIn ? <AddRecipe /> : <Navigate to="/Login" />}
-			></Route>
+			/>
+			<Route
+				path="/edit/:recipeID"
+				element={isLoggedIn ? <EditRecipe /> : <Navigate to="/Login" />}
+			/>
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
 			<Route
 				path="/Settings/Admin"
