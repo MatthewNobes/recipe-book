@@ -26,8 +26,8 @@ const style = {
 const validationSchema = yup.object().shape({
 	instruction: yup
 		.string()
-		.required("Required")
-		.max(682, "Must not be greater than 682 characters"),
+		.required("A step is required")
+		.max(1024, "Must not be greater than 1024 characters"),
 });
 
 const initialValues = {
@@ -39,10 +39,7 @@ export const MethodModal = (props) => {
 	const handleClose = () => props.setModalOpenStatus(false);
 
 	const submitHandle = (values) => {
-		props.addInstruction({
-			instruction: values.instruction,
-		});
-
+		props.addInstruction(values.instruction);
 		handleClose();
 	};
 

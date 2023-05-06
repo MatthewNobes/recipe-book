@@ -4,10 +4,12 @@ import { setToast } from "../../../../store/slices/toastSlice/toastSlice";
 import { deleteRecipe } from "../../../../data";
 import { useState } from "react";
 import { MoreVert } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
 export const RecipeHeaderMenu = ({ id, goBack }) => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
@@ -25,14 +27,7 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 		menuOptions = [
 			{
 				label: "Edit recipe",
-				onClickFunction: () =>
-					dispatch(
-						setToast({
-							message: "This feature will be added later",
-							alertType: "info",
-							isOpen: true,
-						}),
-					),
+				onClickFunction: () => navigate("/edit/" + id, { replace: false }),
 			},
 			{
 				label: "Delete recipe",

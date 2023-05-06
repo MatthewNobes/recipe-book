@@ -30,33 +30,34 @@ const initialValues = {
 	url: "",
 };
 
-export const ImageModel = (props) => {
-	const handleClose = () => props.setModalOpenStatus(false);
+export const ImageModel = ({
+	setModalOpenStatus,
+	addImage,
+	modalOpenStatus,
+	operation,
+}) => {
+	const handleClose = () => setModalOpenStatus(false);
 
 	const clearForm = (values) => {
 		console.log(values);
 	};
 
 	const submitHandle = (values) => {
-		props.addImage({
-			imageSource: values.url,
-			isLandscape: true,
-		});
-
+		addImage(values.url);
 		clearForm(values);
 		handleClose();
 	};
 
 	return (
 		<Modal
-			open={props.modalOpenStatus}
+			open={modalOpenStatus}
 			onClose={handleClose}
-			aria-labelledby="image add/edit model"
-			aria-describedby="image add/edit model"
+			aria-labelledby={`image ${operation} model`}
+			aria-describedby={`image ${operation} model`}
 		>
 			<Box sx={style}>
 				<Typography id="modal-title" variant="h6" component="h2">
-					Add/edit an image
+					{operation} an image
 				</Typography>
 				<Formik
 					initialValues={initialValues}
@@ -87,4 +88,5 @@ ImageModel.propTypes = {
 	setModalOpenStatus: PropTypes.func,
 	addImage: PropTypes.func,
 	modalOpenStatus: PropTypes.bool,
+	operation: PropTypes.string,
 };

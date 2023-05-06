@@ -25,11 +25,13 @@ import PropTypes from "prop-types";
 /**
  * The form experience to add or edit a recipe. Pass valuesToEdit if this is form is being used to edit a recipe, if nothing is passed, it will assume the forms purpose is to add a recipe
  * @param {valuesToEdit} props valuesToEdit contains the recipeValues that will be edited
- * @returns
+ * @returns JSX Recipe form system
  */
 export const RecipeForm = (props) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	const formType = props.valuesToEdit ? "edit" : "add";
 
 	let initialRecipeValues = {
 		name: "",
@@ -48,7 +50,7 @@ export const RecipeForm = (props) => {
 		images: [],
 	};
 
-	if (props.valuesToEdit) {
+	if (formType === "edit") {
 		initialRecipeValues = {
 			name: props.valuesToEdit.name,
 			description: props.valuesToEdit.description,
@@ -69,9 +71,11 @@ export const RecipeForm = (props) => {
 
 	const [activeStep, setActiveStep] = useState(0);
 	const [recipe, setRecipe] = useState(initialRecipeValues);
-	const [ingredients, setIngredients] = useState([]);
-	const [instructions, setInstructions] = useState([]);
-	const [images, setImages] = useState([]);
+	const [ingredients, setIngredients] = useState(
+		initialRecipeValues.ingredients,
+	);
+	const [steps, setSteps] = useState(initialRecipeValues.steps);
+	const [images, setImages] = useState(initialRecipeValues.images);
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -83,8 +87,9 @@ export const RecipeForm = (props) => {
 
 	const handleReset = () => {
 		setRecipe(initialRecipeValues);
-		setIngredients([]);
-		setInstructions([]);
+		setIngredients(initialRecipeValues.ingredients);
+		setSteps(initialRecipeValues.steps);
+		setImages(initialRecipeValues.images);
 		setActiveStep(0);
 	};
 
@@ -95,19 +100,11 @@ export const RecipeForm = (props) => {
 			return JSON.stringify(ingredient);
 		});
 
-		const imagesToSubmit = images.map((image) => {
-			return image.imageSource;
-		});
-
-		const instructionsToSubmit = instructions.map((instruction) => {
-			return instruction.instruction;
-		});
-
 		const valuesToSubmit = {
 			...recipe,
 			ingredients: ingredientsToSubmit,
-			steps: instructionsToSubmit,
-			images: imagesToSubmit,
+			steps: steps,
+			images: images,
 			keywords: [],
 		};
 
@@ -155,43 +152,40 @@ export const RecipeForm = (props) => {
 					</StepContent>
 				</Step>
 				<Step>
-					<StepLabel>Add ingredients</StepLabel>
+					<StepLabel>Ingredients</StepLabel>
 					<StepContent>
 						<IngredientsForm
 							setIngredients={setIngredients}
 							ingredientsArray={ingredients}
 						/>
 						<Box sx={{ mb: 2, float: "right" }}>
+							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+								Back
+							</Button>
 							<Button
 								variant="contained"
 								onClick={handleNext}
 								sx={{ mt: 1, mr: 1 }}
 							>
 								Next
-							</Button>
-							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-								Back
 							</Button>
 						</Box>
 					</StepContent>
 				</Step>
 				<Step>
-					<StepLabel>Add method</StepLabel>
+					<StepLabel>Method</StepLabel>
 					<StepContent>
-						<MethodForm
-							setInstructions={setInstructions}
-							instructionsArray={instructions}
-						/>
+						<MethodForm setInstructions={setSteps} instructionsArray={steps} />
 						<Box sx={{ mb: 2, float: "right" }}>
+							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+								Back
+							</Button>
 							<Button
 								variant="contained"
 								onClick={handleNext}
 								sx={{ mt: 1, mr: 1 }}
 							>
 								Next
-							</Button>
-							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-								Back
 							</Button>
 						</Box>
 					</StepContent>
@@ -200,20 +194,20 @@ export const RecipeForm = (props) => {
 					<StepLabel
 						optional={<Typography variant="caption">Last step</Typography>}
 					>
-						Add images
+						Images
 					</StepLabel>
 					<StepContent>
 						<ImageForm imageArray={images} setImages={setImages} />
 						<Box sx={{ mb: 2, float: "right" }}>
+							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+								Back
+							</Button>
 							<Button
 								variant="contained"
 								onClick={handleNext}
 								sx={{ mt: 1, mr: 1 }}
 							>
 								Finish
-							</Button>
-							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-								Back
 							</Button>
 						</Box>
 					</StepContent>
@@ -222,7 +216,7 @@ export const RecipeForm = (props) => {
 			{activeStep === 4 && (
 				<Paper square elevation={0} sx={{ p: 3 }}>
 					<Typography>
-						All steps completed - you&apos;re ready to submit the recipe
+						All done - you&apos;re ready to submit the recipe
 					</Typography>
 					<Button
 						onClick={handleSubmit}
