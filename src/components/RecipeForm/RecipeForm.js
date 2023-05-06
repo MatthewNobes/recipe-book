@@ -16,7 +16,7 @@ import {
 	ImageForm,
 } from "./Forms";
 import { useState } from "react";
-import { addRecipe } from "../../data";
+import { addRecipe, updateRecipe } from "../../data";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
@@ -108,21 +108,26 @@ export const RecipeForm = (props) => {
 			keywords: [],
 		};
 
-		const newRecipeID = await addRecipe(valuesToSubmit);
+		let id = NaN;
+		if (formType === "add") {
+			id = await addRecipe(valuesToSubmit);
+		} else {
+			id = await updateRecipe(props.idToEdit, valuesToSubmit);
+		}
 
-		if (Number.isInteger(newRecipeID)) {
+		if (Number.isInteger(id)) {
 			dispatch(
 				setToast({
-					message: "Recipe created",
+					message: `Recipe created ${formType}ed`,
 					alertType: "success",
 					isOpen: true,
 				}),
 			);
-			navigate("/ViewRecipe/" + newRecipeID);
+			navigate("/ViewRecipe/" + id);
 		} else {
 			dispatch(
 				setToast({
-					message: "Could not create recipe",
+					message: `Could not ${formType} recipe`,
 					alertType: "error",
 					isOpen: true,
 				}),
@@ -236,4 +241,5 @@ export const RecipeForm = (props) => {
 
 RecipeForm.propTypes = {
 	valuesToEdit: PropTypes.object,
+	idToEdit: PropTypes.number,
 };

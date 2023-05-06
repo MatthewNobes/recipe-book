@@ -25,7 +25,7 @@ export const EditRecipe = () => {
 		return (
 			<>
 				<SubPageHeader headerText="Edit Recipe" />
-				<RecipeForm valuesToEdit={recipeValues} />
+				<RecipeForm valuesToEdit={recipeValues} idToEdit={recipeID} />
 			</>
 		);
 	} else {
