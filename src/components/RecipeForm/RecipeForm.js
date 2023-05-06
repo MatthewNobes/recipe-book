@@ -108,17 +108,15 @@ export const RecipeForm = (props) => {
 			keywords: [],
 		};
 
-		let id = NaN;
-		if (formType === "add") {
-			id = await addRecipe(valuesToSubmit);
-		} else {
-			id = await updateRecipe(props.idToEdit, valuesToSubmit);
-		}
+		let id =
+			formType === "add"
+				? await addRecipe(valuesToSubmit)
+				: await updateRecipe(props.idToEdit, valuesToSubmit);
 
 		if (Number.isInteger(id)) {
 			dispatch(
 				setToast({
-					message: `Recipe created ${formType}ed`,
+					message: `Recipe ${formType}ed`,
 					alertType: "success",
 					isOpen: true,
 				}),
