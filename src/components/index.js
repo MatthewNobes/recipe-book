@@ -12,7 +12,7 @@ import ImageGallery from "./ImageGallery";
 import LoginButton from "./LoginButton";
 import Loading from "./Loading";
 import Navigation from "./Navigation";
-import RecipeListCard from "./RecipeListCard";
+import RecipeList from "./RecipeList";
 import SignOutButton from "./SignOutButton";
 import SubPageHeader from "./SubPageHeader";
 import ToastNotification from "./ToastNotification";
@@ -29,7 +29,7 @@ export {
 	Loading,
 	LoginButton,
 	Navigation,
-	RecipeListCard,
+	RecipeList,
 	SignOutButton,
 	SubPageHeader,
 	ToastNotification,
