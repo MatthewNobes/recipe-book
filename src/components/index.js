@@ -10,8 +10,9 @@ import {
 import Header from "./Header";
 import ImageGallery from "./ImageGallery";
 import LoginButton from "./LoginButton";
+import Loading from "./Loading";
 import Navigation from "./Navigation";
-import RecipeListCard from "./RecipeListCard";
+import RecipeList from "./RecipeList";
 import SignOutButton from "./SignOutButton";
 import SubPageHeader from "./SubPageHeader";
 import ToastNotification from "./ToastNotification";
@@ -25,9 +26,10 @@ export {
 	ResetButtonWrapper,
 	Header,
 	ImageGallery,
+	Loading,
 	LoginButton,
 	Navigation,
-	RecipeListCard,
+	RecipeList,
 	SignOutButton,
 	SubPageHeader,
 	ToastNotification,

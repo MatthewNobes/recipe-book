@@ -1,14 +1,14 @@
 import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import FavoriteButton from "../FavoriteButton";
+import FavoriteButton from "../../FavoriteButton";
 import TotalTime from "./TotalTime";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
-import { makeSecondaryText } from "../../utils";
+import { makeSecondaryText } from "../../../utils";
 import PropTypes from "prop-types";
 
-export const RecipeListCard = (props) => {
+export const RecipeListItem = (props) => {
 	const { id, recipeName, recipeDescription, isFavorite, cookTime, prepTime } =
 		props;
 	const navigate = useNavigate();
@@ -48,7 +48,7 @@ export const RecipeListCard = (props) => {
 	);
 };
 
-RecipeListCard.propTypes = {
+RecipeListItem.propTypes = {
 	id: PropTypes.number,
 	recipeName: PropTypes.string,
 	recipeDescription: PropTypes.string,

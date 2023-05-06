@@ -3,19 +3,30 @@ import { Instruction } from "./Instruction";
 
 describe("Instruction list component", () => {
 	it("should load the instruction component with the correct text", () => {
-		const instruction = {
-			id: 2,
-			instruction: "Whisk the eggs",
-			instructionNumber: 2,
-		};
+		const instruction = "Whisk the eggs";
 		render(
 			<Instruction
 				instruction={instruction}
+				index={0}
 				removeInstruction={(id) => console.log(id)}
 			/>,
 		);
 
-		const instructionListComponent = screen.getByText(instruction.instruction);
-		expect(instructionListComponent).toBeInTheDocument();
+		const instructionText = screen.getByText(instruction);
+		expect(instructionText).toBeInTheDocument();
+	});
+
+	it("should load the instruction component with the correct step number", () => {
+		const instruction = "Whisk the eggs";
+		render(
+			<Instruction
+				instruction={instruction}
+				index={0}
+				removeInstruction={(id) => console.log(id)}
+			/>,
+		);
+
+		const instructionNumber = screen.getByText("Step 1");
+		expect(instructionNumber).toBeInTheDocument();
 	});
 });

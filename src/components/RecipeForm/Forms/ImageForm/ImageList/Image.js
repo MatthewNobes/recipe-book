@@ -26,7 +26,7 @@ export const Image = ({ image, index, removeImage }) => {
 				<ListItemText
 					id={index}
 					primary={"Image " + (index + 1)}
-					secondary={image.imageSource}
+					secondary={image}
 				/>
 			</ListItemButton>
 		</ListItem>

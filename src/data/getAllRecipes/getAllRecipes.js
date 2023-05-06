@@ -1,7 +1,7 @@
 import supabase from "../supabase";
 
 const getAllRecipes = async () => {
-	let { data, error } = await supabase.from("recipes").select();
+	let { data, error } = await supabase.from("recipes-dev").select();
 
 	if (error) {
 		console.log(error);

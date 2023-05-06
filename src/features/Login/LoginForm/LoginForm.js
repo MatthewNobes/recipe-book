@@ -10,8 +10,6 @@ import { useDispatch } from "react-redux";
 import { setToast } from "../../../store/slices/toastSlice/toastSlice";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { setIsLoggedIn } from "../../../store/slices/isLoggedInSlice/isLoggedInSlice";
-import supabase from "../../../data/supabase";
 
 export const LoginForm = () => {
 	const dispatch = useDispatch();
@@ -53,8 +51,6 @@ export const LoginForm = () => {
 					isOpen: true,
 				}),
 			);
-			console.log(supabase.changedAccessToken);
-			dispatch(setIsLoggedIn(true));
 			if (process.env.NODE_ENV === "development") {
 				navigate(-2);
 			} else {

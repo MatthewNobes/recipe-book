@@ -17,14 +17,13 @@ export const MethodList = (props) => {
 	const removeInstruction = (instructionID) => {
 		props.removeInstruction(instructionID);
 	};
-	console.log(instructionArray);
 
 	return (
 		<>
 			<MethodModal
 				modalOpenStatus={modalOpenStatus}
 				setModalOpenStatus={setModalOpenStatus}
-				instructionArray={instructionArray}
+				operation={"Add"}
 				addInstruction={props.addInstruction}
 			/>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>

@@ -7,11 +7,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import PropTypes from "prop-types";
 
-export const Instruction = (props) => {
-	const instruction = props.instruction;
-	const index = props.index;
-	const removeInstruction = props.removeInstruction;
-
+export const Instruction = ({ instruction, index, removeInstruction }) => {
 	return (
 		<ListItem
 			key={index}
@@ -30,7 +26,7 @@ export const Instruction = (props) => {
 				<ListItemText
 					id={index}
 					primary={"Step " + (index + 1)}
-					secondary={instruction.instruction}
+					secondary={instruction}
 				/>
 			</ListItemButton>
 		</ListItem>

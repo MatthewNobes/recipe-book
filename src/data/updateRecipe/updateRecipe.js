@@ -1,9 +1,10 @@
 import supabase from "../supabase";
 
-const addRecipe = async (values) => {
+export const updateRecipe = async (idToUpdate, values) => {
 	const { data, error } = await supabase
 		.from("recipes-dev")
-		.insert([values])
+		.update(values)
+		.eq("id", idToUpdate)
 		.select();
 
 	if (error) {
@@ -13,5 +14,3 @@ const addRecipe = async (values) => {
 		return data[0].id;
 	}
 };
-
-export default addRecipe;

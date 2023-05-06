@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header, RecipeListCard } from "../../components";
-import { List } from "@mui/material";
+import { Header } from "../../components";
+import { RecipeList } from "../../components/RecipeList/RecipeList";
 import { getAllRecipes } from "../../data";
 
 export const BrowseRecipes = () => {
@@ -17,7 +17,7 @@ export const BrowseRecipes = () => {
 	const navigate = useNavigate();
 
 	const navigateToNewRecipe = useCallback(
-		() => navigate("/addRecipe", { replace: false }),
+		() => navigate("/add", { replace: false }),
 		[navigate],
 	);
 
@@ -37,31 +37,9 @@ export const BrowseRecipes = () => {
 	];
 
 	return (
-		<div>
+		<>
 			<Header headerText="Browse Recipes" menuOptions={menuOptions} />
-			<div>
-				<List
-					sx={{
-						width: "100%",
-						minWidth: 360,
-						bgcolor: "background.paper",
-					}}
-				>
-					{recipes.map((recipe) => {
-						return (
-							<RecipeListCard
-								key={recipe.id}
-								id={recipe.id}
-								recipeName={recipe.name}
-								recipeDescription={recipe.description}
-								isFavorite={false}
-								cookTime={recipe.cook_time}
-								prepTime={recipe.prep_time}
-							/>
-						);
-					})}
-				</List>
-			</div>
-		</div>
+			<RecipeList recipes={recipes} />
+		</>
 	);
 };

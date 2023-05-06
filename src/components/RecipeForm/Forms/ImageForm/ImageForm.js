@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { ImageList } from "./ImageList/ImageList";
 import { PropTypes } from "prop-types";
 
@@ -14,13 +13,11 @@ export const ImageForm = ({ setImages, imageArray }) => {
 	};
 
 	return (
-		<Box>
-			<ImageList
-				imageArray={imageArray}
-				addImage={addImage}
-				removeImage={removeImage}
-			/>
-		</Box>
+		<ImageList
+			imageArray={imageArray}
+			addImage={addImage}
+			removeImage={removeImage}
+		/>
 	);
 };
 
