@@ -1,7 +1,10 @@
 import supabase from "../supabase";
 
 const getRecipeByID = async (id) => {
-	let { data, error } = await supabase.from("recipes").select().eq("id", id);
+	let { data, error } = await supabase
+		.from("recipes-dev")
+		.select()
+		.eq("id", id);
 
 	if (error) {
 		console.log(error);

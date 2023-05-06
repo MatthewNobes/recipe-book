@@ -1,5 +1,6 @@
 import { Menu, MenuItem, IconButton, Avatar } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import supabase from "../../../../data/supabase";
+import { useDispatch } from "react-redux";
 import { setToast } from "../../../../store/slices/toastSlice/toastSlice";
 import { deleteRecipe } from "../../../../data";
 import { useState } from "react";
@@ -9,10 +10,11 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const RecipeHeaderMenu = ({ id, goBack }) => {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [anchorEl, setAnchorEl] = useState(null);
-	const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
+	const loggedIn = supabase.changedAccessToken ? true : false;
+
 	let menuOptions = [];
 
 	const handleMenu = (event) => {
@@ -23,7 +25,7 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 		setAnchorEl(null);
 	};
 
-	if (isLoggedIn) {
+	if (loggedIn) {
 		menuOptions = [
 			{
 				label: "Edit recipe",
@@ -56,7 +58,7 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 		];
 	}
 
-	if (isLoggedIn) {
+	if (loggedIn) {
 		return (
 			<>
 				<IconButton

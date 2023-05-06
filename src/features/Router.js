@@ -11,35 +11,37 @@ import About from "./About";
 import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
 import { Login } from "./Login/Login";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setIsLoggedIn } from "../store/slices/isLoggedInSlice/isLoggedInSlice";
+import { useEffect, useState } from "react";
 import supabase from "../data/supabase";
 
 export const Router = () => {
-	const dispatch = useDispatch();
+	const [loggedIn, setLoggedIn] = useState(
+		supabase.changedAccessToken ? true : false,
+	);
 
-	const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
-
-	useEffect(() => {
-		const loggedInStatus = supabase.changedAccessToken ? true : false;
-		dispatch(setIsLoggedIn(loggedInStatus));
+	supabase.auth.onAuthStateChange((event, session) => {
+		console.log(event, session);
+		if (session) {
+			setLoggedIn(true);
+		}
 	});
+
+	useEffect(() => {});
 	return (
 		<Routes>
 			<Route path="/Login" element={<Login />} />
 			<Route
 				path="/add"
-				element={isLoggedIn ? <AddRecipe /> : <Navigate to="/Login" />}
+				element={loggedIn ? <AddRecipe /> : <Navigate to="/Login" />}
 			/>
 			<Route
 				path="/edit/:recipeID"
-				element={isLoggedIn ? <EditRecipe /> : <Navigate to="/Login" />}
+				element={loggedIn ? <EditRecipe /> : <Navigate to="/Login" />}
 			/>
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
 			<Route
 				path="/Settings/Admin"
-				element={isLoggedIn ? <Admin /> : <Navigate to="/Login" />}
+				element={loggedIn ? <Admin /> : <Navigate to="/Login" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/Settings/Appearance" element={<Appearance />} />

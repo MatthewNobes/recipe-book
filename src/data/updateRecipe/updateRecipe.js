@@ -2,7 +2,7 @@ import supabase from "../supabase";
 
 export const updateRecipe = async (idToUpdate, values) => {
 	const { data, error } = await supabase
-		.from("recipes")
+		.from("recipes-dev")
 		.update(values)
 		.eq("id", idToUpdate)
 		.select();

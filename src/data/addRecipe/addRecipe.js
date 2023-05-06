@@ -2,7 +2,7 @@ import supabase from "../supabase";
 
 const addRecipe = async (values) => {
 	const { data, error } = await supabase
-		.from("recipes")
+		.from("recipes-dev")
 		.insert([values])
 		.select();
 

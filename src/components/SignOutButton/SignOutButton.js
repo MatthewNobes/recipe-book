@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import { signOut } from "../../data/signOut/signOut";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import { useDispatch } from "react-redux";
-import { setIsLoggedIn } from "../../store/slices/isLoggedInSlice/isLoggedInSlice";
 
 export const SignOutButton = () => {
 	const dispatch = useDispatch();
@@ -19,7 +18,6 @@ export const SignOutButton = () => {
 							isOpen: true,
 						}),
 					);
-					dispatch(setIsLoggedIn(false));
 				} else {
 					dispatch(
 						setToast({
