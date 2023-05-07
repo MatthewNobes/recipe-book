@@ -6,16 +6,21 @@ import { deleteRecipe } from "../../../../data";
 import { useState } from "react";
 import { MoreVert } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-
+import { DialogBox } from "../../../../components";
 import PropTypes from "prop-types";
 
 export const RecipeHeaderMenu = ({ id, goBack }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 	const loggedIn = supabase.changedAccessToken ? true : false;
 
 	let menuOptions = [];
+
+	const toggleDeleteDialog = () => {
+		setDeleteDialogOpen(!deleteDialogOpen);
+	};
 
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -23,6 +28,28 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+
+	const onDelete = async () => {
+		const response = await deleteRecipe(id);
+		if (response === "success") {
+			dispatch(
+				setToast({
+					message: "Delete successful",
+					alertType: "success",
+					isOpen: true,
+				}),
+			);
+			await goBack();
+		} else {
+			dispatch(
+				setToast({
+					message: "Unable to delete",
+					alertType: "error",
+					isOpen: true,
+				}),
+			);
+		}
 	};
 
 	if (loggedIn) {
@@ -33,26 +60,8 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 			},
 			{
 				label: "Delete recipe",
-				onClickFunction: async () => {
-					const response = await deleteRecipe(id);
-					if (response === "success") {
-						dispatch(
-							setToast({
-								message: "Delete successful",
-								alertType: "success",
-								isOpen: true,
-							}),
-						);
-						await goBack();
-					} else {
-						dispatch(
-							setToast({
-								message: "Unable to delete",
-								alertType: "error",
-								isOpen: true,
-							}),
-						);
-					}
+				onClickFunction: () => {
+					setDeleteDialogOpen(true);
 				},
 			},
 		];
@@ -94,6 +103,14 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 						);
 					})}
 				</Menu>
+				<DialogBox
+					title={"Delete recipe"}
+					message={"Are you sure you want to delete this recipe?"}
+					onAccept={onDelete}
+					onDecline={toggleDeleteDialog}
+					isOpen={deleteDialogOpen}
+					toggleOpen={toggleDeleteDialog}
+				/>
 			</>
 		);
 	}

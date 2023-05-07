@@ -16,6 +16,7 @@ import RecipeList from "./RecipeList";
 import SignOutButton from "./SignOutButton";
 import SubPageHeader from "./SubPageHeader";
 import ToastNotification from "./ToastNotification";
+import DialogBox from "./DialogBox";
 export {
 	RecipeForm,
 	FavoriteButton,
@@ -33,4 +34,5 @@ export {
 	SignOutButton,
 	SubPageHeader,
 	ToastNotification,
+	DialogBox,
 };
