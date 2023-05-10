@@ -14,7 +14,7 @@ import {
 	getAllRegions,
 	getAllCategories,
 } from "../../../../data";
-import { KeywordsBlock } from "./KeywordsBlock/KeywordsBlock";
+import { KeywordsForm } from "./KeywordsForm/KeywordsForm";
 
 export const BasicDetailsForm = (props) => {
 	const [countries, setCountries] = useState([]);
@@ -166,7 +166,7 @@ export const BasicDetailsForm = (props) => {
 						label="Region"
 						options={regions}
 					></AutoCompleteWrapper>
-					<KeywordsBlock
+					<KeywordsForm
 						keywords={keywords}
 						addKeyword={(newKeyword) => setKeywords([...keywords, newKeyword])}
 						removeKeyword={(idToRemove) => {

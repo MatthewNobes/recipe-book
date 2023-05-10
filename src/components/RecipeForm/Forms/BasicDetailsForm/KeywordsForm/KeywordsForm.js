@@ -1,11 +1,4 @@
-import {
-	InputAdornment,
-	Chip,
-	InputLabel,
-	FormControl,
-	Box,
-	Paper,
-} from "@mui/material";
+import { InputAdornment, InputLabel, FormControl, Paper } from "@mui/material";
 import {
 	OutlinedInputWrapper,
 	SubmitIconButtonWrapper,
@@ -14,34 +7,9 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import { Add } from "@mui/icons-material";
+import { KeywordBlock } from "./KeywordsBlock";
 
-const KeywordOutput = ({ keywords, removeKeyword }) => {
-	if (keywords.length > 0) {
-		return (
-			<Box
-				sx={{
-					display: "flex",
-					flexWrap: "wrap",
-					gap: 1,
-				}}
-			>
-				{keywords.map((keyword, index) => {
-					return (
-						<Chip
-							key={index}
-							label={keyword}
-							onDelete={() => {
-								removeKeyword(index);
-							}}
-						/>
-					);
-				})}
-			</Box>
-		);
-	}
-};
-
-export const KeywordsBlock = ({ keywords, addKeyword, removeKeyword }) => {
+export const KeywordsForm = ({ keywords, addKeyword, removeKeyword }) => {
 	const initialValues = { keyword: "" };
 
 	const validationSchema = yup.object().shape({
@@ -93,18 +61,13 @@ export const KeywordsBlock = ({ keywords, addKeyword, removeKeyword }) => {
 					</FormControl>
 				</Form>
 			</Formik>
-			<KeywordOutput keywords={keywords} removeKeyword={removeKeyword} />
+			<KeywordBlock keywords={keywords} removeKeyword={removeKeyword} />
 		</Paper>
 	);
 };
 
-KeywordsBlock.propTypes = {
+KeywordsForm.propTypes = {
 	keywords: PropTypes.array,
 	addKeyword: PropTypes.func,
-	removeKeyword: PropTypes.func,
-};
-
-KeywordOutput.propTypes = {
-	keywords: PropTypes.array,
 	removeKeyword: PropTypes.func,
 };
