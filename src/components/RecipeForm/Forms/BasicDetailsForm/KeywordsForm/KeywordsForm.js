@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import { Add } from "@mui/icons-material";
-import { KeywordBlock } from "./KeywordsBlock";
+import { KeywordsBlock } from "./KeywordsBlock";
 
 export const KeywordsForm = ({ keywords, addKeyword, removeKeyword }) => {
 	const initialValues = { keyword: "" };
@@ -61,7 +61,7 @@ export const KeywordsForm = ({ keywords, addKeyword, removeKeyword }) => {
 					</FormControl>
 				</Form>
 			</Formik>
-			<KeywordBlock keywords={keywords} removeKeyword={removeKeyword} />
+			<KeywordsBlock keywords={keywords} removeKeyword={removeKeyword} />
 		</Paper>
 	);
 };

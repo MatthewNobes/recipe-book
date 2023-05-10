@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { KeywordBlock } from "./KeywordBlock";
+import { KeywordsBlock } from "./KeywordsBlock";
 
-describe("KeywordBlock", () => {
-	it("should render the KeywordBlock with the existing keyword set", () => {
+describe("KeywordsBlock", () => {
+	it("should render the KeywordsBlock with the existing keyword set", () => {
 		const keywords = ["test1", "test2"];
 
 		render(
-			<KeywordBlock
+			<KeywordsBlock
 				keywords={keywords}
 				removeKeyword={() => console.log("mock delete")}
 			/>,

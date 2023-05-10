@@ -1,7 +1,7 @@
 import { Chip, Box } from "@mui/material";
 import PropTypes from "prop-types";
 
-export const KeywordBlock = ({ keywords, removeKeyword }) => {
+export const KeywordsBlock = ({ keywords, removeKeyword }) => {
 	if (keywords.length > 0) {
 		return (
 			<Box
@@ -27,7 +27,7 @@ export const KeywordBlock = ({ keywords, removeKeyword }) => {
 	}
 };
 
-KeywordBlock.propTypes = {
+KeywordsBlock.propTypes = {
 	keywords: PropTypes.array,
 	removeKeyword: PropTypes.func,
 };
