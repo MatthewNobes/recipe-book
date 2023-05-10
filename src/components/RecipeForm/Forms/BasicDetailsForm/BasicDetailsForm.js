@@ -14,11 +14,13 @@ import {
 	getAllRegions,
 	getAllCategories,
 } from "../../../../data";
+import { KeywordsForm } from "./KeywordsForm/KeywordsForm";
 
 export const BasicDetailsForm = (props) => {
 	const [countries, setCountries] = useState([]);
 	const [regions, setRegions] = useState([]);
 	const [categories, setCategories] = useState([]);
+	const [keywords, setKeywords] = useState(props.keywords);
 
 	useEffect(() => {
 		const fetchComboBoxData = async () => {
@@ -83,6 +85,7 @@ export const BasicDetailsForm = (props) => {
 		country: yup.string().max(85, "Must not be greater than 85 characters"),
 		region: yup.string().max(85, "Must not be greater than 85 characters"),
 		category: yup.string().max(85, "Must not be greater than 85 characters"),
+		keywords: yup.array(),
 	});
 
 	const submitHandle = (values) => {
@@ -97,6 +100,7 @@ export const BasicDetailsForm = (props) => {
 			country: values.country,
 			region: values.region,
 			category: values.category,
+			keywords: keywords,
 		});
 		props.handleNext();
 	};
@@ -152,7 +156,6 @@ export const BasicDetailsForm = (props) => {
 						type="number"
 						required={true}
 					></TextfieldWrapper>
-
 					<AutoCompleteWrapper
 						name="country"
 						label="Country"
@@ -163,6 +166,15 @@ export const BasicDetailsForm = (props) => {
 						label="Region"
 						options={regions}
 					></AutoCompleteWrapper>
+					<KeywordsForm
+						keywords={keywords}
+						addKeyword={(newKeyword) => setKeywords([...keywords, newKeyword])}
+						removeKeyword={(idToRemove) => {
+							const updatedKeywords = keywords;
+							updatedKeywords.splice(idToRemove, 1);
+							setKeywords([...updatedKeywords]);
+						}}
+					/>
 				</Box>
 				<Box sx={{ marginY: 2, float: "right" }}>
 					<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>Next</SubmitButtonWrapper>
@@ -176,4 +188,5 @@ BasicDetailsForm.propTypes = {
 	setRecipeFn: PropTypes.func,
 	handleNext: PropTypes.func,
 	recipeValues: PropTypes.object,
+	keywords: PropTypes.array,
 };

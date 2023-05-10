@@ -105,7 +105,6 @@ export const RecipeForm = (props) => {
 			ingredients: ingredientsToSubmit,
 			steps: steps,
 			images: images,
-			keywords: [],
 		};
 
 		let id =
@@ -151,6 +150,7 @@ export const RecipeForm = (props) => {
 							setRecipeFn={setRecipe}
 							handleNext={handleNext}
 							recipeValues={recipe}
+							keywords={initialRecipeValues.keywords}
 						/>
 					</StepContent>
 				</Step>

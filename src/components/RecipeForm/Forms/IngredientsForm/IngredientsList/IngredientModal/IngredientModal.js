@@ -71,7 +71,7 @@ export const IngredientModal = (props) => {
 			setUnits(toAddUnits);
 		};
 		populateUnits();
-	});
+	}, []);
 
 	return (
 		<Modal

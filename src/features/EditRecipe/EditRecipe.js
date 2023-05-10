@@ -25,7 +25,7 @@ export const EditRecipe = () => {
 		return (
 			<>
 				<SubPageHeader headerText="Edit Recipe" />
-				<RecipeForm valuesToEdit={recipeValues} idToEdit={recipeID} />
+				<RecipeForm valuesToEdit={recipeValues} idToEdit={parseInt(recipeID)} />
 			</>
 		);
 	} else {

@@ -4,6 +4,7 @@ import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import { FavoriteButton, Loading } from "../../components";
 import { useParams } from "react-router-dom";
 import { getRecipeByID } from "../../data";
+import { Keywords } from "./Keywords/Keywords";
 
 export const ViewRecipe = () => {
 	const { recipeID } = useParams();
@@ -28,6 +29,7 @@ export const ViewRecipe = () => {
 		const recipeSource = recipe.source;
 		const cookTime = recipe.cook_time;
 		const prepTime = recipe.prep_time;
+		const keywords = recipe.keywords;
 
 		return (
 			<>
@@ -57,6 +59,7 @@ export const ViewRecipe = () => {
 						<Typography variant="body1" sx={{ textAlign: "left" }}>
 							{recipeDescription}
 						</Typography>
+						<Keywords keywords={keywords} />
 					</Box>
 					<Divider />
 					<ViewDetails
