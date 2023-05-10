@@ -32,6 +32,7 @@ describe("BasicDetailsForm", () => {
 				recipeValues={recipeValues}
 				setRecipeFn={setRecipeFn}
 				handleNext={handleNext}
+				keywords={[]}
 			/>,
 		);
 
@@ -89,6 +90,7 @@ describe("BasicDetailsForm", () => {
 				recipeValues={recipeValues}
 				setRecipeFn={setRecipeFn}
 				handleNext={handleNext}
+				keywords={[]}
 			/>,
 		);
 

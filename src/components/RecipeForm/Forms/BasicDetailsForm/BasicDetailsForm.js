@@ -20,7 +20,7 @@ export const BasicDetailsForm = (props) => {
 	const [countries, setCountries] = useState([]);
 	const [regions, setRegions] = useState([]);
 	const [categories, setCategories] = useState([]);
-	const [keywords, setKeywords] = useState([]);
+	const [keywords, setKeywords] = useState(props.keywords);
 
 	useEffect(() => {
 		const fetchComboBoxData = async () => {
@@ -188,4 +188,5 @@ BasicDetailsForm.propTypes = {
 	setRecipeFn: PropTypes.func,
 	handleNext: PropTypes.func,
 	recipeValues: PropTypes.object,
+	keywords: PropTypes.array,
 };
