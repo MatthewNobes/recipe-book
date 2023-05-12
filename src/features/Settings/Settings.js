@@ -6,32 +6,19 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Divider,
-	Typography,
 	Box,
 } from "@mui/material";
 import { AccountCircle, Info, Security, Tune } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-
-const FooterComponent = () => {
-	return (
-		<Box sx={{ textAlign: "center", marginTop: 2 }}>
-			<Typography variant="body2">
-				Matt Nobes {new Date().getFullYear()}
-			</Typography>
-		</Box>
-	);
-};
+import { Footer, IconList } from "../../components";
 
 export const Settings = () => {
 	const navigate = useNavigate();
 
-	// This will eventually be populated from state of the current user
-	const isAdmin = true;
-
 	const options = [
-		{ label: "Admin", route: "/Admin", icon: <Security /> },
-		{ label: "Appearance", route: "/Appearance", icon: <Tune /> },
-		{ label: "About", route: "/About", icon: <Info /> },
+		{ label: "Admin", route: "/Settings/Admin", icon: <Security /> },
+		{ label: "Appearance", route: "/Settings/Appearance", icon: <Tune /> },
+		{ label: "About", route: "/Settings/About", icon: <Info /> },
 	];
 
 	return (
@@ -49,28 +36,9 @@ export const Settings = () => {
 			</List>
 			<Divider />
 
-			<List>
-				{options.map((item, index) => {
-					if (item.label === "Admin" && isAdmin === false) {
-						return <></>;
-					} else {
-						return (
-							<Box key={index}>
-								<ListItem disablePadding>
-									<ListItemButton
-										onClick={() => navigate("/Settings" + item.route)}
-									>
-										<ListItemIcon>{item.icon}</ListItemIcon>
-										<ListItemText primary={item.label} />
-									</ListItemButton>
-								</ListItem>
-							</Box>
-						);
-					}
-				})}
-			</List>
+			<IconList options={options} />
 			<Divider />
-			<FooterComponent />
+			<Footer />
 		</Box>
 	);
 };

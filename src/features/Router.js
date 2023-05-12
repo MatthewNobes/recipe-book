@@ -10,6 +10,7 @@ import Appearance from "./Appearance";
 import About from "./About";
 import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
+import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import { Login } from "./Login/Login";
 import { useEffect, useState } from "react";
 import supabase from "../data/supabase";
@@ -43,6 +44,10 @@ export const Router = () => {
 			<Route
 				path="/Settings/Admin"
 				element={loggedIn ? <Admin /> : <Navigate to="/Login" />}
+			/>
+			<Route
+				path="/Settings/Admin/UnitsAdmin"
+				element={loggedIn ? <UnitsAdmin /> : <Navigate to="/Login" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/Settings/Appearance" element={<Appearance />} />
