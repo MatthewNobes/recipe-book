@@ -2,7 +2,7 @@ import { Loading, SubPageHeader } from "../../../components";
 import { useEffect, useState } from "react";
 import { getAllUnits } from "../../../data";
 import { List, ListItem, ListItemText, IconButton, Fab } from "@mui/material";
-import { Delete, Edit, Add } from "@mui/icons-material";
+import { Delete, Add } from "@mui/icons-material";
 import { deleteUnit, addUnit } from "../../../data";
 import { setToast } from "../../../store/slices/toastSlice/toastSlice";
 import { useDispatch } from "react-redux";
@@ -71,44 +71,34 @@ const UnitsList = () => {
 							<ListItem
 								key={index}
 								secondaryAction={
-									<>
-										<IconButton
-											sx={{ mx: 0.5 }}
-											edge="end"
-											aria-label="edit"
-											onClick={() => console.log("edit" + unit.id)}
-										>
-											<Edit />
-										</IconButton>
-										<IconButton
-											sx={{ mx: 0.5 }}
-											edge="end"
-											aria-label="delete"
-											onClick={async () => {
-												const result = await deleteUnit(unit.id);
-												if (result === "success") {
-													dispatch(
-														setToast({
-															message: "Unit deleted",
-															alertType: "success",
-															isOpen: true,
-														}),
-													);
-													populateUnits();
-												} else {
-													dispatch(
-														setToast({
-															message: "Failed to delete unit",
-															alertType: "error",
-															isOpen: true,
-														}),
-													);
-												}
-											}}
-										>
-											<Delete />
-										</IconButton>
-									</>
+									<IconButton
+										sx={{ mx: 0.5 }}
+										edge="end"
+										aria-label="delete"
+										onClick={async () => {
+											const result = await deleteUnit(unit.id);
+											if (result === "success") {
+												dispatch(
+													setToast({
+														message: "Unit deleted",
+														alertType: "success",
+														isOpen: true,
+													}),
+												);
+												populateUnits();
+											} else {
+												dispatch(
+													setToast({
+														message: "Failed to delete unit",
+														alertType: "error",
+														isOpen: true,
+													}),
+												);
+											}
+										}}
+									>
+										<Delete />
+									</IconButton>
 								}
 							>
 								<ListItemText primary={unit.label}></ListItemText>
