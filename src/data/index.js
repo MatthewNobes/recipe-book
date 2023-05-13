@@ -1,4 +1,5 @@
 import addRecipe from "./addRecipe/addRecipe";
+import addUnit from "./addUnit/addUnit";
 import auth from "./auth/auth";
 import deleteRecipe from "./deleteRecipe/deleteRecipe";
 import deleteUnit from "./deleteUnit/deleteUnit";
@@ -11,6 +12,7 @@ import { getAllUnits } from "./getAllUnits/getAllUnits";
 import { updateRecipe } from "./updateRecipe/updateRecipe";
 export {
 	addRecipe,
+	addUnit,
 	auth,
 	deleteRecipe,
 	deleteUnit,
