@@ -1,6 +1,7 @@
 import addRecipe from "./addRecipe/addRecipe";
 import auth from "./auth/auth";
 import deleteRecipe from "./deleteRecipe/deleteRecipe";
+import deleteUnit from "./deleteUnit/deleteUnit";
 import getAllRecipes from "./getAllRecipes/getAllRecipes";
 import getRecipeByID from "./getRecipeByID/getRecipeByID";
 import getAllCountries from "./getAllCountries/getAllCountries";
@@ -12,6 +13,7 @@ export {
 	addRecipe,
 	auth,
 	deleteRecipe,
+	deleteUnit,
 	getAllRecipes,
 	getRecipeByID,
 	getAllCountries,
