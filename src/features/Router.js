@@ -14,6 +14,7 @@ import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import { Login } from "./Login/Login";
 import { useState } from "react";
 import supabase from "../data/supabase";
+import PageNotFound from "./PageNotFound";
 
 export const Router = () => {
 	const [loggedIn, setLoggedIn] = useState(
@@ -30,6 +31,7 @@ export const Router = () => {
 
 	return (
 		<Routes>
+			<Route path="*" element={<PageNotFound />} />
 			<Route path="/Login" element={<Login />} />
 			<Route
 				path="/add"
