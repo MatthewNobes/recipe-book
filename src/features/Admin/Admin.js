@@ -17,7 +17,6 @@ export const Admin = () => {
 	return (
 		<>
 			<SubPageHeader headerText="Admin" />
-			<p>Admin in development</p>
 			<AdminOptions />
 		</>
 	);
