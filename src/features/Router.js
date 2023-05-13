@@ -12,7 +12,7 @@ import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
 import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import { Login } from "./Login/Login";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import supabase from "../data/supabase";
 
 export const Router = () => {
@@ -28,7 +28,6 @@ export const Router = () => {
 		}
 	});
 
-	useEffect(() => {});
 	return (
 		<Routes>
 			<Route path="/Login" element={<Login />} />
