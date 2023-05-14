@@ -22,6 +22,12 @@ export const BasicDetailsForm = (props) => {
 	const [categories, setCategories] = useState([]);
 	const [keywords, setKeywords] = useState(props.keywords);
 
+	const vegStatusOptions = [
+		{ id: 0, label: "N/A" },
+		{ id: 1, label: "Vegetarian" },
+		{ id: 2, label: "Vegan" },
+	];
+
 	useEffect(() => {
 		const fetchComboBoxData = async () => {
 			const countriesArray = await getAllCountries();
@@ -86,6 +92,7 @@ export const BasicDetailsForm = (props) => {
 		region: yup.string().max(85, "Must not be greater than 85 characters"),
 		category: yup.string().max(85, "Must not be greater than 85 characters"),
 		keywords: yup.array(),
+		vegStatus: yup.string().max(85, "Must not be greater than 85 characters"),
 	});
 
 	const submitHandle = (values) => {
@@ -101,6 +108,7 @@ export const BasicDetailsForm = (props) => {
 			region: values.region,
 			category: values.category,
 			keywords: keywords,
+			vegStatus: values.vegStatus,
 		});
 		props.handleNext();
 	};
@@ -165,6 +173,11 @@ export const BasicDetailsForm = (props) => {
 						name="region"
 						label="Region"
 						options={regions}
+					></AutoCompleteWrapper>
+					<AutoCompleteWrapper
+						name="vegStatus"
+						label="Vegetarian or Vegan"
+						options={vegStatusOptions}
 					></AutoCompleteWrapper>
 					<KeywordsForm
 						keywords={keywords}

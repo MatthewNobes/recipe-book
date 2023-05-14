@@ -48,6 +48,7 @@ export const RecipeForm = (props) => {
 		steps: [],
 		ingredients: [],
 		images: [],
+		vegStatus: "",
 	};
 
 	if (formType === "edit") {
@@ -66,6 +67,7 @@ export const RecipeForm = (props) => {
 			steps: props.valuesToEdit.steps,
 			ingredients: props.valuesToEdit.ingredients,
 			images: props.valuesToEdit.images,
+			vegStatus: props.valuesToEdit.vegStatus,
 		};
 	}
 

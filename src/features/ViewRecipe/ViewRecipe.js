@@ -30,6 +30,7 @@ export const ViewRecipe = () => {
 		const cookTime = recipe.cook_time;
 		const prepTime = recipe.prep_time;
 		const keywords = recipe.keywords;
+		const vegStatus = recipe.vegStatus;
 
 		return (
 			<>
@@ -55,6 +56,7 @@ export const ViewRecipe = () => {
 							cookTime={cookTime}
 							prepTime={prepTime}
 							country={country}
+							vegStatus={vegStatus}
 						/>
 						<Typography variant="body1" sx={{ textAlign: "left" }}>
 							{recipeDescription}

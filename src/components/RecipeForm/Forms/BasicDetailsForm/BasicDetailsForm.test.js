@@ -59,6 +59,7 @@ describe("BasicDetailsForm", () => {
 		).toBeInTheDocument();
 		expect(screen.getByLabelText("Country")).toBeInTheDocument();
 		expect(screen.getByLabelText("Region")).toBeInTheDocument();
+		expect(screen.getByLabelText("Vegetarian or Vegan")).toBeInTheDocument();
 	});
 
 	it("should render with a submit button labeled next", () => {
