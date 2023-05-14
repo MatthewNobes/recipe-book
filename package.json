@@ -1,7 +1,11 @@
 {
 	"name": "recipe-book",
-	"version": "0.1.0",
-	"private": true,
+	"version": "1.0.0",
+	"author": "Matthew Nobes",
+	"license": "Apache-2.0",
+	"repository": "https://github.com/MatthewNobes/recipe-book",
+	"homepage": "/",
+	"private": false,
 	"dependencies": {
 		"@emotion/react": "^11.10.8",
 		"@emotion/styled": "^11.10.8",
