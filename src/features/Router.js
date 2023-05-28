@@ -6,7 +6,6 @@ import Favorites from "./Favorites";
 import AddRecipe from "./AddRecipe";
 import Settings from "./Settings";
 import Admin from "./Admin";
-import Appearance from "./Appearance";
 import About from "./About";
 import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
@@ -51,7 +50,6 @@ export const Router = () => {
 				element={loggedIn ? <UnitsAdmin /> : <Navigate to="/Login" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
-			<Route path="/Settings/Appearance" element={<Appearance />} />
 			<Route path="/Settings" element={<Settings />} />
 			<Route path="/Settings/MyAccount" element={<MyAccount />} />
 			<Route path="/Favorites" element={<Favorites />} />

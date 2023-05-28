@@ -8,7 +8,7 @@ import {
 	Divider,
 	Box,
 } from "@mui/material";
-import { AccountCircle, Info, Security, Tune } from "@mui/icons-material";
+import { AccountCircle, Info, Security } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Footer, IconList } from "../../components";
 
@@ -17,7 +17,6 @@ export const Settings = () => {
 
 	const options = [
 		{ label: "Admin", route: "/Settings/Admin", icon: <Security /> },
-		{ label: "Appearance", route: "/Settings/Appearance", icon: <Tune /> },
 		{ label: "About", route: "/Settings/About", icon: <Info /> },
 	];
 
