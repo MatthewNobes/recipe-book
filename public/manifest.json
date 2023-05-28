@@ -1,6 +1,8 @@
 {
+	"id": "recipe-book",
 	"short_name": "Recipe Book",
 	"name": "Recipe Book",
+	"description": "Recipe book app",
 	"icons": [
 		{
 			"src": "icons/android-icon-36x36.png",

@@ -1,7 +1,9 @@
 import supabase from "../supabase";
 
+const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
+
 const getAllRecipes = async () => {
-	let { data, error } = await supabase.from("recipes-dev").select();
+	let { data, error } = await supabase.from(table).select();
 
 	if (error) {
 		console.log(error);
