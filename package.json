@@ -10,7 +10,7 @@
 		"@emotion/react": "^11.10.8",
 		"@emotion/styled": "^11.10.8",
 		"@mui/icons-material": "^5.10.6",
-		"@mui/material": "^5.10.7",
+		"@mui/material": "^5.13.1",
 		"@reduxjs/toolkit": "^1.9.2",
 		"@supabase/supabase-js": "^2.22.0",
 		"formik": "^2.2.9",
