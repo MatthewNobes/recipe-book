@@ -1,22 +1,39 @@
-# Use a Node 16 base image
-FROM node:18-alpine 
+# Use an official Node.js 18 base image
+FROM node:18 AS build
 
-# Set the working directory to /app inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy app files
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --production
+
+# Copy the rest of the application files
 COPY . .
 
-# Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
-RUN npm ci 
-# Build the app
-RUN npm run build
+# Build your application
+RUN npm run build 
 
-# Set the env to "production"
+# Use a lightweight Node.js 18 base image for production
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy the built app from the build stage
+COPY --from=build /app/build ./build
+COPY --from=build /app/package.json ./package.json
+
+# Install serve to run the production build
+RUN npm install -g serve
+
+# Set the environment variable
 ENV NODE_ENV production
 
-# Expose the port on which the app will be running 
+# Expose the desired port (change 3000 to your app's port if needed)
 EXPOSE 3000
 
-# Start the app
-CMD [ "npx", "serve", "build" ] 
+# Start your application
+CMD ["serve", "-s", "build"]
