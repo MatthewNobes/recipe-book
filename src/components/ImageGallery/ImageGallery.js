@@ -13,6 +13,26 @@ const srcset = (image, width, height, rows = 1, cols = 1) => {
 	};
 };
 
+const shuffleArray = (array) => {
+	let currentIndex = array.length,
+		randomIndex;
+
+	// While there remain elements to shuffle.
+	while (currentIndex != 0) {
+		// Pick a remaining element.
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex--;
+
+		// And swap it with the current element.
+		[array[currentIndex], array[randomIndex]] = [
+			array[randomIndex],
+			array[currentIndex],
+		];
+	}
+
+	return array;
+};
+
 export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 	const navigate = useNavigate();
 
@@ -20,7 +40,10 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 		(recipe) => recipe.images.length > 0,
 	);
 
-	const cutDownRecipes = recipesWithImages.slice(0, howManyToDisplay);
+	const cutDownRecipes = shuffleArray(recipesWithImages).slice(
+		0,
+		howManyToDisplay,
+	);
 
 	return (
 		<ImageList
