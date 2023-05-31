@@ -1,24 +1,12 @@
-//import { useEffect } from "react";
-import { RecipeForm, SubPageHeader } from "../../components";
-//import supabase from "../../data/supabase";
-//import { useNavigate } from "react-router-dom";
+import { RecipeForm, SubPageHeader, Page } from "../../components";
 
 export const AddRecipe = () => {
-	//const navigate = useNavigate();
-
-	//const redirectToLogin = () => navigate("/Login");
-	/**
-	const navigateToNewRecipe = useCallback(
-		() => navigate("/addRecipe", { replace: false }),
-		[navigate],
-	); */
-
-	//const isAuthorised = supabase.realtime.accessToken ? true : false;
-
 	return (
 		<>
 			<SubPageHeader headerText="Add Recipe" />
-			<RecipeForm />
+			<Page>
+				<RecipeForm />
+			</Page>
 		</>
 	);
 };

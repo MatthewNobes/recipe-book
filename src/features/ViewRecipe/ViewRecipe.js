@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, Typography, Divider } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
-import { FavoriteButton, Loading } from "../../components";
+import { FavoriteButton, Loading, Page } from "../../components";
 import { useParams } from "react-router-dom";
 import { getRecipeByID } from "../../data";
 import { Keywords } from "./Keywords/Keywords";
@@ -39,7 +39,7 @@ export const ViewRecipe = () => {
 					recipeName={recipeName}
 					id={recipe.id}
 				/>
-				<Box sx={{ marginBottom: 10 }}>
+				<Page>
 					<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
 						<Box
 							sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}
@@ -70,7 +70,7 @@ export const ViewRecipe = () => {
 						recipeSource={recipeSource}
 					/>
 					<Divider />
-				</Box>
+				</Page>
 			</>
 		);
 	} else {

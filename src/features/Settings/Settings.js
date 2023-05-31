@@ -6,11 +6,10 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Divider,
-	Box,
 } from "@mui/material";
 import { AccountCircle, Info, Security } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { Footer, IconList } from "../../components";
+import { Footer, IconList, Page } from "../../components";
 
 export const Settings = () => {
 	const navigate = useNavigate();
@@ -21,7 +20,7 @@ export const Settings = () => {
 	];
 
 	return (
-		<Box>
+		<Page>
 			<Header headerText="Settings" />
 			<List>
 				<ListItem disablePadding>
@@ -38,6 +37,6 @@ export const Settings = () => {
 			<IconList options={options} />
 			<Divider />
 			<Footer />
-		</Box>
+		</Page>
 	);
 };

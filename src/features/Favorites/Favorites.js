@@ -1,10 +1,12 @@
-import Header from "../../components/Header";
+import { Header, Page } from "../../components";
 
 export const Favorites = () => {
 	return (
 		<div>
 			<Header headerText="Favorites" />
-			<p>Favorites in development</p>
+			<Page>
+				<p>Favorites in development</p>
+			</Page>
 		</div>
 	);
 };

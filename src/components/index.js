@@ -19,6 +19,7 @@ import ToastNotification from "./ToastNotification";
 import DialogBox from "./DialogBox";
 import Footer from "./Footer";
 import IconList from "./IconList";
+import Page from "./Page";
 export {
 	RecipeForm,
 	FavoriteButton,
@@ -39,4 +40,5 @@ export {
 	DialogBox,
 	Footer,
 	IconList,
+	Page,
 };
