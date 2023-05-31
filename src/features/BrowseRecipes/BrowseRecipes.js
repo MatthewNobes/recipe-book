@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "../../components";
+import { Header, Page } from "../../components";
 import { RecipeList } from "../../components/RecipeList/RecipeList";
 import { getAllRecipes } from "../../data";
 
@@ -39,7 +39,9 @@ export const BrowseRecipes = () => {
 	return (
 		<>
 			<Header headerText="Browse Recipes" menuOptions={menuOptions} />
-			<RecipeList recipes={recipes} />
+			<Page>
+				<RecipeList recipes={recipes} />
+			</Page>
 		</>
 	);
 };
