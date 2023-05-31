@@ -40,38 +40,36 @@ export const ViewRecipe = () => {
 					id={recipe.id}
 				/>
 				<Page>
-					<Box>
-						<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
-							<Box
-								sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}
-							>
-								<Typography variant="h2">{recipeName}</Typography>
-								<FavoriteButton
-									isFav={isFavorite}
-									recipeID={parseInt(recipeID)}
-								/>
-							</Box>
-							<ChipBar
-								servesNumber={servesNumber}
-								difficultyRating={difficultyRating}
-								cookTime={cookTime}
-								prepTime={prepTime}
-								country={country}
-								vegStatus={vegStatus}
+					<Box sx={{ paddingBottom: 3, paddingX: 1 }}>
+						<Box
+							sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}
+						>
+							<Typography variant="h2">{recipeName}</Typography>
+							<FavoriteButton
+								isFav={isFavorite}
+								recipeID={parseInt(recipeID)}
 							/>
-							<Typography variant="body1" sx={{ textAlign: "left" }}>
-								{recipeDescription}
-							</Typography>
-							<Keywords keywords={keywords} />
 						</Box>
-						<Divider />
-						<ViewDetails
-							ingredients={recipe.ingredients}
-							method={recipe.steps}
-							recipeSource={recipeSource}
+						<ChipBar
+							servesNumber={servesNumber}
+							difficultyRating={difficultyRating}
+							cookTime={cookTime}
+							prepTime={prepTime}
+							country={country}
+							vegStatus={vegStatus}
 						/>
-						<Divider />
+						<Typography variant="body1" sx={{ textAlign: "left" }}>
+							{recipeDescription}
+						</Typography>
+						<Keywords keywords={keywords} />
 					</Box>
+					<Divider />
+					<ViewDetails
+						ingredients={recipe.ingredients}
+						method={recipe.steps}
+						recipeSource={recipeSource}
+					/>
+					<Divider />
 				</Page>
 			</>
 		);
