@@ -40,12 +40,25 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 					<List>
 						{ingredients.map((ingredient, index) => {
 							const ing = JSON.parse(ingredient);
+							const measurementsThatNeedASpace = [
+								"tablespoon",
+								"teaspoon",
+								"handful",
+								"cup",
+							];
+
+							let measurement = measurementsThatNeedASpace.includes(
+								ing.measurement,
+							)
+								? " " + ing.measurement
+								: ing.measurement;
+
 							return (
 								<Box key={index}>
 									<Tooltip title={ing.description}>
 										<ListItem disablePadding>
 											<ListItemText variant="body1">
-												{ing.quantity + ing.measurement + " " + ing.name}
+												{ing.quantity + measurement + " " + ing.name}
 											</ListItemText>
 										</ListItem>
 									</Tooltip>
