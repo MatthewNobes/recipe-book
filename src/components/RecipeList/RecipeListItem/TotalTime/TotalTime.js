@@ -15,15 +15,19 @@ export const TotalTime = (props) => {
 		" & Cook: " +
 		minutesToHours(cookTime);
 
-	return (
-		<Tooltip title={timeBreakdown}>
-			<Chip
-				icon={<AccessAlarmIcon />}
-				label={formattedTime}
-				variant="outlined"
-			/>
-		</Tooltip>
-	);
+	if (totalTime > 0) {
+		return (
+			<Tooltip title={timeBreakdown}>
+				<Chip
+					icon={<AccessAlarmIcon />}
+					label={formattedTime}
+					variant="outlined"
+				/>
+			</Tooltip>
+		);
+	} else {
+		return <div data-testid={"no-prep-or-cook-required"} />;
+	}
 };
 
 TotalTime.propTypes = {

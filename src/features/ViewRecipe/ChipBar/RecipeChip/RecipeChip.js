@@ -4,12 +4,12 @@ import { minutesToHours } from "../../../../utils";
 import PropTypes from "prop-types";
 
 export const RecipeChip = ({ value = 0, label = "" }) => {
-	const valueToDisplay = value === 0 ? "0:00" : minutesToHours(value);
+	const fullLabel = value === 0 ? label + "N/A" : label + minutesToHours(value);
 	return (
 		<Tooltip title={label + value}>
 			<Chip
 				icon={<AccessTimeIcon />}
-				label={label + valueToDisplay}
+				label={fullLabel}
 				color="warning"
 				variant="outlined"
 			/>
