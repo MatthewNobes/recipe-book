@@ -6,5 +6,5 @@ export const minutesToHours = (totalMinutes) => {
 		return num.toString().padStart(2, "0");
 	};
 
-	return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}`;
+	return `${hours}:${padTo2Digits(minutes)}`;
 };

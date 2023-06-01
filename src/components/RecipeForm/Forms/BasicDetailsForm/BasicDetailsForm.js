@@ -69,12 +69,12 @@ export const BasicDetailsForm = (props) => {
 		prep_time: yup
 			.number()
 			.required("Required")
-			.positive("Must be positive")
+			.moreThan(-1, "Must be positive")
 			.integer("Must be a whole number"),
 		cook_time: yup
 			.number()
 			.required("Required")
-			.positive("Must be positive")
+			.moreThan(-1, "Must be positive")
 			.integer("Must be a whole number"),
 		source: yup
 			.string()

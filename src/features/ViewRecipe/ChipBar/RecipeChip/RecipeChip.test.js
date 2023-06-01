@@ -7,7 +7,7 @@ describe("RecipeChip", () => {
 		const label = "Cook: ";
 		render(<RecipeChip value={time} label={label} />);
 
-		const cookTimeText = screen.getByText(label + "02:00");
+		const cookTimeText = screen.getByText(label + "2:00");
 		expect(cookTimeText).toBeInTheDocument();
 	});
 
@@ -16,16 +16,16 @@ describe("RecipeChip", () => {
 		const label = "Prep: ";
 		render(<RecipeChip value={time} label={label} />);
 
-		const prepTimeText = screen.getByText(label + "02:00");
+		const prepTimeText = screen.getByText(label + "2:00");
 		expect(prepTimeText).toBeInTheDocument();
 	});
 
-	it("should render `label 0:00` if the value passed is empty", () => {
+	it("should render `label N/A` if the value passed is empty", () => {
 		const time = 0;
 		const label = "Prep: ";
 		render(<RecipeChip value={time} label={label} />);
 
-		const prepTimeText = screen.getByText(label + "0:00");
+		const prepTimeText = screen.getByText(label + "N/A");
 		expect(prepTimeText).toBeInTheDocument();
 	});
 });
