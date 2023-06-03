@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
-import { CategoryCard } from "./CategoryCard/CategoryCard";
+import { GenericImageCard } from "../../../components";
 
 export const CategoriesGallery = ({ categories }) => {
 	return (
@@ -15,7 +15,14 @@ export const CategoriesGallery = ({ categories }) => {
 			}}
 		>
 			{categories.map((category) => {
-				return <CategoryCard key={category.id} category={category} />;
+				return (
+					<GenericImageCard
+						key={category.id}
+						id={category.id}
+						title={category.name}
+						image={category.image}
+					/>
+				);
 			})}
 		</Box>
 	);

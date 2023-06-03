@@ -52,6 +52,7 @@ export const Categories = () => {
 			name: "Desserts",
 			image:
 				"https://nutricia.com.au/fortisip/wp-content/uploads/sites/8/2020/09/Forticreme-Chocolate-Chocolate-Layered-Dessert-1-1024x683.jpeg",
+			onClickFn: () => navigate("/category/" + 7),
 		},
 		{
 			id: "all",

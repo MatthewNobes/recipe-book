@@ -1,10 +1,10 @@
-import { CategoryCard } from "./CategoryCard";
+import { GenericImageCard } from "./GenericImageCard";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
-describe("CategoryCard", () => {
-	it("should load the correct category name", () => {
-		const category = {
+describe("GenericImageCard", () => {
+	it("should load the correct name", () => {
+		const item = {
 			id: 7,
 			name: "Desserts",
 			image:
@@ -12,16 +12,16 @@ describe("CategoryCard", () => {
 		};
 		render(
 			<BrowserRouter>
-				<CategoryCard category={category} />
+				<GenericImageCard id={item.id} title={item.name} image={item.image} />
 			</BrowserRouter>,
 		);
 
-		const categoryTitle = screen.getByText(category.name);
-		expect(categoryTitle).toBeInTheDocument();
+		const itemTitle = screen.getByText(item.name);
+		expect(itemTitle).toBeInTheDocument();
 	});
 
-	it("should load the correct category image", () => {
-		const category = {
+	it("should load the correct image", () => {
+		const item = {
 			id: 7,
 			name: "Desserts",
 			image:
@@ -29,11 +29,11 @@ describe("CategoryCard", () => {
 		};
 		render(
 			<BrowserRouter>
-				<CategoryCard category={category} />
+				<GenericImageCard id={item.id} title={item.name} image={item.image} />
 			</BrowserRouter>,
 		);
 
-		const categoryImage = screen.getByRole("img");
-		expect(categoryImage.src).toBe(category.image);
+		const itemImage = screen.getByRole("img");
+		expect(itemImage.src).toBe(item.image);
 	});
 });

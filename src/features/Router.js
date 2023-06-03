@@ -10,6 +10,7 @@ import About from "./About";
 import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
 import Categories from "./Categories";
+import { Category } from "./Category/Category";
 import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import { Login } from "./Login/Login";
 import { useState } from "react";
@@ -41,6 +42,7 @@ export const Router = () => {
 				path="/edit/:recipeID"
 				element={loggedIn ? <EditRecipe /> : <Navigate to="/Login" />}
 			/>
+			<Route path="/category/:categoryID" element={<Category />} />
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
 			<Route
 				path="/Settings/Admin"
