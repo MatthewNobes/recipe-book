@@ -9,6 +9,7 @@ import Admin from "./Admin";
 import About from "./About";
 import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
+import Categories from "./Categories";
 import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import { Login } from "./Login/Login";
 import { useState } from "react";
@@ -53,6 +54,7 @@ export const Router = () => {
 			<Route path="/Settings" element={<Settings />} />
 			<Route path="/Settings/MyAccount" element={<MyAccount />} />
 			<Route path="/Favorites" element={<Favorites />} />
+			<Route path="/Categories" element={<Categories />} />
 			<Route path="/BrowseRecipes" element={<BrowseRecipes />} />
 			<Route path="/" element={<HomePage />} />
 		</Routes>
