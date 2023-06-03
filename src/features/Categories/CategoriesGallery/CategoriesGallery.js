@@ -17,12 +17,12 @@ export const CategoriesGallery = ({ categories }) => {
 			}}
 		>
 			{categories.map((category) => {
-				const onClickFunction = navigate("/category/" + category.id);
+				const onClickFunction = () => navigate("/category/" + category.id);
 				return (
 					<GenericImageCard
 						key={category.id}
 						id={category.id}
-						title={category.name}
+						title={category.categories}
 						image={category.image}
 						onClickFn={onClickFunction}
 					/>

@@ -29,7 +29,7 @@ export const Category = () => {
 	} else {
 		return (
 			<>
-				<Header headerText="Browse Recipes" />
+				<Header headerText={"Browse " + categoryName} />
 				<Loading />
 			</>
 		);
