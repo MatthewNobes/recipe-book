@@ -1,9 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import { Header, Page } from "../../components";
+import { Header, Loading, Page } from "../../components";
 import { CategoriesGallery } from "./CategoriesGallery/CategoriesGallery";
+import { getAllCategories } from "../../data";
+import { useState, useEffect } from "react";
 
 export const Categories = () => {
-	const navigate = useNavigate();
+	const [categories, setCategories] = useState([]);
+
+	/**
 	const cat = [
 		{
 			id: 0,
@@ -61,14 +64,30 @@ export const Categories = () => {
 				"https://www.macmillandictionary.com/external/slideshow/thumb/Grey_thumb.png",
 			onClickFn: () => navigate("/BrowseRecipes"),
 		},
-	];
+	]; */
 
-	return (
-		<>
-			<Header headerText="Categories" />
-			<Page>
-				<CategoriesGallery categories={cat} />
-			</Page>
-		</>
-	);
+	useEffect(() => {
+		const fetchRecipe = async () => {
+			setCategories(await getAllCategories());
+		};
+		fetchRecipe();
+	}, []);
+
+	if (categories.length > 0) {
+		return (
+			<>
+				<Header headerText="Categories" />
+				<Page>
+					<CategoriesGallery categories={categories} />
+				</Page>
+			</>
+		);
+	} else {
+		return (
+			<>
+				<Header headerText="Categories" />
+				<Loading />
+			</>
+		);
+	}
 };
