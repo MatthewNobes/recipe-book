@@ -10,13 +10,17 @@ import PropTypes from "prop-types";
 
 export const CategoryCard = ({ category }) => {
 	const navigate = useNavigate();
+	let funcToNavigate = () => navigate("/ViewRecipe");
+	if (category.onClickFn) {
+		funcToNavigate = () => category.onClickFn();
+	}
 	return (
 		<Card
 			id={"category-" + category.id}
 			sx={{ maxWidth: "300px", width: "48%", minWidth: "130px" }}
 		>
 			<CardActionArea
-				onClick={() => navigate("/ViewRecipe")}
+				onClick={() => funcToNavigate()}
 				aria-label={"click to view " + category.name + " recipes"}
 			>
 				<CardMedia

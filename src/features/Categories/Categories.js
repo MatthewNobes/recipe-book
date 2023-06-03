@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { Header, Page } from "../../components";
 import { CategoriesGallery } from "./CategoriesGallery/CategoriesGallery";
 
 export const Categories = () => {
+	const navigate = useNavigate();
 	const cat = [
 		{
 			id: 0,
@@ -50,6 +52,13 @@ export const Categories = () => {
 			name: "Desserts",
 			image:
 				"https://nutricia.com.au/fortisip/wp-content/uploads/sites/8/2020/09/Forticreme-Chocolate-Chocolate-Layered-Dessert-1-1024x683.jpeg",
+		},
+		{
+			id: "all",
+			name: "View All",
+			image:
+				"https://www.macmillandictionary.com/external/slideshow/thumb/Grey_thumb.png",
+			onClickFn: () => navigate("/BrowseRecipes"),
 		},
 	];
 
