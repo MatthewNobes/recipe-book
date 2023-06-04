@@ -20,6 +20,7 @@ import DialogBox from "./DialogBox";
 import Footer from "./Footer";
 import IconList from "./IconList";
 import Page from "./Page";
+import GenericImageCard from "./GenericImageCard";
 export {
 	RecipeForm,
 	FavoriteButton,
@@ -28,6 +29,7 @@ export {
 	SubmitButtonWrapper,
 	ToggleSwitchWrapper,
 	ResetButtonWrapper,
+	GenericImageCard,
 	Header,
 	ImageGallery,
 	Loading,

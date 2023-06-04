@@ -9,11 +9,13 @@ import Admin from "./Admin";
 import About from "./About";
 import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
+import Categories from "./Categories";
+import Category from "./Category";
 import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
-import { Login } from "./Login/Login";
-import { useState } from "react";
+import Login from "./Login";
 import supabase from "../data/supabase";
 import PageNotFound from "./PageNotFound";
+import { useState } from "react";
 
 export const Router = () => {
 	const [loggedIn, setLoggedIn] = useState(
@@ -40,6 +42,7 @@ export const Router = () => {
 				path="/edit/:recipeID"
 				element={loggedIn ? <EditRecipe /> : <Navigate to="/Login" />}
 			/>
+			<Route path="/category/:category" element={<Category />} />
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
 			<Route
 				path="/Settings/Admin"
@@ -53,7 +56,8 @@ export const Router = () => {
 			<Route path="/Settings" element={<Settings />} />
 			<Route path="/Settings/MyAccount" element={<MyAccount />} />
 			<Route path="/Favorites" element={<Favorites />} />
-			<Route path="/BrowseRecipes" element={<BrowseRecipes />} />
+			<Route path="/Categories" element={<Categories />} />
+			<Route path="/browse" element={<BrowseRecipes />} />
 			<Route path="/" element={<HomePage />} />
 		</Routes>
 	);

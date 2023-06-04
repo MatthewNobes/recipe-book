@@ -33,7 +33,11 @@ const shuffleArray = (array) => {
 	return array;
 };
 
-export const ImageGallery = ({ recipes, howManyToDisplay }) => {
+export const ImageGallery = ({
+	recipes,
+	howManyToDisplay,
+	haveAlternatingLargeImage,
+}) => {
 	const navigate = useNavigate();
 
 	const recipesWithImages = recipes.filter(
@@ -50,15 +54,18 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 			sx={{
 				maxWidth: 1,
 				marginTop: 1,
+				marginBottom: 0,
 			}}
 			gap={2}
 		>
 			{cutDownRecipes.map((details, index) => {
 				let cols = 1;
 				let rows = 1;
-				if (index === 2 || index === 7) {
-					cols = 2;
-					rows = 2;
+				if (haveAlternatingLargeImage) {
+					if (index === 2 || index === 7) {
+						cols = 2;
+						rows = 2;
+					}
 				}
 
 				return (
@@ -92,4 +99,5 @@ export const ImageGallery = ({ recipes, howManyToDisplay }) => {
 ImageGallery.propTypes = {
 	recipes: PropTypes.array,
 	howManyToDisplay: PropTypes.number,
+	haveAlternatingLargeImage: PropTypes.bool,
 };
