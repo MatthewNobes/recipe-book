@@ -21,6 +21,7 @@ import Footer from "./Footer";
 import IconList from "./IconList";
 import Page from "./Page";
 import GenericImageCard from "./GenericImageCard";
+import { SearchBar } from "./SearchBar/SearchBar";
 export {
 	RecipeForm,
 	FavoriteButton,
@@ -43,4 +44,5 @@ export {
 	Footer,
 	IconList,
 	Page,
+	SearchBar,
 };
