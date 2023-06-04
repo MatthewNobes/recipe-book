@@ -3,7 +3,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import createCache from "@emotion/cache";
 import { generateTheme } from "./theme";
 import { CacheProvider } from "@emotion/react";
-import { useSelector } from "react-redux";
+
 import { Navigation, ToastNotification } from "./components";
 
 const muiCache = createCache({
@@ -12,7 +12,14 @@ const muiCache = createCache({
 });
 
 const App = () => {
-	const userPreference = useSelector((state) => state.appearance.appearance);
+	let userPreference = { isDarkMode: false };
+	if (
+		window.matchMedia &&
+		window.matchMedia("(prefers-color-scheme: dark)").matches
+	) {
+		userPreference.isDarkMode = true;
+	}
+
 	const theme = generateTheme(userPreference);
 
 	return (
