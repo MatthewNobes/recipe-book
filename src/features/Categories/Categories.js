@@ -3,6 +3,7 @@ import { CategoriesGallery } from "./CategoriesGallery/CategoriesGallery";
 import { getAllCategories } from "../../data";
 import { useState, useEffect } from "react";
 import { ViewAllButton } from "./ViewAllButton/ViewAllButton";
+import { SearchBar } from "../../components";
 import { Box } from "@mui/material";
 
 export const Categories = () => {
@@ -20,6 +21,7 @@ export const Categories = () => {
 			<>
 				<Header headerText="Categories" />
 				<Page>
+					<SearchBar />
 					<Box sx={{ mr: 2, mt: 2 }}>
 						<ViewAllButton />
 					</Box>

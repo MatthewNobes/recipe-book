@@ -1,5 +1,5 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import { Settings, Category, Home } from "@mui/icons-material";
+import { Settings, Search, Home } from "@mui/icons-material";
 import { useState } from "react";
 import css from "./Navigation.module.css";
 import { Link } from "react-router-dom";
@@ -24,8 +24,8 @@ export const Navigation = () => {
 			<BottomNavigationAction
 				component={Link}
 				to="/Categories"
-				label="Categories"
-				icon={<Category />}
+				label="Search"
+				icon={<Search />}
 			/>
 			<BottomNavigationAction
 				component={Link}
