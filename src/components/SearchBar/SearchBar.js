@@ -1,11 +1,17 @@
-/* eslint-disable no-unused-vars */
-import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+	Box,
+	IconButton,
+	InputAdornment,
+	TextField,
+	Tooltip,
+} from "@mui/material";
 import { Search, Clear } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { getAllRecipes } from "../../data";
 import RecipeList from "../RecipeList";
 
 export const SearchBar = () => {
+	const [searchTerm, setSearchTerm] = useState("");
 	const [recipes, setRecipes] = useState([]);
 	const [resultRecipes, setResultRecipes] = useState([]);
 
@@ -16,12 +22,10 @@ export const SearchBar = () => {
 		fetchRecipes();
 	}, []);
 
-	const [searchTerm, setSearchTerm] = useState("");
-
 	useEffect(() => {
 		const debounceTimer = setTimeout(() => {
 			handleSearch(searchTerm);
-		}, 400); // Adjust the debounce delay as needed (300ms in this example)
+		}, 400);
 
 		return () => clearTimeout(debounceTimer);
 	}, [searchTerm]);
@@ -33,16 +37,12 @@ export const SearchBar = () => {
 			updatedSearchTerm = updatedSearchTerm.slice(0, -1);
 		}
 
-		updatedSearchTerm = updatedSearchTerm.toLowerCase();
-
-		return updatedSearchTerm;
+		return updatedSearchTerm.toLowerCase();
 	};
 
 	const handleSearch = (searchTerm) => {
-		// search by name, description, keyword or ingredient, vegStatus
 		let searchResults = [];
 
-		// check search term for trailing space
 		if (searchTerm) {
 			const checkedSearchTerm = searchTermChecks(searchTerm);
 
@@ -51,6 +51,18 @@ export const SearchBar = () => {
 					searchResults = [...searchResults, recipe];
 				} else if (recipe.description.toLowerCase().match(checkedSearchTerm)) {
 					searchResults = [...searchResults, recipe];
+				} else if (recipe.vegStatus.toLowerCase().match(checkedSearchTerm)) {
+					searchResults = [...searchResults, recipe];
+				} else if (recipe.keywords.includes(checkedSearchTerm)) {
+					searchResults = [...searchResults, recipe];
+				} else {
+					recipe.ingredients.forEach((ingredient) => {
+						if (
+							JSON.parse(ingredient).name.toLowerCase().match(checkedSearchTerm)
+						) {
+							searchResults = [...searchResults, recipe];
+						}
+					});
 				}
 			});
 		}
@@ -94,9 +106,11 @@ export const SearchBar = () => {
 							</InputAdornment>
 						),
 						endAdornment: (
-							<IconButton onClick={() => handleReset()}>
-								<Clear />
-							</IconButton>
+							<Tooltip title={"Clear search"}>
+								<IconButton onClick={() => handleReset()}>
+									<Clear />
+								</IconButton>
+							</Tooltip>
 						),
 					}}
 				/>
