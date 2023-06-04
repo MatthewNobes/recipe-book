@@ -12,10 +12,10 @@ import EditRecipe from "./EditRecipe";
 import Categories from "./Categories";
 import Category from "./Category";
 import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
-import { Login } from "./Login/Login";
-import { useState } from "react";
+import Login from "./Login";
 import supabase from "../data/supabase";
 import PageNotFound from "./PageNotFound";
+import { useState } from "react";
 
 export const Router = () => {
 	const [loggedIn, setLoggedIn] = useState(
