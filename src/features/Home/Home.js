@@ -16,7 +16,11 @@ export const HomePage = () => {
 		<>
 			<Header headerText="Recipe Book" />
 			<Page>
-				<ImageGallery recipes={recipes} howManyToDisplay={8} />
+				<ImageGallery
+					recipes={recipes}
+					howManyToDisplay={8}
+					haveAlternatingLargeImage={true}
+				/>
 			</Page>
 		</>
 	);
