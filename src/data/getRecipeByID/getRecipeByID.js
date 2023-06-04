@@ -7,7 +7,7 @@ const getRecipeByID = async (id) => {
 
 	if (error) {
 		console.log(error);
-		return undefined;
+		return [];
 	}
 	if (data) {
 		return data[0];

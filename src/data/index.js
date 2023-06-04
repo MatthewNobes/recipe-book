@@ -10,7 +10,7 @@ import getAllRegions from "./getAllRegions/getAllRegions";
 import getAllCategories from "./getAllCategories/getAllCategories";
 import { getAllUnits } from "./getAllUnits/getAllUnits";
 import { updateRecipe } from "./updateRecipe/updateRecipe";
-import getRecipesByCategoryID from "./getRecipesByCategoryID/getRecipesByCategoryID";
+import getRecipesByCategoryName from "./getRecipesByCategoryName/getRecipesByCategoryName";
 export {
 	addRecipe,
 	addUnit,
@@ -24,5 +24,5 @@ export {
 	getAllCategories,
 	getAllUnits,
 	updateRecipe,
-	getRecipesByCategoryID,
+	getRecipesByCategoryName,
 };

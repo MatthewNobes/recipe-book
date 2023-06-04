@@ -1,26 +1,24 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Loading, RecipeList, Page, Header } from "../../components";
-import { getRecipesByCategoryID } from "../../data";
+import { getRecipesByCategoryName } from "../../data";
 
 export const Category = () => {
-	const { categoryID } = useParams();
+	const { category } = useParams();
 
 	const [recipes, setRecipes] = useState();
-	const [categoryName, setCategoryName] = useState();
 
 	useEffect(() => {
-		setCategoryName("Desserts");
 		const fetchRecipe = async () => {
-			setRecipes(await getRecipesByCategoryID(categoryID));
+			setRecipes(await getRecipesByCategoryName(category));
 		};
 		fetchRecipe();
-	}, [categoryID]);
+	}, [category]);
 
 	if (recipes) {
 		return (
 			<>
-				<Header headerText={"Browse " + categoryName} />
+				<Header headerText={category} />
 				<Page>
 					<RecipeList recipes={recipes} />
 				</Page>
@@ -29,7 +27,7 @@ export const Category = () => {
 	} else {
 		return (
 			<>
-				<Header headerText={"Browse " + categoryName} />
+				<Header headerText={category} />
 				<Loading />
 			</>
 		);
