@@ -2,6 +2,8 @@ import { Header, Loading, Page } from "../../components";
 import { CategoriesGallery } from "./CategoriesGallery/CategoriesGallery";
 import { getAllCategories } from "../../data";
 import { useState, useEffect } from "react";
+import { ViewAllButton } from "./ViewAllButton/ViewAllButton";
+import { Box } from "@mui/material";
 
 export const Categories = () => {
 	const [categories, setCategories] = useState([]);
@@ -18,6 +20,9 @@ export const Categories = () => {
 			<>
 				<Header headerText="Categories" />
 				<Page>
+					<Box sx={{ mr: 2, mt: 2 }}>
+						<ViewAllButton />
+					</Box>
 					<CategoriesGallery categories={categories} />
 				</Page>
 			</>

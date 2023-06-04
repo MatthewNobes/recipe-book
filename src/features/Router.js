@@ -57,7 +57,7 @@ export const Router = () => {
 			<Route path="/Settings/MyAccount" element={<MyAccount />} />
 			<Route path="/Favorites" element={<Favorites />} />
 			<Route path="/Categories" element={<Categories />} />
-			<Route path="/BrowseRecipes" element={<BrowseRecipes />} />
+			<Route path="/browse" element={<BrowseRecipes />} />
 			<Route path="/" element={<HomePage />} />
 		</Routes>
 	);
