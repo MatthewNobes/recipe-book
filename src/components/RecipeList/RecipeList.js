@@ -21,6 +21,8 @@ export const RecipeList = ({ recipes }) => {
 						isFavorite={false}
 						cookTime={recipe.cook_time}
 						prepTime={recipe.prep_time}
+						image={recipe.images[0]}
+						category={recipe.category}
 					/>
 				);
 			})}
