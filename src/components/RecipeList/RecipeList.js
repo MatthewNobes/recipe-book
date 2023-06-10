@@ -22,6 +22,7 @@ export const RecipeList = ({ recipes }) => {
 						cookTime={recipe.cook_time}
 						prepTime={recipe.prep_time}
 						image={recipe.images[0]}
+						category={recipe.category}
 					/>
 				);
 			})}
