@@ -1,10 +1,11 @@
-import { Chip, Box } from "@mui/material";
+import { ListItem, List, ListItemText, IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 export const NotesBlock = ({ notes, removeNote }) => {
 	if (notes.length > 0) {
 		return (
-			<Box
+			<List
 				sx={{
 					display: "flex",
 					flexWrap: "wrap",
@@ -13,16 +14,23 @@ export const NotesBlock = ({ notes, removeNote }) => {
 			>
 				{notes.map((note, index) => {
 					return (
-						<Chip
+						<ListItem
 							key={index}
-							label={note}
-							onDelete={() => {
-								removeNote(index);
-							}}
-						/>
+							secondaryAction={
+								<IconButton
+									edge="end"
+									aria-label="delete"
+									onClick={() => removeNote(index)}
+								>
+									<Delete />
+								</IconButton>
+							}
+						>
+							<ListItemText primary={note} />
+						</ListItem>
 					);
 				})}
-			</Box>
+			</List>
 		);
 	}
 };
