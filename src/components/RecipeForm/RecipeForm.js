@@ -111,6 +111,7 @@ export const RecipeForm = (props) => {
 			ingredients: ingredientsToSubmit,
 			steps: steps,
 			images: images,
+			notes: notes,
 		};
 
 		let id =
