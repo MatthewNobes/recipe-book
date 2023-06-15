@@ -6,7 +6,6 @@ import {
 	AccordionDetails,
 	AccordionSummary,
 } from "@mui/material";
-import { utf8Decode } from "../../../../utils";
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -16,34 +15,26 @@ const Header = () => (
 		expandIcon={<ExpandMore />}
 		sx={{ paddingY: 0, marginY: 0 }}
 	>
-		<Typography variant="h4">Method</Typography>
+		<Typography variant="h4">Notes</Typography>
 	</AccordionSummary>
 );
 
-export const ViewMethod = ({ method = [] }) => {
-	const hasMethod = method.length === 0 ? false : true;
+export const ViewExtras = ({ notes }) => {
 	const [isExpanded, setExpanded] = useState(true);
 
 	const handleChange = () => {
 		setExpanded(!isExpanded);
 	};
-
-	if (hasMethod === true) {
+	if (notes && notes.length) {
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
 				<AccordionDetails>
 					<List>
-						{method.map((step, index) => {
+						{notes.map((note, index) => {
 							return (
 								<ListItem disablePadding key={index}>
-									<Typography variant="body2" gutterBottom component="div">
-										<Typography variant="body1" sx={{ fontWeight: "bold" }}>
-											Step {index + 1}:
-										</Typography>
-
-										{utf8Decode(step)}
-									</Typography>
+									<Typography variant="body1">{note}</Typography>
 								</ListItem>
 							);
 						})}
@@ -56,8 +47,8 @@ export const ViewMethod = ({ method = [] }) => {
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
 				<AccordionDetails>
-					<Typography variant="body1" sx={{ px: 1, py: 1 }}>
-						No method exists for this recipe
+					<Typography variant="body1">
+						No notes exists for this recipe
 					</Typography>
 				</AccordionDetails>
 			</Accordion>
@@ -65,6 +56,6 @@ export const ViewMethod = ({ method = [] }) => {
 	}
 };
 
-ViewMethod.propTypes = {
-	method: PropTypes.array,
+ViewExtras.propTypes = {
+	notes: PropTypes.array,
 };

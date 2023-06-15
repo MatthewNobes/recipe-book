@@ -25,14 +25,12 @@ const Header = () => (
 
 export const ViewIngredients = ({ ingredients = [] }) => {
 	const hasIngredients = ingredients.length === 0 ? false : true;
+	const [isExpanded, setExpanded] = useState(true);
 
+	const handleChange = () => {
+		setExpanded(!isExpanded);
+	};
 	if (hasIngredients === true) {
-		const [isExpanded, setExpanded] = useState(true);
-
-		const handleChange = () => {
-			setExpanded(!isExpanded);
-		};
-
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
@@ -72,12 +70,14 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 		);
 	} else {
 		return (
-			<Box>
+			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
-				<Typography variant="body1" sx={{ px: 1, py: 1 }}>
-					No ingredients exists for this recipe
-				</Typography>
-			</Box>
+				<AccordionDetails>
+					<Typography variant="body1" sx={{ px: 1, py: 1 }}>
+						No ingredients exists for this recipe
+					</Typography>
+				</AccordionDetails>
+			</Accordion>
 		);
 	}
 };

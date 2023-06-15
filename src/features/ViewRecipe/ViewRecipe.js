@@ -31,6 +31,7 @@ export const ViewRecipe = () => {
 		const prepTime = recipe.prep_time;
 		const keywords = recipe.keywords;
 		const vegStatus = recipe.vegStatus;
+		const notes = recipe.notes;
 
 		return (
 			<>
@@ -68,6 +69,7 @@ export const ViewRecipe = () => {
 						ingredients={recipe.ingredients}
 						method={recipe.steps}
 						recipeSource={recipeSource}
+						notes={notes}
 					/>
 					<Divider />
 				</Page>
