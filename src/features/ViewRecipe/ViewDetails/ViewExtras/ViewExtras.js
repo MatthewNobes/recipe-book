@@ -21,7 +21,7 @@ const Header = () => (
 );
 
 export const ViewExtras = ({ notes }) => {
-	if (notes) {
+	if (notes && notes.length) {
 		const [isExpanded, setExpanded] = useState(true);
 
 		const handleChange = () => {
