@@ -14,8 +14,8 @@ export const ViewDetails = ({
 		<>
 			<ViewIngredients ingredients={ingredients} />
 			<ViewMethod method={method} />
-			<RecipeFooter recipeSource={recipeSource} />
 			<ViewExtras notes={notes} />
+			<RecipeFooter recipeSource={recipeSource} />
 		</>
 	);
 };

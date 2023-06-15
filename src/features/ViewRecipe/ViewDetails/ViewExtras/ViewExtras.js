@@ -20,10 +20,8 @@ const Header = () => (
 	</AccordionSummary>
 );
 
-export const ViewExtras = ({ notes = [] }) => {
-	const hasNotes = notes.length === 0 ? false : true;
-
-	if (hasNotes === true) {
+export const ViewExtras = ({ notes }) => {
+	if (notes) {
 		const [isExpanded, setExpanded] = useState(true);
 
 		const handleChange = () => {

@@ -17,7 +17,7 @@ describe("ViewExtras", () => {
 		const note = screen.getByText("Notes");
 		expect(note).toBeInTheDocument();
 	});
-	it("should render the recipe note passed into it with the correct step numbers", () => {
+	it("should render the recipe notes passed into it with the correct step numbers", () => {
 		render(<ViewExtras notes={notes} />);
 
 		const noteOne = screen.getByText(notes[0]);

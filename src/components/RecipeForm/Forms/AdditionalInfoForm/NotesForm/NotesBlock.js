@@ -3,7 +3,7 @@ import { Delete } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 export const NotesBlock = ({ notes, removeNote }) => {
-	if (notes.length > 0) {
+	if (notes) {
 		return (
 			<List
 				sx={{
