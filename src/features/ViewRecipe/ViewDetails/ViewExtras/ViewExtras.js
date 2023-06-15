@@ -1,5 +1,4 @@
 import {
-	Box,
 	List,
 	ListItem,
 	Typography,
@@ -21,13 +20,12 @@ const Header = () => (
 );
 
 export const ViewExtras = ({ notes }) => {
+	const [isExpanded, setExpanded] = useState(true);
+
+	const handleChange = () => {
+		setExpanded(!isExpanded);
+	};
 	if (notes && notes.length) {
-		const [isExpanded, setExpanded] = useState(true);
-
-		const handleChange = () => {
-			setExpanded(!isExpanded);
-		};
-
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
@@ -46,12 +44,14 @@ export const ViewExtras = ({ notes }) => {
 		);
 	} else {
 		return (
-			<Box>
+			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
-				<Typography variant="body1" sx={{ px: 1, py: 1 }}>
-					No notes exists for this recipe
-				</Typography>
-			</Box>
+				<AccordionDetails>
+					<Typography variant="body1">
+						No notes exists for this recipe
+					</Typography>
+				</AccordionDetails>
+			</Accordion>
 		);
 	}
 };
