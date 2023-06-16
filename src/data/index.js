@@ -10,7 +10,7 @@ import { auth, signOut } from "./authentication";
 import { addUnit, getAllUnits, deleteUnit } from "./unit";
 import { getAllCategories } from "./categories";
 import { getAllCountries } from "./countries";
-import getAllRegions from "./getAllRegions/getAllRegions";
+import { getAllRegions } from "./regions";
 export {
 	addRecipe,
 	addUnit,
