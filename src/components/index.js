@@ -2,6 +2,7 @@ import RecipeForm from "./RecipeForm";
 import FavoriteButton from "./FavoriteButton";
 import {
 	AutoCompleteWrapper,
+	CheckboxWrapper,
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 	ToggleSwitchWrapper,
@@ -26,6 +27,7 @@ export {
 	RecipeForm,
 	FavoriteButton,
 	AutoCompleteWrapper,
+	CheckboxWrapper,
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 	ToggleSwitchWrapper,

@@ -7,6 +7,7 @@ import {
 	SubmitButtonWrapper,
 	AutoCompleteWrapper,
 	ResetButtonWrapper,
+	CheckboxWrapper,
 } from "../../../../../FormUI";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
@@ -38,12 +39,14 @@ const validationSchema = yup.object().shape({
 		.min(0.1, "Must be at least 0.1")
 		.max(2147483647, "Too large")
 		.required("A quantity is required"),
+	optional: yup.bool(),
 });
 
 const initialValues = {
 	name: "",
 	measurement: "",
 	quantity: 0,
+	optional: false,
 };
 
 export const IngredientModal = (props) => {
@@ -57,6 +60,7 @@ export const IngredientModal = (props) => {
 			name: values.name,
 			quantity: values.quantity,
 			measurement: values.measurement,
+			optional: values.optional,
 		});
 
 		handleClose();
@@ -116,6 +120,15 @@ export const IngredientModal = (props) => {
 									options={units}
 								></AutoCompleteWrapper>
 							</Box>
+							<Box
+								sx={{
+									display: "flex",
+									justifyContent: "flex-start",
+								}}
+							>
+								<CheckboxWrapper name="optional" label="Optional" />
+							</Box>
+
 							<Box sx={{ display: "flex", gap: 1 }}>
 								<ResetButtonWrapper sx={{ mt: 1, mr: 1 }}>
 									Clear
