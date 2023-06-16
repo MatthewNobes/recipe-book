@@ -51,6 +51,7 @@ export const RecipeForm = (props) => {
 		images: [],
 		notes: [],
 		vegStatus: "",
+		canBeFrozen: false,
 	};
 
 	if (formType === "edit") {
@@ -71,6 +72,7 @@ export const RecipeForm = (props) => {
 			ingredients: props.valuesToEdit.ingredients,
 			images: props.valuesToEdit.images,
 			vegStatus: props.valuesToEdit.vegStatus,
+			canBeFrozen: props.valuesToEdit.canBeFrozen,
 		};
 	}
 
@@ -82,6 +84,12 @@ export const RecipeForm = (props) => {
 	const [steps, setSteps] = useState(initialRecipeValues.steps);
 	const [images, setImages] = useState(initialRecipeValues.images);
 	const [notes, setNotes] = useState(initialRecipeValues.notes);
+
+	const setCanBeFrozen = (canBeFrozenValue) => {
+		const updatedRecipe = recipe;
+		updatedRecipe.canBeFrozen = canBeFrozenValue;
+		setRecipe(updatedRecipe);
+	};
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -203,7 +211,12 @@ export const RecipeForm = (props) => {
 				<Step>
 					<StepLabel>Additional Information</StepLabel>
 					<StepContent>
-						<AdditionalInfoForm setNotes={setNotes} notes={notes} />
+						<AdditionalInfoForm
+							setNotes={setNotes}
+							notes={notes}
+							canBeFrozen={recipe.canBeFrozen}
+							setCanBeFrozen={setCanBeFrozen}
+						/>
 						<Box sx={{ mb: 2, float: "right" }}>
 							<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
 								Back

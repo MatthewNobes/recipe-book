@@ -5,6 +5,7 @@ import { RecipeChip } from "./RecipeChip/RecipeChip";
 import { CountryChip } from "./CountryChip/CountryChip";
 import { VegStatusChip } from "./VegStatusChip/VegStatusChip";
 import PropTypes from "prop-types";
+import { FrozenChip } from "./FrozenChip/FrozenChip";
 
 export const ChipBar = ({
 	servesNumber,
@@ -13,6 +14,7 @@ export const ChipBar = ({
 	prepTime,
 	country,
 	vegStatus,
+	canBeFrozen,
 }) => {
 	return (
 		<Box
@@ -35,6 +37,7 @@ export const ChipBar = ({
 				<ServesChip servesNumber={servesNumber} />
 				<CountryChip country={country} />
 				<DifficultyChip difficultyRating={difficultyRating} />
+				<FrozenChip canBeFrozen={canBeFrozen} />
 				<VegStatusChip vegStatus={vegStatus} />
 			</Box>
 
@@ -61,4 +64,5 @@ ChipBar.propTypes = {
 	prepTime: PropTypes.number,
 	country: PropTypes.string,
 	vegStatus: PropTypes.string,
+	canBeFrozen: PropTypes.bool,
 };

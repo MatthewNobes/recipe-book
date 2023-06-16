@@ -32,6 +32,7 @@ export const ViewRecipe = () => {
 		const keywords = recipe.keywords;
 		const vegStatus = recipe.vegStatus;
 		const notes = recipe.notes;
+		const canBeFrozen = recipe.canBeFrozen;
 
 		return (
 			<>
@@ -58,6 +59,7 @@ export const ViewRecipe = () => {
 							prepTime={prepTime}
 							country={country}
 							vegStatus={vegStatus}
+							canBeFrozen={canBeFrozen}
 						/>
 						<Typography variant="body1" sx={{ textAlign: "left" }}>
 							{recipeDescription}
