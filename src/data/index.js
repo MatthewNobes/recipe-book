@@ -8,9 +8,9 @@ import {
 } from "./recipe";
 import { auth, signOut } from "./authentication";
 import { addUnit, getAllUnits, deleteUnit } from "./unit";
+import { getAllCategories } from "./categories";
 import getAllCountries from "./getAllCountries/getAllCountries";
 import getAllRegions from "./getAllRegions/getAllRegions";
-import getAllCategories from "./getAllCategories/getAllCategories";
 export {
 	addRecipe,
 	addUnit,
