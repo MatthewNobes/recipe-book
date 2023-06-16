@@ -1,8 +1,8 @@
-import supabase from "../supabase";
+import supabase from "../../supabase";
 
 const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
 
-const getRecipesByCategoryName = async (categoryName) => {
+export const getRecipesByCategoryName = async (categoryName) => {
 	let { data, error } = await supabase
 		.from(table)
 		.select()
@@ -16,5 +16,3 @@ const getRecipesByCategoryName = async (categoryName) => {
 		return data;
 	}
 };
-
-export default getRecipesByCategoryName;

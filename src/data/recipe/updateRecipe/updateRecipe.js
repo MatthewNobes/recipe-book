@@ -1,4 +1,4 @@
-import supabase from "../supabase";
+import supabase from "../../supabase";
 
 const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
 

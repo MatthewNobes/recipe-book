@@ -1,8 +1,8 @@
-import supabase from "../supabase";
+import supabase from "../../supabase";
 
 const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
 
-const deleteRecipe = async (id) => {
+export const deleteRecipe = async (id) => {
 	const { error } = await supabase.from(table).delete().eq("id", id);
 
 	if (error) {
@@ -12,5 +12,3 @@ const deleteRecipe = async (id) => {
 		return "success";
 	}
 };
-
-export default deleteRecipe;

@@ -1,4 +1,4 @@
-import supabase from "../supabase";
+import supabase from "../../supabase";
 
 /**
  * Used to authenticate a user with their username and password
@@ -6,7 +6,7 @@ import supabase from "../supabase";
  * @param {string} password the password to login with
  * @returns Either "error" or the session token, depending on the result of the login
  */
-const auth = async (email, password) => {
+export const auth = async (email, password) => {
 	const { data, error } = await supabase.auth.signInWithPassword({
 		email: email,
 		password: password,
@@ -17,5 +17,3 @@ const auth = async (email, password) => {
 		return data.session.access_token;
 	}
 };
-
-export default auth;

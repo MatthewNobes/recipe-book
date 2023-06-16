@@ -1,8 +1,8 @@
-import supabase from "../supabase";
+import supabase from "../../supabase";
 
 const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
 
-const getRecipeByID = async (id) => {
+export const getRecipeByID = async (id) => {
 	let { data, error } = await supabase.from(table).select().eq("id", id);
 
 	if (error) {
@@ -13,5 +13,3 @@ const getRecipeByID = async (id) => {
 		return data[0];
 	}
 };
-
-export default getRecipeByID;
