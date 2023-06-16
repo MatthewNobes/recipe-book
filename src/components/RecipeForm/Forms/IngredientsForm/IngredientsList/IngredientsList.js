@@ -5,6 +5,7 @@ import {
 	ListItemText,
 	IconButton,
 	Typography,
+	Chip,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AddIngredient } from "./AddIngredient";
@@ -16,6 +17,8 @@ const IngredientsListItems = (props) => {
 	const removeIngredient = (ingredientID) => {
 		props.removeIngredient(ingredientID);
 	};
+
+	console.log(ingredientsArray);
 
 	return (
 		<>
@@ -40,6 +43,14 @@ const IngredientsListItems = (props) => {
 								primary={ingredient.name}
 								secondary={ingredient.quantity + ingredient.measurement}
 							/>
+							{ingredient.optional ? (
+								<Chip
+									label="Optional"
+									variant="outlined"
+									color="info"
+									size="small"
+								/>
+							) : null}
 						</ListItemButton>
 					</ListItem>
 				);

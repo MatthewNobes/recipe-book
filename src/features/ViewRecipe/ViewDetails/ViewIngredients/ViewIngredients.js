@@ -9,6 +9,7 @@ import {
 	Accordion,
 	AccordionSummary,
 	AccordionDetails,
+	Chip,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
@@ -30,7 +31,14 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 	const handleChange = () => {
 		setExpanded(!isExpanded);
 	};
+
 	if (hasIngredients === true) {
+		const measurementsThatNeedASpace = [
+			"tablespoon",
+			"teaspoon",
+			"handful",
+			"cup",
+		];
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
@@ -38,12 +46,6 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 					<List>
 						{ingredients.map((ingredient, index) => {
 							const ing = JSON.parse(ingredient);
-							const measurementsThatNeedASpace = [
-								"tablespoon",
-								"teaspoon",
-								"handful",
-								"cup",
-							];
 
 							let measurement = measurementsThatNeedASpace.includes(
 								ing.measurement,
@@ -58,6 +60,15 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 											<ListItemText variant="body1">
 												{ing.quantity + measurement + " " + ing.name}
 											</ListItemText>
+											{ing.optional ? (
+												<Chip
+													label="Optional"
+													variant="outlined"
+													color="info"
+													size="small"
+													sx={{ marginX: 1 }}
+												/>
+											) : null}
 										</ListItem>
 									</Tooltip>
 									<Divider />
