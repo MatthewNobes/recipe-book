@@ -3,7 +3,7 @@ import supabase from "../../supabase";
 /**
  * Creates a new unit in the units table
  * @param {object} values Values object containing the values to add
- * @returns The id of the created unit or undefined
+ * @returns {number | undefined} The id of the created unit or undefined
  */
 export const addUnit = async (values) => {
 	const { data, error } = await supabase
