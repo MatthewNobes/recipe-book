@@ -1,16 +1,16 @@
-import addRecipe from "./addRecipe/addRecipe";
-import addUnit from "./addUnit/addUnit";
-import auth from "./auth/auth";
-import deleteRecipe from "./deleteRecipe/deleteRecipe";
-import deleteUnit from "./deleteUnit/deleteUnit";
-import getAllRecipes from "./getAllRecipes/getAllRecipes";
-import getRecipeByID from "./getRecipeByID/getRecipeByID";
-import getAllCountries from "./getAllCountries/getAllCountries";
-import getAllRegions from "./getAllRegions/getAllRegions";
-import getAllCategories from "./getAllCategories/getAllCategories";
-import { getAllUnits } from "./getAllUnits/getAllUnits";
-import { updateRecipe } from "./updateRecipe/updateRecipe";
-import getRecipesByCategoryName from "./getRecipesByCategoryName/getRecipesByCategoryName";
+import {
+	addRecipe,
+	deleteRecipe,
+	getAllRecipes,
+	getRecipeByID,
+	updateRecipe,
+	getRecipesByCategoryName,
+} from "./recipe";
+import { auth, signOut } from "./authentication";
+import { addUnit, getAllUnits, deleteUnit } from "./unit";
+import { getAllCategories } from "./categories";
+import { getAllCountries } from "./countries";
+import { getAllRegions } from "./regions";
 export {
 	addRecipe,
 	addUnit,
@@ -25,4 +25,5 @@ export {
 	getAllUnits,
 	updateRecipe,
 	getRecipesByCategoryName,
+	signOut,
 };

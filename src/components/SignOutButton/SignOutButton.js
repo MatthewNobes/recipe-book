@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { signOut } from "../../data/signOut/signOut";
+import { signOut } from "../../data";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import { useDispatch } from "react-redux";
 
