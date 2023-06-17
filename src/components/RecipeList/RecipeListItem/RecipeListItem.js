@@ -38,7 +38,7 @@ export const RecipeListItem = (props) => {
 	return (
 		<Box>
 			<ListItem>
-				<ListItemButton>
+				<ListItemButton sx={{ padding: 0 }}>
 					<Tooltip title={recipeName + " - " + recipeDescription}>
 						<Card
 							sx={{
