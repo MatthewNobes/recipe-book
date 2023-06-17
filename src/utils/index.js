@@ -1,6 +1,7 @@
 import { minutesToHours } from "./minutesToHours/minutesToHours";
 import { makeSecondaryText } from "./makeSecondaryText/makeSecondaryText";
 import { getDifficultyColour } from "./getDifficultyColour/getDifficultyColour";
+import { getWelcomeMessage } from "./getWelcomeMessage/getWelcomeMessage";
 import { toggleFavorite } from "./toggleFavorite/toggleFavorite";
 import { isURL } from "./isURL/isURL";
 import { utf8Decode } from "./utf8Decode/utf8Decode";
@@ -9,6 +10,7 @@ export {
 	minutesToHours,
 	makeSecondaryText,
 	getDifficultyColour,
+	getWelcomeMessage,
 	toggleFavorite,
 	isURL,
 	utf8Decode,
