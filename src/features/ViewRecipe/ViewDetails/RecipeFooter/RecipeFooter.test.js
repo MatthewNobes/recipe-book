@@ -27,15 +27,13 @@ describe("RecipeFooter", () => {
 
 	it("should return a footer containing a button for the recipe source and a created date", () => {
 		const source = "www.google.com";
-		const stringDate =
-			"Sat Sep 13 275760 01:00:00 GMT+0100 (British Summer Time)";
-		const createdDate = new Date(stringDate);
+		const createdDate = new Date();
 		render(<RecipeFooter recipeSource={source} createdDate={createdDate} />);
 
 		const sourceButton = screen.getByText("View Recipe Source");
 		expect(sourceButton).toBeInTheDocument();
 
-		const dateSection = screen.getByText("Added: " + stringDate);
+		const dateSection = screen.getByText("Added: " + createdDate.toString());
 		expect(dateSection).toBeInTheDocument();
 	});
 
