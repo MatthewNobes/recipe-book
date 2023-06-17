@@ -1,3 +1,4 @@
+import AddRecipeButton from "./AddRecipeButton";
 import RecipeForm from "./RecipeForm";
 import FavoriteButton from "./FavoriteButton";
 import {
@@ -24,6 +25,7 @@ import Page from "./Page";
 import GenericImageCard from "./GenericImageCard";
 import { SearchBar } from "./SearchBar/SearchBar";
 export {
+	AddRecipeButton,
 	RecipeForm,
 	FavoriteButton,
 	AutoCompleteWrapper,
