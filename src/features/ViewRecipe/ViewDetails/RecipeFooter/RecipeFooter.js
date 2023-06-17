@@ -52,7 +52,7 @@ export const RecipeFooter = ({ recipeSource = "", createdDate = "" }) => {
 								Added: {createdDate.toString()}
 							</Typography>
 						) : (
-							<></>
+							<div data-testid="no-created-date"></div>
 						)}
 					</Box>
 				</AccordionDetails>
