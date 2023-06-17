@@ -9,13 +9,14 @@ export const ViewDetails = ({
 	method = [],
 	recipeSource,
 	notes,
+	createdDate,
 }) => {
 	return (
 		<>
 			<ViewIngredients ingredients={ingredients} />
 			<ViewMethod method={method} />
 			<ViewExtras notes={notes} />
-			<RecipeFooter recipeSource={recipeSource} />
+			<RecipeFooter recipeSource={recipeSource} createdDate={createdDate} />
 		</>
 	);
 };
@@ -25,4 +26,5 @@ ViewDetails.propTypes = {
 	method: PropTypes.array,
 	recipeSource: PropTypes.string,
 	notes: PropTypes.array,
+	createdDate: PropTypes.object,
 };

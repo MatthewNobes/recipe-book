@@ -21,13 +21,14 @@ const Header = () => (
 	</AccordionSummary>
 );
 
-export const RecipeFooter = ({ recipeSource = "" }) => {
+export const RecipeFooter = ({ recipeSource = "", createdDate = "" }) => {
 	if (recipeSource && isURL(recipeSource)) {
 		const [isExpanded, setExpanded] = useState(true);
 
 		const handleChange = () => {
 			setExpanded(!isExpanded);
 		};
+
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
@@ -36,7 +37,7 @@ export const RecipeFooter = ({ recipeSource = "" }) => {
 						sx={{
 							display: "flex",
 							flexDirection: "column",
-							float: "left",
+							gap: 1,
 						}}
 					>
 						<Button
@@ -46,6 +47,13 @@ export const RecipeFooter = ({ recipeSource = "" }) => {
 						>
 							View Recipe Source
 						</Button>
+						{createdDate ? (
+							<Typography variant="Body2">
+								Added: {createdDate.toString()}
+							</Typography>
+						) : (
+							<div data-testid="no-created-date"></div>
+						)}
 					</Box>
 				</AccordionDetails>
 			</Accordion>
@@ -57,4 +65,5 @@ export const RecipeFooter = ({ recipeSource = "" }) => {
 
 RecipeFooter.propTypes = {
 	recipeSource: PropTypes.string,
+	createdDate: PropTypes.object,
 };

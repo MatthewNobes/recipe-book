@@ -33,6 +33,7 @@ export const ViewRecipe = () => {
 		const vegStatus = recipe.vegStatus;
 		const notes = recipe.notes;
 		const canBeFrozen = recipe.canBeFrozen;
+		const createdDate = new Date(recipe.created_at);
 
 		return (
 			<>
@@ -72,6 +73,7 @@ export const ViewRecipe = () => {
 						method={recipe.steps}
 						recipeSource={recipeSource}
 						notes={notes}
+						createdDate={createdDate}
 					/>
 					<Divider />
 				</Page>
