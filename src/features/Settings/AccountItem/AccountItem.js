@@ -60,7 +60,9 @@ export const AccountItem = () => {
 			<ListItem>
 				<ListItemButton onClick={() => navigate("/Login")}>
 					<ListItemIcon>
-						<AccountCircle />
+						<Avatar>
+							<AccountCircle />
+						</Avatar>
 					</ListItemIcon>
 					<ListItemText primary="Sign in" />
 				</ListItemButton>
