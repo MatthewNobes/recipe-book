@@ -13,6 +13,10 @@
 		"@mui/material": "^5.13.4",
 		"@reduxjs/toolkit": "^1.9.2",
 		"@supabase/supabase-js": "^2.22.0",
+		"@babel/core": "^7.22.5",
+		"@babel/eslint-parser": "^7.22.5",
+		"@babel/plugin-proposal-class-properties": "^7.18.6",
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"formik": "^2.2.9",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
@@ -50,9 +54,6 @@
 		]
 	},
 	"devDependencies": {
-		"@babel/core": "^7.22.5",
-		"@babel/eslint-parser": "^7.22.5",
-		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^14.0.0",
 		"@testing-library/user-event": "^14.4.3",
