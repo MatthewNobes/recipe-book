@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
+	AddRecipeButton,
 	Loading,
 	RecipeList,
 	Page,
@@ -32,6 +33,7 @@ export const Category = () => {
 						haveAlternatingLargeImage={false}
 					/>
 					<RecipeList recipes={recipes} />
+					<AddRecipeButton />
 				</Page>
 			</>
 		);
@@ -40,6 +42,7 @@ export const Category = () => {
 			<>
 				<Header headerText={category} />
 				<Loading />
+				<AddRecipeButton />
 			</>
 		);
 	}
