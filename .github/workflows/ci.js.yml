@@ -31,7 +31,7 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       - name: Run build
         run: npm run build --if-present
       - name: Test build
