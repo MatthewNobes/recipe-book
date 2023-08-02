@@ -2,6 +2,11 @@ import { List } from "@mui/material";
 import RecipeListItem from "./RecipeListItem";
 import PropTypes from "prop-types";
 
+/**
+ * Generates a list of recipes using the list supplied.
+ * @param {Array} recipes The array of recipes to display
+ * @returns {React.ReactElement} A list of recipes
+ */
 export const RecipeList = ({ recipes }) => {
 	return (
 		<List
