@@ -8,8 +8,8 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import supabase from "../../../data/supabase";
-import { getWelcomeMessage } from "../../../utils";
+import supabase from "data/supabase";
+import { getWelcomeMessage } from "utils";
 
 export const AccountItem = () => {
 	const navigate = useNavigate();

@@ -1,12 +1,12 @@
 import { Menu, MenuItem, IconButton, Avatar } from "@mui/material";
-import supabase from "../../../../data/supabase";
+import supabase from "data/supabase";
 import { useDispatch } from "react-redux";
-import { setToast } from "../../../../store/slices/toastSlice/toastSlice";
-import { deleteRecipe } from "../../../../data";
+import { setToast } from "store/slices/toastSlice/toastSlice";
+import { deleteRecipe } from "data";
 import { useState } from "react";
 import { MoreVert } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { DialogBox } from "../../../../components";
+import { DialogBox } from "components";
 import PropTypes from "prop-types";
 
 export const RecipeHeaderMenu = ({ id, goBack }) => {

@@ -6,7 +6,7 @@ import {
 	AccordionDetails,
 	AccordionSummary,
 } from "@mui/material";
-import { utf8Decode } from "../../../../utils";
+import { utf8Decode } from "utils";
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";

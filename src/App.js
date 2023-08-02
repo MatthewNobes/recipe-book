@@ -1,4 +1,4 @@
-import { Router } from "./features/Router";
+import { Router } from "features/Router";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import createCache from "@emotion/cache";
 import { generateTheme } from "./theme";

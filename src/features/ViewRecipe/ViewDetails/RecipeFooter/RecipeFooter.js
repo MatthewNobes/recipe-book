@@ -7,9 +7,8 @@ import {
 	AccordionDetails,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
-import { isURL } from "../../../../utils";
+import { isURL, utf8Decode } from "utils";
 import { useState } from "react";
-import { utf8Decode } from "../../../../utils";
 import PropTypes from "prop-types";
 
 const Header = () => (

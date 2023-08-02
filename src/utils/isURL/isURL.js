@@ -1,3 +1,8 @@
+/**
+ * Tests a passed in URL to check if it is in a valid format
+ * @param {string} url A potential URL to be tests
+ * @returns {boolean} True or false depending if the passed in value is a valid URL
+ */
 export const isURL = (url) => {
 	const urlPattern = new RegExp(
 		"^(https?:\\/\\/)?" + // validate protocol

@@ -1,5 +1,5 @@
 import { Button, Typography, Box } from "@mui/material";
-import { SubPageHeader } from "../../components";
+import { SubPageHeader } from "components";
 import { useNavigate } from "react-router-dom";
 import { Home } from "@mui/icons-material";
 

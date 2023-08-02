@@ -1,4 +1,4 @@
-import { Header, Page } from "../../components";
+import { Header, Page } from "components";
 
 export const Favorites = () => {
 	return (

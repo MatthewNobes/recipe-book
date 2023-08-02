@@ -10,6 +10,6 @@
 		"recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
 	},
 	"settings": {
-		"cSpell.words": ["Authorised", "supabase"]
+		"cSpell.words": ["Authorised", "colouring", "supabase"]
 	}
 }

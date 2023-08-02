@@ -1,4 +1,4 @@
-import { IconList, Page, SubPageHeader } from "../../components";
+import { IconList, Page, SubPageHeader } from "components";
 import { SquareFoot } from "@mui/icons-material";
 
 const AdminOptions = () => {
