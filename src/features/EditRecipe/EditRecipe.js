@@ -1,5 +1,5 @@
-import { RecipeForm, SubPageHeader, Loading, Page } from "../../components";
-import { getRecipeByID } from "../../data";
+import { RecipeForm, SubPageHeader, Loading, Page } from "components";
+import { getRecipeByID } from "data";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";

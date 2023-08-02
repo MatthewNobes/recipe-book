@@ -1,4 +1,4 @@
-import { Page, SubPageHeader } from "../../components";
+import { Page, SubPageHeader } from "components";
 import {
 	List,
 	ListItem,

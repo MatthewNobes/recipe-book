@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
-import { GenericImageCard } from "../../../components";
+import { GenericImageCard } from "components";
 import { useNavigate } from "react-router-dom";
 
 export const CategoriesGallery = ({ categories }) => {

@@ -1,9 +1,4 @@
-import {
-	SubPageHeader,
-	SignOutButton,
-	LoginButton,
-	Page,
-} from "../../components";
+import { SubPageHeader, SignOutButton, LoginButton, Page } from "components";
 
 export const MyAccount = () => {
 	return (

@@ -7,8 +7,8 @@ import {
 	Page,
 	Header,
 	ImageGallery,
-} from "../../components";
-import { getRecipesByCategoryName } from "../../data";
+} from "components";
+import { getRecipesByCategoryName } from "data";
 
 export const Category = () => {
 	const { category } = useParams();

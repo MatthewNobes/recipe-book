@@ -1,10 +1,9 @@
-import { Loading, SubPageHeader } from "../../../components";
+import { Loading, SubPageHeader } from "components";
 import { useEffect, useState } from "react";
-import { getAllUnits } from "../../../data";
+import { getAllUnits, deleteUnit, addUnit } from "data";
 import { List, ListItem, ListItemText, IconButton, Fab } from "@mui/material";
 import { Delete, Add } from "@mui/icons-material";
-import { deleteUnit, addUnit } from "../../../data";
-import { setToast } from "../../../store/slices/toastSlice/toastSlice";
+import { setToast } from "store/slices/toastSlice/toastSlice";
 import { useDispatch } from "react-redux";
 import { UpsertUnitModel } from "./UpsertUnitModel/UpsertUnitModel";
 

@@ -1,9 +1,8 @@
-import { Header, Loading, Page } from "../../components";
+import { AddRecipeButton, SearchBar, Header, Loading, Page } from "components";
 import { CategoriesGallery } from "./CategoriesGallery/CategoriesGallery";
-import { getAllCategories } from "../../data";
+import { getAllCategories } from "data";
 import { useState, useEffect } from "react";
 import { ViewAllButton } from "./ViewAllButton/ViewAllButton";
-import { AddRecipeButton, SearchBar } from "../../components";
 import { Box } from "@mui/material";
 
 export const Categories = () => {

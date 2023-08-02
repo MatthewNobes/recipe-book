@@ -1,13 +1,10 @@
 import { Typography, Box } from "@mui/material";
 import { Formik, Form } from "formik";
-import {
-	TextfieldWrapper,
-	SubmitButtonWrapper,
-} from "../../../components/FormUI";
+import { TextfieldWrapper, SubmitButtonWrapper } from "components";
 import { Lock } from "@mui/icons-material";
-import { auth } from "../../../data";
+import { auth } from "data";
 import { useDispatch } from "react-redux";
-import { setToast } from "../../../store/slices/toastSlice/toastSlice";
+import { setToast } from "store/slices/toastSlice/toastSlice";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 

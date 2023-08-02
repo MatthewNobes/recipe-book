@@ -1,6 +1,6 @@
 import { Chip, Tooltip } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { minutesToHours } from "../../../../utils";
+import { minutesToHours } from "utils";
 import PropTypes from "prop-types";
 
 export const RecipeChip = ({ value = 0, label = "" }) => {

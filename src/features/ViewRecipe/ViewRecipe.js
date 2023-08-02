@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Box, Typography, Divider } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
-import { FavoriteButton, Loading, Page } from "../../components";
+import { FavoriteButton, Loading, Page } from "components";
 import { useParams } from "react-router-dom";
-import { getRecipeByID } from "../../data";
+import { getRecipeByID } from "data";
 import { Keywords } from "./Keywords/Keywords";
 
 export const ViewRecipe = () => {
