@@ -1,6 +1,7 @@
 import { Header, ImageGallery, Page } from "components";
 import { useEffect, useState } from "react";
 import { getAllRecipes } from "data";
+import RecommendRecipeButton from "./RecommendRecipeButton";
 
 export const HomePage = () => {
 	const [recipes, setRecipes] = useState([]);
@@ -22,6 +23,7 @@ export const HomePage = () => {
 					howManyToDisplay={8}
 					haveAlternatingLargeImage={true}
 				/>
+				<RecommendRecipeButton />
 			</Page>
 		</>
 	);

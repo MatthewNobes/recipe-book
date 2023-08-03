@@ -11,6 +11,7 @@ import ViewRecipe from "./ViewRecipe";
 import EditRecipe from "./EditRecipe";
 import Categories from "./Categories";
 import Category from "./Category";
+import RecommendRecipe from "./RecommendRecipe";
 import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import Login from "./Login";
 import supabase from "../data/supabase";
@@ -53,6 +54,7 @@ export const Router = () => {
 				element={loggedIn ? <UnitsAdmin /> : <Navigate to="/Login" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
+			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />
 			<Route path="/Settings" element={<Settings />} />
 			<Route path="/Settings/MyAccount" element={<MyAccount />} />
 			<Route path="/Favorites" element={<Favorites />} />
