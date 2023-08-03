@@ -48,11 +48,8 @@ export const LoginForm = () => {
 					isOpen: true,
 				}),
 			);
-			if (process.env.NODE_ENV === "development") {
-				navigate(-2);
-			} else {
-				navigate(-1);
-			}
+
+			navigate(-1);
 		}
 	};
 

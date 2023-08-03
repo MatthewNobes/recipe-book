@@ -17,7 +17,8 @@ export const SearchBar = () => {
 
 	useEffect(() => {
 		const fetchRecipes = async () => {
-			setRecipes(await getAllRecipes());
+			const foundRecipes = await getAllRecipes();
+			setRecipes(foundRecipes.data);
 		};
 		fetchRecipes();
 	}, []);

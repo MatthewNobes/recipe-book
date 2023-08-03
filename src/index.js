@@ -8,13 +8,11 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<BrowserRouter basename={process.env.PUBLIC_URL}>
-				<App />
-			</BrowserRouter>
-		</Provider>
-	</React.StrictMode>,
+	<Provider store={store}>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
+			<App />
+		</BrowserRouter>
+	</Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
