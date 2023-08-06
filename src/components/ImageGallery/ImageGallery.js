@@ -87,7 +87,14 @@ export const ImageGallery = ({
 							title={utf8Decode(details.name)}
 							position="top"
 							actionIcon={
-								<FavoriteButton isFav={false} recipeID={parseInt(details.id)} />
+								"isFavorite" in details ? (
+									<FavoriteButton
+										isFav={details.isFavorite}
+										recipeID={parseInt(details.id)}
+									/>
+								) : (
+									<></>
+								)
 							}
 							actionPosition="right"
 						/>
