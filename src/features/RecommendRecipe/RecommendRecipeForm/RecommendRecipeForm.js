@@ -8,11 +8,14 @@ import {
 	StepLabel,
 } from "@mui/material";
 import { useState } from "react";
+import ResultsPane from "../ResultsPane";
+import ques from "./questions.json";
 
 export const RecommendRecipeForm = () => {
 	const [answers, setAnswers] = useState(["", "", "", ""]);
 	const [activeStep, setActiveStep] = useState(0);
 
+	const questions = ques.questions;
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
 	};
@@ -21,37 +24,6 @@ export const RecommendRecipeForm = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	const questions = [
-		{
-			question: "What type of meal would you like?",
-			options: ["Small dish", "Dinner", "Snack", "Drink"],
-		},
-		{
-			question: "How much time do you have?",
-			options: [
-				"Quick meal (Less than 30 mins)",
-				"More time (Less than 1hr)",
-				"Longer meal (Less than 1:30hr)",
-				"More effort (More than 1:30hr)",
-				"Any",
-			],
-		},
-		{
-			question: "Is there any particular type of food you fancy?",
-			options: [
-				"Mediterranean",
-				"American",
-				"Asian",
-				"Northern European",
-				"Any",
-			],
-		},
-		{
-			question: "Any dietary restrictions?",
-			options: ["None", "Vegetarian ", "Vegan"],
-		},
-	];
-
 	const saveResult = (questionID, answer) => {
 		const newAnswerArray = answers;
 		newAnswerArray[questionID] = answer;
@@ -59,7 +31,7 @@ export const RecommendRecipeForm = () => {
 	};
 
 	return activeStep === questions.length ? (
-		<Typography>Results pane will go here</Typography>
+		<ResultsPane answers={answers} resetForm={() => setActiveStep(0)} />
 	) : (
 		<Stepper activeStep={activeStep} orientation="vertical">
 			{questions.map((question, index) => {
