@@ -37,6 +37,7 @@ export const ImageGallery = ({
 	recipes,
 	howManyToDisplay,
 	haveAlternatingLargeImage,
+	randomise = true,
 }) => {
 	const navigate = useNavigate();
 
@@ -44,10 +45,11 @@ export const ImageGallery = ({
 		(recipe) => recipe.images.length > 0,
 	);
 
-	const cutDownRecipes = shuffleArray(recipesWithImages).slice(
-		0,
-		howManyToDisplay,
-	);
+	let cutDownRecipes = recipesWithImages.slice(0, howManyToDisplay);
+
+	if (randomise) {
+		shuffleArray(cutDownRecipes);
+	}
 
 	return (
 		<ImageList
@@ -100,4 +102,5 @@ ImageGallery.propTypes = {
 	recipes: PropTypes.array,
 	howManyToDisplay: PropTypes.number,
 	haveAlternatingLargeImage: PropTypes.bool,
+	randomise: PropTypes.bool,
 };
