@@ -11,6 +11,7 @@ import { auth, signOut } from "./authentication";
 import { addUnit, getAllUnits, deleteUnit } from "./unit";
 import { getAllCategories } from "./categories";
 import { getAllCountries } from "./countries";
+import { getCurrentUsersFavorites } from "./Favorites";
 import { getAllRegions } from "./regions";
 export {
 	addRecipe,
@@ -28,4 +29,5 @@ export {
 	updateRecipe,
 	getRecipesByCategoryName,
 	signOut,
+	getCurrentUsersFavorites,
 };
