@@ -23,7 +23,7 @@ export const ResultsPane = ({ answers, resetForm }) => {
 			const foundRecipes = await getFilteredRecipes(filters);
 			setRecipes(
 				filterRecipesForTimeRange(
-					foundRecipes,
+					foundRecipes.data,
 					filters.minTime,
 					filters.maxTime,
 				),
