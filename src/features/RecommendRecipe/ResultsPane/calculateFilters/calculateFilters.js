@@ -5,7 +5,7 @@
  */
 export const calculateFilters = (answers) => {
 	let filters = {
-		vegStatus: "N/A",
+		vegStatus: "",
 		region: "",
 		category: "",
 		minTime: 0,

@@ -5,11 +5,12 @@ import { ImageGallery, Loading } from "components";
 import { useEffect, useState } from "react";
 import { getFilteredRecipes } from "data";
 import { ArrowBack } from "@mui/icons-material";
+import { filterRecipesForTimeRange } from "utils";
 
 /**
- *
- * @param {*} param0
- * @returns
+ * Displays the results of the recommend recipe form into an ImageGallery
+ * @param {*} props
+ * @returns {}
  */
 export const ResultsPane = ({ answers, resetForm }) => {
 	const [recipes, setRecipes] = useState();
@@ -20,16 +21,13 @@ export const ResultsPane = ({ answers, resetForm }) => {
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			const foundRecipes = await getFilteredRecipes(filters);
-
-			const timeFilteredRecipes = foundRecipes.data.filter((recipe) => {
-				const combinedTime = recipe.cook_time + recipe.prep_time;
-				if (combinedTime > filters.minTime && combinedTime < filters.maxTime) {
-					return recipe;
-				}
-			});
-			console.log(timeFilteredRecipes);
-			// filter results by cook and prep time added together
-			setRecipes(timeFilteredRecipes);
+			setRecipes(
+				filterRecipesForTimeRange(
+					foundRecipes,
+					filters.minTime,
+					filters.maxTime,
+				),
+			);
 		};
 		fetchRecipes();
 	}, []);

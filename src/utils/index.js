@@ -1,3 +1,4 @@
+import { filterRecipesForTimeRange } from "./filterRecipesForTimeRange/filterRecipesForTimeRange";
 import { minutesToHours } from "./minutesToHours/minutesToHours";
 import { makeSecondaryText } from "./makeSecondaryText/makeSecondaryText";
 import { getDifficultyColour } from "./getDifficultyColour/getDifficultyColour";
@@ -7,6 +8,7 @@ import { isURL } from "./isURL/isURL";
 import { utf8Decode } from "./utf8Decode/utf8Decode";
 import { utf8Encode } from "./utf8Encode/utf8Encode";
 export {
+	filterRecipesForTimeRange,
 	minutesToHours,
 	makeSecondaryText,
 	getDifficultyColour,
