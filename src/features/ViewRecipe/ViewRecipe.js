@@ -19,27 +19,13 @@ export const ViewRecipe = () => {
 	}, [recipeID]);
 
 	if (recipe) {
-		const recipeName = recipe.name;
-		const recipeDescription = recipe.description;
-		const difficultyRating = recipe.difficulty_rating;
-		const servesNumber = recipe.serving_number;
-		const imageSource = recipe.images[0];
-		const country = recipe.country;
-		const isFavorite = false; // to be populated later
-		const recipeSource = recipe.source;
-		const cookTime = recipe.cook_time;
-		const prepTime = recipe.prep_time;
-		const keywords = recipe.keywords;
-		const vegStatus = recipe.vegStatus;
-		const notes = recipe.notes;
-		const canBeFrozen = recipe.canBeFrozen;
 		const createdDate = new Date(recipe.created_at);
 
 		return (
 			<>
 				<RecipeHeader
-					imageSource={imageSource}
-					recipeName={recipeName}
+					imageSource={recipe.images[0]}
+					recipeName={recipe.name}
 					id={recipe.id}
 				/>
 				<Page>
@@ -47,32 +33,33 @@ export const ViewRecipe = () => {
 						<Box
 							sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}
 						>
-							<Typography variant="h2">{recipeName}</Typography>
-							<FavoriteButton
-								isFav={isFavorite}
-								recipeID={parseInt(recipeID)}
-							/>
+							<Typography variant="h2">{recipe.name}</Typography>
+							{recipe.isFavorite === undefined ? (
+								<></>
+							) : (
+								<FavoriteButton isFav={recipe.isFavorite} recipeID={recipeID} />
+							)}
 						</Box>
 						<ChipBar
-							servesNumber={servesNumber}
-							difficultyRating={difficultyRating}
-							cookTime={cookTime}
-							prepTime={prepTime}
-							country={country}
-							vegStatus={vegStatus}
-							canBeFrozen={canBeFrozen}
+							servesNumber={recipe.serving_number}
+							difficultyRating={recipe.difficulty_rating}
+							cookTime={recipe.cook_time}
+							prepTime={recipe.prep_time}
+							country={recipe.country}
+							vegStatus={recipe.vegStatus}
+							canBeFrozen={recipe.canBeFrozen}
 						/>
 						<Typography variant="body1" sx={{ textAlign: "left" }}>
-							{recipeDescription}
+							{recipe.description}
 						</Typography>
-						<Keywords keywords={keywords} />
+						<Keywords keywords={recipe.keywords} />
 					</Box>
 					<Divider />
 					<ViewDetails
 						ingredients={recipe.ingredients}
 						method={recipe.steps}
-						recipeSource={recipeSource}
-						notes={notes}
+						recipeSource={recipe.source}
+						notes={recipe.notes}
 						createdDate={createdDate}
 					/>
 					<Divider />

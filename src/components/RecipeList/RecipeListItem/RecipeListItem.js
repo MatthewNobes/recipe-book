@@ -35,8 +35,6 @@ export const RecipeListItem = (props) => {
 		[navigate, id],
 	);
 
-	console.log(isFavorite);
-
 	return (
 		<Box>
 			<ListItem>
