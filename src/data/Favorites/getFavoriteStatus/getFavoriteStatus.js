@@ -19,7 +19,7 @@ export const getFavoriteStatus = async (recipeID, userID) => {
 	if (error) {
 		return false;
 	} else {
-		if (data) {
+		if (data.length > 0) {
 			return { data: true };
 		} else {
 			return { data: false };
