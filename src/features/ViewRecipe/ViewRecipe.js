@@ -37,7 +37,10 @@ export const ViewRecipe = () => {
 							{recipe.isFavorite === undefined ? (
 								<></>
 							) : (
-								<FavoriteButton isFav={recipe.isFavorite} recipeID={recipeID} />
+								<FavoriteButton
+									isFav={recipe.isFavorite}
+									recipeID={parseInt(recipeID)}
+								/>
 							)}
 						</Box>
 						<ChipBar
