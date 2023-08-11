@@ -23,6 +23,7 @@ import Footer from "./Footer";
 import IconList from "./IconList";
 import Page from "./Page";
 import GenericImageCard from "./GenericImageCard";
+import GenericListButtonLink from "./GenericListButtonLink";
 import { SearchBar } from "./SearchBar/SearchBar";
 export {
 	AddRecipeButton,
@@ -35,6 +36,7 @@ export {
 	ToggleSwitchWrapper,
 	ResetButtonWrapper,
 	GenericImageCard,
+	GenericListButtonLink,
 	Header,
 	ImageGallery,
 	Loading,
