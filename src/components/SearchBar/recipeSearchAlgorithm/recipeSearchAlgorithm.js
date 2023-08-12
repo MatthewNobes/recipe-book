@@ -2,30 +2,31 @@ export const recipeSearchAlgorithm = (searchTerm, recipesToSearch) => {
 	let searchResults = [];
 	const checkedSearchTerm = searchTermChecks(searchTerm);
 
+	console.log(recipesToSearch);
 	recipesToSearch.forEach((recipe) => {
-		if (recipe.name.toLowerCase().match(checkedSearchTerm)) {
-			searchResults.push(recipe);
-		} else if (recipe.description.toLowerCase().match(checkedSearchTerm)) {
-			searchResults.push(recipe);
-		} else if (recipe.vegStatus.toLowerCase().match(checkedSearchTerm)) {
-			searchResults.push(recipe);
-		} else if (recipe.keywords.includes(checkedSearchTerm)) {
+		if (
+			recipe.name.toLowerCase().match(checkedSearchTerm) ||
+			recipe.description.toLowerCase().match(checkedSearchTerm) ||
+			recipe.vegStatus.toLowerCase().match(checkedSearchTerm) ||
+			recipe.keywords.includes(checkedSearchTerm)
+		) {
 			searchResults.push(recipe);
 		} else {
-			recipe.ingredients.forEach((ingredient) => {
+			for (const ingredient of recipe.ingredients) {
 				if (
 					JSON.parse(ingredient).name.toLowerCase().match(checkedSearchTerm)
 				) {
 					searchResults.push(recipe);
+					return;
 				}
-			});
+			}
 		}
 	});
 
 	return searchResults;
 };
 
-const searchTermChecks = (searchTerm) => {
+export const searchTermChecks = (searchTerm) => {
 	let updatedSearchTerm = searchTerm;
 
 	if (searchTerm.endsWith(" ")) {
