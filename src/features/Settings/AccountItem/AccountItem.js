@@ -1,5 +1,6 @@
 import { AccountCircle } from "@mui/icons-material";
 import {
+	List,
 	ListItemIcon,
 	ListItemText,
 	ListItem,
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import supabase from "data/supabase";
 import { getWelcomeMessage } from "utils";
+import { GenericListButtonLink } from "components";
 
 export const AccountItem = () => {
 	const navigate = useNavigate();
@@ -42,31 +44,39 @@ export const AccountItem = () => {
 			const time = today.getHours();
 
 			return (
-				<ListItem>
-					<ListItemButton onClick={() => navigate("/Settings/MyAccount")}>
-						<ListItemIcon>
-							<Avatar>{currentUser.email.charAt(0).toUpperCase()}</Avatar>
-						</ListItemIcon>
-						<ListItemText
-							primary={getWelcomeMessage(time)}
-							secondary={"Logged in as " + currentUser.email}
-						/>
-					</ListItemButton>
-				</ListItem>
+				<List>
+					<ListItem>
+						<ListItemButton onClick={() => navigate("/Settings/MyAccount")}>
+							<ListItemIcon>
+								<Avatar>{currentUser.email.charAt(0).toUpperCase()}</Avatar>
+							</ListItemIcon>
+							<ListItemText
+								primary={getWelcomeMessage(time)}
+								secondary={"Logged in as " + currentUser.email}
+							/>
+						</ListItemButton>
+					</ListItem>
+					<GenericListButtonLink
+						navigateFn={() => navigate("/Favorites")}
+						primaryText={"Favorites"}
+					/>
+				</List>
 			);
 		}
 	} else {
 		return (
-			<ListItem>
-				<ListItemButton onClick={() => navigate("/Login")}>
-					<ListItemIcon>
-						<Avatar>
-							<AccountCircle />
-						</Avatar>
-					</ListItemIcon>
-					<ListItemText primary="Sign in" />
-				</ListItemButton>
-			</ListItem>
+			<List>
+				<ListItem>
+					<ListItemButton onClick={() => navigate("/Login")}>
+						<ListItemIcon>
+							<Avatar>
+								<AccountCircle />
+							</Avatar>
+						</ListItemIcon>
+						<ListItemText primary="Sign in" />
+					</ListItemButton>
+				</ListItem>
+			</List>
 		);
 	}
 };

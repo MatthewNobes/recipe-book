@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import { FavoriteOutlined, FavoriteBorderOutlined } from "@mui/icons-material";
-import { toggleFavorite } from "../../utils";
+import { toggleFavorite } from "data";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
@@ -11,7 +11,7 @@ export const FavoriteButton = ({ isFav, recipeID }) => {
 
 	const [isFavorite, setIsFavorite] = useState(isFav);
 
-	const onClickFn = () => {
+	const onClickFn = async () => {
 		let notification = {
 			message: "Added to favorites",
 			alertType: "success",
@@ -25,8 +25,8 @@ export const FavoriteButton = ({ isFav, recipeID }) => {
 			};
 		}
 
-		const result = toggleFavorite(recipeID);
-		if (result === "success") {
+		const result = await toggleFavorite(recipeID);
+		if (result) {
 			setIsFavorite(!isFavorite);
 		} else {
 			notification = {

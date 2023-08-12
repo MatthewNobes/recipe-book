@@ -87,8 +87,14 @@ export const RecipeListItem = (props) => {
 										<TotalTime cookTime={cookTime} prepTime={prepTime} />
 										<Chip label={category} color="primary" variant="outlined" />
 									</Box>
-
-									<FavoriteButton isFav={isFavorite} recipeID={parseInt(id)} />
+									{isFavorite === null ? (
+										<></>
+									) : (
+										<FavoriteButton
+											isFav={isFavorite}
+											recipeID={parseInt(id)}
+										/>
+									)}
 								</CardActions>
 							</CardContent>
 						</Card>

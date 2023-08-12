@@ -1,6 +1,7 @@
 import supabase from "../../supabase";
+import { getCurrentUsersFavorites } from "data/Favorites";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
+const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
 
 /**
  * Gets a recipe by its id
@@ -15,6 +16,17 @@ export const getRecipeByID = async (id) => {
 		return [];
 	}
 	if (data) {
-		return data[0];
+		const favorites = await getCurrentUsersFavorites();
+
+		if (favorites) {
+			const recipeWithFavoriteMark = data[0];
+			recipeWithFavoriteMark.isFavorite = false;
+			if (favorites.includes(recipeWithFavoriteMark.id)) {
+				recipeWithFavoriteMark.isFavorite = true;
+			}
+			return recipeWithFavoriteMark;
+		} else {
+			return data[0];
+		}
 	}
 };

@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import { List, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import { Info, Security } from "@mui/icons-material";
 
 import { Footer, IconList, Page } from "../../components";
@@ -14,9 +14,9 @@ export const Settings = () => {
 	return (
 		<Page>
 			<Header headerText="Settings" />
-			<List>
-				<AccountItem />
-			</List>
+
+			<AccountItem />
+
 			<Divider />
 
 			<IconList options={options} />

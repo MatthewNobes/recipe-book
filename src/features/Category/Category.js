@@ -17,7 +17,8 @@ export const Category = () => {
 
 	useEffect(() => {
 		const fetchRecipe = async () => {
-			setRecipes(await getRecipesByCategoryName(category));
+			const foundRecipes = await getRecipesByCategoryName(category);
+			setRecipes(foundRecipes.data);
 		};
 		fetchRecipe();
 	}, [category]);
