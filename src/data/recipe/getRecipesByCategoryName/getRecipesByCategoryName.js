@@ -1,7 +1,7 @@
 import supabase from "../../supabase";
 import { getCurrentUsersFavorites } from "data/Favorites";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
+const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
 
 /**
  * Gets the all the recipes for a certain category

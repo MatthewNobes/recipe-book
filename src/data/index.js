@@ -13,6 +13,7 @@ import { getAllCategories } from "./categories";
 import { getAllCountries } from "./countries";
 import {
 	getCurrentUsersFavorites,
+	getCurrentUsersFullFavorites,
 	toggleFavorite,
 	addFavorite,
 	removeFavorite,
@@ -33,6 +34,7 @@ export {
 	getAllUnits,
 	updateRecipe,
 	getRecipesByCategoryName,
+	getCurrentUsersFullFavorites,
 	signOut,
 	getCurrentUsersFavorites,
 	toggleFavorite,

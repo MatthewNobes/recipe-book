@@ -1,7 +1,7 @@
 import supabase from "../../supabase";
 
 const table =
-	process.env.NODE_ENV === "production" ? "favorites" : "favorites-dev";
+	process.env.NODE_ENV === "production" ? "favorites" : "favoritesDev";
 
 /**
  * Gets the favorite status for a particular recipe and user

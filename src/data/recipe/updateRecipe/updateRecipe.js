@@ -1,6 +1,6 @@
 import supabase from "../../supabase";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipes-dev";
+const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
 
 /**
  * Used to update an existing recipe

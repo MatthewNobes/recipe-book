@@ -2,7 +2,7 @@ import { getCurrentUser } from "data/authentication/getCurrentUser/getCurrentUse
 import supabase from "../../supabase";
 
 const table =
-	process.env.NODE_ENV === "production" ? "favorites" : "favorites-dev";
+	process.env.NODE_ENV === "production" ? "favorites" : "favoritesDev";
 
 /**
  * Used to find a list of all the users favorite recipes

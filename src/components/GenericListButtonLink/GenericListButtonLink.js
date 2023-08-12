@@ -12,6 +12,6 @@ export const GenericListButtonLink = ({ navigateFn, primaryText }) => {
 };
 
 GenericListButtonLink.propTypes = {
-	navigateFn: PropTypes.function,
+	navigateFn: PropTypes.func,
 	primaryText: PropTypes.string,
 };
