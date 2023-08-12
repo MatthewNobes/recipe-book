@@ -9,6 +9,7 @@ import { Search, Clear } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { getAllRecipes } from "../../data";
 import RecipeList from "../RecipeList";
+import { recipeSearchAlgorithm } from "./recipeSearchAlgorithm/recipeSearchAlgorithm";
 
 export const SearchBar = () => {
 	const [searchTerm, setSearchTerm] = useState("");
@@ -31,43 +32,13 @@ export const SearchBar = () => {
 		return () => clearTimeout(debounceTimer);
 	}, [searchTerm]);
 
-	const searchTermChecks = (searchTerm) => {
-		let updatedSearchTerm = searchTerm;
-
-		if (searchTerm.endsWith(" ")) {
-			updatedSearchTerm = updatedSearchTerm.slice(0, -1);
-		}
-
-		return updatedSearchTerm.toLowerCase();
-	};
-
 	const handleSearch = (searchTerm) => {
-		let searchResults = [];
-
 		if (searchTerm) {
-			const checkedSearchTerm = searchTermChecks(searchTerm);
-
-			recipes.forEach((recipe) => {
-				if (recipe.name.toLowerCase().match(checkedSearchTerm)) {
-					searchResults = [...searchResults, recipe];
-				} else if (recipe.description.toLowerCase().match(checkedSearchTerm)) {
-					searchResults = [...searchResults, recipe];
-				} else if (recipe.vegStatus.toLowerCase().match(checkedSearchTerm)) {
-					searchResults = [...searchResults, recipe];
-				} else if (recipe.keywords.includes(checkedSearchTerm)) {
-					searchResults = [...searchResults, recipe];
-				} else {
-					recipe.ingredients.forEach((ingredient) => {
-						if (
-							JSON.parse(ingredient).name.toLowerCase().match(checkedSearchTerm)
-						) {
-							searchResults = [...searchResults, recipe];
-						}
-					});
-				}
-			});
+			const searchResults = recipeSearchAlgorithm(searchTerm, recipes);
+			setResultRecipes(searchResults);
+		} else {
+			setResultRecipes([]);
 		}
-		setResultRecipes(searchResults);
 	};
 
 	const handleChange = (event) => {
@@ -106,13 +77,16 @@ export const SearchBar = () => {
 								<Search />
 							</InputAdornment>
 						),
-						endAdornment: (
-							<Tooltip title={"Clear search"}>
-								<IconButton onClick={() => handleReset()}>
-									<Clear />
-								</IconButton>
-							</Tooltip>
-						),
+						endAdornment:
+							searchTerm.length > 0 ? (
+								<Tooltip title={"Clear search"}>
+									<IconButton onClick={() => handleReset()}>
+										<Clear />
+									</IconButton>
+								</Tooltip>
+							) : (
+								<></>
+							),
 					}}
 				/>
 			</Box>
