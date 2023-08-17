@@ -6,12 +6,23 @@ import {
 	Menu,
 	MenuItem,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { FilterAlt, MoreVert } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import FilterPanel from "components/FilterPanel";
 
-export const Header = ({ headerText = "", menuOptions = [] }) => {
+export const Header = ({
+	headerText = "",
+	menuOptions = [],
+	enableFilters = false,
+}) => {
 	const hasMenu = menuOptions.length === 0 ? false : true;
+	const [filterPanelVisibility, setFilterPanelVisibility] = useState(false);
+	const [filterValues, setFilterValues] = useState({
+		countries: "",
+		difficulty: "",
+		totalTime: "",
+	});
 
 	const [anchorEl, setAnchorEl] = useState(null);
 
@@ -24,54 +35,75 @@ export const Header = ({ headerText = "", menuOptions = [] }) => {
 	};
 
 	return (
-		<AppBar position="sticky">
-			<Toolbar>
-				<Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-					{headerText}
-				</Typography>
-				{hasMenu && (
-					<div>
+		<>
+			<AppBar position="sticky">
+				<Toolbar>
+					<Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+						{headerText}
+					</Typography>
+					{enableFilters ? (
 						<IconButton
-							size="large"
-							aria-label="options menu"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							onClick={handleMenu}
-							color="inherit"
+							onClick={() => setFilterPanelVisibility(!filterPanelVisibility)}
 						>
-							<MoreVertIcon />
+							<FilterAlt />
 						</IconButton>
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorEl}
-							anchorOrigin={{
-								vertical: "top",
-								horizontal: "right",
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "right",
-							}}
-							open={Boolean(anchorEl)}
-							onClose={handleClose}
-						>
-							{menuOptions.map((option, index) => {
-								return (
-									<MenuItem onClick={option.onClickFunction} key={index}>
-										{option.label}
-									</MenuItem>
-								);
-							})}
-						</Menu>
-					</div>
-				)}
-			</Toolbar>
-		</AppBar>
+					) : (
+						<></>
+					)}
+					{hasMenu && (
+						<div>
+							<IconButton
+								size="large"
+								aria-label="options menu"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleMenu}
+								color="inherit"
+							>
+								<MoreVert />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: "top",
+									horizontal: "right",
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "right",
+								}}
+								open={Boolean(anchorEl)}
+								onClose={handleClose}
+							>
+								{menuOptions.map((option, index) => {
+									return (
+										<MenuItem onClick={option.onClickFunction} key={index}>
+											{option.label}
+										</MenuItem>
+									);
+								})}
+							</Menu>
+						</div>
+					)}
+				</Toolbar>
+			</AppBar>
+			{enableFilters ? (
+				<FilterPanel
+					filterPanelVisibility={filterPanelVisibility}
+					filterValues={filterValues}
+					setFilterValues={setFilterValues}
+				/>
+			) : (
+				<></>
+			)}
+		</>
 	);
 };
 
 Header.propTypes = {
 	headerText: PropTypes.string,
 	menuOptions: PropTypes.array,
+	enableFilters: PropTypes.bool,
 };

@@ -24,6 +24,7 @@ import IconList from "./IconList";
 import Page from "./Page";
 import GenericImageCard from "./GenericImageCard";
 import GenericListButtonLink from "./GenericListButtonLink";
+import FilterPanel from "./FilterPanel";
 import { SearchBar } from "./SearchBar/SearchBar";
 export {
 	AddRecipeButton,
@@ -34,6 +35,7 @@ export {
 	TextfieldWrapper,
 	SubmitButtonWrapper,
 	ToggleSwitchWrapper,
+	FilterPanel,
 	ResetButtonWrapper,
 	GenericImageCard,
 	GenericListButtonLink,

@@ -56,6 +56,8 @@ export const BrowseRecipes = () => {
 		fetchRecipes(lowerRangeIndex, upperRangeIndex);
 	}, []);
 
+	//const toggleFilter = (value) => setFilterPanelVisibility(value);
+
 	const navigate = useNavigate();
 
 	const navigateToNewRecipe = useCallback(
@@ -83,7 +85,11 @@ export const BrowseRecipes = () => {
 			onScroll={handleScroll}
 			style={{ overflowY: "scroll", maxHeight: "100vh" }}
 		>
-			<Header headerText="Browse Recipes" menuOptions={menuOptions} />
+			<Header
+				headerText="Browse Recipes"
+				menuOptions={menuOptions}
+				enableFilters={true}
+			/>
 			<Page>
 				<RecipeList recipes={recipes} />
 				{moreRecipesToLoad ? <Loading /> : <></>}
