@@ -9,8 +9,10 @@ import {
 } from "components/FormUI";
 import { getAllCountries } from "data";
 import { Box } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { setFilters } from "store/slices/filtersSlice/filtersSlice";
 
-export const FilterForm = ({ filterValues, setFilterValues }) => {
+export const FilterForm = ({ filterValues, closePanel }) => {
 	const [countries, setCountries] = useState([]);
 	const difficulties = [
 		{ id: 1, label: "Easy 1-3" },
@@ -34,13 +36,10 @@ export const FilterForm = ({ filterValues, setFilterValues }) => {
 		fetchComboBoxData();
 	}, []);
 
-	const submitHandle = (values) => {
-		setFilterValues(values);
-		console.log("confirm and save filters");
-	};
+	const dispatch = useDispatch();
 
 	const validationSchema = yup.object().shape({
-		countries: yup.string().max(85, "Must not be greater than 85 characters"),
+		country: yup.string().max(85, "Must not be greater than 85 characters"),
 		difficulty: yup.string(),
 		totalTime: yup.string(),
 	});
@@ -49,7 +48,8 @@ export const FilterForm = ({ filterValues, setFilterValues }) => {
 		<Formik
 			initialValues={filterValues}
 			onSubmit={(values) => {
-				submitHandle(values);
+				dispatch(setFilters(values));
+				closePanel();
 			}}
 			validationSchema={validationSchema}
 		>
@@ -64,8 +64,8 @@ export const FilterForm = ({ filterValues, setFilterValues }) => {
 					}}
 				>
 					<AutoCompleteWrapper
-						name="countries"
-						label="Countries"
+						name="country"
+						label="Country"
 						options={countries}
 						sx={{ maxWidth: "400px" }}
 					/>
@@ -93,5 +93,5 @@ export const FilterForm = ({ filterValues, setFilterValues }) => {
 
 FilterForm.propTypes = {
 	filterValues: PropTypes.object,
-	setFilterValues: PropTypes.func,
+	closePanel: PropTypes.func,
 };

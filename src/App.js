@@ -3,7 +3,6 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import createCache from "@emotion/cache";
 import { generateTheme } from "./theme";
 import { CacheProvider } from "@emotion/react";
-
 import { Navigation, ToastNotification } from "./components";
 
 const muiCache = createCache({

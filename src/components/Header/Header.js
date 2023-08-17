@@ -18,11 +18,6 @@ export const Header = ({
 }) => {
 	const hasMenu = menuOptions.length === 0 ? false : true;
 	const [filterPanelVisibility, setFilterPanelVisibility] = useState(false);
-	const [filterValues, setFilterValues] = useState({
-		countries: "",
-		difficulty: "",
-		totalTime: "",
-	});
 
 	const [anchorEl, setAnchorEl] = useState(null);
 
@@ -47,9 +42,7 @@ export const Header = ({
 						>
 							<FilterAlt />
 						</IconButton>
-					) : (
-						<></>
-					)}
+					) : null}
 					{hasMenu && (
 						<div>
 							<IconButton
@@ -92,12 +85,9 @@ export const Header = ({
 			{enableFilters ? (
 				<FilterPanel
 					filterPanelVisibility={filterPanelVisibility}
-					filterValues={filterValues}
-					setFilterValues={setFilterValues}
+					setPanelVisibility={setFilterPanelVisibility}
 				/>
-			) : (
-				<></>
-			)}
+			) : null}
 		</>
 	);
 };
