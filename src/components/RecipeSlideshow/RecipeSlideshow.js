@@ -61,6 +61,7 @@ export const RecipeSlideshow = ({ recipes }) => {
 		return (
 			<ImageList>
 				<Box
+					component="li"
 					sx={{
 						position: "absolute",
 						zIndex: 2,
