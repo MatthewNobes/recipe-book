@@ -24,6 +24,7 @@ import IconList from "./IconList";
 import Page from "./Page";
 import GenericImageCard from "./GenericImageCard";
 import GenericListButtonLink from "./GenericListButtonLink";
+import RecipeSlideshow from "./RecipeSlideshow";
 import { SearchBar } from "./SearchBar/SearchBar";
 export {
 	AddRecipeButton,
@@ -46,6 +47,7 @@ export {
 	SignOutButton,
 	SubPageHeader,
 	ToastNotification,
+	RecipeSlideshow,
 	DialogBox,
 	Footer,
 	IconList,
