@@ -8,9 +8,8 @@ export const RecentlyAddedGallery = ({ recipes }) => {
 			<Typography sx={{ px: 1 }} variant="h4">
 				Recently added
 			</Typography>
-			<Box>
-				<RecipeSlideshow recipes={recipes.slice(-6)} />
-			</Box>
+
+			<RecipeSlideshow recipes={recipes.slice(-6)} />
 		</Box>
 	);
 };

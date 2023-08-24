@@ -74,18 +74,16 @@ export const RecipeSlideshow = ({ recipes }) => {
 					<IconButton
 						onClick={handleBackwards}
 						sx={{ pr: "20%", minHeight: "120px" }}
-						size="large"
 						aria-label="Previous recipe"
 					>
-						<KeyboardArrowLeft />
+						<KeyboardArrowLeft fontSize="large" />
 					</IconButton>
 					<IconButton
 						onClick={handleForwards}
 						sx={{ pl: "20%", minHeight: "120px" }}
-						size="large"
 						aria-label="Next recipe"
 					>
-						<KeyboardArrowRight />
+						<KeyboardArrowRight fontSize="large" />
 					</IconButton>
 				</Box>
 
