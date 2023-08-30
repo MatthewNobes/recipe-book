@@ -34,6 +34,8 @@ describe("GenericImageCard", () => {
 		);
 
 		const itemImage = screen.getByRole("img");
-		expect(itemImage.src).toBe(item.image);
+		expect(itemImage.src).toBe(
+			`${item.image}?quality=70&resize=300,140&webp=true`,
+		);
 	});
 });
