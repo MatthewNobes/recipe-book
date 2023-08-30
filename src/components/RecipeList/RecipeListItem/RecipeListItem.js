@@ -51,7 +51,7 @@ export const RecipeListItem = (props) => {
 							<Box sx={{ width: "40vw" }}>
 								<CardMedia
 									component="img"
-									image={image}
+									image={`${image}?quality=70&resize=300,250&webp=true`}
 									alt={recipeName}
 									sx={{ maxHeight: "250px" }}
 								/>

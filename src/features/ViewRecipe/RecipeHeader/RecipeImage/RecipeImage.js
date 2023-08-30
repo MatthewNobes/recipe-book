@@ -14,7 +14,12 @@ export const RecipeImage = (props) => {
 					minHeight: "15em",
 				}}
 			>
-				<img className={css.RecipeImage} alt={recipeName} src={source} />
+				<img
+					className={css.RecipeImage}
+					alt={recipeName}
+					src={`${source}?quality=70&resize=440,400&webp=true`}
+					srcSet={`${source}?quality=70&resize=440,400&webp=true`}
+				/>
 			</Box>
 		);
 	} else {

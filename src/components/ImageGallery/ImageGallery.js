@@ -4,15 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { utf8Decode } from "../../utils";
 import PropTypes from "prop-types";
 
-const srcset = (image, width, height, rows = 1, cols = 1) => {
-	return {
-		src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-		srcSet: `${image}?w=${width * cols}&h=${
-			height * rows
-		}&fit=crop&auto=format&dpr=2 2x`,
-	};
-};
-
 const shuffleArray = (array) => {
 	let currentIndex = array.length,
 		randomIndex;
@@ -73,7 +64,8 @@ export const ImageGallery = ({
 				return (
 					<ImageListItem key={index} cols={cols} rows={rows}>
 						<img
-							{...srcset(utf8Decode(details.images[0]), 250, 200, rows, cols)}
+							src={`${details.images[0]}?quality=70&resize=440,400&webp=true`}
+							srcSet={`${details.images[0]}?quality=70&resize=440,400&webp=true`}
 							alt={utf8Decode(details.description)}
 							loading="lazy"
 							onClick={() => navigate("/ViewRecipe/" + details.id)}
