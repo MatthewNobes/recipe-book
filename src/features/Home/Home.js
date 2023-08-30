@@ -1,11 +1,12 @@
-import { Header, ImageGallery, Page } from "components";
+import { Header, ImageGallery, Loading, Page } from "components";
 import { useEffect, useState } from "react";
 import { getAllRecipes } from "data";
 import RecommendRecipeButton from "./RecommendRecipeButton";
 import RecentlyAddedGallery from "./RecentlyAddedGallery";
+import { Typography } from "@mui/material";
 
 export const HomePage = () => {
-	const [recipes, setRecipes] = useState([]);
+	const [recipes, setRecipes] = useState();
 
 	useEffect(() => {
 		const fetchRecipes = async () => {
@@ -19,13 +20,25 @@ export const HomePage = () => {
 		<>
 			<Header headerText="Recipe Book" />
 			<Page>
-				<ImageGallery
-					recipes={recipes}
-					howManyToDisplay={8}
-					haveAlternatingLargeImage={true}
-				/>
-				<RecommendRecipeButton />
-				<RecentlyAddedGallery recipes={recipes} />
+				{recipes ? (
+					recipes.length > 0 ? (
+						<>
+							<ImageGallery
+								recipes={recipes}
+								howManyToDisplay={8}
+								haveAlternatingLargeImage={true}
+							/>
+							<RecommendRecipeButton />
+							<RecentlyAddedGallery recipes={recipes} />
+						</>
+					) : (
+						<Typography sx={{ textAlign: "center", pt: 2 }}>
+							No recipes found. Please check your connection.
+						</Typography>
+					)
+				) : (
+					<Loading />
+				)}
 			</Page>
 		</>
 	);
