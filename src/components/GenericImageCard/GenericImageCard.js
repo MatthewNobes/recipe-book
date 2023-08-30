@@ -17,7 +17,12 @@ export const GenericImageCard = ({ id, title, image, onClickFn }) => {
 				onClick={() => onClickFn()}
 				aria-label={"click to view " + title + " recipes"}
 			>
-				<CardMedia component="img" height="140" image={image} alt={title} />
+				<CardMedia
+					component="img"
+					height="140"
+					image={`${image}?quality=70&resize=300,140&webp=true`}
+					alt={title}
+				/>
 
 				<CardContent>
 					<Typography variant="h5" component="div">
@@ -30,7 +35,7 @@ export const GenericImageCard = ({ id, title, image, onClickFn }) => {
 };
 
 GenericImageCard.propTypes = {
-	id: PropTypes.string,
+	id: PropTypes.number,
 	title: PropTypes.string,
 	image: PropTypes.string,
 	onClickFn: PropTypes.func,
