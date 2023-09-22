@@ -33,7 +33,7 @@ export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 					</Avatar>
 				</IconButton>
 				<Box>
-					<RecipeHeaderMenu id={id} goBack={goBack} />
+					<RecipeHeaderMenu id={id} goBack={goBack} name={recipeName} />
 				</Box>
 			</Box>
 			<RecipeImage imageSource={imageSource} recipeName={recipeName} />

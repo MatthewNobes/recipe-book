@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { DialogBox } from "components";
 import PropTypes from "prop-types";
 
-export const RecipeHeaderMenu = ({ id, goBack }) => {
+export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -62,6 +62,31 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 				label: "Delete recipe",
 				onClickFunction: () => {
 					setDeleteDialogOpen(true);
+				},
+			},
+			{
+				label: "Share recipe",
+				onClickFunction: async () => {
+					const shareDetails = {
+						url: window.location.href,
+						title: name,
+						text: `Share ${name} recipe`,
+					};
+
+					if (navigator.share) {
+						try {
+							await navigator.share(shareDetails);
+						} catch (error) {
+							console.log(
+								`Oops! I couldn't share to the world because: ${error}`,
+							);
+						}
+					} else {
+						// fallback code
+						console.log(
+							"Web share is currently not supported on this browser. Please provide a callback",
+						);
+					}
 				},
 			},
 		];
@@ -118,5 +143,6 @@ export const RecipeHeaderMenu = ({ id, goBack }) => {
 
 RecipeHeaderMenu.propTypes = {
 	id: PropTypes.number,
+	name: PropTypes.string,
 	goBack: PropTypes.func,
 };
