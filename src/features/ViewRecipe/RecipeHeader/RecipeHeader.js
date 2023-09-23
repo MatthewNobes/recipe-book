@@ -9,8 +9,13 @@ export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 	const navigate = useNavigate();
 
 	const goBack = () => {
-		navigate(-1);
+		if (window.history.length <= 2) {
+			navigate("/");
+		} else {
+			navigate(-1);
+		}
 	};
+
 	return (
 		<Box sx={{ textAlign: "center" }}>
 			<Box
