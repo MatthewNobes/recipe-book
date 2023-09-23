@@ -7,6 +7,7 @@ import {
 	ResetButtonWrapper,
 } from "../../../../../FormUI";
 import PropTypes from "prop-types";
+import { verifyImageValidity } from "utils";
 
 const style = {
 	position: "absolute",
@@ -23,12 +24,28 @@ const style = {
 	alignItems: "center",
 };
 
+yup.addMethod(yup.string, "isValidImage", function (errorMessage) {
+	return this.test(
+		"test-validity-of-url",
+		errorMessage,
+		async function (value) {
+			const { path, createError } = this;
+			if (!(await verifyImageValidity(value))) {
+				return createError({ path, message: errorMessage });
+			} else {
+				return true;
+			}
+		},
+	);
+});
+
 const validationSchema = yup.object().shape({
 	url: yup
 		.string()
 		.required("Required")
 		.max(1024, "Must not be greater than 1024 characters")
-		.url("Must be a URL"),
+		.url("Must be a URL")
+		.isValidImage("Mus return as a valid image"),
 });
 
 const initialValues = {
