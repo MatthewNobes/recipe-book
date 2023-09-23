@@ -3,22 +3,25 @@ import {
 	IconButton,
 	ListItemButton,
 	ListItemText,
+	Tooltip,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import PropTypes from "prop-types";
+import { Clear } from "@mui/icons-material";
 
 export const Instruction = ({ instruction, index, removeInstruction }) => {
 	return (
 		<ListItem
 			key={index}
 			secondaryAction={
-				<IconButton
-					edge="end"
-					aria-label="delete ingredient"
-					onClick={() => removeInstruction(index)}
-				>
-					<DeleteIcon />
-				</IconButton>
+				<Tooltip title={"Remove instruction"} placement={"left"}>
+					<IconButton
+						edge="end"
+						aria-label="remove instruction"
+						onClick={() => removeInstruction(index)}
+					>
+						<Clear />
+					</IconButton>
+				</Tooltip>
 			}
 			disablePadding
 		>
@@ -34,7 +37,7 @@ export const Instruction = ({ instruction, index, removeInstruction }) => {
 };
 
 Instruction.propTypes = {
-	instruction: PropTypes.object,
+	instruction: PropTypes.string,
 	index: PropTypes.number,
 	removeInstruction: PropTypes.func,
 };

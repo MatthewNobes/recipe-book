@@ -1,6 +1,6 @@
 import IngredientModal from "./IngredientModal";
-import { Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Fab, Tooltip } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -19,15 +19,17 @@ export const AddIngredient = (props) => {
 				addIngredient={props.addIngredient}
 				operation={"Add"}
 			/>
-			<Fab
-				color="primary"
-				size="small"
-				aria-label="add"
-				sx={{ marginLeft: "auto" }}
-				onClick={() => addIngredient()}
-			>
-				<AddIcon />
-			</Fab>
+			<Tooltip title={"Add ingredient"} placement={"left"}>
+				<Fab
+					color="primary"
+					size="small"
+					aria-label="add"
+					sx={{ marginLeft: "auto" }}
+					onClick={() => addIngredient()}
+				>
+					<Add />
+				</Fab>
+			</Tooltip>
 		</>
 	);
 };

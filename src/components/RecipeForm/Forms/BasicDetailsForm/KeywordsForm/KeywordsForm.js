@@ -1,4 +1,10 @@
-import { InputAdornment, InputLabel, FormControl, Paper } from "@mui/material";
+import {
+	InputAdornment,
+	InputLabel,
+	FormControl,
+	Paper,
+	Tooltip,
+} from "@mui/material";
 import {
 	OutlinedInputWrapper,
 	SubmitIconButtonWrapper,
@@ -51,11 +57,16 @@ export const KeywordsForm = ({ keywords, addKeyword, removeKeyword }) => {
 							type="string"
 							aria-label="new keyword"
 							endAdornment={
-								<InputAdornment position="end">
-									<SubmitIconButtonWrapper aria-label="add keyword" edge="end">
-										<Add />
-									</SubmitIconButtonWrapper>
-								</InputAdornment>
+								<Tooltip title="Add keyword" placement="left">
+									<InputAdornment position="end">
+										<SubmitIconButtonWrapper
+											aria-label="add keyword"
+											edge="end"
+										>
+											<Add />
+										</SubmitIconButtonWrapper>
+									</InputAdornment>
+								</Tooltip>
 							}
 						/>
 					</FormControl>

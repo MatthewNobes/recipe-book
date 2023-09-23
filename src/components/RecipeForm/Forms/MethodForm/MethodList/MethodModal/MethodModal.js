@@ -34,18 +34,22 @@ const initialValues = {
 	instruction: "",
 };
 
-export const MethodModal = (props) => {
-	const operation = props.operation;
-	const handleClose = () => props.setModalOpenStatus(false);
+export const MethodModal = ({
+	setModalOpenStatus,
+	addInstruction,
+	modalOpenStatus,
+	operation,
+}) => {
+	const handleClose = () => setModalOpenStatus(false);
 
 	const submitHandle = (values) => {
-		props.addInstruction(values.instruction);
+		addInstruction(values.instruction);
 		handleClose();
 	};
 
 	return (
 		<Modal
-			open={props.modalOpenStatus}
+			open={modalOpenStatus}
 			onClose={handleClose}
 			aria-labelledby={`instruction ${operation} model`}
 			aria-describedby={`instruction ${operation} model`}

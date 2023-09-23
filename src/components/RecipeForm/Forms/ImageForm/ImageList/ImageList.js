@@ -1,4 +1,4 @@
-import { List, ListItem, Fab, Typography } from "@mui/material";
+import { List, ListItem, Fab, Typography, Tooltip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ImageModel from "./ImageModel";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 export const ImageList = (props) => {
 	const imageArray = props.imageArray;
-
+	const [formOperation, setFormOperation] = useState("Add");
 	const [modalOpenStatus, setModalOpenStatus] = useState(false);
 
 	const openModal = () => {
@@ -24,6 +24,7 @@ export const ImageList = (props) => {
 				modalOpenStatus={modalOpenStatus}
 				setModalOpenStatus={setModalOpenStatus}
 				addImage={props.addImage}
+				operation={formOperation}
 			/>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
 				{imageArray.length === 0 ? (
@@ -41,15 +42,20 @@ export const ImageList = (props) => {
 					})
 				)}
 				<ListItem>
-					<Fab
-						color="primary"
-						size="small"
-						aria-label="add"
-						sx={{ marginLeft: "auto" }}
-						onClick={() => openModal()}
-					>
-						<AddIcon />
-					</Fab>
+					<Tooltip title={"Add image"} placement="left">
+						<Fab
+							color="primary"
+							size="small"
+							aria-label="add"
+							sx={{ marginLeft: "auto" }}
+							onClick={() => {
+								setFormOperation("Add");
+								openModal();
+							}}
+						>
+							<AddIcon />
+						</Fab>
+					</Tooltip>
 				</ListItem>
 			</List>
 		</>
