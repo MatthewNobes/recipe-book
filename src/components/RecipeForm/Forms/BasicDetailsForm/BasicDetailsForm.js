@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
 	AutoCompleteWrapper,
 	TextfieldWrapper,
@@ -15,11 +15,12 @@ import {
 	getAllCategories,
 } from "../../../../data";
 import { KeywordsForm } from "./KeywordsForm/KeywordsForm";
+import Loading from "components/Loading";
 
 export const BasicDetailsForm = (props) => {
 	const [countries, setCountries] = useState([]);
 	const [regions, setRegions] = useState([]);
-	const [categories, setCategories] = useState([]);
+	const [categories, setCategories] = useState();
 	const [keywords, setKeywords] = useState(props.keywords);
 
 	const vegStatusOptions = [
@@ -113,88 +114,107 @@ export const BasicDetailsForm = (props) => {
 		props.handleNext();
 	};
 
-	return (
-		<Formik
-			initialValues={props.recipeValues}
-			onSubmit={(values) => {
-				submitHandle(values);
-			}}
-			validationSchema={validationSchema}
-		>
-			<Form>
-				<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
-					<TextfieldWrapper
-						name="name"
-						label="Name"
-						required={true}
-					></TextfieldWrapper>
-					<TextfieldWrapper
-						name="description"
-						label="Description"
-						multiline={true}
-						rows={4}
-						required={true}
-					></TextfieldWrapper>
-					<AutoCompleteWrapper
-						name="category"
-						label="Category"
-						options={categories}
-					></AutoCompleteWrapper>
-					<TextfieldWrapper
-						name="difficulty_rating"
-						label="Difficulty Rating"
-						type="number"
-					></TextfieldWrapper>
-					<TextfieldWrapper
-						name="prep_time"
-						label="Preparation time (in minutes)"
-						type="number"
-						required={true}
-					></TextfieldWrapper>
-					<TextfieldWrapper
-						name="cook_time"
-						label="Cooking time (in minutes)"
-						type="number"
-						required={true}
-					></TextfieldWrapper>
-					<TextfieldWrapper name="source" label="Source URL"></TextfieldWrapper>
-					<TextfieldWrapper
-						name="serving_number"
-						label="Serving number"
-						type="number"
-						required={true}
-					></TextfieldWrapper>
-					<AutoCompleteWrapper
-						name="country"
-						label="Country"
-						options={countries}
-					></AutoCompleteWrapper>
-					<AutoCompleteWrapper
-						name="region"
-						label="Region"
-						options={regions}
-					></AutoCompleteWrapper>
-					<AutoCompleteWrapper
-						name="vegStatus"
-						label="Vegetarian or Vegan"
-						options={vegStatusOptions}
-					></AutoCompleteWrapper>
-					<KeywordsForm
-						keywords={keywords}
-						addKeyword={(newKeyword) => setKeywords([...keywords, newKeyword])}
-						removeKeyword={(idToRemove) => {
-							const updatedKeywords = keywords;
-							updatedKeywords.splice(idToRemove, 1);
-							setKeywords([...updatedKeywords]);
+	if (categories && countries && regions) {
+		return (
+			<Box>
+				{categories.length > 0 && countries.length > 0 && regions.length > 0 ? (
+					<Formik
+						initialValues={props.recipeValues}
+						onSubmit={(values) => {
+							submitHandle(values);
 						}}
-					/>
-				</Box>
-				<Box sx={{ marginY: 2, float: "right" }}>
-					<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>Next</SubmitButtonWrapper>
-				</Box>
-			</Form>
-		</Formik>
-	);
+						validationSchema={validationSchema}
+					>
+						<Form>
+							<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
+								<TextfieldWrapper
+									name="name"
+									label="Name"
+									required={true}
+								></TextfieldWrapper>
+								<TextfieldWrapper
+									name="description"
+									label="Description"
+									multiline={true}
+									rows={4}
+									required={true}
+								></TextfieldWrapper>
+								<AutoCompleteWrapper
+									name="category"
+									label="Category"
+									options={categories}
+								></AutoCompleteWrapper>
+								<TextfieldWrapper
+									name="difficulty_rating"
+									label="Difficulty Rating"
+									type="number"
+								></TextfieldWrapper>
+								<TextfieldWrapper
+									name="prep_time"
+									label="Preparation time (in minutes)"
+									type="number"
+									required={true}
+								></TextfieldWrapper>
+								<TextfieldWrapper
+									name="cook_time"
+									label="Cooking time (in minutes)"
+									type="number"
+									required={true}
+								></TextfieldWrapper>
+								<TextfieldWrapper
+									name="source"
+									label="Source URL"
+								></TextfieldWrapper>
+								<TextfieldWrapper
+									name="serving_number"
+									label="Serving number"
+									type="number"
+									required={true}
+								></TextfieldWrapper>
+								<AutoCompleteWrapper
+									name="country"
+									label="Country"
+									options={countries}
+								></AutoCompleteWrapper>
+								<AutoCompleteWrapper
+									name="region"
+									label="Region"
+									options={regions}
+								></AutoCompleteWrapper>
+								<AutoCompleteWrapper
+									name="vegStatus"
+									label="Vegetarian or Vegan"
+									options={vegStatusOptions}
+								></AutoCompleteWrapper>
+								<KeywordsForm
+									keywords={keywords}
+									addKeyword={(newKeyword) =>
+										setKeywords([...keywords, newKeyword])
+									}
+									removeKeyword={(idToRemove) => {
+										const updatedKeywords = keywords;
+										updatedKeywords.splice(idToRemove, 1);
+										setKeywords([...updatedKeywords]);
+									}}
+								/>
+							</Box>
+							<Box sx={{ marginY: 2, float: "right" }}>
+								<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Next
+								</SubmitButtonWrapper>
+							</Box>
+						</Form>
+					</Formik>
+				) : (
+					<Typography>
+						Required data unavailable at this current time
+					</Typography>
+				)}
+			</Box>
+		);
+	} else {
+		<Loading />;
+	}
 };
 
 BasicDetailsForm.propTypes = {
