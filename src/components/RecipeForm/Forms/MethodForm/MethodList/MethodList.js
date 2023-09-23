@@ -1,21 +1,19 @@
-import { List, ListItem, Fab, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { List, ListItem, Fab, Typography, Tooltip } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import MethodModal from "./MethodModal";
 import { useState } from "react";
 import Instruction from "./Instruction";
 import PropTypes from "prop-types";
 
-export const MethodList = (props) => {
-	const instructionArray = props.instructionArray;
-
+export const MethodList = ({
+	instructionArray,
+	removeInstruction,
+	addInstruction,
+}) => {
 	const [modalOpenStatus, setModalOpenStatus] = useState(false);
 
 	const openModal = () => {
 		setModalOpenStatus(true);
-	};
-
-	const removeInstruction = (instructionID) => {
-		props.removeInstruction(instructionID);
 	};
 
 	return (
@@ -24,7 +22,7 @@ export const MethodList = (props) => {
 				modalOpenStatus={modalOpenStatus}
 				setModalOpenStatus={setModalOpenStatus}
 				operation={"Add"}
-				addInstruction={props.addInstruction}
+				addInstruction={addInstruction}
 			/>
 			<List sx={{ width: "100%", bgcolor: "background.paper" }}>
 				{instructionArray.length === 0 ? (
@@ -36,21 +34,23 @@ export const MethodList = (props) => {
 								key={index}
 								instruction={instruction}
 								index={index}
-								removeInstruction={removeInstruction}
+								removeInstruction={() => removeInstruction(index)}
 							/>
 						);
 					})
 				)}
 				<ListItem>
-					<Fab
-						color="primary"
-						size="small"
-						aria-label="add"
-						sx={{ marginLeft: "auto" }}
-						onClick={() => openModal()}
-					>
-						<AddIcon />
-					</Fab>
+					<Tooltip title={"Add instruction"} placement={"left"}>
+						<Fab
+							color="primary"
+							size="small"
+							aria-label="add"
+							sx={{ marginLeft: "auto" }}
+							onClick={() => openModal()}
+						>
+							<Add />
+						</Fab>
+					</Tooltip>
 				</ListItem>
 			</List>
 		</>

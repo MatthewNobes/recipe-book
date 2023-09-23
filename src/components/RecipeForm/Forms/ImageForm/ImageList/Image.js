@@ -3,8 +3,9 @@ import {
 	IconButton,
 	ListItemButton,
 	ListItemText,
+	Tooltip,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Clear } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 export const Image = ({ image, index, removeImage }) => {
@@ -12,13 +13,15 @@ export const Image = ({ image, index, removeImage }) => {
 		<ListItem
 			key={index}
 			secondaryAction={
-				<IconButton
-					edge="end"
-					aria-label="delete image"
-					onClick={() => removeImage(index)}
-				>
-					<DeleteIcon />
-				</IconButton>
+				<Tooltip title={"remove image"} placement={"left"}>
+					<IconButton
+						edge="end"
+						aria-label="remove image"
+						onClick={() => removeImage(index)}
+					>
+						<Clear />
+					</IconButton>
+				</Tooltip>
 			}
 			disablePadding
 		>
@@ -34,7 +37,7 @@ export const Image = ({ image, index, removeImage }) => {
 };
 
 Image.propTypes = {
-	image: PropTypes.object,
+	image: PropTypes.string,
 	index: PropTypes.number,
 	removeImage: PropTypes.func,
 };

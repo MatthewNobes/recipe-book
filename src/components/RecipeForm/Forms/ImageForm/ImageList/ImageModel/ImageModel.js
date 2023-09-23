@@ -58,7 +58,7 @@ export const ImageModel = ({
 		>
 			<Box sx={style}>
 				<Typography id="modal-title" variant="h6" component="h2">
-					{operation} an image
+					{operation} image
 				</Typography>
 				<Formik
 					initialValues={initialValues}

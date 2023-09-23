@@ -14,6 +14,7 @@ import {
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { getMeasurementsThatNeedASpace } from "utils";
 
 const Header = () => (
 	<AccordionSummary
@@ -33,12 +34,7 @@ export const ViewIngredients = ({ ingredients = [] }) => {
 	};
 
 	if (hasIngredients === true) {
-		const measurementsThatNeedASpace = [
-			"tablespoon",
-			"teaspoon",
-			"handful",
-			"cup",
-		];
+		const measurementsThatNeedASpace = getMeasurementsThatNeedASpace();
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />

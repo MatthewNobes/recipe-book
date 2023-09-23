@@ -7,11 +7,13 @@ import { toggleFavorite } from "./toggleFavorite/toggleFavorite";
 import { isURL } from "./isURL/isURL";
 import { utf8Decode } from "./utf8Decode/utf8Decode";
 import { utf8Encode } from "./utf8Encode/utf8Encode";
+import { getMeasurementsThatNeedASpace } from "./getMeasurementThatNeedASpace/getMeasurementThatNeedASpace";
 export {
 	filterRecipesForTimeRange,
 	minutesToHours,
 	makeSecondaryText,
 	getDifficultyColour,
+	getMeasurementsThatNeedASpace,
 	getWelcomeMessage,
 	toggleFavorite,
 	isURL,

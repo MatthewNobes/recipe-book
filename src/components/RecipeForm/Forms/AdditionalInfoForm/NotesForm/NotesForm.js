@@ -1,4 +1,10 @@
-import { InputAdornment, InputLabel, FormControl, Paper } from "@mui/material";
+import {
+	InputAdornment,
+	InputLabel,
+	FormControl,
+	Paper,
+	Tooltip,
+} from "@mui/material";
 import {
 	OutlinedInputWrapper,
 	SubmitIconButtonWrapper,
@@ -7,7 +13,7 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import { Add } from "@mui/icons-material";
-import { NotesBlock } from "./NotesBlock";
+import { NotesList } from "./NotesList";
 
 export const NotesForm = ({ notes, addNote, removeNote }) => {
 	const initialValues = { note: "" };
@@ -51,17 +57,19 @@ export const NotesForm = ({ notes, addNote, removeNote }) => {
 							type="string"
 							aria-label="new note"
 							endAdornment={
-								<InputAdornment position="end">
-									<SubmitIconButtonWrapper aria-label="add note" edge="end">
-										<Add />
-									</SubmitIconButtonWrapper>
-								</InputAdornment>
+								<Tooltip title="Add Note" placement="left">
+									<InputAdornment position="end">
+										<SubmitIconButtonWrapper aria-label="add note" edge="end">
+											<Add />
+										</SubmitIconButtonWrapper>
+									</InputAdornment>
+								</Tooltip>
 							}
 						/>
 					</FormControl>
 				</Form>
 			</Formik>
-			<NotesBlock notes={notes} removeNote={removeNote} />
+			<NotesList notes={notes} removeNote={removeNote} />
 		</Paper>
 	);
 };

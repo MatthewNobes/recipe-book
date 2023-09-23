@@ -8,6 +8,13 @@ export const AdditionalInfoForm = ({
 	canBeFrozen,
 	setCanBeFrozen,
 }) => {
+	const addNote = (newNote) => {
+		if (notes) {
+			setNotes([...notes, newNote]);
+		} else {
+			setNotes([newNote]);
+		}
+	};
 	return (
 		<Box
 			sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 1 }}
@@ -23,7 +30,7 @@ export const AdditionalInfoForm = ({
 			/>
 			<NotesForm
 				notes={notes}
-				addNote={(newNote) => setNotes([...notes, newNote])}
+				addNote={(newNote) => addNote(newNote)}
 				removeNote={(idToRemove) => {
 					const updatedNotes = notes;
 					updatedNotes.splice(idToRemove, 1);
