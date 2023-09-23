@@ -16,7 +16,14 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 	const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 	const loggedIn = supabase.changedAccessToken ? true : false;
 
-	let menuOptions = [];
+	let menuOptions = [
+		{
+			label: "Share recipe",
+			onClickFunction: async () => {
+				await shareRecipe();
+			},
+		},
+	];
 
 	const toggleDeleteDialog = () => {
 		setDeleteDialogOpen(!deleteDialogOpen);
@@ -95,6 +102,7 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 
 	if (loggedIn) {
 		menuOptions = [
+			...menuOptions,
 			{
 				label: "Edit recipe",
 				onClickFunction: () => navigate("/edit/" + id, { replace: false }),
@@ -105,51 +113,45 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 					setDeleteDialogOpen(true);
 				},
 			},
-			{
-				label: "Share recipe",
-				onClickFunction: async () => {
-					await shareRecipe();
-				},
-			},
 		];
 	}
 
-	if (loggedIn) {
-		return (
-			<>
-				<IconButton
-					aria-label="more options"
-					sx={{ paddingRight: 3 }}
-					size="large"
-					onClick={handleMenu}
-				>
-					<Avatar sx={{ opacity: 0.6, backgroundColor: "black" }}>
-						<MoreVert htmlColor="#fff" />
-					</Avatar>
-				</IconButton>
-				<Menu
-					id="menu-appbar"
-					anchorEl={anchorEl}
-					anchorOrigin={{
-						vertical: "top",
-						horizontal: "right",
-					}}
-					keepMounted
-					transformOrigin={{
-						vertical: "top",
-						horizontal: "right",
-					}}
-					open={Boolean(anchorEl)}
-					onClose={handleClose}
-				>
-					{menuOptions.map((option, index) => {
-						return (
-							<MenuItem onClick={option.onClickFunction} key={index}>
-								{option.label}
-							</MenuItem>
-						);
-					})}
-				</Menu>
+	return (
+		<>
+			<IconButton
+				aria-label="more options"
+				sx={{ paddingRight: 3 }}
+				size="large"
+				onClick={handleMenu}
+			>
+				<Avatar sx={{ opacity: 0.6, backgroundColor: "black" }}>
+					<MoreVert htmlColor="#fff" />
+				</Avatar>
+			</IconButton>
+			<Menu
+				id="menu-appbar"
+				anchorEl={anchorEl}
+				anchorOrigin={{
+					vertical: "top",
+					horizontal: "right",
+				}}
+				keepMounted
+				transformOrigin={{
+					vertical: "top",
+					horizontal: "right",
+				}}
+				open={Boolean(anchorEl)}
+				onClose={handleClose}
+			>
+				{menuOptions.map((option, index) => {
+					return (
+						<MenuItem onClick={option.onClickFunction} key={index}>
+							{option.label}
+						</MenuItem>
+					);
+				})}
+			</Menu>
+			{loggedIn ? (
 				<DialogBox
 					title={"Delete recipe"}
 					message={"Are you sure you want to delete this recipe?"}
@@ -158,9 +160,11 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 					isOpen={deleteDialogOpen}
 					toggleOpen={toggleDeleteDialog}
 				/>
-			</>
-		);
-	}
+			) : (
+				<></>
+			)}
+		</>
+	);
 };
 
 RecipeHeaderMenu.propTypes = {
