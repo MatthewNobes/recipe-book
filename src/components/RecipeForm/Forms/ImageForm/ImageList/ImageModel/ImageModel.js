@@ -1,7 +1,11 @@
 import { Modal, Typography, Box } from "@mui/material";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
-import { TextfieldWrapper, SubmitButtonWrapper } from "../../../../../FormUI";
+import {
+	TextfieldWrapper,
+	SubmitButtonWrapper,
+	ResetButtonWrapper,
+} from "../../../../../FormUI";
 import PropTypes from "prop-types";
 
 const style = {
@@ -39,13 +43,8 @@ export const ImageModel = ({
 }) => {
 	const handleClose = () => setModalOpenStatus(false);
 
-	const clearForm = (values) => {
-		console.log(values);
-	};
-
 	const submitHandle = (values) => {
 		addImage(values.url);
-		clearForm(values);
 		handleClose();
 	};
 
@@ -74,9 +73,14 @@ export const ImageModel = ({
 								label="Image Source URL"
 								required={true}
 							></TextfieldWrapper>
-							<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
-								Add
-							</SubmitButtonWrapper>
+							<Box sx={{ display: "flex", gap: 1 }}>
+								<ResetButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Clear
+								</ResetButtonWrapper>
+								<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
+									Add
+								</SubmitButtonWrapper>
+							</Box>
 						</Box>
 					</Form>
 				</Formik>
