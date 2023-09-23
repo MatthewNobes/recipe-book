@@ -30,6 +30,47 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 		setAnchorEl(null);
 	};
 
+	const shareRecipe = async () => {
+		const shareDetails = {
+			url: window.location.href,
+			title: name,
+			text: `Share ${name} recipe`,
+		};
+
+		if (navigator.share) {
+			try {
+				await navigator.share(shareDetails);
+			} catch (error) {
+				dispatch(
+					setToast({
+						message: "Unable to share recipe at this time",
+						alertType: "error",
+						isOpen: true,
+					}),
+				);
+			}
+		} else {
+			try {
+				await navigator.clipboard.writeText(shareDetails.url);
+				dispatch(
+					setToast({
+						message: "Copied to clipboard",
+						alertType: "info",
+						isOpen: true,
+					}),
+				);
+			} catch (error) {
+				dispatch(
+					setToast({
+						message: "Unable to share recipe at this time",
+						alertType: "error",
+						isOpen: true,
+					}),
+				);
+			}
+		}
+	};
+
 	const onDelete = async () => {
 		const response = await deleteRecipe(id);
 		if (response === "success") {
@@ -67,26 +108,7 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 			{
 				label: "Share recipe",
 				onClickFunction: async () => {
-					const shareDetails = {
-						url: window.location.href,
-						title: name,
-						text: `Share ${name} recipe`,
-					};
-
-					if (navigator.share) {
-						try {
-							await navigator.share(shareDetails);
-						} catch (error) {
-							console.log(
-								`Oops! I couldn't share to the world because: ${error}`,
-							);
-						}
-					} else {
-						// fallback code
-						console.log(
-							"Web share is currently not supported on this browser. Please provide a callback",
-						);
-					}
+					await shareRecipe();
 				},
 			},
 		];
