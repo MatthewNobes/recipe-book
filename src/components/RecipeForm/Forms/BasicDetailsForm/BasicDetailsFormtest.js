@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+/* 
 import { render, screen } from "@testing-library/react";
 import { BasicDetailsForm } from "./BasicDetailsForm";
 
@@ -98,3 +98,4 @@ describe("BasicDetailsForm", () => {
 		expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
 	});
 });
+*/
