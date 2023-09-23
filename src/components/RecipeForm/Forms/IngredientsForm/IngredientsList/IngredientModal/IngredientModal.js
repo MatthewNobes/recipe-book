@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { getAllUnits } from "../../../../../../data";
+import Loading from "components/Loading";
 
 const style = {
 	position: "absolute",
@@ -49,14 +50,18 @@ const initialValues = {
 	optional: false,
 };
 
-export const IngredientModal = (props) => {
-	const operation = props.operation;
-	const [units, setUnits] = useState([{ id: 1, label: "g" }]);
+export const IngredientModal = ({
+	operation,
+	setModalOpenStatus,
+	addIngredient,
+	modalOpenStatus,
+}) => {
+	const [units, setUnits] = useState();
 
-	const handleClose = () => props.setModalOpenStatus(false);
+	const handleClose = () => setModalOpenStatus(false);
 
 	const submitHandle = (values) => {
-		props.addIngredient({
+		addIngredient({
 			name: values.name,
 			quantity: values.quantity,
 			measurement: values.measurement,
@@ -79,67 +84,79 @@ export const IngredientModal = (props) => {
 
 	return (
 		<Modal
-			open={props.modalOpenStatus}
+			open={modalOpenStatus}
 			onClose={handleClose}
 			aria-labelledby={`ingredient ${operation} model`}
 			aria-describedby={`ingredient ${operation} model`}
 		>
 			<Box sx={style}>
-				<Typography id="modal-title" variant="h6" component="h2">
-					{operation} Ingredient
-					<Tooltip
-						title={`Use this form to ${operation} an ingredient for this recipe`}
-					>
-						<InfoIcon color="info" sx={{ paddingLeft: 1 }} />
-					</Tooltip>
-				</Typography>
-				<Formik
-					initialValues={initialValues}
-					onSubmit={(values) => {
-						submitHandle(values);
-					}}
-					validationSchema={validationSchema}
-				>
-					<Form>
-						<Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
-							<TextfieldWrapper
-								name="name"
-								label="Ingredient"
-								required={true}
-							></TextfieldWrapper>
-							<Box sx={{ display: "flex", gap: 1, flexDirection: "row" }}>
-								<TextfieldWrapper
-									name="quantity"
-									label="Quantity"
-									required={true}
-								></TextfieldWrapper>
-								<AutoCompleteWrapper
-									name="measurement"
-									label="Unit"
-									required={true}
-									options={units}
-								></AutoCompleteWrapper>
-							</Box>
-							<Box
-								sx={{
-									display: "flex",
-									justifyContent: "flex-start",
+				{units ? (
+					units.length > 0 ? (
+						<Box>
+							<Typography id="modal-title" variant="h6" component="h2">
+								{operation} Ingredient
+								<Tooltip
+									title={`Use this form to ${operation} an ingredient for this recipe`}
+								>
+									<InfoIcon color="info" sx={{ paddingLeft: 1 }} />
+								</Tooltip>
+							</Typography>
+							<Formik
+								initialValues={initialValues}
+								onSubmit={(values) => {
+									submitHandle(values);
 								}}
+								validationSchema={validationSchema}
 							>
-								<CheckboxWrapper name="optional" label="Optional" />
-							</Box>
+								<Form>
+									<Box
+										sx={{ display: "flex", gap: 2, flexDirection: "column" }}
+									>
+										<TextfieldWrapper
+											name="name"
+											label="Ingredient"
+											required={true}
+										></TextfieldWrapper>
+										<Box sx={{ display: "flex", gap: 1, flexDirection: "row" }}>
+											<TextfieldWrapper
+												name="quantity"
+												label="Quantity"
+												required={true}
+											></TextfieldWrapper>
+											<AutoCompleteWrapper
+												name="measurement"
+												label="Unit"
+												required={true}
+												options={units}
+											></AutoCompleteWrapper>
+										</Box>
+										<Box
+											sx={{
+												display: "flex",
+												justifyContent: "flex-start",
+											}}
+										>
+											<CheckboxWrapper name="optional" label="Optional" />
+										</Box>
 
-							<Box sx={{ display: "flex", gap: 1 }}>
-								<ResetButtonWrapper sx={{ mt: 1, mr: 1 }}>
-									Clear
-								</ResetButtonWrapper>
-								<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
-									Add
-								</SubmitButtonWrapper>
-							</Box>
+										<Box sx={{ display: "flex", gap: 1 }}>
+											<ResetButtonWrapper sx={{ mt: 1, mr: 1 }}>
+												Clear
+											</ResetButtonWrapper>
+											<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
+												Add
+											</SubmitButtonWrapper>
+										</Box>
+									</Box>
+								</Form>
+							</Formik>
 						</Box>
-					</Form>
-				</Formik>
+					) : (
+						<Typography>Unable to add units</Typography>
+					)
+				) : (
+					<Loading />
+				)}
 			</Box>
 		</Modal>
 	);
@@ -149,6 +166,5 @@ IngredientModal.propTypes = {
 	operation: PropTypes.string,
 	setModalOpenStatus: PropTypes.func,
 	addIngredient: PropTypes.func,
-	units: PropTypes.array,
 	modalOpenStatus: PropTypes.bool,
 };
