@@ -8,7 +8,7 @@
 export const filterRecipesForTimeRange = (results, minTime, maxTime) => {
 	// filter results by cook and prep time added together
 	const timeFilteredRecipes = results.filter((recipe) => {
-		const combinedTime = recipe.cook_time + recipe.prep_time;
+		const combinedTime = recipe.cookTime + recipe.prepTime;
 		if (combinedTime >= minTime && combinedTime <= maxTime) {
 			return recipe;
 		}

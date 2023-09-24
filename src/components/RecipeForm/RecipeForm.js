@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import {
 	Typography,
 	Button,
@@ -37,11 +36,11 @@ export const RecipeForm = (props) => {
 	let initialRecipeValues = {
 		name: "",
 		description: "",
-		difficulty_rating: 0,
-		prep_time: 0,
-		cook_time: 0,
+		difficultyRating: 0,
+		prepTime: 0,
+		cookTime: 0,
 		source: "",
-		serving_number: 4,
+		servingNumber: 4,
 		country: "",
 		category: "",
 		region: "",
@@ -58,11 +57,11 @@ export const RecipeForm = (props) => {
 		initialRecipeValues = {
 			name: props.valuesToEdit.name,
 			description: props.valuesToEdit.description,
-			difficulty_rating: props.valuesToEdit.difficulty_rating,
-			prep_time: props.valuesToEdit.prep_time,
-			cook_time: props.valuesToEdit.cook_time,
+			difficultyRating: props.valuesToEdit.difficultyRating,
+			prepTime: props.valuesToEdit.prepTime,
+			cookTime: props.valuesToEdit.cookTime,
 			source: props.valuesToEdit.source,
-			serving_number: props.valuesToEdit.serving_number,
+			servingNumber: props.valuesToEdit.servingNumber,
 			country: props.valuesToEdit.country,
 			category: props.valuesToEdit.category,
 			region: props.valuesToEdit.region,

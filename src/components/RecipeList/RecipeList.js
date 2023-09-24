@@ -24,8 +24,8 @@ export const RecipeList = ({ recipes }) => {
 						recipeName={recipe.name}
 						recipeDescription={recipe.description}
 						isFavorite={"isFavorite" in recipe ? recipe.isFavorite : null}
-						cookTime={recipe.cook_time}
-						prepTime={recipe.prep_time}
+						cookTime={recipe.cookTime}
+						prepTime={recipe.prepTime}
 						image={recipe.images[0]}
 						category={recipe.category}
 					/>
