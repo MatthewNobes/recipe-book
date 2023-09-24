@@ -19,7 +19,7 @@ export const ViewRecipe = () => {
 	}, [recipeID]);
 
 	if (recipe) {
-		const createdDate = new Date(recipe.created_at);
+		const createdDate = new Date(recipe.createdAt);
 
 		return (
 			<>
@@ -44,10 +44,10 @@ export const ViewRecipe = () => {
 							)}
 						</Box>
 						<ChipBar
-							servesNumber={recipe.serving_number}
-							difficultyRating={recipe.difficulty_rating}
-							cookTime={recipe.cook_time}
-							prepTime={recipe.prep_time}
+							servesNumber={recipe.servingNumber}
+							difficultyRating={recipe.difficultyRating}
+							cookTime={recipe.cookTime}
+							prepTime={recipe.prepTime}
 							country={recipe.country}
 							vegStatus={recipe.vegStatus}
 							canBeFrozen={recipe.canBeFrozen}

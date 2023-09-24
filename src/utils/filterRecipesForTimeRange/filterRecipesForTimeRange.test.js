@@ -1,12 +1,11 @@
-/* eslint-disable camelcase */
 import { filterRecipesForTimeRange } from "./filterRecipesForTimeRange";
 
 describe("filterRecipesForTimeRange", () => {
 	const testDataSet = [
-		{ id: 101, prep_time: 5, cook_time: 12 },
-		{ id: 405, prep_time: 10, cook_time: 7 },
-		{ id: 375, prep_time: 10, cook_time: 20 },
-		{ id: 411, prep_time: 20, cook_time: 20 },
+		{ id: 101, prepTime: 5, cookTime: 12 },
+		{ id: 405, prepTime: 10, cookTime: 7 },
+		{ id: 375, prepTime: 10, cookTime: 20 },
+		{ id: 411, prepTime: 20, cookTime: 20 },
 	];
 
 	it("should return 2 recipes when looking for ones between 15 and 20 minutes", () => {
@@ -34,7 +33,7 @@ describe("filterRecipesForTimeRange", () => {
 
 		expect(filteredRecipes.length).toBe(1);
 		expect(filteredRecipes[0].id).toBe(375);
-		expect(filteredRecipes[0].prep_time + filteredRecipes[0].cook_time).toBe(
+		expect(filteredRecipes[0].prepTime + filteredRecipes[0].cookTime).toBe(
 			minTime,
 		);
 	});
@@ -50,7 +49,7 @@ describe("filterRecipesForTimeRange", () => {
 
 		expect(filteredRecipes.length).toBe(1);
 		expect(filteredRecipes[0].id).toBe(411);
-		expect(filteredRecipes[0].prep_time + filteredRecipes[0].cook_time).toBe(
+		expect(filteredRecipes[0].prepTime + filteredRecipes[0].cookTime).toBe(
 			maxTime,
 		);
 	});

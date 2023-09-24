@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { Box, Typography } from "@mui/material";
@@ -61,18 +60,18 @@ export const BasicDetailsForm = (props) => {
 			.string()
 			.required("Required")
 			.max(512, "Must not be greater than 512 characters"),
-		difficulty_rating: yup
+		difficultyRating: yup
 			.number()
 			.positive("Must be positive")
 			.integer("Must be a whole number")
 			.min(1, "Must be between 1 and 10")
 			.max(10, "Must be between 1 and 10"),
-		prep_time: yup
+		prepTime: yup
 			.number()
 			.required("Required")
 			.moreThan(-1, "Must be positive")
 			.integer("Must be a whole number"),
-		cook_time: yup
+		cookTime: yup
 			.number()
 			.required("Required")
 			.moreThan(-1, "Must be positive")
@@ -82,7 +81,7 @@ export const BasicDetailsForm = (props) => {
 			.max(512, "Must not be greater than 512 characters")
 			.url("Must be a URL")
 			.nullable(),
-		serving_number: yup
+		servingNumber: yup
 			.number()
 			.required("Required")
 			.positive("Must be positive")
@@ -100,11 +99,11 @@ export const BasicDetailsForm = (props) => {
 		props.setRecipeFn({
 			name: values.name,
 			description: values.description,
-			difficulty_rating: values.difficulty_rating,
-			prep_time: values.prep_time,
-			cook_time: values.cook_time,
+			difficultyRating: values.difficultyRating,
+			prepTime: values.prepTime,
+			cookTime: values.cookTime,
 			source: values.source,
-			serving_number: values.serving_number,
+			servingNumber: values.servingNumber,
 			country: values.country,
 			region: values.region,
 			category: values.category,
@@ -145,18 +144,18 @@ export const BasicDetailsForm = (props) => {
 									options={categories}
 								></AutoCompleteWrapper>
 								<TextfieldWrapper
-									name="difficulty_rating"
+									name="difficultyRating"
 									label="Difficulty Rating"
 									type="number"
 								></TextfieldWrapper>
 								<TextfieldWrapper
-									name="prep_time"
+									name="prepTime"
 									label="Preparation time (in minutes)"
 									type="number"
 									required={true}
 								></TextfieldWrapper>
 								<TextfieldWrapper
-									name="cook_time"
+									name="cookTime"
 									label="Cooking time (in minutes)"
 									type="number"
 									required={true}
@@ -166,7 +165,7 @@ export const BasicDetailsForm = (props) => {
 									label="Source URL"
 								></TextfieldWrapper>
 								<TextfieldWrapper
-									name="serving_number"
+									name="servingNumber"
 									label="Serving number"
 									type="number"
 									required={true}
