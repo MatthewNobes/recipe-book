@@ -21,6 +21,7 @@ export const getCurrentUsersFullFavorites = async () => {
 			return [];
 		}
 		if (data) {
+			console.log(data);
 			if (process.env.NODE_ENV === "production") {
 				const favorites = data.map((favorite) => {
 					favorite.recipes.isFavorite = true;
@@ -33,6 +34,7 @@ export const getCurrentUsersFullFavorites = async () => {
 					favorite.recipesDev.isFavorite = true;
 					return favorite.recipesDev;
 				});
+				console.log(favorites);
 				return favorites;
 			}
 		}
