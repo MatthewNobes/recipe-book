@@ -21,20 +21,19 @@ export const getCurrentUsersFullFavorites = async () => {
 			return [];
 		}
 		if (data) {
-			console.log(data);
 			if (process.env.NODE_ENV === "production") {
 				const favorites = data.map((favorite) => {
 					favorite.recipes.isFavorite = true;
-					return favorite.recipe;
+					return favorite.recipes;
 				});
-				console.log(favorites);
+
 				return favorites;
 			} else {
 				const favorites = data.map((favorite) => {
 					favorite.recipesDev.isFavorite = true;
 					return favorite.recipesDev;
 				});
-				console.log(favorites);
+
 				return favorites;
 			}
 		}
