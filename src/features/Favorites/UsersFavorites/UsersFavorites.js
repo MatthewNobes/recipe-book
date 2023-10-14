@@ -8,8 +8,7 @@ export const UserFavorites = () => {
 
 	useEffect(() => {
 		const fetchRecipes = async () => {
-			const foundRecipes = await getCurrentUsersFullFavorites();
-			setFavoriteRecipes(foundRecipes);
+			setFavoriteRecipes(await getCurrentUsersFullFavorites());
 		};
 		fetchRecipes();
 	}, []);
