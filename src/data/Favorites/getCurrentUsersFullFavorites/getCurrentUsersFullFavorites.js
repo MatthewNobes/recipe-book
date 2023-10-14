@@ -24,14 +24,16 @@ export const getCurrentUsersFullFavorites = async () => {
 			if (process.env.NODE_ENV === "production") {
 				const favorites = data.map((favorite) => {
 					favorite.recipes.isFavorite = true;
-					return favorite.recipe;
+					return favorite.recipes;
 				});
+
 				return favorites;
 			} else {
 				const favorites = data.map((favorite) => {
 					favorite.recipesDev.isFavorite = true;
 					return favorite.recipesDev;
 				});
+
 				return favorites;
 			}
 		}
