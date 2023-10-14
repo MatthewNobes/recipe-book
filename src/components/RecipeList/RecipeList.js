@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
  * @returns {React.ReactElement} A list of recipes
  */
 export const RecipeList = ({ recipes }) => {
+	console.log(recipes);
 	return (
 		<List
 			sx={{
@@ -17,6 +18,7 @@ export const RecipeList = ({ recipes }) => {
 			}}
 		>
 			{recipes.map((recipe) => {
+				console.log(recipe);
 				return (
 					<RecipeListItem
 						key={recipe.id}

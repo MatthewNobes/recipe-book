@@ -26,6 +26,7 @@ export const getCurrentUsersFullFavorites = async () => {
 					favorite.recipes.isFavorite = true;
 					return favorite.recipe;
 				});
+				console.log(favorites);
 				return favorites;
 			} else {
 				const favorites = data.map((favorite) => {
