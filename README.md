@@ -28,6 +28,38 @@ Once this is configured, start up the app using the command:
 ```bash
 npm start
 ```
+## Local Supabase 
+
+Supabase has been setup for this project to work locally using the supabase command line interface. As prerequisites to this, you will need [Docker](https://www.docker.com/) and the [Supabase CLI](https://github.com/supabase/cli) installed. 
+
+With Supabase CLI installed, you need to link the local instance to the repo, you can do this by running the following command with the project reference in place. 
+
+```
+supabase link --project-ref project-id
+```
+
+After the project is linked, you need to pull down the changes from the remote database using the following command:
+
+```
+supabase db pull
+```
+
+The local version of supabase can then be launched using the command `supabase start`. This will use Docker to create localised versions of everything supabase has to offer, include the database, authentication and edge functions. 
+
+When making changes, its advised to make database changes in the Studio UI, which is typically hosted locally on: http://localhost:54323
+
+Once changes have been made to the schema, run the command below to create a new .sql file showing the new changes to the schema. Insert a name when running the command to identify the changes that have taken place. 
+
+```
+supabase db diff -f insert-name
+```
+
+This change migration file can be pushed to the remote hosted database using the following command: 
+
+```
+supabase db push
+```
+
 
 ## Testing
 
