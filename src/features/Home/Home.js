@@ -27,6 +27,7 @@ export const HomePage = () => {
 								recipes={recipes}
 								howManyToDisplay={8}
 								haveAlternatingLargeImage={true}
+								randomise={true}
 							/>
 							<RecommendRecipeButton />
 							<RecentlyAddedGallery recipes={recipes} />

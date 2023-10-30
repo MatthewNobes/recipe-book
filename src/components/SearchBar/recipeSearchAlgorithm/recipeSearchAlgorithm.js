@@ -1,8 +1,6 @@
 export const recipeSearchAlgorithm = (searchTerm, recipesToSearch) => {
 	let searchResults = [];
 	const checkedSearchTerm = searchTermChecks(searchTerm);
-
-	console.log(recipesToSearch);
 	recipesToSearch.forEach((recipe) => {
 		if (
 			recipe.name.toLowerCase().match(checkedSearchTerm) ||
