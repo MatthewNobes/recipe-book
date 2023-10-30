@@ -4,6 +4,7 @@ import { makeSecondaryText } from "./makeSecondaryText/makeSecondaryText";
 import { getDifficultyColour } from "./getDifficultyColour/getDifficultyColour";
 import { getWelcomeMessage } from "./getWelcomeMessage/getWelcomeMessage";
 import { toggleFavorite } from "./toggleFavorite/toggleFavorite";
+import { shuffleArray } from "./shuffleArray/shuffleArray";
 import { isURL } from "./isURL/isURL";
 import { utf8Decode } from "./utf8Decode/utf8Decode";
 import { utf8Encode } from "./utf8Encode/utf8Encode";
@@ -15,6 +16,7 @@ export {
 	makeSecondaryText,
 	getDifficultyColour,
 	getMeasurementsThatNeedASpace,
+	shuffleArray,
 	getWelcomeMessage,
 	toggleFavorite,
 	isURL,

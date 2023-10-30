@@ -1,46 +1,26 @@
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import FavoriteButton from "../FavoriteButton";
 import { useNavigate } from "react-router-dom";
-import { utf8Decode } from "../../utils";
 import PropTypes from "prop-types";
-
-const shuffleArray = (array) => {
-	let currentIndex = array.length,
-		randomIndex;
-
-	// While there remain elements to shuffle.
-	while (currentIndex != 0) {
-		// Pick a remaining element.
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex--;
-
-		// And swap it with the current element.
-		[array[currentIndex], array[randomIndex]] = [
-			array[randomIndex],
-			array[currentIndex],
-		];
-	}
-
-	return array;
-};
+import { shuffleArray, utf8Decode } from "utils";
 
 export const ImageGallery = ({
 	recipes,
 	howManyToDisplay,
 	haveAlternatingLargeImage,
-	randomise = true,
+	randomise = false,
 }) => {
 	const navigate = useNavigate();
+
+	if (randomise) {
+		shuffleArray(recipes);
+	}
 
 	const recipesWithImages = recipes.filter(
 		(recipe) => recipe.images.length > 0,
 	);
 
-	let cutDownRecipes = recipesWithImages.slice(0, howManyToDisplay);
-
-	if (randomise) {
-		shuffleArray(cutDownRecipes);
-	}
+	const cutDownRecipes = recipesWithImages.slice(0, howManyToDisplay);
 
 	return (
 		<ImageList
