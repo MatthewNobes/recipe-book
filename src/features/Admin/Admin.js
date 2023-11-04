@@ -1,5 +1,5 @@
 import { IconList, Page, SubPageHeader } from "components";
-import { SquareFoot } from "@mui/icons-material";
+import { SquareFoot, Group } from "@mui/icons-material";
 
 const AdminOptions = () => {
 	const adminOptions = [
@@ -7,6 +7,11 @@ const AdminOptions = () => {
 			label: "Units of measurements",
 			icon: <SquareFoot />,
 			route: "/Admin/UnitsAdmin",
+		},
+		{
+			label: "Role management",
+			icon: <Group />,
+			route: "/Admin/Roles/Management",
 		},
 	];
 

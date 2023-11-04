@@ -1,21 +1,24 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./Home";
-import BrowseRecipes from "./BrowseRecipes";
-import MyAccount from "./MyAccount";
-import Favorites from "./Favorites";
-import AddRecipe from "./AddRecipe";
-import Settings from "./Settings";
-import Admin from "./Admin";
-import About from "./About";
-import ViewRecipe from "./ViewRecipe";
-import EditRecipe from "./EditRecipe";
-import Categories from "./Categories";
-import Category from "./Category";
-import RecommendRecipe from "./RecommendRecipe";
-import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
-import Login from "./Login";
-import supabase from "../data/supabase";
-import PageNotFound from "./PageNotFound";
+import {
+	Admin,
+	RoleManagementAdmin,
+	HomePage,
+	BrowseRecipes,
+	MyAccount,
+	Favorites,
+	AddRecipe,
+	Settings,
+	About,
+	ViewRecipe,
+	EditRecipe,
+	Categories,
+	Category,
+	RecommendRecipe,
+	Login,
+	PageNotFound,
+	UnitsAdmin,
+} from "features";
+import supabase from "./data/supabase";
 import { useEffect, useState } from "react";
 import { isUserAppAdmin } from "data";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,6 +68,14 @@ export const Router = () => {
 			<Route
 				path="/Admin/UnitsAdmin"
 				element={isAdmin ? <UnitsAdmin /> : <Navigate to="/Home" />}
+			/>
+			<Route
+				path="/Admin/Roles"
+				element={isAdmin ? <Admin /> : <Navigate to="/Home" />}
+			/>
+			<Route
+				path="/Admin/Roles/Management"
+				element={isAdmin ? <RoleManagementAdmin /> : <Navigate to="/Home" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />

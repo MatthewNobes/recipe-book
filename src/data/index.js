@@ -19,6 +19,7 @@ import {
 	removeFavorite,
 } from "./Favorites";
 import { getAllRegions } from "./regions";
+import { getAllRoles, addRole } from "./roles";
 export {
 	addRecipe,
 	addUnit,
@@ -41,4 +42,6 @@ export {
 	toggleFavorite,
 	addFavorite,
 	removeFavorite,
+	getAllRoles,
+	addRole,
 };

@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { isUserAppAdmin } from "data";
 
 export const initialState = {
-	isAdmin: false,
+	isAdmin: await isUserAppAdmin(),
 };
 
 export const isAdminSlice = createSlice({
