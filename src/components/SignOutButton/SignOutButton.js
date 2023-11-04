@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
-import { signOut } from "../../data";
+import { signOut, isUserAppAdmin } from "../../data";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
+import { setIsAdmin } from "store/slices/isAdminSlice/isAdminSlice";
 import { useDispatch } from "react-redux";
 
 export const SignOutButton = () => {
@@ -18,6 +19,7 @@ export const SignOutButton = () => {
 							isOpen: true,
 						}),
 					);
+					dispatch(setIsAdmin(await isUserAppAdmin()));
 				} else {
 					dispatch(
 						setToast({

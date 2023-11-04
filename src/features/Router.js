@@ -16,12 +16,18 @@ import { UnitsAdmin } from "./Admin/UnitsAdmin/UnitsAdmin";
 import Login from "./Login";
 import supabase from "../data/supabase";
 import PageNotFound from "./PageNotFound";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { isUserAppAdmin } from "data";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsAdmin } from "store/slices/isAdminSlice/isAdminSlice";
 
 export const Router = () => {
 	const [loggedIn, setLoggedIn] = useState(
 		supabase.changedAccessToken ? true : false,
 	);
+
+	const isAdmin = useSelector((state) => state.isAdmin.isAdmin);
+	const dispatch = useDispatch();
 
 	supabase.auth.onAuthStateChange((event, session) => {
 		if (session) {
@@ -30,6 +36,13 @@ export const Router = () => {
 			setLoggedIn(false);
 		}
 	});
+
+	useEffect(() => {
+		const getIsAdmin = async () => {
+			dispatch(setIsAdmin(await isUserAppAdmin()));
+		};
+		getIsAdmin();
+	}, []);
 
 	return (
 		<Routes>
@@ -46,12 +59,12 @@ export const Router = () => {
 			<Route path="/category/:category" element={<Category />} />
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
 			<Route
-				path="/Settings/Admin"
-				element={loggedIn ? <Admin /> : <Navigate to="/Login" />}
+				path="/Admin"
+				element={isAdmin ? <Admin /> : <Navigate to="/Home" />}
 			/>
 			<Route
-				path="/Settings/Admin/UnitsAdmin"
-				element={loggedIn ? <UnitsAdmin /> : <Navigate to="/Login" />}
+				path="/Admin/UnitsAdmin"
+				element={isAdmin ? <UnitsAdmin /> : <Navigate to="/Home" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />

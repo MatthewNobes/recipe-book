@@ -6,7 +6,7 @@ const AdminOptions = () => {
 		{
 			label: "Units of measurements",
 			icon: <SquareFoot />,
-			route: "/Settings/Admin/UnitsAdmin",
+			route: "/Admin/UnitsAdmin",
 		},
 	];
 
