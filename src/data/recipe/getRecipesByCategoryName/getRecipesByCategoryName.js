@@ -1,8 +1,6 @@
 import supabase from "../../supabase";
 import { getCurrentUsersFavorites } from "data/Favorites";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
-
 /**
  * Gets the all the recipes for a certain category
  * @param {string} categoryName the category name to look for
@@ -10,7 +8,7 @@ const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
  */
 export const getRecipesByCategoryName = async (categoryName) => {
 	let { data, error } = await supabase
-		.from(table)
+		.from("recipes")
 		.select()
 		.eq("category", categoryName);
 

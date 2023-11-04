@@ -1,8 +1,5 @@
 import supabase from "../../supabase";
 
-const table =
-	process.env.NODE_ENV === "production" ? "favorites" : "favoritesDev";
-
 /**
  * Removes a favorite
  * @param {object} recipeID The ID of the recipe to be remove from favorites
@@ -11,7 +8,7 @@ const table =
  */
 export const removeFavorite = async (recipeID, userID) => {
 	const { error } = await supabase
-		.from(table)
+		.from("favorites")
 		.delete()
 		.eq("recipe", recipeID)
 		.eq("user", userID);

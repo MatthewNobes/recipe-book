@@ -1,8 +1,5 @@
 import supabase from "../../supabase";
 
-const table =
-	process.env.NODE_ENV === "production" ? "favorites" : "favoritesDev";
-
 /**
  * Gets the favorite status for a particular recipe and user
  * @param {integer} recipeID The ID of the recipe you are looking for
@@ -11,7 +8,7 @@ const table =
  */
 export const getFavoriteStatus = async (recipeID, userID) => {
 	const { data, error } = await supabase
-		.from(table)
+		.from("favorites")
 		.select()
 		.eq("recipe", recipeID)
 		.eq("user", userID);

@@ -1,9 +1,6 @@
 import { getCurrentUser } from "data/authentication/getCurrentUser/getCurrentUser";
 import supabase from "../../supabase";
 
-const table =
-	process.env.NODE_ENV === "production" ? "favorites" : "favoritesDev";
-
 /**
  * Used to find a list of all the users favorite recipes
  * @returns {Array | null} An array of the users favorite recipe ID's or null if there is not a logged in user
@@ -13,7 +10,7 @@ export const getCurrentUsersFavorites = async () => {
 
 	if (currentUser) {
 		let { data, error } = await supabase
-			.from(table)
+			.from("favorites")
 			.select("*")
 			.eq("user", currentUser.id);
 

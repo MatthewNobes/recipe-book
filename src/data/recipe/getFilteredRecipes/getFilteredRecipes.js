@@ -1,13 +1,11 @@
 import supabase from "../../supabase";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
-
 export const getFilteredRecipes = async (filters) => {
 	const filterByVegStatus = filters.vegStatus;
 	const filterByRegion = filters.region;
 	const filterByCategory = filters.category;
 
-	let query = supabase.from(table).select("*", { count: "exact" });
+	let query = supabase.from("recipes").select("*", { count: "exact" });
 
 	if (filterByVegStatus) {
 		query = query.eq("vegStatus", filterByVegStatus);

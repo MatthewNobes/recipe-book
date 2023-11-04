@@ -1,8 +1,6 @@
 import supabase from "../../supabase";
 import { getCurrentUsersFavorites } from "data/Favorites";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
-
 /**
  * Gets all the recipes in the recipe table
  * @returns {Array} Either full of recipes or empty
@@ -12,7 +10,7 @@ export const getAllRecipes = async (
 	upperRangeIndex = 100,
 ) => {
 	let { data, error, count } = await supabase
-		.from(table)
+		.from("recipes")
 		.select("*", { count: "exact" })
 		.range(lowerRangeIndex, upperRangeIndex);
 
