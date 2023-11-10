@@ -25,6 +25,7 @@ const style = {
 };
 
 const validationSchema = yup.object().shape({
+	id: yup.number(),
 	role: yup
 		.string()
 		.required("A role is required")
@@ -35,27 +36,28 @@ const validationSchema = yup.object().shape({
 export const UpsertRoleModel = ({
 	operation,
 	modelOpenStatus,
-	setModelOpenStatus,
-	addRole,
+	upsertRole,
 	valueToEdit,
+	onModelClose,
 }) => {
-	const handleClose = () => setModelOpenStatus(false);
+	const handleClose = () => onModelClose();
 
 	const submitHandle = (values) => {
-		addRole({
+		upsertRole({
+			id: values.id,
 			role: values.role,
-			description: values.role,
+			description: values.description,
 		});
-
 		handleClose();
 	};
 
 	let initialValues = {
+		id: 100,
 		role: "",
 		description: "",
 	};
 
-	if (operation === "edit") {
+	if (operation === "Update") {
 		initialValues = valueToEdit;
 	}
 
@@ -63,13 +65,13 @@ export const UpsertRoleModel = ({
 		<Modal
 			open={modelOpenStatus}
 			onClose={handleClose}
-			aria-labelledby={`unit ${operation} model`}
-			aria-describedby={`unit ${operation} model`}
+			aria-labelledby={`role ${operation} model`}
+			aria-describedby={`role ${operation} model`}
 		>
 			<Box sx={style}>
 				<Typography id="modal-title" variant="h6" component="h2">
 					{operation} Role
-					<Tooltip title={`Use this form to ${operation} a unit`}>
+					<Tooltip title={`Use this form to ${operation.toLowerCase()} a role`}>
 						<InfoIcon color="info" sx={{ paddingLeft: 1 }} />
 					</Tooltip>
 				</Typography>
@@ -93,7 +95,7 @@ export const UpsertRoleModel = ({
 									Clear
 								</ResetButtonWrapper>
 								<SubmitButtonWrapper sx={{ mt: 1, mr: 1 }}>
-									Add
+									{operation}
 								</SubmitButtonWrapper>
 							</Box>
 						</Box>
@@ -107,7 +109,7 @@ export const UpsertRoleModel = ({
 UpsertRoleModel.propTypes = {
 	operation: PropTypes.string,
 	modelOpenStatus: PropTypes.bool,
-	setModelOpenStatus: PropTypes.func,
-	addRole: PropTypes.func,
+	upsertRole: PropTypes.func,
 	valueToEdit: PropTypes.object,
+	onModelClose: PropTypes.func,
 };

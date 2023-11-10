@@ -1,14 +1,16 @@
 import supabase from "../../supabase";
 
 /**
- * Creates a new role in the role table
+ * Used to update an existing role
  * @param {object} values Values object containing the values to add
+ * @param {number} idToUpdate The ID of the value to update
  * @returns {number | undefined} The id of the created unit or undefined
  */
-export const addRole = async (values) => {
+export const updateRole = async (values, idToUpdate) => {
 	const { data, error } = await supabase
 		.from("roles")
-		.insert([values])
+		.update(values)
+		.eq("id", idToUpdate)
 		.select();
 
 	if (error) {
@@ -16,6 +18,6 @@ export const addRole = async (values) => {
 	}
 	if (data) {
 		console.log(data);
-		return { result: "success", data: data[0] };
+		return { result: "success", data: data };
 	}
 };

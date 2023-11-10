@@ -19,10 +19,11 @@ import {
 	removeFavorite,
 } from "./Favorites";
 import { getAllRegions } from "./regions";
-import { getAllRoles, addRole } from "./roles";
+import { getAllRoles, addRole, updateRole } from "./roles";
 export {
 	addRecipe,
 	addUnit,
+	updateRole,
 	auth,
 	deleteRecipe,
 	deleteUnit,
