@@ -56,7 +56,6 @@ export const AccountItem = () => {
 							/>
 						</ListItemButton>
 					</ListItem>
-
 					<GenericListButtonLink
 						navigateFn={() => navigate("/Favorites")}
 						primaryText={"Favorites"}
@@ -67,7 +66,7 @@ export const AccountItem = () => {
 	} else {
 		return (
 			<List>
-				<ListItem>
+				<ListItem disablePadding>
 					<ListItemButton onClick={() => navigate("/Login")}>
 						<ListItemIcon>
 							<Avatar>
