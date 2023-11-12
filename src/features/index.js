@@ -1,4 +1,9 @@
-import { Admin, RoleManagementAdmin, UnitsAdmin } from "./Admin";
+import {
+	Admin,
+	RoleManagementAdmin,
+	UserManagement,
+	UnitsAdmin,
+} from "./Admin";
 import HomePage from "./Home";
 import BrowseRecipes from "./BrowseRecipes";
 import MyAccount from "./MyAccount";
@@ -16,6 +21,7 @@ import PageNotFound from "./PageNotFound";
 export {
 	Admin,
 	RoleManagementAdmin,
+	UserManagement,
 	HomePage,
 	BrowseRecipes,
 	MyAccount,

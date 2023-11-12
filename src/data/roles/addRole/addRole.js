@@ -15,7 +15,6 @@ export const addRole = async (values) => {
 		return { result: "failed", error: error };
 	}
 	if (data) {
-		console.log(data);
 		return { result: "success", data: data[0] };
 	}
 };

@@ -17,7 +17,6 @@ export const updateRole = async (values, idToUpdate) => {
 		return { result: "failed", error: error };
 	}
 	if (data) {
-		console.log(data);
 		return { result: "success", data: data };
 	}
 };

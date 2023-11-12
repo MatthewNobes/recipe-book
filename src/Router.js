@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import {
 	Admin,
 	RoleManagementAdmin,
+	UserManagement,
 	HomePage,
 	BrowseRecipes,
 	MyAccount,
@@ -76,6 +77,10 @@ export const Router = () => {
 			<Route
 				path="/Admin/Roles/Management"
 				element={isAdmin ? <RoleManagementAdmin /> : <Navigate to="/Home" />}
+			/>
+			<Route
+				path="/Admin/UserManagement"
+				element={isAdmin ? <UserManagement /> : <Navigate to="/Home" />}
 			/>
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />

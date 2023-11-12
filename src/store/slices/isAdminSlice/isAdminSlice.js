@@ -6,7 +6,7 @@ export const initialState = {
 };
 
 export const isAdminSlice = createSlice({
-	name: "appearance",
+	name: "isAdmin",
 	initialState,
 	reducers: {
 		setIsAdmin: (state, action) => {
