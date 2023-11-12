@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 
 export const Settings = () => {
 	const [options, setOptions] = useState([]);
-	const isAdmin = useSelector((state) => state.isAdmin.isAdmin);
+	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
+	const isAdmin = usersRoles.includes("App Admin");
 
 	useEffect(() => {
 		const buildSettingsOptions = (isAdmin) => {

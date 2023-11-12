@@ -19,46 +19,34 @@ import {
 	PageNotFound,
 	UnitsAdmin,
 } from "features";
-import supabase from "./data/supabase";
-import { useEffect, useState } from "react";
-import { isUserAppAdmin } from "data";
+import { useEffect } from "react";
+import { getUsersRoleNames } from "data";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsAdmin } from "store/slices/isAdminSlice/isAdminSlice";
+import { Home } from "@mui/icons-material";
+import { setUsersRoles } from "store/slices/usersRoles/usersRoles";
 
 export const Router = () => {
-	const [loggedIn, setLoggedIn] = useState(
-		supabase.changedAccessToken ? true : false,
-	);
-
-	const isAdmin = useSelector((state) => state.isAdmin.isAdmin);
+	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
 	const dispatch = useDispatch();
 
-	supabase.auth.onAuthStateChange((event, session) => {
-		if (session) {
-			setLoggedIn(true);
-		} else {
-			setLoggedIn(false);
-		}
-	});
+	const isAdmin = usersRoles.includes("App Admin");
+	const isContributor = usersRoles.includes("Contributor");
 
 	useEffect(() => {
-		const getIsAdmin = async () => {
-			dispatch(setIsAdmin(await isUserAppAdmin()));
+		const getRoles = async () => {
+			dispatch(setUsersRoles(await getUsersRoleNames()));
 		};
-		getIsAdmin();
+		getRoles();
 	}, []);
 
 	return (
 		<Routes>
 			<Route path="*" element={<PageNotFound />} />
 			<Route path="/Login" element={<Login />} />
-			<Route
-				path="/add"
-				element={loggedIn ? <AddRecipe /> : <Navigate to="/Login" />}
-			/>
+			<Route path="/add" element={isContributor ? <AddRecipe /> : <Home />} />
 			<Route
 				path="/edit/:recipeID"
-				element={loggedIn ? <EditRecipe /> : <Navigate to="/Login" />}
+				element={isContributor ? <EditRecipe /> : <Home />}
 			/>
 			<Route path="/category/:category" element={<Category />} />
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
