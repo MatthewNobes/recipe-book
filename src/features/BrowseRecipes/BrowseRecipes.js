@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { AddRecipeButton, Header, Page, RecipeList } from "components";
 import { getAllRecipes } from "data";
 import { Box, Button, Typography } from "@mui/material";
@@ -37,31 +36,9 @@ export const BrowseRecipes = () => {
 		fetchRecipes(0, itemIntervalSize - 1);
 	}, []);
 
-	const navigate = useNavigate();
-
-	const navigateToNewRecipe = useCallback(
-		() => navigate("/add", { replace: false }),
-		[navigate],
-	);
-
-	const menuOptions = [
-		{
-			label: "New recipe",
-			onClickFunction: () => {
-				navigateToNewRecipe();
-			},
-		},
-		{
-			label: "Edit recipe",
-			onClickFunction: () => {
-				console.log("This option will come later");
-			},
-		},
-	];
-
 	return (
 		<Box sx={{ overflowY: "scroll", maxHeight: "100vh" }}>
-			<Header headerText="Browse Recipes" menuOptions={menuOptions} />
+			<Header headerText="Browse Recipes" />
 			<Page>
 				<RecipeList recipes={recipes} />
 				<Box sx={{ textAlign: "center", my: 2 }}>

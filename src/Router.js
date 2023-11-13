@@ -22,7 +22,6 @@ import {
 import { useEffect } from "react";
 import { getUsersRoleNames } from "data";
 import { useDispatch, useSelector } from "react-redux";
-import { Home } from "@mui/icons-material";
 import { setUsersRoles } from "store/slices/usersRoles/usersRoles";
 
 export const Router = () => {
@@ -31,6 +30,7 @@ export const Router = () => {
 
 	const isAdmin = usersRoles.includes("App Admin");
 	const isContributor = usersRoles.includes("Contributor");
+	const isGeneralUser = usersRoles.includes("General User");
 
 	useEffect(() => {
 		const getRoles = async () => {
@@ -43,10 +43,13 @@ export const Router = () => {
 		<Routes>
 			<Route path="*" element={<PageNotFound />} />
 			<Route path="/Login" element={<Login />} />
-			<Route path="/add" element={isContributor ? <AddRecipe /> : <Home />} />
+			<Route
+				path="/add"
+				element={isContributor ? <AddRecipe /> : <Navigate to="/Home" />}
+			/>
 			<Route
 				path="/edit/:recipeID"
-				element={isContributor ? <EditRecipe /> : <Home />}
+				element={isContributor ? <EditRecipe /> : <Navigate to="/Home" />}
 			/>
 			<Route path="/category/:category" element={<Category />} />
 			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
@@ -74,7 +77,10 @@ export const Router = () => {
 			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />
 			<Route path="/Settings" element={<Settings />} />
 			<Route path="/Settings/MyAccount" element={<MyAccount />} />
-			<Route path="/Favorites" element={<Favorites />} />
+			<Route
+				path="/Favorites"
+				element={isGeneralUser ? <Favorites /> : <Navigate to="/Home" />}
+			/>
 			<Route path="/Categories" element={<Categories />} />
 			<Route path="/browse" element={<BrowseRecipes />} />
 			<Route path="/" element={<HomePage />} />
