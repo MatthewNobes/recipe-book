@@ -10,6 +10,6 @@ export const getUsersRoleNames = async () => {
 		});
 		return roles;
 	} else {
-		return [];
+		return false;
 	}
 };

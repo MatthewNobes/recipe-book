@@ -11,7 +11,10 @@ export const usersRolesSlice = createSlice({
 	initialState,
 	reducers: {
 		setUsersRoles: (state, action) => {
-			if (typeof action.payload === "object") {
+			if (
+				typeof action.payload === "object" ||
+				typeof action.payload === "boolean"
+			) {
 				state.usersRoles = action.payload;
 			}
 		},

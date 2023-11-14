@@ -9,7 +9,9 @@ import { useEffect, useState } from "react";
 export const Settings = () => {
 	const [options, setOptions] = useState([]);
 	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
-	const isAdmin = usersRoles.includes("App Admin");
+
+	const isLoggedIn = usersRoles !== false ? true : false;
+	const isAdmin = isLoggedIn ? usersRoles.includes("App Admin") : false;
 
 	useEffect(() => {
 		const buildSettingsOptions = (isAdmin) => {

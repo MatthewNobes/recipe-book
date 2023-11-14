@@ -28,9 +28,12 @@ export const Router = () => {
 	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
 	const dispatch = useDispatch();
 
-	const isAdmin = usersRoles.includes("App Admin");
-	const isContributor = usersRoles.includes("Contributor");
-	const isGeneralUser = usersRoles.includes("General User");
+	const isLoggedIn = usersRoles !== false ? true : false;
+	const isAdmin = isLoggedIn ? usersRoles.includes("App Admin") : false;
+	const isContributor = isLoggedIn ? usersRoles.includes("Contributor") : false;
+	const isGeneralUser = isLoggedIn
+		? usersRoles.includes("General User")
+		: false;
 
 	useEffect(() => {
 		const getRoles = async () => {
@@ -76,7 +79,10 @@ export const Router = () => {
 			<Route path="/Settings/About" element={<About />} />
 			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />
 			<Route path="/Settings" element={<Settings />} />
-			<Route path="/Settings/MyAccount" element={<MyAccount />} />
+			<Route
+				path="/Settings/MyAccount"
+				element={isLoggedIn ? <MyAccount /> : <Navigate to="/Home" />}
+			/>
 			<Route
 				path="/Favorites"
 				element={isGeneralUser ? <Favorites /> : <Navigate to="/Home" />}

@@ -7,7 +7,9 @@ export const AddRecipeButton = () => {
 	const navigate = useNavigate();
 
 	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
-	const isContributor = usersRoles.includes("Contributor");
+
+	const isLoggedIn = usersRoles !== false ? true : false;
+	const isContributor = isLoggedIn ? usersRoles.includes("Contributor") : false;
 
 	if (isContributor) {
 		return (

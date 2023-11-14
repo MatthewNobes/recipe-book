@@ -1,6 +1,5 @@
 import { Menu, MenuItem, IconButton, Avatar } from "@mui/material";
-import supabase from "data/supabase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToast } from "store/slices/toastSlice/toastSlice";
 import { deleteRecipe } from "data";
 import { useState } from "react";
@@ -14,7 +13,10 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 	const navigate = useNavigate();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-	const loggedIn = supabase.changedAccessToken ? true : false;
+	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
+	const isLoggedIn = usersRoles !== false ? true : false;
+	const isContributor = isLoggedIn ? usersRoles.includes("Contributor") : false;
+	const isAdmin = isLoggedIn ? usersRoles.includes("App Admin") : false;
 
 	let menuOptions = [
 		{
@@ -100,13 +102,19 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 		}
 	};
 
-	if (loggedIn) {
+	if (isContributor) {
 		menuOptions = [
 			...menuOptions,
 			{
 				label: "Edit recipe",
 				onClickFunction: () => navigate("/edit/" + id, { replace: false }),
 			},
+		];
+	}
+
+	if (isAdmin) {
+		menuOptions = [
+			...menuOptions,
 			{
 				label: "Delete recipe",
 				onClickFunction: () => {
@@ -151,7 +159,7 @@ export const RecipeHeaderMenu = ({ id, name, goBack }) => {
 					);
 				})}
 			</Menu>
-			{loggedIn ? (
+			{isAdmin ? (
 				<DialogBox
 					title={"Delete recipe"}
 					message={"Are you sure you want to delete this recipe?"}
