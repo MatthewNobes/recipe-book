@@ -1,7 +1,5 @@
 import supabase from "../../supabase";
 
-const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
-
 /**
  * Used to update an existing recipe
  * @param {number} idToUpdate The id of the recipe to update
@@ -10,7 +8,7 @@ const table = process.env.NODE_ENV === "production" ? "recipes" : "recipesDev";
  */
 export const updateRecipe = async (idToUpdate, values) => {
 	const { data, error } = await supabase
-		.from(table)
+		.from("recipes")
 		.update(values)
 		.eq("id", idToUpdate)
 		.select();

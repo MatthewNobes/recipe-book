@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const GenericListButtonLink = ({ navigateFn, primaryText }) => {
 	return (
-		<ListItem>
+		<ListItem disablePadding>
 			<ListItemButton onClick={() => navigateFn()}>
 				<ListItemText primary={primaryText} />
 			</ListItemButton>

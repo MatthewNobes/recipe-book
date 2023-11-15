@@ -1,8 +1,5 @@
 import supabase from "../../supabase";
 
-const table =
-	process.env.NODE_ENV === "production" ? "favorites" : "favoritesDev";
-
 /**
  * Adds a favorite
  * @param {object} recipeID The ID of the recipe to be added to favorites
@@ -11,7 +8,10 @@ const table =
  */
 export const addFavorite = async (recipeID, userID) => {
 	const values = { recipe: recipeID, user: userID };
-	const { data, error } = await supabase.from(table).insert([values]).select();
+	const { data, error } = await supabase
+		.from("favorites")
+		.insert([values])
+		.select();
 
 	if (error) {
 		return undefined;

@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { signOut } from "../../data";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import { useDispatch } from "react-redux";
+import { setUsersRoles } from "store/slices/usersRoles/usersRoles";
 
 export const SignOutButton = () => {
 	const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const SignOutButton = () => {
 							isOpen: true,
 						}),
 					);
+					dispatch(setUsersRoles([]));
 				} else {
 					dispatch(
 						setToast({

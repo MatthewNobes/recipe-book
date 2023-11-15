@@ -1,25 +1,17 @@
 import { Fab } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import supabase from "../../data/supabase";
+import { useSelector } from "react-redux";
 
 export const AddRecipeButton = () => {
 	const navigate = useNavigate();
 
-	const [loggedIn, setLoggedIn] = useState(
-		supabase.changedAccessToken ? true : false,
-	);
+	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
 
-	supabase.auth.onAuthStateChange((event, session) => {
-		if (session) {
-			setLoggedIn(true);
-		} else {
-			setLoggedIn(false);
-		}
-	});
+	const isLoggedIn = usersRoles !== false ? true : false;
+	const isContributor = isLoggedIn ? usersRoles.includes("Contributor") : false;
 
-	if (loggedIn) {
+	if (isContributor) {
 		return (
 			<Fab
 				color="primary"

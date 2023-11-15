@@ -45,7 +45,7 @@ export const AccountItem = () => {
 
 			return (
 				<List>
-					<ListItem>
+					<ListItem disablePadding>
 						<ListItemButton onClick={() => navigate("/Settings/MyAccount")}>
 							<ListItemIcon>
 								<Avatar>{currentUser.email.charAt(0).toUpperCase()}</Avatar>
@@ -66,7 +66,7 @@ export const AccountItem = () => {
 	} else {
 		return (
 			<List>
-				<ListItem>
+				<ListItem disablePadding>
 					<ListItemButton onClick={() => navigate("/Login")}>
 						<ListItemIcon>
 							<Avatar>
