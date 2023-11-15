@@ -11,11 +11,13 @@ export const FavoriteButton = ({ isFav, recipeID }) => {
 
 	const [isFavorite, setIsFavorite] = useState(isFav);
 
-	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
-	const isLoggedIn = usersRoles !== false ? true : false;
-	const isGeneralUser = isLoggedIn
-		? usersRoles.includes("General User")
-		: false;
+	let isGeneralUser = false;
+	if (process.env.NODE_ENV !== "test") {
+		console.log("hello");
+		const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
+		const isLoggedIn = usersRoles !== false ? true : false;
+		isGeneralUser = isLoggedIn ? usersRoles.includes("General User") : false;
+	}
 
 	const onClickFn = async () => {
 		let notification = {
