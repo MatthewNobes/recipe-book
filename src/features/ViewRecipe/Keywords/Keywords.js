@@ -1,30 +1,32 @@
 import PropTypes from "prop-types";
-import { Paper, Chip, Tooltip } from "@mui/material";
+import { Paper, Chip, Tooltip, Typography } from "@mui/material";
 
 export const Keywords = ({ keywords }) => {
 	if (keywords.length) {
 		return (
-			<Tooltip title="Keywords associated with the recipe">
+			<Tooltip title="Keywords/tags associated with the recipe">
 				<Paper
 					sx={{
 						display: "flex",
 						gap: 1,
 						flexWrap: "wrap",
 						listStyle: "none",
-						p: 1,
+						py: 1,
+						px: 1.5,
 						mt: 2,
 						mb: 0,
-						borderRadius: 5,
+						borderRadius: 3,
 					}}
 					component="div"
-					aria-label="keywords"
+					aria-label="Keywords/tags associated with the recipe"
 				>
+					<Typography variant="body1">Tags: </Typography>
 					{keywords.map((keyword, index) => {
 						return (
 							<Chip
 								key={index}
 								size="small"
-								label={keyword}
+								label={keyword.toLowerCase()}
 								variant="outlined"
 								color={"secondary"}
 								sx={{ px: "0.5em" }}
