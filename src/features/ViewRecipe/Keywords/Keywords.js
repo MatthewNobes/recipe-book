@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Paper, Chip, Tooltip, Typography } from "@mui/material";
 
-export const Keywords = ({ keywords }) => {
+export const Keywords = ({ keywords, deleteKeyword }) => {
 	if (keywords.length) {
 		return (
 			<Tooltip title="Keywords/tags associated with the recipe">
@@ -29,6 +29,7 @@ export const Keywords = ({ keywords }) => {
 								label={keyword.toLowerCase()}
 								variant="outlined"
 								color={"secondary"}
+								onDelete={() => deleteKeyword(index)}
 								sx={{ px: "0.5em" }}
 							/>
 						);
@@ -43,4 +44,5 @@ export const Keywords = ({ keywords }) => {
 
 Keywords.propTypes = {
 	keywords: PropTypes.array,
+	deleteKeyword: PropTypes.func,
 };

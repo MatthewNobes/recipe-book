@@ -4,6 +4,7 @@ import { getAllRecipes } from "./getAllRecipes/getAllRecipes";
 import { getFilteredRecipes } from "./getFilteredRecipes/getFilteredRecipes";
 import { getRecipeByID } from "./getRecipeByID/getRecipeByID";
 import { updateRecipe } from "./updateRecipe/updateRecipe";
+import { removeKeywordFromRecipe } from "./removeKeywordFromRecipe/removeKeywordFromRecipe";
 import { getRecipesByCategoryName } from "./getRecipesByCategoryName/getRecipesByCategoryName";
 export {
 	addRecipe,
@@ -13,4 +14,5 @@ export {
 	getRecipeByID,
 	updateRecipe,
 	getRecipesByCategoryName,
+	removeKeywordFromRecipe,
 };

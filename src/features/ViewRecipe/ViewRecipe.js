@@ -3,13 +3,50 @@ import { Box, Typography, Divider } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import { FavoriteButton, Loading, Page } from "components";
 import { useParams } from "react-router-dom";
-import { getRecipeByID } from "data";
+import { getRecipeByID, removeKeywordFromRecipe } from "data";
 import { Keywords } from "./Keywords/Keywords";
+import { useDispatch, useSelector } from "react-redux";
+import { setToast } from "../../store/slices/toastSlice/toastSlice";
 
 export const ViewRecipe = () => {
 	const { recipeID } = useParams();
+	const dispatch = useDispatch();
 
 	const [recipe, setRecipe] = useState();
+
+	const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
+	const isLoggedIn = usersRoles !== false ? true : false;
+	const isContributor = isLoggedIn ? usersRoles.includes("Contributor") : false;
+
+	const deleteKeyword = isContributor ? (id) => removeKeyword(id) : undefined;
+
+	const removeKeyword = async (idToRemove) => {
+		const result = await removeKeywordFromRecipe(
+			recipeID,
+			recipe.keywords,
+			idToRemove,
+		);
+
+		if (result.result === "failed") {
+			dispatch(
+				setToast({
+					message: "Unable to remove keyword",
+					alertType: "error",
+					isOpen: true,
+				}),
+			);
+		} else if (result.result === "success") {
+			dispatch(
+				setToast({
+					message: "Keyword removed",
+					alertType: "success",
+					isOpen: true,
+				}),
+			);
+
+			setRecipe(result.value);
+		}
+	};
 
 	useEffect(() => {
 		const fetchRecipe = async () => {
@@ -55,7 +92,11 @@ export const ViewRecipe = () => {
 						<Typography variant="body1" sx={{ textAlign: "left" }}>
 							{recipe.description}
 						</Typography>
-						<Keywords keywords={recipe.keywords} />
+						<Keywords
+							keywords={recipe.keywords}
+							userCanDeleteKeywords={false}
+							deleteKeyword={deleteKeyword}
+						/>
 					</Box>
 					<Divider />
 					<ViewDetails
