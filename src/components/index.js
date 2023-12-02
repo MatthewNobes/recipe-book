@@ -1,6 +1,7 @@
 import AddRecipeButton from "./AddRecipeButton";
 import RecipeForm from "./RecipeForm";
 import FavoriteButton from "./FavoriteButton";
+import AccountItem from "./AccountItem";
 import {
 	AutoCompleteWrapper,
 	CheckboxWrapper,
@@ -31,6 +32,7 @@ import RecipeSlideshow from "./RecipeSlideshow";
 import { SearchBar } from "./SearchBar/SearchBar";
 export {
 	AddRecipeButton,
+	AccountItem,
 	RecipeForm,
 	FavoriteButton,
 	AutoCompleteWrapper,

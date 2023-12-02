@@ -29,6 +29,7 @@ import {
 	grantUserRole,
 	getUsersRoleNames,
 } from "./roles";
+import supabase from "./supabase";
 export {
 	addRecipe,
 	addUnit,
@@ -61,4 +62,5 @@ export {
 	removeFavorite,
 	getAllRoles,
 	addRole,
+	supabase,
 };
