@@ -22,11 +22,15 @@ export const IconList = ({ options, listSubheader }) => {
 			}
 		>
 			{options.map((item, index) => {
+				const listItemTheme = item.colour ? { color: item.colour } : {};
+
 				return (
 					<Box key={index}>
-						<ListItem disablePadding>
+						<ListItem disablePadding sx={listItemTheme}>
 							<ListItemButton onClick={() => navigate(item.route)}>
-								<ListItemIcon>{item.icon}</ListItemIcon>
+								<ListItemIcon sx={{ color: "inherit" }}>
+									{item.icon}
+								</ListItemIcon>
 								<ListItemText primary={item.label} />
 							</ListItemButton>
 						</ListItem>

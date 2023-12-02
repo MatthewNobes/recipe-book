@@ -1,3 +1,4 @@
 import { getUsersWithRoles } from "./getUsersWithRoles/getUsersWithRoles";
 import { removeUsersRole } from "./removeUsersRole/removeUsersRole";
-export { getUsersWithRoles, removeUsersRole };
+import { getUsersFullDetails } from "./getUsersFullDetails/getUsersFullDetails";
+export { getUsersWithRoles, removeUsersRole, getUsersFullDetails };

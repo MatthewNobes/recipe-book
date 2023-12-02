@@ -21,7 +21,11 @@ import {
 	removeFavorite,
 } from "./Favorites";
 import { getAllRegions } from "./regions";
-import { getUsersWithRoles, removeUsersRole } from "./users";
+import {
+	getUsersWithRoles,
+	removeUsersRole,
+	getUsersFullDetails,
+} from "./users";
 import {
 	getAllRoles,
 	addRole,
@@ -62,5 +66,6 @@ export {
 	removeFavorite,
 	getAllRoles,
 	addRole,
+	getUsersFullDetails,
 	supabase,
 };
