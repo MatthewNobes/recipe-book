@@ -23,13 +23,13 @@ export const Navigation = () => {
 			/>
 			<BottomNavigationAction
 				component={Link}
-				to="/Categories"
+				to="/categories"
 				label="Search"
 				icon={<Search />}
 			/>
 			<BottomNavigationAction
 				component={Link}
-				to="/Settings"
+				to="/settings"
 				label="Settings"
 				icon={<Settings />}
 			/>

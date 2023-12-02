@@ -48,7 +48,7 @@ export const ImageGallery = ({
 							srcSet={`${details.images[0]}?quality=70&resize=440,400&webp=true`}
 							alt={utf8Decode(details.description)}
 							loading="lazy"
-							onClick={() => navigate("/ViewRecipe/" + details.id)}
+							onClick={() => navigate("/view/" + details.id)}
 						/>
 						<ImageListItemBar
 							sx={{

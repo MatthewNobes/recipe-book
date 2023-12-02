@@ -31,7 +31,7 @@ export const RecipeListItem = (props) => {
 	const navigate = useNavigate();
 
 	const itemClickedOn = useCallback(
-		() => navigate("/ViewRecipe/" + id),
+		() => navigate("/view/" + id),
 		[navigate, id],
 	);
 

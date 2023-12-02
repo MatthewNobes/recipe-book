@@ -134,7 +134,7 @@ export const RecipeForm = (props) => {
 					isOpen: true,
 				}),
 			);
-			navigate("/ViewRecipe/" + id);
+			navigate("/view/" + id);
 		} else {
 			dispatch(
 				setToast({
