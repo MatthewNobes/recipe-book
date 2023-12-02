@@ -12,7 +12,7 @@ export const OutlinedInputWrapper = ({ name, ...otherProps }) => {
 
 	if (mata && mata.touched && mata.error) {
 		configInput.error = true;
-		configInput.helperText = mata.error;
+		configInput.helpertext = mata.error;
 	}
 
 	return <OutlinedInput {...configInput} />;

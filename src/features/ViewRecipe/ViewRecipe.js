@@ -3,7 +3,7 @@ import { Box, Typography, Divider } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import { FavoriteButton, Loading, Page } from "components";
 import { useParams } from "react-router-dom";
-import { getRecipeByID, removeKeywordFromRecipe } from "data";
+import { getRecipeByID, removeKeywordFromRecipe, addKeyword } from "data";
 import { Keywords } from "./Keywords/Keywords";
 import { useDispatch, useSelector } from "react-redux";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
@@ -43,7 +43,29 @@ export const ViewRecipe = () => {
 					isOpen: true,
 				}),
 			);
+			setRecipe(result.value);
+		}
+	};
 
+	const onAdd = async (keywordToAdd) => {
+		const result = await addKeyword(recipeID, recipe.keywords, keywordToAdd);
+
+		if (result.result === "failed") {
+			dispatch(
+				setToast({
+					message: "Unable to remove keyword",
+					alertType: "error",
+					isOpen: true,
+				}),
+			);
+		} else if (result.result === "success") {
+			dispatch(
+				setToast({
+					message: "Keyword removed",
+					alertType: "success",
+					isOpen: true,
+				}),
+			);
 			setRecipe(result.value);
 		}
 	};
@@ -94,8 +116,9 @@ export const ViewRecipe = () => {
 						</Typography>
 						<Keywords
 							keywords={recipe.keywords}
-							userCanDeleteKeywords={false}
+							isContributor={isContributor}
 							deleteKeyword={deleteKeyword}
+							onAdd={onAdd}
 						/>
 					</Box>
 					<Divider />
