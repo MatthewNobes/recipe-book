@@ -6,7 +6,7 @@ export const RecommendRecipeButton = () => {
 	return (
 		<Box sx={{ textAlign: "center" }}>
 			<Button
-				onClick={() => navigate("/RecommendRecipe")}
+				onClick={() => navigate("/recommendRecipe")}
 				sx={{ width: "90%", paddingY: 4, marginY: 2 }}
 				variant="contained"
 			>

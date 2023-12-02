@@ -46,7 +46,7 @@ export const AccountItem = () => {
 			return (
 				<List>
 					<ListItem disablePadding>
-						<ListItemButton onClick={() => navigate("/Settings/MyAccount")}>
+						<ListItemButton onClick={() => navigate("/settings/myAccount")}>
 							<ListItemIcon>
 								<Avatar>{currentUser.email.charAt(0).toUpperCase()}</Avatar>
 							</ListItemIcon>
@@ -57,7 +57,7 @@ export const AccountItem = () => {
 						</ListItemButton>
 					</ListItem>
 					<GenericListButtonLink
-						navigateFn={() => navigate("/Favorites")}
+						navigateFn={() => navigate("/favorites")}
 						primaryText={"Favorites"}
 					/>
 				</List>
@@ -67,7 +67,7 @@ export const AccountItem = () => {
 		return (
 			<List>
 				<ListItem disablePadding>
-					<ListItemButton onClick={() => navigate("/Login")}>
+					<ListItemButton onClick={() => navigate("/login")}>
 						<ListItemIcon>
 							<Avatar>
 								<AccountCircle />

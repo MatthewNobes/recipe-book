@@ -45,49 +45,45 @@ export const Router = () => {
 	return (
 		<Routes>
 			<Route path="*" element={<PageNotFound />} />
-			<Route path="/Login" element={<Login />} />
+			<Route path="/login" element={<Login />} />
 			<Route
 				path="/add"
-				element={isContributor ? <AddRecipe /> : <Navigate to="/Home" />}
+				element={isContributor ? <AddRecipe /> : <Navigate to="/" />}
 			/>
 			<Route
 				path="/edit/:recipeID"
-				element={isContributor ? <EditRecipe /> : <Navigate to="/Home" />}
+				element={isContributor ? <EditRecipe /> : <Navigate to="/" />}
 			/>
 			<Route path="/category/:category" element={<Category />} />
-			<Route path="/ViewRecipe/:recipeID" element={<ViewRecipe />} />
+			<Route path="/view/:recipeID" element={<ViewRecipe />} />
 			<Route
-				path="/Admin"
-				element={isAdmin ? <Admin /> : <Navigate to="/Home" />}
+				path="/admin"
+				element={isAdmin ? <Admin /> : <Navigate to="/" />}
 			/>
 			<Route
-				path="/Admin/UnitsAdmin"
-				element={isAdmin ? <UnitsAdmin /> : <Navigate to="/Home" />}
+				path="/admin/units"
+				element={isAdmin ? <UnitsAdmin /> : <Navigate to="/" />}
 			/>
 			<Route
-				path="/Admin/Roles"
-				element={isAdmin ? <Admin /> : <Navigate to="/Home" />}
+				path="/admin/roles"
+				element={isAdmin ? <RoleManagementAdmin /> : <Navigate to="/" />}
 			/>
 			<Route
-				path="/Admin/Roles/Management"
-				element={isAdmin ? <RoleManagementAdmin /> : <Navigate to="/Home" />}
+				path="/admin/users"
+				element={isAdmin ? <UserManagement /> : <Navigate to="/" />}
+			/>
+			<Route path="/settings/about" element={<About />} />
+			<Route path="/recommendRecipe" element={<RecommendRecipe />} />
+			<Route path="/settings" element={<Settings />} />
+			<Route
+				path="/settings/myAccount"
+				element={isLoggedIn ? <MyAccount /> : <Navigate to="/login" />}
 			/>
 			<Route
-				path="/Admin/UserManagement"
-				element={isAdmin ? <UserManagement /> : <Navigate to="/Home" />}
+				path="/favorites"
+				element={isGeneralUser ? <Favorites /> : <Navigate to="/" />}
 			/>
-			<Route path="/Settings/About" element={<About />} />
-			<Route path="/RecommendRecipe" element={<RecommendRecipe />} />
-			<Route path="/Settings" element={<Settings />} />
-			<Route
-				path="/Settings/MyAccount"
-				element={isLoggedIn ? <MyAccount /> : <Navigate to="/Home" />}
-			/>
-			<Route
-				path="/Favorites"
-				element={isGeneralUser ? <Favorites /> : <Navigate to="/Home" />}
-			/>
-			<Route path="/Categories" element={<Categories />} />
+			<Route path="/categories" element={<Categories />} />
 			<Route path="/browse" element={<BrowseRecipes />} />
 			<Route path="/" element={<HomePage />} />
 		</Routes>

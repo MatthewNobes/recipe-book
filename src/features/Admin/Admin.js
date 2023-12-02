@@ -7,7 +7,7 @@ const AdminOptions = () => {
 		{
 			label: "Units of measurements",
 			icon: <SquareFoot />,
-			route: "/Admin/UnitsAdmin",
+			route: "/admin/units",
 		},
 	];
 
@@ -15,12 +15,12 @@ const AdminOptions = () => {
 		{
 			label: "Role management",
 			icon: <Group />,
-			route: "/Admin/Roles/Management",
+			route: "/admin/roles",
 		},
 		{
 			label: "User management",
 			icon: <ManageAccounts />,
-			route: "/Admin/UserManagement",
+			route: "/admin/users",
 		},
 	];
 

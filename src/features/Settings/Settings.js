@@ -1,8 +1,7 @@
-import Header from "../../components/Header";
 import { Divider } from "@mui/material";
 import { Info, Security } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { Footer, IconList, Page } from "../../components";
+import { Footer, IconList, Page, Header } from "components";
 import { AccountItem } from "./AccountItem/AccountItem";
 import { useEffect, useState } from "react";
 
@@ -16,12 +15,12 @@ export const Settings = () => {
 	useEffect(() => {
 		const buildSettingsOptions = (isAdmin) => {
 			const options = [
-				{ label: "About", route: "/Settings/About", icon: <Info /> },
+				{ label: "About", route: "/settings/about", icon: <Info /> },
 			];
 			if (isAdmin) {
 				options.unshift({
 					label: "Admin",
-					route: "/Admin",
+					route: "/admin",
 					icon: <Security />,
 				});
 			}

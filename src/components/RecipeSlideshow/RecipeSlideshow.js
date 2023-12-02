@@ -28,7 +28,7 @@ export const SlideshowItem = ({ recipe }) => {
 				}}
 				title={recipe.name}
 				position="top"
-				onClick={() => navigate("/ViewRecipe/" + recipe.id)}
+				onClick={() => navigate("/view/" + recipe.id)}
 			/>
 		</ImageListItem>
 	);
