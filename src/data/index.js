@@ -6,6 +6,8 @@ import {
 	getRecipeByID,
 	updateRecipe,
 	getRecipesByCategoryName,
+	removeKeywordFromRecipe,
+	addKeyword,
 } from "./recipe";
 import { auth, signOut, isUserAppAdmin, getUserRoles } from "./authentication";
 import { addUnit, getAllUnits, deleteUnit } from "./unit";
@@ -36,6 +38,8 @@ export {
 	getUsersRoleNames,
 	removeUsersRole,
 	auth,
+	addKeyword,
+	removeKeywordFromRecipe,
 	deleteRecipe,
 	deleteUnit,
 	getAllRecipes,

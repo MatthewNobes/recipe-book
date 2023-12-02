@@ -13,7 +13,6 @@ export const FavoriteButton = ({ isFav, recipeID }) => {
 
 	let isGeneralUser = false;
 	if (process.env.NODE_ENV !== "test") {
-		console.log("hello");
 		const usersRoles = useSelector((state) => state.usersRoles.usersRoles);
 		const isLoggedIn = usersRoles !== false ? true : false;
 		isGeneralUser = isLoggedIn ? usersRoles.includes("General User") : false;

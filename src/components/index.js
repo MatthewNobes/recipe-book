@@ -8,11 +8,14 @@ import {
 	SubmitButtonWrapper,
 	ToggleSwitchWrapper,
 	ResetButtonWrapper,
+	SubmitIconButtonWrapper,
+	OutlinedInputWrapper,
 } from "./FormUI";
 import Header from "./Header";
 import ImageGallery from "./ImageGallery";
 import LoginButton from "./LoginButton";
 import Loading from "./Loading";
+import KeywordForm from "./KeywordForm";
 import Navigation from "./Navigation";
 import RecipeList from "./RecipeList";
 import SignOutButton from "./SignOutButton";
@@ -34,10 +37,13 @@ export {
 	CheckboxWrapper,
 	TextfieldWrapper,
 	SubmitButtonWrapper,
+	SubmitIconButtonWrapper,
+	OutlinedInputWrapper,
 	ToggleSwitchWrapper,
 	ResetButtonWrapper,
 	GenericImageCard,
 	GenericListButtonLink,
+	KeywordForm,
 	Header,
 	ImageGallery,
 	Loading,
