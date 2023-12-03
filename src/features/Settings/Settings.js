@@ -1,8 +1,7 @@
 import { Divider } from "@mui/material";
 import { Info, Security } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { Footer, IconList, Page, Header } from "components";
-import { AccountItem } from "./AccountItem/AccountItem";
+import { Footer, IconList, Page, Header, AccountItem } from "components";
 import { useEffect, useState } from "react";
 
 export const Settings = () => {

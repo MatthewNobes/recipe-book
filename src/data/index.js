@@ -21,7 +21,13 @@ import {
 	removeFavorite,
 } from "./Favorites";
 import { getAllRegions } from "./regions";
-import { getUsersWithRoles, removeUsersRole } from "./users";
+import {
+	getUsersWithRoles,
+	removeUsersRole,
+	getUsersFullDetails,
+	updateAccountDetails,
+	deleteCurrentUser,
+} from "./users";
 import {
 	getAllRoles,
 	addRole,
@@ -29,6 +35,7 @@ import {
 	grantUserRole,
 	getUsersRoleNames,
 } from "./roles";
+import supabase from "./supabase";
 export {
 	addRecipe,
 	addUnit,
@@ -37,6 +44,7 @@ export {
 	getUsersWithRoles,
 	getUsersRoleNames,
 	removeUsersRole,
+	deleteCurrentUser,
 	auth,
 	addKeyword,
 	removeKeywordFromRecipe,
@@ -58,7 +66,10 @@ export {
 	getCurrentUsersFavorites,
 	toggleFavorite,
 	addFavorite,
+	updateAccountDetails,
 	removeFavorite,
 	getAllRoles,
 	addRole,
+	getUsersFullDetails,
+	supabase,
 };
