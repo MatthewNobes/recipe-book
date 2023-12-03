@@ -10,7 +10,7 @@ export const MyAccount = () => {
 	const options = [
 		{
 			label: "Account details",
-			route: "/settings/about",
+			route: "/settings/myAccount/accountDetails",
 			icon: <ManageAccounts />,
 		},
 		{ label: "Manage favorites", route: "/favorites", icon: <Favorite /> },

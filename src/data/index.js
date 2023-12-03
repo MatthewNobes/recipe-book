@@ -25,6 +25,7 @@ import {
 	getUsersWithRoles,
 	removeUsersRole,
 	getUsersFullDetails,
+	updateAccountDetails,
 } from "./users";
 import {
 	getAllRoles,
@@ -63,6 +64,7 @@ export {
 	getCurrentUsersFavorites,
 	toggleFavorite,
 	addFavorite,
+	updateAccountDetails,
 	removeFavorite,
 	getAllRoles,
 	addRole,

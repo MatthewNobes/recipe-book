@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import {
 	Admin,
+	AccountDetails,
 	RoleManagementAdmin,
 	UserManagement,
 	HomePage,
@@ -78,6 +79,10 @@ export const Router = () => {
 			<Route
 				path="/settings/myAccount"
 				element={isLoggedIn ? <MyAccount /> : <Navigate to="/login" />}
+			/>
+			<Route
+				path="/settings/myAccount/accountDetails"
+				element={isLoggedIn ? <AccountDetails /> : <Navigate to="/login" />}
 			/>
 			<Route
 				path="/favorites"

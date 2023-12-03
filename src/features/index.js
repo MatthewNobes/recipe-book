@@ -6,7 +6,7 @@ import {
 } from "./Admin";
 import HomePage from "./Home";
 import BrowseRecipes from "./BrowseRecipes";
-import MyAccount from "./MyAccount";
+import MyAccount, { AccountDetails } from "./MyAccount";
 import Favorites from "./Favorites";
 import AddRecipe from "./AddRecipe";
 import Settings from "./Settings";
@@ -20,6 +20,7 @@ import Login from "./Login";
 import PageNotFound from "./PageNotFound";
 export {
 	Admin,
+	AccountDetails,
 	RoleManagementAdmin,
 	UserManagement,
 	HomePage,
