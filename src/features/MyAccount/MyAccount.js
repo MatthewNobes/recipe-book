@@ -48,7 +48,11 @@ export const MyAccount = () => {
 };
 
 export const AvatarItem = ({ userDetails }) => {
-	console.log(userDetails);
+	const profileReferenceName = userDetails.firstName
+		? userDetails.lastName
+			? userDetails.firstName + " " + userDetails.lastName
+			: userDetails.firstName
+		: userDetails.email;
 	return (
 		<Box
 			sx={{
@@ -62,11 +66,9 @@ export const AvatarItem = ({ userDetails }) => {
 			}}
 		>
 			<Avatar sx={{ width: "30vw", height: "30vw" }}>
-				{userDetails.firstName.charAt(0).toUpperCase()}
+				{profileReferenceName.charAt(0).toUpperCase()}
 			</Avatar>
-			<Typography variant="h4">
-				{userDetails.firstName} {userDetails.lastName}
-			</Typography>
+			<Typography variant="h4">{profileReferenceName.split("@")[0]}</Typography>
 		</Box>
 	);
 };
