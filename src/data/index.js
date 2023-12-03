@@ -26,6 +26,7 @@ import {
 	removeUsersRole,
 	getUsersFullDetails,
 	updateAccountDetails,
+	deleteCurrentUser,
 } from "./users";
 import {
 	getAllRoles,
@@ -43,6 +44,7 @@ export {
 	getUsersWithRoles,
 	getUsersRoleNames,
 	removeUsersRole,
+	deleteCurrentUser,
 	auth,
 	addKeyword,
 	removeKeywordFromRecipe,

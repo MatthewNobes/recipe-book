@@ -30,10 +30,12 @@ import GenericImageCard from "./GenericImageCard";
 import GenericListButtonLink from "./GenericListButtonLink";
 import RecipeSlideshow from "./RecipeSlideshow";
 import { SearchBar } from "./SearchBar/SearchBar";
+import DeleteAccountDialog from "./DeleteAccountDialog";
 export {
 	AddRecipeButton,
 	AccountItem,
 	RecipeForm,
+	DeleteAccountDialog,
 	FavoriteButton,
 	AutoCompleteWrapper,
 	CheckboxWrapper,

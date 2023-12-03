@@ -1,12 +1,14 @@
 import { Favorite, DeleteForever, ManageAccounts } from "@mui/icons-material";
 import { Avatar, Box, Typography, Divider } from "@mui/material";
-import { SubPageHeader, IconList, Page } from "components";
+import { SubPageHeader, IconList, Page, DeleteAccountDialog } from "components";
 import { getUsersFullDetails } from "data";
 import { getCurrentUser } from "data/authentication/getCurrentUser/getCurrentUser";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 export const MyAccount = () => {
+	const [deleteAccountDialogOpen, setDeleteAccountDialogOpen] = useState(false);
+
 	const options = [
 		{
 			label: "Account details",
@@ -15,8 +17,8 @@ export const MyAccount = () => {
 		},
 		{ label: "Manage favorites", route: "/favorites", icon: <Favorite /> },
 		{
-			label: "Delete or suspend account",
-			route: "/settings/about",
+			label: "Delete account",
+			onClickFn: () => setDeleteAccountDialogOpen(true),
 			icon: <DeleteForever />,
 			colour: "#ff1212",
 		},
@@ -41,6 +43,10 @@ export const MyAccount = () => {
 			<Page>
 				{userDetails ? <AvatarItem userDetails={userDetails} /> : <></>}
 				<IconList options={options} />
+				<DeleteAccountDialog
+					isOpen={deleteAccountDialogOpen}
+					setIsOpen={setDeleteAccountDialogOpen}
+				/>
 				<Divider />
 			</Page>
 		</>
@@ -65,7 +71,14 @@ export const AvatarItem = ({ userDetails }) => {
 				mb: 2,
 			}}
 		>
-			<Avatar sx={{ width: "30vw", height: "30vw" }}>
+			<Avatar
+				sx={{
+					width: "30vw",
+					height: "30vw",
+					maxWidth: "300px",
+					maxHeight: "300px",
+				}}
+			>
 				{profileReferenceName.charAt(0).toUpperCase()}
 			</Avatar>
 			<Typography variant="h4">{profileReferenceName.split("@")[0]}</Typography>
