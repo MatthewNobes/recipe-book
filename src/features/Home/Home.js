@@ -1,4 +1,4 @@
-import { Header, ImageGallery, Loading, Page } from "components";
+import { Header, ImageGallery, ImageGallerySkeleton, Page } from "components";
 import { useEffect, useState } from "react";
 import { getAllRecipes } from "data";
 import RecommendRecipeButton from "./RecommendRecipeButton";
@@ -38,7 +38,7 @@ export const HomePage = () => {
 						</Typography>
 					)
 				) : (
-					<Loading />
+					<ImageGallerySkeleton />
 				)}
 			</Page>
 		</>

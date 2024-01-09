@@ -1,7 +1,7 @@
 import { Button, Box, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { calculateFilters } from "./calculateFilters/calculateFilters";
-import { ImageGallery, Loading } from "components";
+import { ImageGallery, ImageGallerySkeleton } from "components";
 import { useEffect, useState } from "react";
 import { getFilteredRecipes } from "data";
 import { ArrowBack } from "@mui/icons-material";
@@ -76,7 +76,7 @@ export const ResultsPane = ({ answers, resetForm }) => {
 			);
 		}
 	} else {
-		return <Loading />;
+		return <ImageGallerySkeleton />;
 	}
 };
 

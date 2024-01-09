@@ -13,7 +13,7 @@ import {
 	OutlinedInputWrapper,
 } from "./FormUI";
 import Header from "./Header";
-import ImageGallery from "./ImageGallery";
+import ImageGallery, { ImageGallerySkeleton } from "./ImageGallery";
 import LoginButton from "./LoginButton";
 import Loading from "./Loading";
 import KeywordForm from "./KeywordForm";
@@ -47,6 +47,7 @@ export {
 	ResetButtonWrapper,
 	GenericImageCard,
 	GenericListButtonLink,
+	ImageGallerySkeleton,
 	KeywordForm,
 	Header,
 	ImageGallery,
