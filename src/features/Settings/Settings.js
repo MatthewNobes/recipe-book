@@ -29,16 +29,17 @@ export const Settings = () => {
 	}, [isAdmin]);
 
 	return (
-		<Page>
+		<>
 			<Header headerText="Settings" />
+			<Page>
+				<AccountItem />
 
-			<AccountItem />
+				<Divider />
 
-			<Divider />
-
-			<IconList options={options} />
-			<Divider />
-			<Footer />
-		</Page>
+				<IconList options={options} />
+				<Divider />
+				<Footer />
+			</Page>
+		</>
 	);
 };
