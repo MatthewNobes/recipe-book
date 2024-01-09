@@ -16,6 +16,8 @@ export const SearchBar = () => {
 	const [recipes, setRecipes] = useState([]);
 	const [resultRecipes, setResultRecipes] = useState([]);
 
+	console.log(resultRecipes);
+
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			const foundRecipes = await getAllRecipes();
@@ -70,6 +72,7 @@ export const SearchBar = () => {
 					value={searchTerm}
 					onChange={handleChange}
 					placeholder="Search recipes"
+					title="search"
 					inputProps={{ "aria-label": "search recipes" }}
 					InputProps={{
 						startAdornment: (
@@ -90,7 +93,11 @@ export const SearchBar = () => {
 					}}
 				/>
 			</Box>
-			<RecipeList recipes={resultRecipes} />
+			{resultRecipes.length > 0 ? (
+				<RecipeList recipes={resultRecipes} />
+			) : (
+				<></>
+			)}
 		</Box>
 	);
 };

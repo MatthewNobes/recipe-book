@@ -10,11 +10,11 @@ import {
 	Tooltip,
 	Chip,
 	ListItemButton,
+	Skeleton,
 } from "@mui/material";
 import FavoriteButton from "../../FavoriteButton";
 import TotalTime from "./TotalTime";
 import { useNavigate } from "react-router-dom";
-import { useCallback } from "react";
 import PropTypes from "prop-types";
 
 export const RecipeListItem = (props) => {
@@ -27,37 +27,40 @@ export const RecipeListItem = (props) => {
 		prepTime,
 		image,
 		category,
+		isLoading,
 	} = props;
 	const navigate = useNavigate();
 
-	const itemClickedOn = useCallback(
-		() => navigate("/view/" + id),
-		[navigate, id],
-	);
+	const pageToNavigateTo = "/view/" + id;
 
 	return (
 		<Box>
 			<ListItem>
 				<ListItemButton sx={{ padding: 0 }}>
-					<Tooltip title={recipeName + " - " + recipeDescription}>
+					<Tooltip
+						title={isLoading ? "" : recipeName + " - " + recipeDescription}
+					>
 						<Card
 							sx={{
 								width: "100%",
 								display: "flex",
 								flexDirection: "row",
 							}}
-							onClick={() => itemClickedOn()}
 						>
 							<Box sx={{ width: "40vw" }}>
-								<CardMedia
-									component="img"
-									image={`${image}?quality=70&resize=300,250&webp=true`}
-									alt={recipeName}
-									sx={{ maxHeight: "250px" }}
-								/>
+								{isLoading ? (
+									<Skeleton variant="rounded" width={"auto"} height={"250px"} />
+								) : (
+									<CardMedia
+										component="img"
+										image={`${image}?quality=70&resize=300,250&webp=true`}
+										alt={recipeName}
+										sx={{ maxHeight: "250px" }}
+										onClick={() => navigate(pageToNavigateTo)}
+									/>
+								)}
 							</Box>
 							<CardContent
-								onClick={() => itemClickedOn()}
 								sx={{
 									width: "100%",
 									minWidth: "200px",
@@ -66,34 +69,73 @@ export const RecipeListItem = (props) => {
 									justifyContent: "space-between",
 								}}
 							>
-								<Box>
-									<Typography variant="h6">{recipeName}</Typography>
-									<Typography
-										variant="body2"
-										color="text.secondary"
-										sx={{
-											height: "4.5em",
-											overflowY: "hidden",
-											textOverflow: "ellipsis",
-										}}
-									>
-										{recipeDescription}
-									</Typography>
-								</Box>
-								<CardActions
-									sx={{ justifyContent: "space-between", padding: 0 }}
-								>
-									<Box sx={{ display: "flex", gap: 1 }}>
-										<TotalTime cookTime={cookTime} prepTime={prepTime} />
-										<Chip label={category} color="primary" variant="outlined" />
-									</Box>
-									{isFavorite === null ? (
-										<></>
-									) : (
-										<FavoriteButton
-											isFav={isFavorite}
-											recipeID={parseInt(id)}
+								{isLoading ? (
+									<Box>
+										<Skeleton variant="rounded" width={"auto"} height={"3em"} />
+										<Skeleton
+											variant="rounded"
+											width={"auto"}
+											height={"6em"}
+											sx={{ marginTop: 1 }}
 										/>
+									</Box>
+								) : (
+									<Box onClick={() => navigate(pageToNavigateTo)}>
+										<Typography variant="h6">{recipeName}</Typography>
+										<Typography
+											variant="body2"
+											color="text.secondary"
+											sx={{
+												height: "4.5em",
+												overflowY: "hidden",
+												textOverflow: "ellipsis",
+											}}
+										>
+											{recipeDescription}
+										</Typography>
+									</Box>
+								)}
+
+								<CardActions>
+									{isLoading ? (
+										<Box sx={{ display: "flex", gap: 1 }}>
+											<Skeleton
+												variant="rounded"
+												width={"10em"}
+												height={"1.5em"}
+											/>
+											<Skeleton
+												variant="rounded"
+												width={"10em"}
+												height={"1.5em"}
+											/>
+										</Box>
+									) : (
+										<Box
+											sx={{
+												display: "flex",
+												justifyContent: "space-between",
+												width: "100%",
+												padding: 0,
+											}}
+										>
+											<Box sx={{ display: "flex", gap: 1 }}>
+												<TotalTime cookTime={cookTime} prepTime={prepTime} />
+												<Chip
+													label={category}
+													color="primary"
+													variant="outlined"
+												/>
+											</Box>
+											{isFavorite === null ? (
+												<></>
+											) : (
+												<FavoriteButton
+													isFav={isFavorite}
+													recipeID={parseInt(id)}
+												/>
+											)}
+										</Box>
 									)}
 								</CardActions>
 							</CardContent>
@@ -115,4 +157,5 @@ RecipeListItem.propTypes = {
 	prepTime: PropTypes.number,
 	image: PropTypes.string,
 	category: PropTypes.string,
+	isLoading: PropTypes.bool,
 };
