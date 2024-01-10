@@ -1,18 +1,30 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Typography } from "@mui/material";
 import {
 	AddRecipeButton,
-	Loading,
 	RecipeList,
 	Page,
-	Header,
+	SubPageHeader,
 	ImageGallery,
+	ImageGallerySkeleton,
 } from "components";
 import { getRecipesByCategoryName } from "data";
+import PropTypes from "prop-types";
 
 export const Category = () => {
 	const { category } = useParams();
+	return (
+		<>
+			<SubPageHeader headerText={category} />
+			<Page>
+				<CategoryList category={category} />
+			</Page>
+		</>
+	);
+};
 
+const CategoryList = ({ category }) => {
 	const [recipes, setRecipes] = useState();
 
 	useEffect(() => {
@@ -24,10 +36,9 @@ export const Category = () => {
 	}, [category]);
 
 	if (recipes) {
-		return (
-			<>
-				<Header headerText={category} />
-				<Page>
+		if (recipes.length > 0) {
+			return (
+				<>
 					<ImageGallery
 						recipes={recipes}
 						howManyToDisplay={4}
@@ -35,16 +46,22 @@ export const Category = () => {
 					/>
 					<RecipeList recipes={recipes} />
 					<AddRecipeButton />
-				</Page>
-			</>
-		);
+				</>
+			);
+		} else {
+			return (
+				<Typography sx={{ textAlign: "center" }}>No recipes found</Typography>
+			);
+		}
 	} else {
 		return (
 			<>
-				<Header headerText={category} />
-				<Loading />
-				<AddRecipeButton />
+				<ImageGallerySkeleton />
 			</>
 		);
 	}
+};
+
+CategoryList.propTypes = {
+	category: PropTypes.string,
 };
