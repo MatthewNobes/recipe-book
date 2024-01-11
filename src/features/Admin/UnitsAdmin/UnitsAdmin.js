@@ -1,4 +1,4 @@
-import { Loading, SubPageHeader } from "components";
+import { Loading, SubPageHeader, Page } from "components";
 import { useEffect, useState } from "react";
 import { getAllUnits, deleteUnit, addUnit } from "data";
 import { List, ListItem, ListItemText, IconButton, Fab } from "@mui/material";
@@ -116,7 +116,9 @@ export const UnitsAdmin = () => {
 	return (
 		<>
 			<SubPageHeader headerText="Units of measurement" />
-			<UnitsList />
+			<Page>
+				<UnitsList />
+			</Page>
 		</>
 	);
 };

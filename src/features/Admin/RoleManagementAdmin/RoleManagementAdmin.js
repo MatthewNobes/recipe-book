@@ -1,4 +1,4 @@
-import { SubPageHeader, Loading } from "components";
+import { SubPageHeader, Loading, Page } from "components";
 import { RoleList } from "./RoleList/RoleList";
 import { useEffect, useState } from "react";
 import { setToast } from "store/slices/toastSlice/toastSlice";
@@ -87,17 +87,20 @@ export const RoleManagementAdmin = () => {
 			>
 				<Add />
 			</Fab>
+
 			<SubPageHeader headerText="Role Management Admin" />
-			{roles ? (
-				<RoleList
-					roles={roles}
-					deleteRole={deleteRole}
-					populateRoles={populateRoles}
-					triggerEditRoleModel={triggerEditRoleModel}
-				/>
-			) : (
-				<Loading />
-			)}
+			<Page>
+				{roles ? (
+					<RoleList
+						roles={roles}
+						deleteRole={deleteRole}
+						populateRoles={populateRoles}
+						triggerEditRoleModel={triggerEditRoleModel}
+					/>
+				) : (
+					<Loading />
+				)}
+			</Page>
 		</>
 	);
 };
