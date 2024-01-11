@@ -1,4 +1,4 @@
-import { SubPageHeader } from "components";
+import { SubPageHeader, Page } from "components";
 import { useEffect, useState } from "react";
 import { getUsersWithRoles, getAllRoles } from "data";
 import { UserList } from "./UserList/UserList";
@@ -35,11 +35,13 @@ export const UserManagement = () => {
 	return (
 		<>
 			<SubPageHeader headerText="User Management" />
-			<UserList
-				users={users}
-				availableRoles={availableRoles}
-				refetchUserData={populateUsers}
-			/>
+			<Page>
+				<UserList
+					users={users}
+					availableRoles={availableRoles}
+					refetchUserData={populateUsers}
+				/>
+			</Page>
 		</>
 	);
 };
