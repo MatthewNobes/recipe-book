@@ -21,7 +21,7 @@ export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 			<Box
 				sx={{
 					width: "100%",
-					height: "50vh",
+					height: "40vh",
 					position: "absolute",
 					display: "flex",
 					justifyContent: "space-between",
