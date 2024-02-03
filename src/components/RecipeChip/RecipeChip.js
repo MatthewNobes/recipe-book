@@ -7,12 +7,7 @@ export const RecipeChip = ({ value = 0, label = "" }) => {
 	const fullLabel = value === 0 ? label + "N/A" : label + minutesToHours(value);
 	return (
 		<Tooltip title={label + value}>
-			<Chip
-				icon={<AccessTimeIcon />}
-				label={fullLabel}
-				color="warning"
-				variant="outlined"
-			/>
+			<Chip icon={<AccessTimeIcon />} label={fullLabel} color="primary" />
 		</Tooltip>
 	);
 };

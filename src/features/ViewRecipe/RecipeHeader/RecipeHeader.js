@@ -1,5 +1,5 @@
-import { Box, IconButton, Avatar } from "@mui/material";
-import { ArrowBack } from "@mui/icons-material";
+import { Box, IconButton, Avatar, Tooltip } from "@mui/material";
+import { ArrowBack, PlayCircle } from "@mui/icons-material";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -21,26 +21,44 @@ export const RecipeHeader = ({ imageSource, recipeName, id }) => {
 			<Box
 				sx={{
 					width: "100%",
+					height: "50vh",
 					position: "absolute",
 					display: "flex",
 					justifyContent: "space-between",
 					paddingTop: 1,
 				}}
 			>
-				<IconButton
-					aria-label="back"
-					sx={{ paddingLeft: 3 }}
-					size="large"
-					onClick={() => goBack()}
+				<Box sx={{ display: "flex", flexDirection: "column" }}>
+					<IconButton
+						aria-label="back"
+						sx={{ paddingLeft: 3 }}
+						size="large"
+						onClick={() => goBack()}
+					>
+						<Avatar sx={{ opacity: 0.6, backgroundColor: "black" }}>
+							<ArrowBack htmlColor="#fff" />
+						</Avatar>
+					</IconButton>
+				</Box>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "space-between",
+						height: "100%",
+					}}
 				>
-					<Avatar sx={{ opacity: 0.6, backgroundColor: "black" }}>
-						<ArrowBack htmlColor="#fff" />
-					</Avatar>
-				</IconButton>
-				<Box>
 					<RecipeHeaderMenu id={id} goBack={goBack} name={recipeName} />
+					<IconButton onClick={() => navigate(`/play/${id}`)}>
+						<Tooltip title="Play recipe" placement="left">
+							<Avatar sx={{ backgroundColor: "black" }}>
+								<PlayCircle htmlColor="#fff" />
+							</Avatar>
+						</Tooltip>
+					</IconButton>
 				</Box>
 			</Box>
+
 			<RecipeImage imageSource={imageSource} recipeName={recipeName} />
 		</Box>
 	);

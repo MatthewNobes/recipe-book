@@ -13,6 +13,7 @@ import {
 	OutlinedInputWrapper,
 } from "./FormUI";
 import Header from "./Header";
+import RecipeChip from "./RecipeChip";
 import ImageGallery, { ImageGallerySkeleton } from "./ImageGallery";
 import LoginButton from "./LoginButton";
 import Loading from "./Loading";
@@ -58,6 +59,7 @@ export {
 	SignOutButton,
 	SubPageHeader,
 	ToastNotification,
+	RecipeChip,
 	RecipeSlideshow,
 	DialogBox,
 	Footer,
