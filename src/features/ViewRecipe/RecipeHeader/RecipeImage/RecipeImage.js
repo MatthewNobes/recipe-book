@@ -1,4 +1,3 @@
-import css from "./RecipeImage.module.css";
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 
@@ -15,10 +14,17 @@ export const RecipeImage = (props) => {
 				}}
 			>
 				<img
-					className={css.RecipeImage}
+					style={{
+						height: "40vh",
+						minWidth: "60%",
+						objectFit: "cover",
+						display: "block",
+						marginLeft: "auto",
+						marginRight: "auto",
+					}}
 					alt={recipeName}
-					src={`${source}?quality=70&resize=440,400&webp=true`}
-					srcSet={`${source}?quality=70&resize=440,400&webp=true`}
+					src={`${source}?webp=true`}
+					srcSet={`${source}?webp=true`}
 				/>
 			</Box>
 		);

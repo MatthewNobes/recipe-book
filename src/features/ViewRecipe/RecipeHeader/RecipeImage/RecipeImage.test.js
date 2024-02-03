@@ -21,9 +21,6 @@ describe("recipe image testing", () => {
 		render(<RecipeImage imageSource={imageSource} recipeName={recipeName} />);
 
 		const recipeImage = screen.getByRole("img");
-		expect(recipeImage).toHaveAttribute(
-			"src",
-			`${imageSource}?quality=70&resize=440,400&webp=true`,
-		);
+		expect(recipeImage).toHaveAttribute("src", `${imageSource}?webp=true`);
 	});
 });
