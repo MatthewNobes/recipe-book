@@ -18,6 +18,7 @@ import Category from "./Category";
 import RecommendRecipe from "./RecommendRecipe";
 import Login from "./Login";
 import PageNotFound from "./PageNotFound";
+import PlayRecipe from "./PlayRecipe";
 export {
 	Admin,
 	AccountDetails,
@@ -35,6 +36,7 @@ export {
 	EditRecipe,
 	Categories,
 	Category,
+	PlayRecipe,
 	RecommendRecipe,
 	Login,
 	PageNotFound,

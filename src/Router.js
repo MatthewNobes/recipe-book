@@ -15,6 +15,7 @@ import {
 	EditRecipe,
 	Categories,
 	Category,
+	PlayRecipe,
 	RecommendRecipe,
 	Login,
 	PageNotFound,
@@ -56,6 +57,7 @@ export const Router = () => {
 				element={isContributor ? <EditRecipe /> : <Navigate to="/" />}
 			/>
 			<Route path="/category/:category" element={<Category />} />
+			<Route path="/play/:recipeID" element={<PlayRecipe />} />
 			<Route path="/view/:recipeID" element={<ViewRecipe />} />
 			<Route
 				path="/admin"

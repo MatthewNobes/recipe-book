@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { ServesChip } from "./ServesChip/ServesChip";
 import { DifficultyChip } from "./DifficultyChip/DifficultyChip";
-import { RecipeChip } from "./RecipeChip/RecipeChip";
+import { RecipeChip } from "components";
 import { CountryChip } from "./CountryChip/CountryChip";
 import { VegStatusChip } from "./VegStatusChip/VegStatusChip";
 import PropTypes from "prop-types";
