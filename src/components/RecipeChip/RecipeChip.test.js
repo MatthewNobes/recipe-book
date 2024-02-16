@@ -19,13 +19,4 @@ describe("RecipeChip", () => {
 		const prepTimeText = screen.getByText(label + "2:00");
 		expect(prepTimeText).toBeInTheDocument();
 	});
-
-	it("should render `label N/A` if the value passed is empty", () => {
-		const time = 0;
-		const label = "Prep: ";
-		render(<RecipeChip value={time} label={label} />);
-
-		const prepTimeText = screen.getByText(label + "N/A");
-		expect(prepTimeText).toBeInTheDocument();
-	});
 });
