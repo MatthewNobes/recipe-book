@@ -50,8 +50,16 @@ export const ChipBar = ({
 					flexWrap: "wrap",
 				}}
 			>
-				<RecipeChip label="Prep: " value={prepTime} />
-				<RecipeChip label="Cook: " value={cookTime} />
+				<RecipeChip
+					label="Prep: "
+					value={prepTime}
+					toolTipText={"Preparation time"}
+				/>
+				<RecipeChip
+					label="Cook: "
+					value={cookTime}
+					toolTipText={"Cooking time"}
+				/>
 			</Box>
 		</Box>
 	);
