@@ -1,12 +1,14 @@
 import {
-	Button,
-	Box,
+	List,
+	ListItemButton,
+	ListItem,
+	ListItemText,
 	Typography,
 	AccordionSummary,
 	Accordion,
 	AccordionDetails,
 } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, Launch } from "@mui/icons-material";
 import { isURL, utf8Decode } from "utils";
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -31,29 +33,25 @@ export const RecipeFooter = ({ recipeSource = "", createdDate = "" }) => {
 		return (
 			<Accordion expanded={isExpanded} onChange={() => handleChange()}>
 				<Header />
-				<AccordionDetails>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							gap: 1,
-						}}
-					>
-						<Button
+				<AccordionDetails sx={{ paddingX: 0 }}>
+					<List sx={{ paddingX: 0 }}>
+						<ListItemButton
 							onClick={() =>
 								window.open(utf8Decode(recipeSource), "_blank", "noreferrer")
 							}
 						>
-							View Recipe Source
-						</Button>
+							<ListItemText primary="View Recipe Source" />
+
+							<Launch />
+						</ListItemButton>
 						{createdDate ? (
-							<Typography variant="Body2">
+							<ListItem variant="Body2">
 								Added: {createdDate.toString()}
-							</Typography>
+							</ListItem>
 						) : (
 							<div data-testid="no-created-date"></div>
 						)}
-					</Box>
+					</List>
 				</AccordionDetails>
 			</Accordion>
 		);
