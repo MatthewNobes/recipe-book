@@ -24,15 +24,15 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use pnpm/Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
-          cache-dependency-path: package-lock.json
+          cache: "pnpm"
+          cache-dependency-path: pnpm-lock.yaml
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
       - name: Run build
-        run: npm run build --if-present
+        run: pnpm run build --if-present
       - name: Test build
-        run: npm run test
+        run: pnpm run test
