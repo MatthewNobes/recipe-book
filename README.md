@@ -11,9 +11,7 @@ It was originally built from a create-react-app template that has grown and chan
 To get started with this component. Open a new terminal for `Recipe App`. The type the following command to install the necessary dependencies
 
 ```bash
-npm install
-or
-yarn install
+pnpm install
 ```
 
 The next step is to configure the environment variables. Make a new file in the root of the component called `.env`. This is where the connection parameters for supabase will be kept. See the example `.env` file below:
@@ -26,7 +24,7 @@ REACT_APP_SUPABASE_KEY="<key goes here>"
 Once this is configured, start up the app using the command:
 
 ```bash
-npm start
+pnpm start
 ```
 ## Local Supabase 
 
@@ -66,7 +64,7 @@ supabase db push
 Jest is being used for unit testing on this component. You can run these tests using the following command:
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## Linting 
@@ -74,7 +72,7 @@ npm test
 ESLint has been setup with this project, you can view the ESLint configuration in the `.eslintrc.js` file. If you wish to check the linting for this component use the following command: 
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 # Deployment
