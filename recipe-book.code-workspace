@@ -3,11 +3,11 @@
 		{
 			// Recipe App
 			"name": "Recipe App",
-			"path": "./"
-		}
+			"path": "./",
+		},
 	],
 	"extensions": {
-		"recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+		"recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"],
 	},
 	"settings": {
 		"cSpell.words": [
@@ -17,7 +17,7 @@
 			"helpertext",
 			"localised",
 			"randomise",
-			"supabase"
-		]
-	}
+			"supabase",
+		],
+	},
 }

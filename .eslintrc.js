@@ -8,9 +8,8 @@ module.exports = {
 	},
 	extends: ["eslint:recommended", "plugin:react/recommended"],
 	overrides: [],
-	parser: "@babel/eslint-parser",
 	parserOptions: {
-		ecmaVersion: "latest",
+		ecmaVersion: 12,
 		sourceType: "module",
 	},
 	plugins: ["react", "jest"],
