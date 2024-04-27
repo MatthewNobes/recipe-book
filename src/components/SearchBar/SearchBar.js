@@ -16,8 +16,6 @@ export const SearchBar = () => {
 	const [recipes, setRecipes] = useState([]);
 	const [resultRecipes, setResultRecipes] = useState([]);
 
-	console.log(resultRecipes);
-
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			const foundRecipes = await getAllRecipes();
