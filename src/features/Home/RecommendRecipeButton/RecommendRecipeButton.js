@@ -1,5 +1,5 @@
 import { Button, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const RecommendRecipeButton = () => {
 	const navigate = useNavigate();

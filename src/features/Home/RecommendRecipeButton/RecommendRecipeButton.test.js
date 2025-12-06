@@ -1,6 +1,6 @@
 import { RecommendRecipeButton } from "./RecommendRecipeButton";
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 
 describe("RecommendRecipeButton", () => {
 	it("should load the correct button text", () => {

@@ -2,7 +2,7 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { Settings, Search, Home } from "@mui/icons-material";
 import { useState } from "react";
 import css from "./Navigation.module.css";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const Navigation = () => {
 	const [value, setValue] = useState(0);

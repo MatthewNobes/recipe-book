@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Typography, Divider } from "@mui/material";
 import { ChipBar, ViewDetails, RecipeHeader } from "./";
 import { FavoriteButton, Loading, Page } from "components";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { getRecipeByID, removeKeywordFromRecipe, addKeyword } from "data";
 import { Keywords } from "./Keywords/Keywords";
 import { useDispatch, useSelector } from "react-redux";

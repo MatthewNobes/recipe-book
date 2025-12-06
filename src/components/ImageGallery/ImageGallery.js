@@ -1,6 +1,6 @@
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import FavoriteButton from "../FavoriteButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import { shuffleArray, utf8Decode } from "utils";
 

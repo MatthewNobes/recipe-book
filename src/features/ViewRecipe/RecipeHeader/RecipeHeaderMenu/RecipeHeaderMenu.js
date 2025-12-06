@@ -4,7 +4,7 @@ import { setToast } from "store/slices/toastSlice/toastSlice";
 import { deleteRecipe } from "data";
 import { useState } from "react";
 import { MoreVert } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { DialogBox } from "components";
 import PropTypes from "prop-types";
 

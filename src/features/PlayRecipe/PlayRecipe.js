@@ -1,5 +1,5 @@
 import { SubPageHeader, Page, Loading } from "components";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { getRecipeByID } from "data";
 import InteractiveRecipeInstructions from "./InteractiveRecipeInstructions";

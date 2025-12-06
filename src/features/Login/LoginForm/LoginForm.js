@@ -6,7 +6,7 @@ import { auth, getUsersRoleNames } from "data";
 import { useDispatch } from "react-redux";
 import { setToast } from "store/slices/toastSlice/toastSlice";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { setUsersRoles } from "store/slices/usersRoles/usersRoles";
 
 export const LoginForm = () => {

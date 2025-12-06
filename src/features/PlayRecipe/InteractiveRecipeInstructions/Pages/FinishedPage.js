@@ -1,5 +1,5 @@
 import { Typography, Box, IconButton, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import { ArrowBack } from "@mui/icons-material";
 

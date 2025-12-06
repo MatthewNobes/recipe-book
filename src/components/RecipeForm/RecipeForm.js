@@ -16,7 +16,7 @@ import {
 } from "./Forms";
 import { useState } from "react";
 import { addRecipe, updateRecipe } from "../../data";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../store/slices/toastSlice/toastSlice";
 import PropTypes from "prop-types";

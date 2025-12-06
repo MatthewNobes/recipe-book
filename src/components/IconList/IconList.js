@@ -8,7 +8,7 @@ import {
 	ListSubheader,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const IconList = ({ options, listSubheader }) => {
 	const navigate = useNavigate();

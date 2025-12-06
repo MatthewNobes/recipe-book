@@ -1,7 +1,7 @@
 import { Box, IconButton, Avatar, Tooltip } from "@mui/material";
 import { ArrowBack, PlayCircle } from "@mui/icons-material";
 import { RecipeImage } from "./RecipeImage/RecipeImage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import { RecipeHeaderMenu } from "./RecipeHeaderMenu/RecipeHeaderMenu";
 

@@ -9,7 +9,7 @@ import {
 import { ArrowBack, MoreVert } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const SubPageHeader = ({ headerText = "", menuOptions = [] }) => {
 	const navigate = useNavigate();

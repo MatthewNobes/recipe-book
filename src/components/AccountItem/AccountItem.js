@@ -9,7 +9,7 @@ import {
 	IconButton,
 	Tooltip,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { getWelcomeMessage } from "utils";
 import { GenericListButtonLink } from "components";

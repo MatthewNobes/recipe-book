@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import { SubPageHeader } from "./SubPageHeader";
 
 it("should load the correct header text", () => {

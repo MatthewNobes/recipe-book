@@ -1,7 +1,7 @@
 import { ImageGallery } from "./ImageGallery";
 import { render, screen } from "@testing-library/react";
 import { utf8Decode } from "../../utils";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 
 describe("Image gallery", () => {
 	const recipes = [

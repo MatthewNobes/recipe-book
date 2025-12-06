@@ -1,6 +1,6 @@
 import { Fab } from "@mui/material";
 import { Add } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
 export const AddRecipeButton = () => {

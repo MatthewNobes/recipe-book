@@ -8,7 +8,7 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const SlideshowItem = ({ recipe }) => {
 	const navigate = useNavigate();

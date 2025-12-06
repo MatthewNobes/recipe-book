@@ -1,6 +1,6 @@
 import { Button, Typography, Box } from "@mui/material";
 import { SubPageHeader } from "components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Home } from "@mui/icons-material";
 
 export const PageNotFound = () => {

@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import FavoriteButton from "../../FavoriteButton";
 import TotalTime from "./TotalTime";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 
 export const RecipeListItem = (props) => {
