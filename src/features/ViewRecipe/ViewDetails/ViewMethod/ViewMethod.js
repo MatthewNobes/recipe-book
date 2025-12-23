@@ -5,8 +5,9 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
+	Chip,
 } from "@mui/material";
-import { utf8Decode } from "utils";
+import { utf8Decode, isValidJSON } from "utils";
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -35,6 +36,14 @@ export const ViewMethod = ({ method = [] }) => {
 				<AccordionDetails>
 					<List>
 						{method.map((step, index) => {
+							let stepText = step;
+							let optional = false;
+
+							if (isValidJSON(step)) {
+								stepText = JSON.parse(step).step;
+								optional = JSON.parse(step).optional;
+							}
+
 							return (
 								<ListItem disablePadding key={index}>
 									<Typography variant="body2" gutterBottom component="div">
@@ -42,8 +51,17 @@ export const ViewMethod = ({ method = [] }) => {
 											Step {index + 1}:
 										</Typography>
 
-										{utf8Decode(step)}
+										{utf8Decode(stepText)}
 									</Typography>
+									{optional ? (
+										<Chip
+											label={"Optional"}
+											variant="outlined"
+											color="primary"
+										/>
+									) : (
+										<></>
+									)}
 								</ListItem>
 							);
 						})}

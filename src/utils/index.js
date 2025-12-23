@@ -10,6 +10,7 @@ import { utf8Decode } from "./utf8Decode/utf8Decode";
 import { utf8Encode } from "./utf8Encode/utf8Encode";
 import { getMeasurementsThatNeedASpace } from "./getMeasurementThatNeedASpace/getMeasurementThatNeedASpace";
 import { verifyImageValidity } from "./verifyImageValidity/verifyImageValidity";
+import { isValidJSON } from "./isValidJSON/isValidJSON";
 export {
 	filterRecipesForTimeRange,
 	minutesToHours,
@@ -23,4 +24,5 @@ export {
 	utf8Decode,
 	utf8Encode,
 	verifyImageValidity,
+	isValidJSON,
 };
